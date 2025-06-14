@@ -12,8 +12,12 @@ def print_board(board: chess.Board):
     print(str(board.unicode(borders=True)).replace("⭘", " ") + "\n")
 
 
-def _evaluate_single_move(board: chess.Board, engine, move: chess.Move,
-                          depth: int = EVAL_DEPTH):
+def _evaluate_single_move(
+    board: chess.Board,
+    engine,
+    move: chess.Move,
+    depth: int = EVAL_DEPTH
+):
     """Evaluates a single move on the board using the chess engine."""
     board.push(move)
     info = engine.analyse(board, chess.engine.Limit(depth=depth))
@@ -24,8 +28,12 @@ def _evaluate_single_move(board: chess.Board, engine, move: chess.Move,
     return move, (score, mate_val)
 
 
-def _calculate_and_print_progress(iteration: int, total_iterations: int,
-                                  start_time: float, bar_length: int):
+def _calculate_and_print_progress(
+    iteration: int,
+    total_iterations: int,
+    start_time: float,
+    bar_length: int
+):
     """Calculates and prints the progress bar and time estimate."""
     elapsed = time.time() - start_time
     progress_percent = (iteration / total_iterations) * 100
@@ -33,6 +41,7 @@ def _calculate_and_print_progress(iteration: int, total_iterations: int,
         avg_time_per_move = 0
     else:
         avg_time_per_move = elapsed / iteration
+
     remaining_time = avg_time_per_move * (total_iterations - iteration)
 
     mins, secs = divmod(int(remaining_time), 60)
@@ -42,15 +51,17 @@ def _calculate_and_print_progress(iteration: int, total_iterations: int,
     filled_length = max(0, min(filled_length, bar_length))
     bar = "#" * filled_length + "-" * (bar_length - filled_length)
 
-    print(f"\rEvaluating: [{bar}] {progress_percent:.2f}% | "
-          f"Remaining: {time_estimate}",
-          end="",
-          flush=True)
+    print(
+        f"\rEvaluating: [{bar}] {progress_percent:.2f}% | "
+        f"Remaining: {time_estimate}",
+        end="",
+        flush=True,
+    )
 
 
 def evaluate_moves(board: chess.Board, engine, depth=EVAL_DEPTH):
     """Evaluates all legal moves on the board using the chess engine
-       and displays progress.
+    and displays progress.
     """
     moves_evaluations = {}
     legal_moves = list(board.legal_moves)
@@ -72,24 +83,28 @@ def evaluate_moves(board: chess.Board, engine, depth=EVAL_DEPTH):
 def _get_engine(engine_path: str):
     """Initializes and configures the chess engine."""
     engine = chess.engine.SimpleEngine.popen_uci(engine_path)
-    engine.configure({
-                         "Threads": 2,
-                         "Hash": 16384,
-                         "Skill Level": 20,
-                     })
+    engine.configure(
+        {
+            "Threads": 2,
+            "Hash": 16384,
+            "Skill Level": 20,
+        }
+    )
     return engine
 
 
 def _sort_moves_by_evaluation(moves_eval: dict, is_white_turn: bool):
     """Sorts the evaluated moves based on the score, prioritizing for
-       the current player.
+    the current player.
     """
     if is_white_turn:
-        return sorted(moves_eval.items(), key=lambda item: item[1][0],
-                      reverse=True)
+        return sorted(
+            moves_eval.items(), key=lambda item: item[1][0], reverse=True
+        )
     else:
-        return sorted(moves_eval.items(), key=lambda item: item[1][0],
-                      reverse=False)
+        return sorted(
+            moves_eval.items(), key=lambda item: item[1][0], reverse=False
+        )
 
 
 def _print_possible_moves(sorted_moves: list):
@@ -114,23 +129,27 @@ def _handle_user_input(board: chess.Board):
         except Exception:
             print("Invalid move format. Please try again.\n")
             return None
+
     if move not in board.legal_moves:
         print("Illegal move. Please try again.\n")
         return None
+
     return move
 
 
 def _print_game_over_info(board: chess.Board, move_history: list):
     """Prints game over information, including the board, move history,
-       and result.
+    and result.
     """
     print_board(board)
     print("Game Over!")
     print("Moves played:")
+
     for idx, move in enumerate(move_history, start=1):
         print(f"{idx:2d}. {move.uci()}", end="  ")
         if idx % 5 == 0:
             print()
+
     print()
 
     result = board.result()
@@ -174,6 +193,7 @@ def main():
             print(f"\nEvaluation time: {total_eval_time:.2f} sec\n")
 
             move = _handle_user_input(board)
+
             if move:
                 board.push(move)
                 move_history.append(move)
