@@ -13,10 +13,7 @@ def print_board(board: chess.Board):
 
 
 def _evaluate_single_move(
-    board: chess.Board,
-    engine,
-    move: chess.Move,
-    depth: int = EVAL_DEPTH
+    board: chess.Board, engine, move: chess.Move, depth: int = EVAL_DEPTH
 ):
     """Evaluates a single move on the board using the chess engine."""
     board.push(move)
@@ -29,10 +26,7 @@ def _evaluate_single_move(
 
 
 def _calculate_and_print_progress(
-    iteration: int,
-    total_iterations: int,
-    start_time: float,
-    bar_length: int
+    iteration: int, total_iterations: int, start_time: float, bar_length: int
 ):
     """Calculates and prints the progress bar and time estimate."""
     elapsed = time.time() - start_time
@@ -60,8 +54,8 @@ def _calculate_and_print_progress(
 
 
 def evaluate_moves(board: chess.Board, engine, depth=EVAL_DEPTH):
-    """Evaluates all legal moves on the board using the chess engine
-    and displays progress.
+    """Evaluates all legal moves on the board using the chess engine and
+    displays progress.
     """
     moves_evaluations = {}
     legal_moves = list(board.legal_moves)
@@ -184,11 +178,11 @@ def main():
 
             if sorted_moves:
                 best_move, (best_score, best_mate) = sorted_moves[0]
-                if best_mate is not None:
-                    if (board.turn and best_mate > 0) or (
-                        not board.turn and best_mate < 0
-                    ):
-                        print(f"\nMate in {abs(best_mate)}")
+                if best_mate is not None and (
+                    (board.turn and best_mate > 0)
+                    or (not board.turn and best_mate < 0)
+                ):
+                    print(f"\nMate in {abs(best_mate)}")
 
             print(f"\nEvaluation time: {total_eval_time:.2f} sec\n")
 
