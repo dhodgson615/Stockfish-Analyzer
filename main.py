@@ -14,6 +14,8 @@ result."""
     - Add GUI support for a more interactive experience
     - Add configurable engine settings
     - Add logging for better debugging and tracking
+    - Add images to README for better documentation
+    - Add graphs to visualize move evaluations over time
 """
 
 import shutil
