@@ -1,3 +1,9 @@
+"""Script that allows a user to play chess against themselves with move
+evaluations provided by a chess engine. The script displays the chess
+board, evaluates possible moves, and handles user input for moves. It
+also shows game over information including the move history and
+result."""
+
 import shutil
 import time
 
