@@ -13,9 +13,9 @@ without a full-blown GUI.
 - Progress bar with real-time "time remaining" estimate
 - Sorted move list from the point of view of the side to move
 - Accepts moves in both SAN (`e4`, `Nf3+`, …) and UCI (`e2e4`, `g1f3`, …)
-  formats.
-- Graceful end-of-game summary with move history and final result.
-- Clean quit of the Stockfish engine even on exceptions.
+  formats
+- Graceful end-of-game summary with move history and final result
+- Clean quit of the Stockfish engine even on exceptions
 
 ---
 
