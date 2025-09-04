@@ -55,7 +55,6 @@ re-evaluate the new position and show fresh advice.
 4. Play until checkmate, stalemate, or another terminal condition; the script then
 prints the final board, move list, and winner/draw result.
 
----
 
 ## Known Limitations
 - **Slow for complex positions**: analysing each move separately restarts the
