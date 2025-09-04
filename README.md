@@ -30,7 +30,8 @@ The Stockfish engine is configured with:
 - [`python-chess`](https://pypi.org/project/python-chess/) library
 - A working Stockfish binary available on your system
 
-Install the Python dependency with
+Install the Python dependency with:
+
 ```bash
 pip3 install python-chess
 ```
