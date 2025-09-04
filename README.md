@@ -6,7 +6,8 @@ It is ideal for learning, blunder-checking, or simply exploring engine lines
 without a full-blown GUI.
 
 ## Key Features
-- Unicode board display with borders for easy reading in any terminal.
+
+- Unicode board display with borders for easy reading in any terminal
 - Fixed-depth evaluation (default 12 plies) of every legal move, reported in
   centipawns and, when applicable, “Mate in N”.
 - Progress bar with real-time “time remaining” estimate.
