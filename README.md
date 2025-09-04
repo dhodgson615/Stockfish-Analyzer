@@ -36,8 +36,6 @@ Install the Python dependency with:
 pip3 install python-chess
 ```
 
----
-
 ## Quick Start
 1. Edit the `engine_path` variable near the top of `main()` so it points to
    your Stockfish executable.
