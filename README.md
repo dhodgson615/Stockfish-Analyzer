@@ -83,7 +83,6 @@ This code is released under the MIT License. Stockfish itself is GPLv3; be sure
 to follow its terms when redistributing the binary.
 
 ## Acknowledgements
-- [python-chess](https://github.com/niklasf/python-chess) by Niklas Fiekas
 
 - [Stockfish](https://stockfishchess.org/) - the strongest open-source chess
   engine
