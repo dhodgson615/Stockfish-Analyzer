@@ -44,9 +44,10 @@ Stockfish executable.
 Example macOS Homebrew path: `/opt/homebrew/bin/stockfish`
 
 2. Run the script:
-   ```bash
-   python3 main.py
-   ```
+
+```bash
+python3 main.py
+```
 
 3. When it is your turn, type a move (SAN or UCI) and press **Enter**. The
    engine will re-evaluate the new position and show fresh advice.
