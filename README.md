@@ -52,8 +52,8 @@ python3 main.py
 3. When it is your turn, type a move (SAN or UCI) and press Enter. The engine will
 re-evaluate the new position and show fresh advice.
 
-4. Play until checkmate, stalemate, or another terminal condition; the script
-   then prints the final board, move list, and winner/draw result.
+4. Play until checkmate, stalemate, or another terminal condition; the script then
+prints the final board, move list, and winner/draw result.
 
 ---
 
