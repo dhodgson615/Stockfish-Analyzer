@@ -78,6 +78,7 @@ The following features are planned for future releases:
 - Logging for better debugging
 
 ## License
+
 This code is released under the MIT License. Stockfish itself is GPLv3; be sure
 to follow its terms when redistributing the binary.
 
