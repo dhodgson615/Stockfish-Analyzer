@@ -4,6 +4,18 @@ board, evaluates possible moves, and handles user input for moves. It
 also shows game over information including the move history and
 result."""
 
+"""TODO:
+    - Refactor sorting logic to be more elegant
+    - Make exception handling more specific
+    - Add unit tests for core functionalities
+    - Add Sygygy support for more efficient endgame evaluations
+    - Improve user interface for better experience
+    - Optimize performance for faster move evaluations
+    - Add GUI support for a more interactive experience
+    - Add configurable engine settings
+    - Add logging for better debugging and tracking
+"""
+
 import shutil
 import time
 
