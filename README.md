@@ -17,7 +17,12 @@ without a full-blown GUI.
 - Graceful end-of-game summary with move history and final result
 - Clean quit of the Stockfish engine even on exceptions
 
----
+## Engine Configuration
+
+The Stockfish engine is configured with:
+- 2 threads
+- 16384 MB hash size
+- Skill Level 20 (maximum strength)
 
 ## Prerequisites
 - Python 3.8+ (tested up to 3.12)
