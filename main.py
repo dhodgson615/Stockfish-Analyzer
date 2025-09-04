@@ -12,7 +12,7 @@ def print_board(board: chess.Board):
     print(str(board.unicode(borders=True)).replace("⭘", " ") + "\n")
 
 
-def _evaluate_single_move(
+def evaluate_single_move(
     board: chess.Board, engine, move: chess.Move, depth: int = EVAL_DEPTH
 ):
     """Evaluates a single move on the board using the chess engine."""
@@ -22,15 +22,17 @@ def _evaluate_single_move(
     score = score_obj.score(mate_score=1000000)
     mate_val = score_obj.mate()
     board.pop()
+
     return move, (score, mate_val)
 
 
-def _calculate_and_print_progress(
+def calculate_and_print_progress(
     iteration: int, total_iterations: int, start_time: float, bar_length: int
 ):
     """Calculates and prints the progress bar and time estimate."""
     elapsed = time.time() - start_time
     progress_percent = (iteration / total_iterations) * 100
+
     if iteration == 0:
         avg_time_per_move = 0
     else:
@@ -58,6 +60,7 @@ def evaluate_moves(board: chess.Board, engine, depth=EVAL_DEPTH):
     displays progress.
     """
     moves_evaluations = {}
+
     legal_moves = list(board.legal_moves)
     total_moves = len(legal_moves)
     start_time = time.time()
@@ -65,16 +68,16 @@ def evaluate_moves(board: chess.Board, engine, depth=EVAL_DEPTH):
     bar_length = max(10, term_width - 40)
 
     for i, move in enumerate(legal_moves, 1):
-        move_evaluation = _evaluate_single_move(board, engine, move, depth)
+        move_evaluation = evaluate_single_move(board, engine, move, depth)
         moves_evaluations[move_evaluation[0]] = move_evaluation[1]
-        _calculate_and_print_progress(i, total_moves, start_time, bar_length)
+        calculate_and_print_progress(i, total_moves, start_time, bar_length)
 
     print("\r" + " " * 80 + "\r", end="", flush=True)
 
     return moves_evaluations
 
 
-def _get_engine(engine_path: str):
+def get_engine(engine_path: str):
     """Initializes and configures the chess engine."""
     engine = chess.engine.SimpleEngine.popen_uci(engine_path)
     engine.configure(
@@ -87,21 +90,21 @@ def _get_engine(engine_path: str):
     return engine
 
 
-def _sort_moves_by_evaluation(moves_eval: dict, is_white_turn: bool):
+def sort_moves_by_evaluation(moves_eval: dict, is_white_turn: bool):
     """Sorts the evaluated moves based on the score, prioritizing for
     the current player.
     """
     if is_white_turn:
         return sorted(
             moves_eval.items(), key=lambda item: item[1][0], reverse=True
-        )
+        )  # TODO: Make this more elegant
     else:
         return sorted(
             moves_eval.items(), key=lambda item: item[1][0], reverse=False
-        )
+        )  # TODO: Make this more elegant
 
 
-def _print_possible_moves(sorted_moves: list):
+def print_possible_moves(sorted_moves: list):
     """Prints the possible moves along with their evaluation scores."""
     print("Possible moves:")
     for move, (score, mate_val) in sorted_moves:
@@ -109,18 +112,19 @@ def _print_possible_moves(sorted_moves: list):
         print(f"{move.uci():5s}-> Eval score: {score}{mate_str}")
 
 
-def _handle_user_input(board: chess.Board):
+def handle_user_input(board: chess.Board):
     """Handles user input for the next move."""
     color = "White" if board.turn else "Black"
     user_input = input(
         f"Enter the next move for {color} (SAN or UCI): "
     ).strip()
+
     try:
         move = board.parse_san(user_input)
     except ValueError:
         try:
             move = chess.Move.from_uci(user_input)
-        except Exception:
+        except Exception:  # TODO: Make this more specific
             print("Invalid move format. Please try again.\n")
             return None
 
@@ -131,7 +135,7 @@ def _handle_user_input(board: chess.Board):
     return move
 
 
-def _print_game_over_info(board: chess.Board, move_history: list):
+def print_game_over_info(board: chess.Board, move_history: list):
     """Prints game over information, including the board, move history,
     and result.
     """
@@ -147,6 +151,7 @@ def _print_game_over_info(board: chess.Board, move_history: list):
     print()
 
     result = board.result()
+
     if board.is_checkmate():
         winner = "White" if board.turn == False else "Black"
         print(f"Checkmate! Winner: {winner}")
@@ -162,7 +167,7 @@ def main():
     move_history = []
 
     engine_path = "/opt/homebrew/bin/stockfish"
-    engine = _get_engine(engine_path)
+    engine = get_engine(engine_path)
 
     try:
         while not board.is_game_over():
@@ -173,8 +178,8 @@ def main():
             eval_end = time.time()
             total_eval_time = eval_end - eval_start
 
-            sorted_moves = _sort_moves_by_evaluation(moves_eval, board.turn)
-            _print_possible_moves(sorted_moves)
+            sorted_moves = sort_moves_by_evaluation(moves_eval, board.turn)
+            print_possible_moves(sorted_moves)
 
             if sorted_moves:
                 best_move, (best_score, best_mate) = sorted_moves[0]
@@ -186,7 +191,7 @@ def main():
 
             print(f"\nEvaluation time: {total_eval_time:.2f} sec\n")
 
-            move = _handle_user_input(board)
+            move = handle_user_input(board)
 
             if move:
                 board.push(move)
@@ -194,7 +199,7 @@ def main():
             else:
                 continue
 
-        _print_game_over_info(board, move_history)
+        print_game_over_info(board, move_history)
 
     finally:
         engine.quit()
