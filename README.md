@@ -84,5 +84,6 @@ to follow its terms when redistributing the binary.
 
 ## Acknowledgements
 
-- [Stockfish](https://stockfishchess.org/) - the strongest open-source chess
-  engine
+python-chess by Niklas Fiekas
+Stockfish - the strongest open-source chess engine
+
