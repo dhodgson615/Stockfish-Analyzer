@@ -54,6 +54,7 @@ pip3 install python-chess
   search each time. Multipv or a single `engine.play()` search would be faster.
 - **Hard-coded engine path**: update the string or add CLI args/env vars.
 - **No PGN export**: move history prints to console only.
+- **No endgame tablebase support**: engame positions are redundantly calculated.
 
 ---
 
