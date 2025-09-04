@@ -57,11 +57,13 @@ prints the final board, move list, and winner/draw result.
 
 
 ## Known Limitations
-- **Slow for complex positions**: analysing each move separately restarts the
-  search each time. Multipv or a single `engine.play()` search would be faster.
-- **Hard-coded engine path**: update the string or add CLI args/env vars.
-- **No PGN export**: move history prints to console only.
-- **No endgame tablebase support**: engame positions are redundantly calculated.
+
+- Slow for complex positions: analysing each move separately restarts the
+  search each time. Multipv or a single engine.play() search would be faster.
+- Hard-coded engine path: update the string or add CLI args/env vars.
+- No PGN export: move history prints to console only.
+- No endgame tablebase support: endgame positions are redundantly calculated.
+- Planned Enhancements
 
 ---
 
