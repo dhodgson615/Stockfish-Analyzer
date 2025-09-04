@@ -25,6 +25,7 @@ The Stockfish engine is configured with:
 - Skill Level 20 (maximum strength)
 
 ## Prerequisites
+
 - Python 3.8+ (tested up to 3.12)
 - [`python-chess`](https://pypi.org/project/python-chess/) library
 - A working Stockfish binary available on your system
