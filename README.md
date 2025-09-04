@@ -41,7 +41,8 @@ pip3 install python-chess
 1. Edit the `engine_path` variable near the top of main() so it points to your
 Stockfish executable.
 
-   Example macOS Homebrew path: `/opt/homebrew/bin/stockfish`
+Example macOS Homebrew path: `/opt/homebrew/bin/stockfish`
+
 2. Run the script:
    ```bash
    python3 main.py
