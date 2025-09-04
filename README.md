@@ -65,7 +65,17 @@ prints the final board, move list, and winner/draw result.
 - No endgame tablebase support: endgame positions are redundantly calculated.
 - Planned Enhancements
 
----
+The following features are planned for future releases:
+
+- Refactored move sorting logic
+- More specific exception handling
+- Unit tests for core functionalities
+- Syzygy tablebase support for efficient endgame evaluations
+- Improved user interface
+- Performance optimizations
+- Optional GUI support
+- Configurable engine settings via command line
+- Logging for better debugging
 
 ## License
 This code is released under the MIT License. Stockfish itself is GPLv3; be sure
