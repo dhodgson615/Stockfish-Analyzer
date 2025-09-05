@@ -216,7 +216,7 @@ def evaluate_and_show_moves(board, engine):
     return moves_eval, eval_time
 
 
-def play_game(board, engine, move_history):
+def play_game(board, engine, move_history) -> None:
     """Run the interactive chess game loop."""
     while not board.is_game_over():
         print_board(board)
