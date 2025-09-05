@@ -117,7 +117,7 @@ def get_engine(
 def sort_moves_by_evaluation(moves_eval: dict, is_white_turn: bool) -> list:
     """Sorts the evaluated moves based on the score."""
     return sorted(
-        moves_eval.items(), key=lambda item: item[1][0], reverse=reverse_order
+        moves_eval.items(), key=lambda item: item[1][0], reverse=is_white_turn
     )
 
 
