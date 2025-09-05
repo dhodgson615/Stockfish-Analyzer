@@ -25,6 +25,7 @@ import chess
 import chess.engine
 
 EVAL_DEPTH = 12
+ENGINE_PATH = "/opt/homebrew/bin/stockfish"
 
 
 def print_board(board: chess.Board) -> None:
