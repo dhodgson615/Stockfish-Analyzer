@@ -193,12 +193,9 @@ def print_game_over_info(board: chess.Board, move_history: list) -> None:
 def show_mate_info(best_move_data, is_white_turn):
     """Display mate information if a mate is found."""
     _, (_, mate_val) = best_move_data
-    if mate_val is not None:
-        is_winning_mate = (is_white_turn and mate_val > 0) or (
-            not is_white_turn and mate_val < 0
-        )
-        if is_winning_mate:
-            print(f"\nMate in {abs(mate_val)}")
+
+    if mate_val and (mate_val > 0) == is_white_turn:
+        print(f"\nMate in {abs(mate_val)}")
 
 
 def evaluate_and_show_moves(board, engine):
