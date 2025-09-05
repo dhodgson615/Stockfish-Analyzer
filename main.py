@@ -99,7 +99,7 @@ def evaluate_moves(board: chess.Board, engine, depth=EVAL_DEPTH) -> dict:
 
 
 def get_engine(
-    engine_path: str, threads=2, hash_size=16384, skill_level=20
+    engine_path=ENGINE_PATH, threads=2, hash_size=16384, skill_level=20
 ) -> chess.engine.SimpleEngine:
     """Initializes and configures the chess engine."""
     engine = chess.engine.SimpleEngine.popen_uci(engine_path)
