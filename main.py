@@ -214,6 +214,7 @@ def evaluate_and_show_moves(board, engine):
         show_mate_info(sorted_moves[0], board.turn)
 
     print(f"\nEvaluation time: {eval_time:.2f} sec\n")
+    
     return moves_eval, eval_time
 
 
