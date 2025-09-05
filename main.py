@@ -168,6 +168,7 @@ def print_move_history(move_history, moves_per_line=5) -> None:
         print(f"{idx:2d}. {move.uci()}", end="  ")
         if idx % moves_per_line == 0:
             print()
+
     print()
 
 
