@@ -224,6 +224,7 @@ def play_game(board, engine, move_history):
 
         evaluate_and_show_moves(board, engine)
         move = handle_user_input(board)
+
         if not move:
             continue
 
