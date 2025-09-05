@@ -231,7 +231,7 @@ def play_game(board, engine, move_history):
         move_history.append(move)
 
 
-def main():
+def main() -> None:
     """Main function to run the interactive chess game."""
     board = chess.Board()
     move_history = []
