@@ -236,8 +236,7 @@ def main():
     board = chess.Board()
     move_history = []
 
-    engine_path = "/opt/homebrew/bin/stockfish"
-    engine = get_engine(engine_path)
+    engine = get_engine(ENGINE_PATH)
 
     try:
         play_game(board, engine, move_history)
