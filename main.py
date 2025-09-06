@@ -63,7 +63,6 @@ def display_progress(
     elapsed = time.time() - start_time
     progress_ratio = iteration / total
 
-    # Calculate time estimate
     avg_time = elapsed / max(1, iteration)  # Avoid division by zero
     remaining_secs = avg_time * (total - iteration)
     mins, secs = divmod(int(remaining_secs), 60)
