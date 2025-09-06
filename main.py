@@ -36,7 +36,7 @@ def print_board(board: chess.Board) -> None:
     print(str(board.unicode(borders=True)).replace("⭘", " ") + "\n")
 
 
-def evaluate_single_move(
+def eval_single_move(
     board: chess.Board,
     engine: chess.engine.SimpleEngine,
     move: chess.Move,
