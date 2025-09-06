@@ -143,7 +143,7 @@ def print_possible_moves(sorted_moves: list) -> None:
         print(f"{move.uci():5s}-> Eval score: {score}{mate_text}")
 
 
-def parse_move_input(board, user_input) -> Move | None:
+def parse_move_input(board: Board, user_input: str) -> Move | None:
     """Parse user input as a chess move."""
     try:
         return board.parse_san(user_input)
@@ -173,7 +173,7 @@ def handle_user_input(board: Board) -> Move | None:
     return move
 
 
-def print_move_history(move_history, moves_per_line=5) -> None:
+def print_move_history(move_history: list, moves_per_line=5) -> None:
     """Print the game's move history."""
     print("Moves played:")
 
@@ -187,7 +187,7 @@ def print_move_history(move_history, moves_per_line=5) -> None:
     print()
 
 
-def print_game_result(board) -> None:
+def print_game_result(board: Board) -> None:
     """Print the game result based on the board state."""
     if board.is_checkmate():
         winner = "Black" if board.turn else "White"
@@ -206,7 +206,7 @@ def print_game_over_info(board: Board, move_history: list) -> None:
     print_game_result(board)
 
 
-def show_mate_info(best_move_data, is_white_turn) -> None:
+def show_mate_info(best_move_data: tuple, is_white_turn: bool) -> None:
     """Display mate information if a mate is found."""
     _, (_, mate_val) = best_move_data
 
@@ -214,7 +214,9 @@ def show_mate_info(best_move_data, is_white_turn) -> None:
         print(f"\nMate in {abs(mate_val)}")
 
 
-def evaluate_and_show_moves(board, engine) -> tuple[dict, float]:
+def evaluate_and_show_moves(
+    board: Board, engine: SimpleEngine
+) -> tuple[dict, float]:
     """Evaluate moves and display them with timing information."""
     start_time = time.time()
     moves_eval = get_move_evals(board, engine, depth=EVAL_DEPTH)
