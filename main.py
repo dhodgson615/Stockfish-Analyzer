@@ -5,7 +5,6 @@ also shows game over information including the move history and
 result."""
 
 """TODO:
-    - Refactor sorting logic to be more elegant
     - Make exception handling more specific
     - Add unit tests for core functionalities
     - Add Sygygy support for more efficient endgame evaluations
