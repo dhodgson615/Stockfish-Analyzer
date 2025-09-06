@@ -156,6 +156,7 @@ def parse_move_input(board: Board, user_input: str) -> Move | None:
 
 
 def handle_user_input(board: Board) -> Move | None:
+    # FIXME: Invalid moves are processed but appear to not change the board or player turn
     """Handles user input for the next move."""
     color = "White" if board.turn else "Black"
     user_input = input(
