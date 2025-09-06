@@ -93,7 +93,7 @@ def eval_moves(
     bar_length = max(10, term_width - 40)
 
     for i, move in enumerate(legal_moves, 1):
-        move_obj, score_data = evaluate_single_move(board, engine, move, depth)
+        move_obj, score_data = eval_single_move(board, engine, move, depth)
         moves_evaluations[move_obj] = score_data
         display_progress(i, total_moves, start_time, bar_length)
 
