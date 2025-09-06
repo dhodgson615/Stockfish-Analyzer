@@ -36,7 +36,7 @@ def print_board(board: chess.Board) -> None:
     print(str(board.unicode(borders=True)).replace("⭘", " ") + "\n")
 
 
-def eval_single_move(
+def evaluate_move(
     board: chess.Board,
     engine: chess.engine.SimpleEngine,
     move: chess.Move,
@@ -56,10 +56,7 @@ def eval_single_move(
 
 
 def display_progress(
-    iteration: int,
-    total: int,
-    start_time: float,
-    bar_length: int
+    iteration: int, total: int, start_time: float, bar_length: int
 ) -> None:
     """Displays a progress bar with time estimate."""
     elapsed = time.time() - start_time
@@ -81,10 +78,8 @@ def display_progress(
     )
 
 
-def eval_moves(
-    board: chess.Board,
-    engine: chess.engine.SimpleEngine,
-    depth=EVAL_DEPTH
+def get_move_evals(
+    board: chess.Board, engine: chess.engine.SimpleEngine, depth=EVAL_DEPTH
 ) -> dict:
     """Evaluates all legal moves on the board."""
     moves_evaluations = {}
@@ -95,7 +90,7 @@ def eval_moves(
     bar_length = max(10, term_width - 40)
 
     for i, move in enumerate(legal_moves, 1):
-        move_obj, score_data = eval_single_move(board, engine, move, depth)
+        move_obj, score_data = evaluate_move(board, engine, move, depth)
         moves_evaluations[move_obj] = score_data
         display_progress(i, total_moves, start_time, bar_length)
 
@@ -107,10 +102,7 @@ def eval_moves(
 
 
 def get_engine(
-    engine_path=ENGINE_PATH,
-    threads=4,
-    hash_size=16384,
-    skill_level=20
+    engine_path=ENGINE_PATH, threads=4, hash_size=16384, skill_level=20
 ) -> chess.engine.SimpleEngine:
     """Initializes and configures the chess engine."""
     engine = chess.engine.SimpleEngine.popen_uci(engine_path)
@@ -163,13 +155,14 @@ def handle_user_input(board: chess.Board) -> chess.Move | None:
     ).strip()
 
     move = parse_move_input(board, user_input)
+    if not move:
+        return None
 
-    if move and move in board.legal_moves:
-        return move
-    elif move:
+    if move not in board.legal_moves:
         print("Illegal move. Please try again.\n")
+        return None
 
-    return None
+    return move
 
 
 def print_move_history(move_history, moves_per_line=5) -> None:
@@ -216,7 +209,7 @@ def show_mate_info(best_move_data, is_white_turn) -> None:
 def evaluate_and_show_moves(board, engine) -> tuple[dict, float]:
     """Evaluate moves and display them with timing information."""
     start_time = time.time()
-    moves_eval = eval_moves(board, engine, depth=EVAL_DEPTH)
+    moves_eval = get_move_evals(board, engine, depth=EVAL_DEPTH)
     eval_time = time.time() - start_time
 
     sorted_moves = sort_moves_by_evaluation(moves_eval, board.turn)
