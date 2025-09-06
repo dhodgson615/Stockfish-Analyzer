@@ -79,7 +79,11 @@ def display_progress(
     )
 
 
-def evaluate_moves(board: chess.Board, engine, depth=EVAL_DEPTH) -> dict:
+def eval_moves(
+    board: chess.Board,
+    engine: chess.engine.SimpleEngine,
+    depth=EVAL_DEPTH
+) -> dict:
     """Evaluates all legal moves on the board."""
     moves_evaluations = {}
     legal_moves = list(board.legal_moves)
