@@ -105,7 +105,10 @@ def eval_moves(
 
 
 def get_engine(
-    engine_path=ENGINE_PATH, threads=4, hash_size=16384, skill_level=20
+    engine_path=ENGINE_PATH,
+    threads=4,
+    hash_size=16384,
+    skill_level=20
 ) -> chess.engine.SimpleEngine:
     """Initializes and configures the chess engine."""
     engine = chess.engine.SimpleEngine.popen_uci(engine_path)
