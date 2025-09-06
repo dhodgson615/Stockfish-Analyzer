@@ -29,7 +29,10 @@ ENGINE_PATH = "/opt/homebrew/bin/stockfish"
 
 
 def print_board(board: chess.Board) -> None:
-    """Prints the chess board in a user-friendly format."""
+    """Prints the chess board in a user-friendly format. Clears the
+    terminal before printing.
+    """
+    print("\033c", end="")  # Clear terminal
     print(str(board.unicode(borders=True)).replace("⭘", " ") + "\n")
 
 
