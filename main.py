@@ -21,14 +21,22 @@ result."""
 import shutil
 import time
 
-import chess
-import chess.engine
+from chess import Board, Move
+from chess.engine import Limit, SimpleEngine
 
 EVAL_DEPTH = 12
 ENGINE_PATH = "/opt/homebrew/bin/stockfish"
 
 
-def print_board(board: chess.Board) -> None:
+def from_uci(uci_str: str) -> Move:
+    """Converts a UCI string to a chess Move object."""
+    try:
+        return Move.from_uci(uci_str)
+    except (ValueError, IndexError):
+        raise ValueError(f"Invalid UCI string: {uci_str}")
+
+
+def print_board(board: Board) -> None:
     """Prints the chess board in a user-friendly format. Clears the
     terminal before printing.
     """
@@ -37,16 +45,16 @@ def print_board(board: chess.Board) -> None:
 
 
 def evaluate_move(
-    board: chess.Board,
-    engine: chess.engine.SimpleEngine,
-    move: chess.Move,
+    board: Board,
+    engine: SimpleEngine,
+    move: Move,
     depth=EVAL_DEPTH,
-) -> tuple[chess.Move, tuple[int | None, int | None]]:
+) -> tuple[Move, tuple[int | None, int | None]]:
     """Evaluates a single move on the board using the chess engine.
     Returns the move and its evaluation score along with mate info.
     """
     board.push(move)
-    info = engine.analyse(board, chess.engine.Limit(depth=depth))
+    info = engine.analyse(board, Limit(depth=depth))
     score_obj = info["score"].white()
     score = score_obj.score(mate_score=1000000)
     mate_val = score_obj.mate()
@@ -79,7 +87,7 @@ def display_progress(
 
 
 def get_move_evals(
-    board: chess.Board, engine: chess.engine.SimpleEngine, depth=EVAL_DEPTH
+    board: Board, engine: SimpleEngine, depth=EVAL_DEPTH
 ) -> dict:
     """Evaluates all legal moves on the board."""
     moves_evaluations = {}
@@ -103,9 +111,9 @@ def get_move_evals(
 
 def get_engine(
     engine_path=ENGINE_PATH, threads=4, hash_size=16384, skill_level=20
-) -> chess.engine.SimpleEngine:
+) -> SimpleEngine:
     """Initializes and configures the chess engine."""
-    engine = chess.engine.SimpleEngine.popen_uci(engine_path)
+    engine = SimpleEngine.popen_uci(engine_path)
     engine.configure(
         {
             "Threads": threads,
@@ -135,19 +143,19 @@ def print_possible_moves(sorted_moves: list) -> None:
         print(f"{move.uci():5s}-> Eval score: {score}{mate_text}")
 
 
-def parse_move_input(board, user_input) -> chess.Move | None:
+def parse_move_input(board, user_input) -> Move | None:
     """Parse user input as a chess move."""
     try:
         return board.parse_san(user_input)
     except ValueError:
         try:
-            return chess.Move.from_uci(user_input)
+            return from_uci(user_input)
         except (ValueError, IndexError):
             print("Invalid move format. Please try again.\n")
             return None
 
 
-def handle_user_input(board: chess.Board) -> chess.Move | None:
+def handle_user_input(board: Board) -> Move | None:
     """Handles user input for the next move."""
     color = "White" if board.turn else "Black"
     user_input = input(
@@ -190,7 +198,7 @@ def print_game_result(board) -> None:
         print(f"Game result: {board.result()}")
 
 
-def print_game_over_info(board: chess.Board, move_history: list) -> None:
+def print_game_over_info(board: Board, move_history: list) -> None:
     """Prints game over information."""
     print_board(board)
     print("Game Over!")
@@ -240,7 +248,7 @@ def play_game(board, engine, move_history) -> None:
 
 def main() -> None:
     """Main function to run the interactive chess game."""
-    board = chess.Board()
+    board = Board()
     move_history = []
     engine = get_engine(ENGINE_PATH)
 
