@@ -42,7 +42,9 @@ def eval_single_move(
     move: chess.Move,
     depth=EVAL_DEPTH,
 ) -> tuple[chess.Move, tuple[int | None, int | None]]:
-    """Evaluates a single move on the board using the chess engine."""
+    """Evaluates a single move on the board using the chess engine.
+    Returns the move and its evaluation score along with mate info.
+    """
     board.push(move)
     info = engine.analyse(board, chess.engine.Limit(depth=depth))
     score_obj = info["score"].white()
