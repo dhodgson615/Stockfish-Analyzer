@@ -173,6 +173,7 @@ def handle_user_input(board: chess.Board) -> chess.Move | None:
 def print_move_history(move_history, moves_per_line=5) -> None:
     """Print the game's move history."""
     print("Moves played:")
+
     for idx, move in enumerate(move_history, start=1):
         print(f"{idx:2d}. {move.uci()}", end="  ")
         if idx % moves_per_line == 0:
