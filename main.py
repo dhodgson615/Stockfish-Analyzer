@@ -233,7 +233,7 @@ def evaluate_and_show_moves(board, engine) -> tuple[dict, float]:
     return moves_eval, eval_time
 
 
-def play_game(board, engine, move_history) -> None:
+def play_game(board: Board, engine: SimpleEngine, move_history: list) -> None:
     """Run the interactive chess game loop."""
     while not board.is_game_over():
         print_board(board)
