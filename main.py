@@ -29,7 +29,9 @@ ENGINE_PATH = "/opt/homebrew/bin/stockfish"
 
 
 def from_uci(uci_str: str) -> Move:
-    """Converts a UCI string to a chess Move object."""
+    """Converts a UCI string to a chess Move object. Wraps
+    Move.from_uci with error handling.
+    """
     try:
         return Move.from_uci(uci_str)
     except (ValueError, IndexError):
