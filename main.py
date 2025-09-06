@@ -214,7 +214,7 @@ def show_mate_info(best_move_data, is_white_turn) -> None:
 def evaluate_and_show_moves(board, engine) -> tuple[dict, float]:
     """Evaluate moves and display them with timing information."""
     start_time = time.time()
-    moves_eval = evaluate_moves(board, engine, depth=EVAL_DEPTH)
+    moves_eval = eval_moves(board, engine, depth=EVAL_DEPTH)
     eval_time = time.time() - start_time
 
     sorted_moves = sort_moves_by_evaluation(moves_eval, board.turn)
