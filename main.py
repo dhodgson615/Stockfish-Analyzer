@@ -135,6 +135,7 @@ def sort_moves_by_evaluation(moves_eval: dict, is_white_turn: bool) -> list:
 def print_possible_moves(sorted_moves: list) -> None:
     """Prints the possible moves along with their evaluation scores."""
     print("Possible moves:")
+
     for move, (score, mate_val) in sorted_moves:
         mate_info = (
             f", Mate in {abs(mate_val)}" if mate_val is not None else ""
