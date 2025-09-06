@@ -125,9 +125,11 @@ def get_engine(
 
 def sort_moves_by_evaluation(moves_eval: dict, is_white_turn: bool) -> list:
     """Sorts the evaluated moves based on the score."""
-    return sorted(
-        moves_eval.items(), key=lambda item: item[1][0], reverse=is_white_turn
-    )
+    moves = list(moves_eval.items())
+    indexed_scores = [(moves[i][1][0], i) for i in range(len(moves))]
+    indexed_scores.sort(reverse=is_white_turn)
+
+    return [moves[idx] for _, idx in indexed_scores]
 
 
 def print_possible_moves(sorted_moves: list) -> None:
