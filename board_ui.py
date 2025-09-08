@@ -63,6 +63,12 @@ def print_game_result(board: Board) -> None:
         print(f"Checkmate! Winner: {winner}")
     elif board.is_stalemate():
         print("Stalemate! The game is a draw.")
+    elif board.is_insufficient_material():
+        print("Insufficient material! The game is a draw.")
+    elif board.is_fifty_moves():
+        print("Fifty-move rule! The game is a draw.")
+    elif board.is_repetition():
+        print("Threefold repetition! The game is a draw.")
     else:
         print(f"Game result: {board.result()}")
 
