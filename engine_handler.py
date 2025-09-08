@@ -1,5 +1,6 @@
 import shutil
 import time
+
 from chess import Board, Move
 from chess.engine import Limit, SimpleEngine
 
@@ -10,7 +11,7 @@ ENGINE_PATH = "/opt/homebrew/bin/stockfish"
 
 
 def get_engine(
-        engine_path=ENGINE_PATH, threads=4, hash_size=16384, skill_level=20
+    engine_path=ENGINE_PATH, threads=4, hash_size=16384, skill_level=20
 ) -> SimpleEngine:
     """Initializes and configures the chess engine."""
     engine = SimpleEngine.popen_uci(engine_path)
@@ -26,10 +27,10 @@ def get_engine(
 
 
 def evaluate_move(
-        board: Board,
-        engine: SimpleEngine,
-        move: Move,
-        depth=EVAL_DEPTH,
+    board: Board,
+    engine: SimpleEngine,
+    move: Move,
+    depth=EVAL_DEPTH,
 ) -> tuple[Move, tuple[int | None, int | None]]:
     """Evaluates a single move on the board using the chess engine.
     Returns the move and its evaluation score along with mate info.
@@ -45,7 +46,7 @@ def evaluate_move(
 
 
 def get_move_evals(
-        board: Board, engine: SimpleEngine, depth=EVAL_DEPTH
+    board: Board, engine: SimpleEngine, depth=EVAL_DEPTH
 ) -> dict:
     """Evaluates all legal moves on the board."""
     moves_evaluations = {}

@@ -18,9 +18,10 @@ result."""
 """
 
 from chess import Board
-from engine_handler import get_engine, ENGINE_PATH
-from game_logic import play_game
+
 from board_ui import print_game_over_info
+from engine_handler import ENGINE_PATH, get_engine
+from game_logic import play_game
 
 
 def main() -> None:

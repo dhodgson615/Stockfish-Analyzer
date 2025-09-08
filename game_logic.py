@@ -1,9 +1,10 @@
 import time
+
 from chess import Board
 from chess.engine import SimpleEngine
 
 from board_ui import print_board, print_possible_moves, show_mate_info
-from engine_handler import get_move_evals, EVAL_DEPTH
+from engine_handler import EVAL_DEPTH, get_move_evals
 from input_handler import handle_user_input
 
 
@@ -17,7 +18,7 @@ def sort_moves_by_evaluation(moves_eval: dict, is_white_turn: bool) -> list:
 
 
 def evaluate_and_show_moves(
-        board: Board, engine: SimpleEngine
+    board: Board, engine: SimpleEngine
 ) -> tuple[dict, float]:
     """Evaluate moves and display them with timing information."""
     start_time = time.time()
