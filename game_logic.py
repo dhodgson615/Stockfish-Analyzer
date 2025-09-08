@@ -1,0 +1,50 @@
+import time
+from chess import Board
+from chess.engine import SimpleEngine
+
+from board_ui import print_board, print_possible_moves, show_mate_info
+from engine_handler import get_move_evals, EVAL_DEPTH
+from input_handler import handle_user_input
+
+
+def sort_moves_by_evaluation(moves_eval: dict, is_white_turn: bool) -> list:
+    """Sorts the evaluated moves based on the score."""
+    moves = list(moves_eval.items())
+    indexed_scores = [(moves[i][1][0], i) for i in range(len(moves))]
+    indexed_scores.sort(reverse=is_white_turn)
+
+    return [moves[idx] for _, idx in indexed_scores]
+
+
+def evaluate_and_show_moves(
+        board: Board, engine: SimpleEngine
+) -> tuple[dict, float]:
+    """Evaluate moves and display them with timing information."""
+    start_time = time.time()
+    moves_eval = get_move_evals(board, engine, depth=EVAL_DEPTH)
+    eval_time = time.time() - start_time
+
+    sorted_moves = sort_moves_by_evaluation(moves_eval, board.turn)
+    print_possible_moves(sorted_moves)
+
+    if sorted_moves:
+        show_mate_info(sorted_moves[0], board.turn)
+
+    print(f"\nEvaluation time: {eval_time:.2f} sec\n")
+
+    return moves_eval, eval_time
+
+
+def play_game(board: Board, engine: SimpleEngine, move_history: list) -> None:
+    """Run the interactive chess game loop."""
+    while not board.is_game_over():
+        print_board(board)
+
+        evaluate_and_show_moves(board, engine)
+        move = handle_user_input(board)
+
+        if not move:
+            continue
+
+        board.push(move)
+        move_history.append(move)
