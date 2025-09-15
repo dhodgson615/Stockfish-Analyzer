@@ -20,8 +20,7 @@ def parse_move_input(board: Board, user_input: str) -> Move | None:
     except ValueError:
         try:
             return from_uci(user_input)
-        except (ValueError, IndexError):
-            print("Invalid move format. Please try again.\n")
+        except ValueError:
             return None
 
 
