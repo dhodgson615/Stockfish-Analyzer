@@ -87,3 +87,17 @@ def show_mate_info(best_move_data: tuple, is_white_turn: bool) -> None:
 
     if mate_val and (mate_val > 0) == is_white_turn:
         print(f"\nMate in {abs(mate_val)}")
+
+def print_tablebase_info(board: Board, tablebase) -> None:
+    """Print information from Syzygy tablebase if available."""
+    if not tablebase or sum(1 for _ in board.piece_map()) > tablebase.max_pieces:
+        return
+
+    try:
+        wdl = tablebase.get_wdl(board)
+        if wdl is not None:
+            result = "Draw" if wdl == 0 else "Win" if wdl > 0 else "Loss"
+            dtz = tablebase.get_dtz(board)
+            print(f"Tablebase: {result} (DTZ: {abs(dtz)})")
+    except Exception:
+        pass
