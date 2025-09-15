@@ -35,7 +35,7 @@ def main() -> None:
     # Initialize Syzygy tablebases if available
     tablebase = get_syzygy_tablebase()
     if tablebase:
-        print(f"Syzygy tablebases loaded (max pieces: {tablebase.max_pieces})")
+        print(f"Syzygy tablebases loaded")
     else:
         print("Syzygy tablebases not available")
 
