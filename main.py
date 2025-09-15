@@ -13,7 +13,6 @@ result."""
     - Add graphs to visualize move evaluations over time
 """
 
-from chess import Board
 import os
 
 from chess import Board
