@@ -34,7 +34,9 @@ def handle_user_input(board: Board) -> Move | None:
         sys.exit(0)
 
     move = parse_move_input(board, user_input)
-    if not move:
+
+    if move is None:
+        print("Invalid move format. Please try again.\n")
         return None
 
     if move not in board.legal_moves:
