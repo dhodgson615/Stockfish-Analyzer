@@ -25,11 +25,13 @@ def parse_move_input(board: Board, user_input: str) -> Move | None:
 
 
 def handle_user_input(board: Board) -> Move | None:
-    """Handles user input for the next move."""
-    color = "White" if board.turn else "Black"
-    user_input = input(
-        f"Enter the next move for {color} (SAN or UCI): "
-    ).strip()
+    """Handles user input for making moves."""
+    user_input = input("Enter your move (UCI or SAN): ")
+
+    # Handle special commands
+    if user_input.lower() in ["quit", "q", "exit"]:
+        print("Exiting game...")
+        sys.exit(0)
 
     move = parse_move_input(board, user_input)
     if not move:
