@@ -25,7 +25,9 @@ def parse_move_input(board: Board, user_input: str) -> Move | None:
 
 
 def handle_user_input(board: Board) -> Move | None:
-    """Handles user input for making moves."""
+    """Handles user input for making moves. Returns a valid Move object
+    or None if the input is invalid.
+    """
     user_input = input("Enter your move (UCI or SAN): ")
 
     # Handle special commands
