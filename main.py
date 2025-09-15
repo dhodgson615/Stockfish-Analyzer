@@ -17,7 +17,8 @@ from chess import Board
 import os
 
 from board_ui import print_game_over_info, print_tablebase_info
-from engine_handler import ENGINE_PATH, SYZYGY_PATH, get_engine, get_syzygy_tablebase
+from engine_handler import (ENGINE_PATH, SYZYGY_PATH, get_engine,
+                            get_syzygy_tablebase)
 from game_logic import play_game
 
 
