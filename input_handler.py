@@ -1,3 +1,5 @@
+import sys
+
 from chess import Board, Move
 
 
