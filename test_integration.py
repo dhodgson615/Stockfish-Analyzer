@@ -59,6 +59,7 @@ def test_play_game_simple_sequence(engine_path, monkeypatch):
     )
 
     engine = SimpleEngine.popen_uci(engine_path)
+
     try:
         with StringIO() as buf, redirect_stdout(buf):
             play_game(board, engine, move_history)
