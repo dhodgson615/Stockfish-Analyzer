@@ -6,7 +6,6 @@ import pytest
 from chess import Board
 from chess.engine import SimpleEngine
 
-from input_handler import from_uci
 from game_logic import play_game
 from input_handler import from_uci
 
