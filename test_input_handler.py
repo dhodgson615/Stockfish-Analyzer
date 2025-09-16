@@ -42,8 +42,9 @@ def test_parse_move_input_invalid():
     assert result is None
 
 
-    # Mock the input function to return a valid move
-    monkeypatch.setattr("builtins.input", lambda _: "e4")
+@pytest.fixture
+def new_board():
+    return Board()
 
     with StringIO() as buf, redirect_stdout(buf):
         move = handle_user_input(new_board)
