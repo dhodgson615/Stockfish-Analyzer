@@ -90,7 +90,7 @@ def show_mate_info(best_move_data: tuple, is_white_turn: bool) -> None:
 
 def print_tablebase_info(board: Board, tablebase) -> None:
     """Print information from Syzygy tablebase if available."""
-    if not tablebase or sum(1 for _ in board.piece_map()) > tablebase.max_pieces:
+    if not tablebase:
         return
 
     try:
