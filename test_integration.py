@@ -17,7 +17,6 @@ tests without the engine"""
 )
 def test_main_integration_with_engine_check():
     """Test that the engine can be initialized and quit properly"""
-    # Test that we can at least initialize the engine
     try:
         engine = SimpleEngine.popen_uci("/opt/homebrew/bin/stockfish")
         assert engine is not None
