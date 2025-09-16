@@ -33,6 +33,7 @@ def test_tablebase_functionality():
             try:
                 # Test a move evaluation using tablebase
                 moves = list(board.legal_moves)
+                
                 if moves:  # Make sure there are legal moves
                     move = moves[0]
                     move_obj, (score, mate) = evaluate_move(
