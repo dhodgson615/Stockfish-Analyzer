@@ -1,6 +1,8 @@
 import time
 from contextlib import redirect_stdout
 from io import StringIO
+from time import time
+from unittest.mock import MagicMock
 
 import pytest
 from chess import Board, Move
