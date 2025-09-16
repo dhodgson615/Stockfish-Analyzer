@@ -15,7 +15,7 @@ def main() -> None:
 
     # Initialize Syzygy tablebases if available
     tablebase = get_syzygy_tablebase()
-    
+
     if tablebase:
         print(f"Syzygy tablebases loaded")
     else:
