@@ -38,9 +38,7 @@ def test_play_game_simple_sequence(engine_path, monkeypatch):
     move_history = []
 
     # Mock handle_user_input to return a checkmate sequence
-    moves = [
-        Move.from_uci(m) for m in ["f1c4", "f8c5", "d1f3", "g7g6", "f3f7"]
-    ]  # Checkmate
+    moves = [from_uci(m) for m in ["f1c4", "f8c5", "d1f3", "g7g6", "f3f7"]]
     move_iter = iter(moves)
 
     def mock_handle_input(_):
