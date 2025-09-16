@@ -20,7 +20,9 @@ SYZYGY_PATH = path.expanduser(
 
 def get_syzygy_tablebase(path=SYZYGY_PATH):
     """Initialize a Syzygy tablebase."""
-    if not os.path.exists(path):
+    if not os.path.exists(
+        path
+    ):  # Fixed: Use os.path.exists instead of path.exists
         print(f"Syzygy tablebases not found at {path}")
         return None
 
