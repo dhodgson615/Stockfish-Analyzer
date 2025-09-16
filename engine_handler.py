@@ -4,7 +4,7 @@ import os
 
 from chess import Board, Move
 from chess.engine import Limit, SimpleEngine
-import chess.syzygy
+from chess.syzygy import open_tablebase
 
 from board_ui import display_progress
 
