@@ -14,7 +14,7 @@ class TestEngineHandler:
     """Tests that require the chess engine"""
 
     @pytest.mark.skipif(
-        not os.path.exists("/opt/homebrew/bin/stockfish"),
+        not path.exists("/opt/homebrew/bin/stockfish"),
         reason="Stockfish engine not found",
     )
     def test_get_engine(self, engine_path):
