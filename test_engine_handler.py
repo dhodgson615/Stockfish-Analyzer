@@ -78,3 +78,37 @@ class TestEngineHandler:
                 assert isinstance(score, int)
         finally:
             engine.quit()
+
+
+def test_get_syzygy_tablebase_nonexistent_path():
+    """Test tablebase initialization with a nonexistent path."""
+    with patch("os.path.exists", return_value=False):
+        with StringIO() as buf, redirect_stdout(buf):
+            tablebase = get_syzygy_tablebase("/nonexistent/path")
+            output = buf.getvalue()
+
+        assert tablebase is None
+        assert "not found" in output
+
+
+def test_get_syzygy_tablebase_exception():
+    """Test tablebase initialization when an exception occurs."""
+    with patch("os.path.exists", return_value=True), \
+            patch("engine_handler.open_tablebase", side_effect=Exception("Test exception")):
+        with StringIO() as buf, redirect_stdout(buf):
+            tablebase = get_syzygy_tablebase()
+            output = buf.getvalue()
+
+        assert tablebase is None
+        assert "Error loading" in output
+
+
+
+
+
+def test_get_engine_invalid_path():
+    """Test engine initialization with an invalid engine path."""
+    # Only run if we're not testing on CI where the error might be different
+    if not environ.get("CI"):
+        with pytest.raises((FileNotFoundError, IOError)):
+            engine = get_engine("/nonexistent/engine/path")
