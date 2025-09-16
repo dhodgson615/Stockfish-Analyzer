@@ -1,4 +1,4 @@
-import time
+from time import time
 
 from chess import Board
 
