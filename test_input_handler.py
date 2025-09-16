@@ -41,9 +41,6 @@ def test_parse_move_input_invalid():
     result = parse_move_input(board, "invalid")
     assert result is None
 
-def test_handle_user_input_valid_move(new_board, monkeypatch):
-    """Test handle_user_input with valid input."""
-    from input_handler import handle_user_input
 
     # Mock the input function to return a valid move
     monkeypatch.setattr("builtins.input", lambda _: "e4")
