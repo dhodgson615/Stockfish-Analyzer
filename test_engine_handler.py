@@ -29,7 +29,7 @@ class TestEngineHandler:
             engine.quit()
 
     @pytest.mark.skipif(
-        not os.path.exists("/opt/homebrew/bin/stockfish"),
+        not path.exists("/opt/homebrew/bin/stockfish"),
         reason="Stockfish engine not found",
     )
     def test_evaluate_move(self, engine_path):
