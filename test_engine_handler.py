@@ -108,9 +108,6 @@ def test_get_syzygy_tablebase_exception():
         assert "Error loading" in output
 
 
-
-
-
 def test_get_engine_invalid_path():
     """Test engine initialization with an invalid engine path."""
     # Only run if we're not testing on CI where the error might be different
