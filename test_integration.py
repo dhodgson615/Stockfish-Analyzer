@@ -66,6 +66,7 @@ def test_play_game_simple_sequence(engine_path, monkeypatch):
     try:
         with StringIO() as buf, redirect_stdout(buf):
             play_game(board, engine, move_history)
+
     finally:
         engine.quit()
 
