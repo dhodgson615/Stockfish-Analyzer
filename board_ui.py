@@ -15,7 +15,7 @@ def display_progress(
     iteration: int, total: int, start_time: float, bar_length: int
 ) -> None:
     """Displays a progress bar with time estimate."""
-    elapsed = time.time() - start_time
+    elapsed = time() - start_time
     progress_ratio = iteration / total
 
     avg_time = elapsed / max(1, iteration)  # Avoid division by zero
