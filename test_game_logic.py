@@ -21,7 +21,6 @@ def test_sort_moves_by_evaluation():
         move3: (75, None),
     }
 
-    # Test sorting for both white and black
     white_sorted = sort_moves_by_evaluation(moves_eval, True)
     black_sorted = sort_moves_by_evaluation(moves_eval, False)
 
