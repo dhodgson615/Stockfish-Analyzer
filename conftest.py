@@ -33,7 +33,7 @@ def sample_moves() -> list[Move]:
 
 
 @pytest.fixture
-def engine_path():
+def engine_path() -> str:
     """Returns path to Stockfish engine, skip tests if not found."""
     path = "/opt/homebrew/bin/stockfish"
     if not os.path.exists(
