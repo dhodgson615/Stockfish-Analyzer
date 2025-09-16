@@ -36,8 +36,6 @@ def sample_moves() -> list[Move]:
 def engine_path() -> str:
     """Returns path to Stockfish engine, skip tests if not found."""
     path = "/opt/homebrew/bin/stockfish"
-    if not os.path.exists(
-        path
-    ):  # Fixed: Use os.path.exists instead of path.exists
+    if not os.path.exists(path):
         pytest.skip("Stockfish engine not found. Skipping tests.")
     return path
