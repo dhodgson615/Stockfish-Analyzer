@@ -27,7 +27,7 @@ def stalemate_board() -> Board:
 
 
 @pytest.fixture
-def sample_moves():
+def sample_moves() -> list[Move]:
     """Returns a list of sample chess moves."""
     return [Move.from_uci(m) for m in ["e2e4", "d2d4", "g1f3"]]
 
