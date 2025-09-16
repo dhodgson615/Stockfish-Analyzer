@@ -96,8 +96,10 @@ def test_get_syzygy_tablebase_nonexistent_path():
 
 def test_get_syzygy_tablebase_exception():
     """Test tablebase initialization when an exception occurs."""
-    with patch("os.path.exists", return_value=True), \
-            patch("engine_handler.open_tablebase", side_effect=Exception("Test exception")):
+    with patch("os.path.exists", return_value=True), patch(
+        "engine_handler.open_tablebase",
+        side_effect=Exception("Test exception"),
+    ):
         with StringIO() as buf, redirect_stdout(buf):
             tablebase = get_syzygy_tablebase()
             output = buf.getvalue()
