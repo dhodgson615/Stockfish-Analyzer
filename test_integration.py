@@ -35,6 +35,7 @@ def test_play_game_simple_sequence(engine_path, monkeypatch):
     board = Board(
         "r1bqkb1r/pppp1ppp/2n2n2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 1"
     )
+    
     move_history = []
 
     # Mock handle_user_input to return a checkmate sequence
