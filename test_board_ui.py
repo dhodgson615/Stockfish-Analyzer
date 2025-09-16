@@ -48,7 +48,7 @@ def test_print_game_result_insufficient_material():
 
 
 def test_display_progress():
-    start_time = time.time() - 10  # 10 seconds ago
+    start_time = time() - 10  # 10 seconds ago
 
     with StringIO() as buf, redirect_stdout(buf):
         display_progress(5, 10, start_time, 20)
