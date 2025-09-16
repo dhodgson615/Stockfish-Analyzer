@@ -1,9 +1,3 @@
-"""Script that allows a user to play chess against themselves with move
-evaluations provided by a chess engine and Syzygy tablebases. The script
-displays the chess board, evaluates possible moves, and handles user input
-for moves. It also shows game over information including the move history and
-result."""
-
 from chess import Board
 
 from board_ui import print_game_over_info, print_tablebase_info
