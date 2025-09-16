@@ -114,3 +114,104 @@ def test_print_possible_moves():
         assert "e2e4" in output
         assert "Eval score: 42" in output
         assert "Eval score: 30, Mate in 2" in output
+
+
+def test_print_board():
+    """Test that print_board correctly formats and displays a chess board."""
+    board = Board()
+
+    with StringIO() as buf, redirect_stdout(buf):
+        print_board(board)
+        output = buf.getvalue()
+
+    # Check for key elements that should be in the board output
+    assert "\033c" in output  # Clear terminal command
+    assert (
+        "♖" in output or "R" in output
+    )  # Rook character (depends on encoding)
+    assert "♙" in output or "P" in output  # Pawn character
+    assert "♔" in output or "K" in output  # King character
+    assert "8" in output  # Board coordinate
+    assert "1" in output  # Board coordinate
+
+
+def test_print_tablebase_info_win():
+    """Test tablebase info printing for a winning position."""
+    board = Board(
+        "8/8/8/8/8/2k5/8/K3q3 w - - 0 1"
+    )  # White to move, losing position
+
+    mock_tablebase = MagicMock()
+    mock_tablebase.get_wdl.return_value = -2  # Loss for white
+    mock_tablebase.get_dtz.return_value = 10
+
+    with StringIO() as buf, redirect_stdout(buf):
+        print_tablebase_info(board, mock_tablebase)
+        output = buf.getvalue()
+
+    assert "Loss" in output
+    assert "DTZ: 10" in output
+
+
+def test_print_tablebase_info_draw():
+    """Test tablebase info printing for a drawn position."""
+    board = Board("8/8/8/8/8/2k5/8/K7 w - - 0 1")  # Just kings
+
+    mock_tablebase = MagicMock()
+    mock_tablebase.get_wdl.return_value = 0  # Draw
+    mock_tablebase.get_dtz.return_value = 0
+
+    with StringIO() as buf, redirect_stdout(buf):
+        print_tablebase_info(board, mock_tablebase)
+        output = buf.getvalue()
+
+    assert "Draw" in output
+
+
+def test_print_board():
+    """Test that print_board correctly formats and displays a chess board."""
+    board = Board()
+
+    with StringIO() as buf, redirect_stdout(buf):
+        print_board(board)
+        output = buf.getvalue()
+
+    # Check for key elements that should be in the board output
+    assert "\033c" in output  # Clear terminal command
+    assert "8" in output  # Board coordinate
+    assert "1" in output  # Board coordinate
+    # Check for at least one piece character (depends on encoding)
+    assert any(char in output for char in ["♖", "♙", "♔", "R", "P", "K"])
+
+
+def test_print_tablebase_info_win():
+    """Test tablebase info printing for a winning position."""
+    board = Board(
+        "8/8/8/8/8/2k5/8/K3q3 w - - 0 1"
+    )  # White to move, losing position
+
+    mock_tablebase = MagicMock()
+    mock_tablebase.get_wdl.return_value = -2  # Loss for white
+    mock_tablebase.get_dtz.return_value = 10
+
+    with StringIO() as buf, redirect_stdout(buf):
+        print_tablebase_info(board, mock_tablebase)
+        output = buf.getvalue()
+
+    assert "Loss" in output
+    assert "DTZ: 10" in output
+
+
+def test_print_tablebase_info_draw():
+    """Test tablebase info printing for a drawn position."""
+    board = Board("8/8/8/8/8/2k5/8/K7 w - - 0 1")  # Just kings
+
+    mock_tablebase = MagicMock()
+    mock_tablebase.get_wdl.return_value = 0  # Draw
+    mock_tablebase.get_dtz.return_value = 0
+
+    with StringIO() as buf, redirect_stdout(buf):
+        print_tablebase_info(board, mock_tablebase)
+        output = buf.getvalue()
+
+    assert "Draw" in output
