@@ -5,7 +5,7 @@ from chess import Board, Move
 
 
 @pytest.fixture
-def new_board():
+def new_board() -> Board:
     """Returns a fresh chess board in the starting position."""
     return Board()
 
