@@ -36,7 +36,7 @@ def test_tablebase_functionality():
                 
                 if moves:  # Make sure there are legal moves
                     move = moves[0]
-                    move_obj, (score, mate) = evaluate_move(
+                    move_obj, (_, mate) = evaluate_move(
                         board, engine, move, tablebase=tablebase
                     )
                     assert move_obj is not None, "Move should not be None"
