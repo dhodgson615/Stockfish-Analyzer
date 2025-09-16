@@ -6,6 +6,9 @@ import pytest
 from chess import Board
 from chess.engine import SimpleEngine
 
+from input_handler import from_uci
+from game_logic import play_game
+
 
 @pytest.mark.skipif(
     not path.exists("/opt/homebrew/bin/stockfish"),
