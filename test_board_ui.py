@@ -1,4 +1,4 @@
-import time
+
 from contextlib import redirect_stdout
 from io import StringIO
 from time import time
