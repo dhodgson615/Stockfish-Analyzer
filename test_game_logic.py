@@ -26,9 +26,7 @@ def test_sort_moves_by_evaluation():
     assert white_sorted[0][0] == move1
     assert white_sorted[1][0] == move3
     assert white_sorted[2][0] == move2
-
-    # Test sorting for black's turn (lower scores first)
-    black_sorted = sort_moves_by_evaluation(moves_eval, False)
+    
     assert black_sorted[0][0] == move2
     assert black_sorted[1][0] == move3
     assert black_sorted[2][0] == move1
