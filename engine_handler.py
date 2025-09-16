@@ -85,7 +85,7 @@ def evaluate_move(
 
 
 def get_move_evals(
-        board: Board, engine: SimpleEngine, depth=EVAL_DEPTH, tablebase=None
+    board: Board, engine: SimpleEngine, depth=EVAL_DEPTH, tablebase=None
 ) -> dict:
     """Evaluates all legal moves on the board."""
     moves_evaluations = {}
