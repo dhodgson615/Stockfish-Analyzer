@@ -46,8 +46,6 @@ def test_parse_move_input_invalid():
 def new_board():
     return Board()
 
-    with StringIO() as buf, redirect_stdout(buf):
-        move = handle_user_input(new_board)
 
 def test_handle_user_input_valid_move(monkeypatch):
     """Test handle_user_input with valid input."""
