@@ -66,6 +66,5 @@ def test_play_game_simple_sequence(engine_path, monkeypatch):
     finally:
         engine.quit()
 
-    # Check the results - make sure we recorded the moves
     assert len(move_history) > 0
     assert board.is_game_over()
