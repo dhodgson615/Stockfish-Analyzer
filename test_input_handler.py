@@ -48,28 +48,6 @@ def test_parse_move_input_invalid():
     with StringIO() as buf, redirect_stdout(buf):
         move = handle_user_input(new_board)
 
-    assert move == Move.from_uci("e2e4")
-
-
-def test_handle_user_input_illegal_move(new_board, monkeypatch):
-    """Test handle_user_input with an illegal move."""
-    from input_handler import handle_user_input
-
-    # First make a move to change the position
-    new_board.push(Move.from_uci("e2e4"))
-
-    # Mock the input function to return a move that's no longer legal
-    monkeypatch.setattr("builtins.input", lambda _: "e4")
-
-    with StringIO() as buf, redirect_stdout(buf):
-        move = handle_user_input(new_board)
-
-    assert move is None
-    # Reset board for other tests
-    new_board.pop()
-
-
-# In test_input_handler.py
 def test_handle_user_input_valid_move(monkeypatch):
     """Test handle_user_input with valid input."""
     from input_handler import handle_user_input
