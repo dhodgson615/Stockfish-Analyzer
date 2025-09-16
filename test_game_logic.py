@@ -8,7 +8,6 @@ from chess import Move
 from chess.engine import SimpleEngine  # Add this import
 
 from game_logic import sort_moves_by_evaluation
-from input_handler import from_uci
 
 
 def test_sort_moves_by_evaluation():
