@@ -91,8 +91,8 @@ def get_move_evals(
     moves_evaluations = {}
     legal_moves = list(board.legal_moves)
     total_moves = len(legal_moves)
-    start_time = time.time()
-    term_width = shutil.get_terminal_size().columns
+    start_time = time()
+    term_width = get_terminal_size().columns
     bar_length = max(10, term_width - 40)
 
     for i, move in enumerate(legal_moves, 1):
