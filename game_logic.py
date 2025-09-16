@@ -43,7 +43,10 @@ def evaluate_and_show_moves(
 
     return moves_eval, eval_time
 
-def play_game(board: Board, engine: SimpleEngine, move_history: list, tablebase=None) -> None:
+
+def play_game(
+    board: Board, engine: SimpleEngine, move_history: list, tablebase=None
+) -> None:
     """Run the interactive chess game loop."""
     while not board.is_game_over():
         print_board(board)
