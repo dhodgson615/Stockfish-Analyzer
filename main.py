@@ -6,7 +6,6 @@ result."""
 
 """TODO:
     - Make exception handling more specific
-    - Add unit tests for core functionalities
     - Add configurable engine settings
     - Add logging for better debugging and tracking
     - Add images to README for better documentation
