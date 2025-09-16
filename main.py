@@ -4,14 +4,6 @@ displays the chess board, evaluates possible moves, and handles user input
 for moves. It also shows game over information including the move history and
 result."""
 
-"""TODO:
-    - Make exception handling more specific
-    - Add configurable engine settings
-    - Add logging for better debugging and tracking
-    - Add images to README for better documentation
-    - Add graphs to visualize move evaluations over time
-"""
-
 from chess import Board
 
 from board_ui import print_game_over_info, print_tablebase_info
