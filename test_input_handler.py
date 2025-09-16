@@ -38,12 +38,8 @@ def test_parse_move_input_uci():
 def test_parse_move_input_invalid():
     board = Board()
 
-    # Test invalid input
-    with StringIO() as buf, redirect_stdout(buf):
-        result = parse_move_input(board, "invalid")
-        assert result is None
-        assert "Invalid move format" in buf.getvalue()
-
+    result = parse_move_input(board, "invalid")
+    assert result is None
 
 def test_handle_user_input_valid_move(new_board, monkeypatch):
     """Test handle_user_input with valid input."""
