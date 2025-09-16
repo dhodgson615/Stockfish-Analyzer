@@ -44,5 +44,6 @@ def test_tablebase_functionality():
                     ), "Move object should not be None"
             finally:
                 engine.quit()
+
     finally:
         tablebase.close()
