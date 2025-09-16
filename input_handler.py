@@ -33,7 +33,7 @@ def handle_user_input(board: Board) -> Move | None:
     # Handle special commands
     if user_input.lower() in ["quit", "q", "exit"]:
         print("Exiting game...")
-        sys.exit(0)
+        exit(0)
 
     move = parse_move_input(board, user_input)
 
