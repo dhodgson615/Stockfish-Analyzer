@@ -23,6 +23,8 @@ def test_sort_moves_by_evaluation():
 
     # Test sorting for both white and black
     white_sorted = sort_moves_by_evaluation(moves_eval, True)
+    black_sorted = sort_moves_by_evaluation(moves_eval, False)
+
     assert white_sorted[0][0] == move1
     assert white_sorted[1][0] == move3
     assert white_sorted[2][0] == move2
