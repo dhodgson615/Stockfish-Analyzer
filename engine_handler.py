@@ -1,6 +1,9 @@
 import shutil
 import time
 import os
+from os import path
+from shutil import get_terminal_size
+from time import time
 
 from chess import Board, Move
 from chess.engine import Limit, SimpleEngine
