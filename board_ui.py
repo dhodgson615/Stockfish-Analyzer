@@ -100,5 +100,5 @@ def print_tablebase_info(board: Board, tablebase) -> None:
             result = "Draw" if wdl == 0 else "Win" if wdl > 0 else "Loss"
             dtz = tablebase.get_dtz(board)
             print(f"Tablebase: {result} (DTZ: {abs(dtz)})")
-    except Exception:
+    except Exception:  # TODO: Specify exception type
         pass
