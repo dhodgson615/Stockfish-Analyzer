@@ -25,7 +25,7 @@ def test_main_integration_with_engine_check():
 def test_play_game_simple_sequence(engine_path, monkeypatch):
     """Test play_game with a predetermined sequence of moves."""
     pytest.importorskip("chess.engine")
-    if not os.path.exists(engine_path):
+    if not path.exists(engine_path):
         pytest.skip("Engine not found")
 
     from chess.engine import SimpleEngine
