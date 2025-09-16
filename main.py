@@ -13,8 +13,6 @@ result."""
     - Add graphs to visualize move evaluations over time
 """
 
-import os
-
 from chess import Board
 
 from board_ui import print_game_over_info, print_tablebase_info
