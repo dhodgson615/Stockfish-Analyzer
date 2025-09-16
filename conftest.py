@@ -11,7 +11,7 @@ def new_board() -> Board:
 
 
 @pytest.fixture
-def checkmate_board():
+def checkmate_board() -> Board:
     """Returns a board with a checkmate position (fool's mate)."""
     board = Board()
     for move_uci in ["f2f3", "e7e5", "g2g4", "d8h4"]:
