@@ -5,7 +5,7 @@ from unittest.mock import patch
 
 import pytest
 from chess import Board, Move
-from chess.engine import Limit, SimpleEngine
+from chess.engine import Limit
 
 from engine_handler import evaluate_move, get_engine, get_move_evals
 
