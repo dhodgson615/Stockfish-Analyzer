@@ -52,8 +52,8 @@ def evaluate_move(
     """Evaluates a single move on the board using tablebase or chess engine."""
     board.push(move)
 
-    # Try tablebase first if available and position has few enough pieces
-    if tablebase and sum(1 for _ in board.piece_map()) <= tablebase.max_pieces:
+    # Try tablebase first if available
+    if tablebase:
         try:
             wdl = tablebase.get_wdl(board)
             if wdl is not None:
