@@ -3,7 +3,7 @@ from io import StringIO
 from os import path
 
 import pytest
-from chess import Board, Move
+from chess import Board
 from chess.engine import SimpleEngine
 
 
