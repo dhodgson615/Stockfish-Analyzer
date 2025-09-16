@@ -1,4 +1,4 @@
-import sys
+from sys import exit
 
 from chess import Board, Move
 
