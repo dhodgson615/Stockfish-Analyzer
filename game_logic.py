@@ -22,7 +22,7 @@ def evaluate_and_show_moves(
         board: Board, engine: SimpleEngine, tablebase=None
 ) -> tuple[dict, float]:
     """Evaluate moves and display them with timing information."""
-    start_time = time.time()
+    start_time = time()
 
     # Print tablebase info for current position
     if tablebase:
