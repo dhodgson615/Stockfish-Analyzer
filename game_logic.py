@@ -19,7 +19,7 @@ def sort_moves_by_evaluation(moves_eval: dict, is_white_turn: bool) -> list:
 
 
 def evaluate_and_show_moves(
-        board: Board, engine: SimpleEngine, tablebase=None
+    board: Board, engine: SimpleEngine, tablebase=None
 ) -> tuple[dict, float]:
     """Evaluate moves and display them with timing information."""
     start_time = time()
