@@ -1,6 +1,7 @@
 from time import time
 
 from chess import Board
+from chess.syzygy import Tablebase
 
 
 def clear_terminal() -> None:
