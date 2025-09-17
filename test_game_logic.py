@@ -33,7 +33,7 @@ def test_sort_moves_by_evaluation():
     assert black_sorted[2][0] == move1
 
 
-def test_evaluate_and_show_moves_timing(new_board, engine_path):
+def test_evaluate_and_show_moves_timing(new_board, engine_path) -> None:
     """Test that evaluate_and_show_moves returns timing information."""
     pytest.importorskip("chess.engine")
     if not path.exists(engine_path):
