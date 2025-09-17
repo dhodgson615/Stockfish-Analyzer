@@ -119,16 +119,6 @@ def test_get_engine_invalid_path() -> None:
             engine = get_engine("/nonexistent/engine/path")
 
 
-from unittest.mock import MagicMock, patch
-
-import pytest
-from chess import Board
-from chess.engine import Score, SimpleEngine
-
-from engine_handler import (EVAL_DEPTH, get_engine_evaluation, get_move_evals,
-                            popen_uci, try_tablebase_evaluation)
-
-
 def test_try_tablebase_evaluation_win():
     """Test tablebase evaluation for a winning position."""
     board = Board("8/8/8/8/8/K7/8/k1q5 w - - 0 1")  # White to move, losing
