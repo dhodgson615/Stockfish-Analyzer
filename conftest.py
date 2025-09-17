@@ -3,6 +3,8 @@ import os
 import pytest
 from chess import Board, Move
 
+from input_handler import from_uci
+
 
 @pytest.fixture
 def new_board() -> Board:
