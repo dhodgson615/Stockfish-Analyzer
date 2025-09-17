@@ -214,7 +214,9 @@ def test_popen_uci_file_not_found(mock_simple_engine: SimpleEngine) -> None:
 
 
 @patch("engine_handler.SimpleEngine")
-def test_popen_uci_general_exception(mock_simple_engine) -> None:
+def test_popen_uci_general_exception(
+    mock_simple_engine: SimpleEngine,
+) -> None:
     """Test general exception handling in popen_uci."""
     mock_simple_engine.popen_uci.side_effect = RuntimeError("Engine error")
 
