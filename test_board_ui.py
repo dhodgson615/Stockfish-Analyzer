@@ -95,6 +95,7 @@ def test_print_move_history() -> None:
     with StringIO() as buf, redirect_stdout(buf):
         print_move_history(moves)
         output = buf.getvalue()
+        
         assert "1. e2e4" in output
         assert "2. e7e5" in output
         assert "3. g1f3" in output
