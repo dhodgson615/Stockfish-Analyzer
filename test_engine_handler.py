@@ -108,6 +108,7 @@ def test_get_syzygy_tablebase_exception() -> None:
         with StringIO() as buf, redirect_stdout(buf):
             tablebase = get_syzygy_tablebase()
             output = buf.getvalue()
+
         assert tablebase is None
         assert "Error loading" in output
 
