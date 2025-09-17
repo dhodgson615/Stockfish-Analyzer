@@ -16,7 +16,7 @@ SYZYGY_PATH = path.expanduser(
 )  # Default path to Syzygy tablebases
 
 
-def get_syzygy_tablebase(path=SYZYGY_PATH):
+def get_syzygy_tablebase(path=SYZYGY_PATH) -> object | None:
     """Initialize a Syzygy tablebase."""
     if not os.path.exists(path):
         print(f"Syzygy tablebases not found at {path}")
