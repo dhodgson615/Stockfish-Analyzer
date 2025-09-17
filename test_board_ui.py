@@ -13,7 +13,9 @@ from board_ui import (display_progress, print_board, print_game_over_info,
 from input_handler import from_uci
 
 
-def test_print_game_result_checkmate_black_wins(checkmate_board) -> None:
+def test_print_game_result_checkmate_black_wins(
+    checkmate_board: Board,
+) -> None:
     """Test print_game_result() for a checkmate scenario."""
     # The checkmate_board fixture has White checkmated (Black wins)
     with StringIO() as buf, redirect_stdout(buf):
