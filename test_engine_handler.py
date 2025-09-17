@@ -19,6 +19,7 @@ PATH_NOT_FOUND_MSG = "Stockfish engine not found"
 def test_get_engine(engine_path) -> None:
     """Test that the engine can be initialized and quit properly."""
     engine = get_engine(engine_path)
+
     try:
         assert engine is not None
         board = Board()
