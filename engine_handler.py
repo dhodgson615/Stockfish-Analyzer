@@ -95,7 +95,9 @@ def try_tablebase_evaluation(
             mate_val = -tablebase.get_dtz(board)
             score = -1000000 - mate_val  # Low score for losing
 
-                board.pop()
+        # Filter out unreasonably large mate values
+        if abs(mate_val or 0) >= 1000:
+            mate_val = None
 
                 return move, (
                     score,
