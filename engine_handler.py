@@ -54,7 +54,9 @@ def evaluate_move(
 ) -> tuple[
     Move, tuple[int | None, int | None]
 ]:  # TODO: Make this function use less nesting
-    """Evaluates a single move on the board using tablebase or chess engine."""
+    """Evaluates a single move on the board using tablebase or chess
+    engine.
+    """
     board.push(move)
 
     # Try tablebase first if available
