@@ -83,7 +83,7 @@ class TestEngineHandler:
             engine.quit()
 
 
-def test_get_syzygy_tablebase_nonexistent_path():
+def test_get_syzygy_tablebase_nonexistent_path() -> None:
     """Test tablebase initialization with a nonexistent path."""
     with patch("os.path.exists", return_value=False):
         with StringIO() as buf, redirect_stdout(buf):
