@@ -10,6 +10,9 @@ from chess.engine import Limit
 from engine_handler import evaluate_move, get_engine, get_syzygy_tablebase
 from input_handler import from_uci
 
+STOCKFISH_PATH = "/opt/homebrew/bin/stockfish"
+PATH_NOT_FOUND = not path.exists(STOCKFISH_PATH)
+PATH_NOT_FOUND_MSG = "Stockfish engine not found"
 
 @pytest.mark.skipif(
     not path.exists("/opt/homebrew/bin/stockfish"),
