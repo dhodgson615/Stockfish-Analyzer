@@ -128,9 +128,7 @@ def test_print_board() -> None:
 
     # Check for key elements that should be in the board output
     assert "\033c" in output  # Clear terminal command
-    assert (
-        "♖" in output or "R" in output
-    )  # Rook character (depends on encoding)
+    assert "♖" in output or "R" in output  # Rook character
     assert "♙" in output or "P" in output  # Pawn character
     assert "♔" in output or "K" in output  # King character
     assert "8" in output  # Board coordinate
