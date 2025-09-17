@@ -96,21 +96,21 @@ def get_move_evals(
 ) -> dict:
     """Evaluates all legal moves on the board."""
     moves_evaluations = {}
-    legal_moves = list(board.legal_moves)
-    total_moves = len(legal_moves)
     start_time = time()
-    term_width = get_terminal_size().columns
-    bar_length = max(10, term_width - 40)
 
-    for i, move in enumerate(legal_moves, 1):
+    for i, move in enumerate(list(board.legal_moves), 1):
         move_obj, score_data = evaluate_move(
             board, engine, move, depth, tablebase
         )
         moves_evaluations[move_obj] = score_data
-        display_progress(i, total_moves, start_time, bar_length)
+        display_progress(
+            i,
+            len(list(board.legal_moves)),
+            start_time,
+            max(10, get_terminal_size().columns - 40),
+        )
 
     # Clear progress bar
-    clear_line = "\r" + " " * term_width + "\r"
-    print(clear_line, end="", flush=True)
+    print("\r" + " " * get_terminal_size().columns + "\r", end="", flush=True)
 
     return moves_evaluations
