@@ -1,4 +1,3 @@
-import os
 from os import path
 from shutil import get_terminal_size
 from time import time
