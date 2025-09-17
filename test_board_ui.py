@@ -12,7 +12,7 @@ from board_ui import (display_progress, print_board, print_game_over_info,
                       show_mate_info)
 
 
-def test_print_game_result_checkmate_black_wins(checkmate_board):
+def test_print_game_result_checkmate_black_wins(checkmate_board) -> None:
     # The checkmate_board fixture has White checkmated (Black wins)
     with StringIO() as buf, redirect_stdout(buf):
         print_game_result(checkmate_board)
