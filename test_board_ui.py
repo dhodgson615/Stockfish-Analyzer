@@ -82,6 +82,7 @@ def test_show_mate_info() -> None:
 
 
 def test_print_game_over_info(checkmate_board) -> None:
+    """Test print_game_over_info function."""
     move_history = [Move.from_uci(m) for m in ["f2f3", "e7e5", "g2g4", "d8h4"]]
 
     with StringIO() as buf, redirect_stdout(buf):
