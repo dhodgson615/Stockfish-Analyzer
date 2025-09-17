@@ -109,6 +109,7 @@ def test_print_move_history() -> None:
 
 
 def test_print_possible_moves() -> None:
+    """Test print_possible_moves function."""
     # Create sorted move list with evaluation data
     moves = [
         (from_uci("e2e4"), (42, None)),
