@@ -28,10 +28,7 @@ def test_get_engine(engine_path) -> None:
         engine.quit()
 
 
-@pytest.mark.skipif(
-    not path.exists("/opt/homebrew/bin/stockfish"),
-    reason="Stockfish engine not found",
-)
+@pytest.mark.skipif(PATH_NOT_FOUND, reason=PATH_NOT_FOUND_MSG)
 def test_evaluate_move(engine_path) -> None:
     """Test evaluating a single move in the starting position."""
     engine = get_engine(engine_path)
