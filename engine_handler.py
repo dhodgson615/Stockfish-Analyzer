@@ -83,7 +83,6 @@ def try_tablebase_evaluation(
         if wdl is None:
             return None
 
-        # Convert WDL score to centipawns or mate score
         if wdl == 0:
             return 0, None  # Draw
 
