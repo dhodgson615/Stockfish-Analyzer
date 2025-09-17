@@ -45,7 +45,7 @@ def test_play_game_simple_sequence(engine_path, monkeypatch) -> None:
     moves = [from_uci(m) for m in ["f1c4", "f8c5", "d1f3", "g7g6", "f3f7"]]
     move_iter = iter(moves)
 
-    def mock_handle_input(_) -> None:
+    def mock_handle_input(_) -> Move | None:
         try:
             return next(move_iter)
         except StopIteration:
