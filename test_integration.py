@@ -62,7 +62,7 @@ def test_play_game_simple_sequence(engine_path, monkeypatch) -> None:
         lambda *args: ({}, 0.1),
     )
 
-    engine = SimpleEngine.popen_uci(engine_path)
+    engine = popen_uci(engine_path)
 
     try:
         with StringIO() as buf, redirect_stdout(buf):
