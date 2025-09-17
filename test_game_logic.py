@@ -43,7 +43,7 @@ def test_evaluate_and_show_moves_timing(new_board, engine_path):
 
     with pytest.MonkeyPatch.context() as mp:
         # Replace get_move_evals with a simple function that returns dummy data
-        def mock_get_evals(*args, **kwargs):
+        def mock_get_evals(*args, **kwargs) -> dict:
             return {Move.from_uci("e2e4"): (100, None)}
 
         mp.setattr("game_logic.get_move_evals", mock_get_evals)
