@@ -25,6 +25,7 @@ def main() -> None:
         # Display final tablebase info if applicable
         if tablebase:
             print_tablebase_info(board, tablebase)
+            
     finally:
         engine.quit()
         if tablebase:
