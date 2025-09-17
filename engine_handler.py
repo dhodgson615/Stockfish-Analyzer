@@ -26,7 +26,7 @@ def get_syzygy_tablebase(filepath=SYZYGY_PATH) -> Tablebase | None:
         return None
 
 
-def popen_uci(engine_path) -> SimpleEngine:
+def popen_uci(engine_path: str) -> SimpleEngine:
     """Attempt to open the UCI engine, handling potential errors."""
     try:
         return SimpleEngine.popen_uci(engine_path)
