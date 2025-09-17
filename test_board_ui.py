@@ -51,6 +51,7 @@ def test_print_game_result_insufficient_material() -> None:
 
 
 def test_display_progress() -> None:
+    """Test the display_progress function with mocked time."""
     start_time = time() - 10  # 10 seconds ago
 
     with StringIO() as buf, redirect_stdout(buf):
