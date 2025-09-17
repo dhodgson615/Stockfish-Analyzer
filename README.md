@@ -83,7 +83,6 @@ The following features are planned for future releases:
 - Refactored move sorting logic
 - More specific exception handling
 - Unit tests for core functionalities
-- Syzygy tablebase support for efficient endgame evaluations
 - Improved user interface
 - Performance optimizations
 - Optional GUI support
