@@ -21,7 +21,7 @@ def get_syzygy_tablebase(filepath=SYZYGY_PATH) -> object | None:
         return None
 
     try:
-        return open_tablebase(path)
+        return open_tablebase(filepath)
     except Exception as e:
         print(f"Error loading Syzygy tablebases: {e}")
         return None
