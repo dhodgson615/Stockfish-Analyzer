@@ -30,7 +30,7 @@ def test_get_engine(engine_path) -> None:
 
 @pytest.mark.skipif(PATH_NOT_FOUND, reason=PATH_NOT_FOUND_MSG)
 def test_evaluate_move(engine_path) -> None:
-    """Test evaluating a single move in the starting position."""
+    """Test that evaluate_move returns a move and score."""
     engine = get_engine(engine_path)
 
     try:
