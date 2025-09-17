@@ -61,23 +61,7 @@ def test_get_move_evals_simple_position(engine_path) -> None:
     try:
         board = Board()
         moves = [move for move in list(board.legal_moves)[:2]]
-
-        def get_limited_evals(
-            board, engine, depth=5
-        ) -> dict[
-            Move, tuple[int, int | None]
-        ]:  # TODO: refactor to avoid nesting
-            moves_evaluations = {}
-
-            for move in moves:
-                move_obj, score_data = evaluate_move(
-                    board, engine, move, depth
-                )
-                moves_evaluations[move_obj] = score_data
-
-            return moves_evaluations
-
-        evals = get_limited_evals(board, engine)
+        evals = get_limited_evals(board, engine, moves)
         assert len(evals) == len(moves)
 
         for move in moves:
