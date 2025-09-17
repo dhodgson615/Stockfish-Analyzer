@@ -59,7 +59,7 @@ def test_handle_user_input_valid_move(monkeypatch) -> None:
     with StringIO() as buf, redirect_stdout(buf):
         move = handle_user_input(board)
 
-    assert move == Move.from_uci("e2e4")
+    assert move == from_uci("e2e4")
 
 
 def test_handle_user_input_illegal_move(monkeypatch) -> None:
