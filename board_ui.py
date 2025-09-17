@@ -95,7 +95,7 @@ def show_mate_info(best_move_data: tuple, is_white_turn: bool) -> None:
         print(f"\nMate in {abs(mate_val)}")
 
 
-def print_tablebase_info(board: Board, tablebase) -> None:
+def print_tablebase_info(board: Board, tablebase: Tablebase) -> None:
     """Print information from Syzygy tablebase if available."""
     if not tablebase:
         return
