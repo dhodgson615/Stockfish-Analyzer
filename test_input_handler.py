@@ -26,7 +26,7 @@ def test_parse_move_input_san():
     assert result == expected
 
 
-def test_parse_move_input_uci():
+def test_parse_move_input_uci() -> None:
     board = Board()
 
     # Test UCI parsing
