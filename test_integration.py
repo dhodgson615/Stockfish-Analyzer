@@ -53,7 +53,7 @@ def test_play_game_simple_sequence(engine_path, monkeypatch) -> None:
     monkeypatch.setattr("game_logic.handle_user_input", mock_handle_input)
 
     # Skip actual move evaluation to speed up testing
-    def mock_evaluate(*args):
+    def mock_evaluate(*args) -> tuple[dict, float]:
         return {}, 0.0
 
     monkeypatch.setattr(
