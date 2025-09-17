@@ -74,6 +74,7 @@ def test_get_move_evals_simple_position(engine_path) -> None:
 
         evals = get_limited_evals(board, engine)
         assert len(evals) == len(moves)
+
         for move in moves:
             assert move in evals
             score, mate = evals[move]
