@@ -4,7 +4,7 @@ from time import time
 
 from chess import Board, Move
 from chess.engine import Limit, SimpleEngine
-from chess.syzygy import open_tablebase
+from chess.syzygy import open_tablebase, Tablebase
 
 from board_ui import display_progress
 
