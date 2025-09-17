@@ -230,7 +230,9 @@ def test_get_move_evals_with_mock():
     # Create a mock evaluate_move function
     with patch("engine_handler.evaluate_move") as mock_evaluate:
         # Configure the mock to return different values for different moves
-        def side_effect(board, engine, move, *args, **kwargs):
+        def side_effect(
+            board, engine, move, *args, **kwargs
+        ) -> tuple[Move, tuple[int, int | None]]:
             return move, (100, None)
 
         mock_evaluate.side_effect = side_effect
