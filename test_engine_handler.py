@@ -114,3 +114,137 @@ def test_get_engine_invalid_path() -> None:
     if not environ.get("CI"):
         with pytest.raises((FileNotFoundError, IOError)):
             engine = get_engine("/nonexistent/engine/path")
+
+
+from unittest.mock import MagicMock, patch
+
+import pytest
+from chess import Board
+from chess.engine import Score, SimpleEngine
+
+from engine_handler import (EVAL_DEPTH, get_engine_evaluation, get_move_evals,
+                            popen_uci, try_tablebase_evaluation)
+
+
+def test_try_tablebase_evaluation_win():
+    """Test tablebase evaluation for a winning position."""
+    board = Board("8/8/8/8/8/K7/8/k1q5 w - - 0 1")  # White to move, losing
+
+    mock_tablebase = MagicMock()
+    mock_tablebase.get_wdl.return_value = -2  # Loss for white
+    mock_tablebase.get_dtz.return_value = 5
+
+    result = try_tablebase_evaluation(board, mock_tablebase)
+
+    assert result is not None
+    score, mate_val = result
+    assert score < -900000  # Large negative score for losing
+    assert mate_val == -5  # Mate in 5
+
+
+def test_try_tablebase_evaluation_none_wdl():
+    """Test tablebase evaluation when wdl returns None."""
+    board = Board()
+
+    mock_tablebase = MagicMock()
+    mock_tablebase.get_wdl.return_value = None
+
+    result = try_tablebase_evaluation(board, mock_tablebase)
+    assert result is None
+
+
+def test_try_tablebase_evaluation_exceptions():
+    """Test all specific exceptions in try_tablebase_evaluation."""
+    board = Board()
+    mock_tablebase = MagicMock()
+
+    # Test IOError
+    mock_tablebase.get_wdl.side_effect = IOError("Test IO error")
+    result = try_tablebase_evaluation(board, mock_tablebase)
+    assert result is None
+
+    # Test ValueError
+    mock_tablebase.get_wdl.side_effect = ValueError("Test value error")
+    result = try_tablebase_evaluation(board, mock_tablebase)
+    assert result is None
+
+    # Test IndexError
+    mock_tablebase.get_wdl.side_effect = IndexError("Test index error")
+    result = try_tablebase_evaluation(board, mock_tablebase)
+    assert result is None
+
+
+def test_get_engine_evaluation():
+    """Test engine evaluation parsing."""
+    board = Board()
+    mock_engine = MagicMock(spec=SimpleEngine)
+
+    # Mock a regular score
+    mock_score = MagicMock()
+    mock_score.white.return_value.score.return_value = 42
+    mock_score.white.return_value.mate.return_value = None
+
+    mock_engine.analyse.return_value = {"score": mock_score}
+
+    score, mate = get_engine_evaluation(board, mock_engine, EVAL_DEPTH)
+    assert score == 42
+    assert mate is None
+
+    # Mock a mate score
+    mock_score.white.return_value.score.return_value = 900000
+    mock_score.white.return_value.mate.return_value = 3
+
+    mock_engine.analyse.return_value = {"score": mock_score}
+
+    score, mate = get_engine_evaluation(board, mock_engine, EVAL_DEPTH)
+    assert score == 900000
+    assert mate == 3
+
+
+@patch("engine_handler.SimpleEngine")
+def test_popen_uci_success(mock_simple_engine):
+    """Test successful engine opening."""
+    mock_simple_engine.popen_uci.return_value = MagicMock()
+
+    result = popen_uci("dummy/path")
+    assert result is not None
+    mock_simple_engine.popen_uci.assert_called_once_with("dummy/path")
+
+
+@patch("engine_handler.SimpleEngine")
+def test_popen_uci_file_not_found(mock_simple_engine):
+    """Test FileNotFoundError handling in popen_uci."""
+    mock_simple_engine.popen_uci.side_effect = FileNotFoundError("No file")
+
+    with pytest.raises(FileNotFoundError):
+        popen_uci("nonexistent/path")
+
+
+@patch("engine_handler.SimpleEngine")
+def test_popen_uci_general_exception(mock_simple_engine):
+    """Test general exception handling in popen_uci."""
+    mock_simple_engine.popen_uci.side_effect = RuntimeError("Engine error")
+
+    with pytest.raises(RuntimeError):
+        popen_uci("problem/path")
+
+
+def test_get_move_evals_with_mock():
+    """Test get_move_evals using mocks to avoid actual engine use."""
+    board = Board()
+    mock_engine = MagicMock(spec=SimpleEngine)
+
+    # Create a mock evaluate_move function
+    with patch("engine_handler.evaluate_move") as mock_evaluate:
+        # Configure the mock to return different values for different moves
+        def side_effect(board, engine, move, *args, **kwargs):
+            return move, (100, None)
+
+        mock_evaluate.side_effect = side_effect
+
+        # Test the function
+        with patch("engine_handler.display_progress"):  # Avoid terminal output
+            result = get_move_evals(board, mock_engine)
+
+        # Verify we have evaluations for all legal moves
+        assert len(result) == len(list(board.legal_moves))
