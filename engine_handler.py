@@ -11,9 +11,7 @@ from board_ui import display_progress
 
 EVAL_DEPTH = 12
 ENGINE_PATH = "/opt/homebrew/bin/stockfish"
-SYZYGY_PATH = path.expanduser(
-    "~/chess/syzygy"
-)  # Default path to Syzygy tablebases
+SYZYGY_PATH = path.expanduser("~/chess/syzygy")
 
 
 def get_syzygy_tablebase(path=SYZYGY_PATH) -> object | None:
