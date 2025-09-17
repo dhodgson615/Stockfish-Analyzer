@@ -111,9 +111,9 @@ def test_print_move_history() -> None:
 def test_print_possible_moves() -> None:
     # Create sorted move list with evaluation data
     moves = [
-        (Move.from_uci("e2e4"), (42, None)),
-        (Move.from_uci("d2d4"), (35, None)),
-        (Move.from_uci("g1f3"), (30, 2)),  # This one has a mate value
+        (from_uci("e2e4"), (42, None)),
+        (from_uci("d2d4"), (35, None)),
+        (from_uci("g1f3"), (30, 2)),  # Mate in 2
     ]
 
     with StringIO() as buf, redirect_stdout(buf):
