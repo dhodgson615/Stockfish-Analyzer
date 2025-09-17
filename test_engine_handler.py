@@ -71,6 +71,7 @@ def test_get_move_evals_simple_position(engine_path) -> None:
                     board, engine, move, depth
                 )
                 moves_evaluations[move_obj] = score_data
+
             return moves_evaluations
 
         evals = get_limited_evals(board, engine)
