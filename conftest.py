@@ -40,4 +40,4 @@ def engine_path() -> str:
     if not path.exists(filepath):
         pytest.skip("Stockfish engine not found. Skipping tests.")
 
-    return path
+    return filepath
