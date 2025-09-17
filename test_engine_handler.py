@@ -56,6 +56,7 @@ def test_evaluate_move(engine_path) -> None:
 def test_get_move_evals_simple_position(engine_path) -> None:
     """Test evaluating a limited set of moves in a simple position."""
     engine = get_engine(engine_path)
+
     try:
         board = Board()
         moves = [move for move in list(board.legal_moves)[:2]]
