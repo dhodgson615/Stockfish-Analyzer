@@ -14,6 +14,7 @@ from input_handler import from_uci
 
 
 def test_print_game_result_checkmate_black_wins(checkmate_board) -> None:
+    """Test print_game_result() for a checkmate scenario."""
     # The checkmate_board fixture has White checkmated (Black wins)
     with StringIO() as buf, redirect_stdout(buf):
         print_game_result(checkmate_board)
