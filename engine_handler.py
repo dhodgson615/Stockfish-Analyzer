@@ -82,8 +82,8 @@ def evaluate_move(
                     score,
                     mate_val if abs(mate_val or 0) < 1000 else None,
                 )
-        except Exception:  # TODO: Specify exception type
-            pass  # Fall back to engine if tablebase lookup fails
+        except (IOError, ValueError, IndexError):
+            pass  # Tablebase lookup failed
 
     # Fall back to engine evaluation
     info = engine.analyse(board, Limit(depth=depth))
