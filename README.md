@@ -16,6 +16,8 @@ without a full-blown GUI.
   formats
 - Graceful end-of-game summary with move history and final result
 - Clean quit of the Stockfish engine even on exceptions
+- Syzygy endgame tablebase support for instant evaluation of 3-5 piece endings
+  (if installed)
 
 ## Engine Configuration
 
