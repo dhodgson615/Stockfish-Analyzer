@@ -14,10 +14,8 @@ STOCKFISH_PATH = "/opt/homebrew/bin/stockfish"
 PATH_NOT_FOUND = not path.exists(STOCKFISH_PATH)
 PATH_NOT_FOUND_MSG = "Stockfish engine not found"
 
-@pytest.mark.skipif(
-    not path.exists("/opt/homebrew/bin/stockfish"),
-    reason="Stockfish engine not found",
-)
+
+@pytest.mark.skipif(PATH_NOT_FOUND, reason=PATH_NOT_FOUND_MSG)
 def test_get_engine(engine_path) -> None:
     """Test that the engine can be initialized and quit properly."""
     engine = get_engine(engine_path)
