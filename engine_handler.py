@@ -8,7 +8,7 @@ from chess.syzygy import open_tablebase, Tablebase
 
 from board_ui import display_progress
 
-EVAL_DEPTH = 12
+EVAL_DEPTH = 18
 ENGINE_PATH = "/opt/homebrew/bin/stockfish"
 SYZYGY_PATH = path.expanduser("~/chess/syzygy")
 
