@@ -170,7 +170,7 @@ def test_print_tablebase_info_draw() -> None:
     assert "Draw" in output
 
 
-def test_print_board():
+def test_print_board() -> None:
     """Test that print_board correctly formats and displays a chess board."""
     board = Board()
 
