@@ -43,7 +43,7 @@ def test_parse_move_input_invalid():
 
 
 @pytest.fixture
-def new_board():
+def new_board() -> Board:
     return Board()
 
 
