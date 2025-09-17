@@ -116,7 +116,7 @@ def test_get_syzygy_tablebase_exception() -> None:
 
 
 def test_get_engine_invalid_path() -> None:
-    """Test engine initialization with an invalid engine path."""
+    """Test that get_engine() raises an error for an invalid path."""
     if not environ.get("CI"):
         with pytest.raises((FileNotFoundError, IOError)):
             engine = get_engine("/nonexistent/engine/path")
