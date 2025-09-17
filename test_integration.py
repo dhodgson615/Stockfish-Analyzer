@@ -17,7 +17,7 @@ tests without the engine"""
     not path.exists("/opt/homebrew/bin/stockfish"),
     reason="Stockfish engine not found",
 )
-def test_main_integration_with_engine_check():
+def test_main_integration_with_engine_check() -> None:
     """Test that the engine can be initialized and quit properly"""
     try:
         engine = SimpleEngine.popen_uci("/opt/homebrew/bin/stockfish")
