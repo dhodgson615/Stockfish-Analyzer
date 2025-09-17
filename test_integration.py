@@ -11,7 +11,6 @@ from chess.engine import SimpleEngine
 from engine_handler import popen_uci
 from game_logic import play_game
 from input_handler import from_uci
-from engine_handler import popen_uci
 
 """TODO: Consider removing this because there is no point in running
 tests without the engine"""
