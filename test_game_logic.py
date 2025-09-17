@@ -3,7 +3,7 @@ from io import StringIO
 from os import path
 
 import pytest
-from chess import Move
+from chess import Board, Move
 from chess.engine import SimpleEngine
 
 from game_logic import sort_moves_by_evaluation
