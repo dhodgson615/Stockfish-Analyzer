@@ -16,8 +16,8 @@ SYZYGY_PATH = path.expanduser("~/chess/syzygy")
 
 def get_syzygy_tablebase(filepath=SYZYGY_PATH) -> object | None:
     """Initialize a Syzygy tablebase."""
-    if not os.path.exists(path):
-        print(f"Syzygy tablebases not found at {path}")
+    if not path.exists(filepath):
+        print(f"Syzygy tablebases not found at {filepath}")
         return None
 
     try:
