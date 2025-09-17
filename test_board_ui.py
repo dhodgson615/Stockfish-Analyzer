@@ -99,7 +99,7 @@ def test_print_move_history() -> None:
         assert "3. g1f3" in output
 
 
-def test_print_possible_moves():
+def test_print_possible_moves() -> None:
     # Create sorted move list with evaluation data
     moves = [
         (Move.from_uci("e2e4"), (42, None)),
