@@ -10,7 +10,6 @@ def main() -> None:
     board = Board()
     move_history = []
 
-    # Initialize the chess engine
     engine = get_engine(ENGINE_PATH)
     tablebase = get_syzygy_tablebase()
 
