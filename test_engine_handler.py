@@ -205,7 +205,7 @@ def test_popen_uci_success(mock_simple_engine):
 
 
 @patch("engine_handler.SimpleEngine")
-def test_popen_uci_file_not_found(mock_simple_engine):
+def test_popen_uci_file_not_found(mock_simple_engine) -> None:
     """Test FileNotFoundError handling in popen_uci."""
     mock_simple_engine.popen_uci.side_effect = FileNotFoundError("No file")
 
