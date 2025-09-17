@@ -53,7 +53,9 @@ def test_evaluate_move(engine_path) -> None:
     reason="Stockfish engine not found",
 )
 def test_get_move_evals_simple_position(engine_path) -> None:
-    """Test evaluating a limited set of moves in a simple position."""
+    """Test that get_move_evals returns evaluations for all legal
+    moves.
+    """
     engine = get_engine(engine_path)
 
     try:
