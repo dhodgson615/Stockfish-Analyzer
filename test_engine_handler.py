@@ -222,7 +222,7 @@ def test_popen_uci_general_exception(mock_simple_engine):
         popen_uci("problem/path")
 
 
-def test_get_move_evals_with_mock():
+def test_get_move_evals_with_mock() -> None:
     """Test get_move_evals using mocks to avoid actual engine use."""
     board = Board()
     mock_engine = MagicMock(spec=SimpleEngine)
