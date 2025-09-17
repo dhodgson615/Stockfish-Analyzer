@@ -167,7 +167,7 @@ def test_try_tablebase_evaluation_exceptions():
     assert result is None
 
 
-def test_get_engine_evaluation():
+def test_get_engine_evaluation() -> None:
     """Test engine evaluation parsing."""
     board = Board()
     mock_engine = MagicMock(spec=SimpleEngine)
