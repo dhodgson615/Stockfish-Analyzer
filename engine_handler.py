@@ -55,22 +55,45 @@ def evaluate_move(
     """Evaluates a single move on the board using tablebase or chess engine."""
     board.push(move)
 
-    # Try tablebase first if available
-    if tablebase:
-        try:
-            wdl = tablebase.get_wdl(board)
-            if wdl is not None:
-                # Convert WDL score (-2 to +2) to centipawns or mate score
-                if wdl == 0:
-                    score, mate_val = 0, None  # Draw
-                elif wdl > 0:
-                    # Win for the side to move (positive value)
-                    mate_val = tablebase.get_dtz(board)
-                    score = 1000000 - mate_val  # High score for winning
-                else:
-                    # Loss for the side to move (negative value)
-                    mate_val = -tablebase.get_dtz(board)
-                    score = -1000000 - mate_val  # Low score for losing
+    try:
+        # First attempt tablebase evaluation if available
+        tablebase_result = try_tablebase_evaluation(board, tablebase)
+        if tablebase_result:
+            return move, tablebase_result
+
+        # Fall back to engine evaluation
+        return move, get_engine_evaluation(board, engine, depth)
+
+    finally:
+        # Ensure we restore the board state
+        board.pop()
+
+
+def try_tablebase_evaluation(
+    board: Board, tablebase
+) -> tuple[int | None, int | None] | None:
+    """Attempts to evaluate position using Syzygy tablebases.
+    Returns (score, mate_value) tuple if successful, None otherwise."""
+    if not tablebase:
+        return None
+
+    try:
+        wdl = tablebase.get_wdl(board)
+        if wdl is None:
+            return None
+
+        # Convert WDL score to centipawns or mate score
+        if wdl == 0:
+            return 0, None  # Draw
+
+        # Win for the side to move (positive value)
+        if wdl > 0:
+            mate_val = tablebase.get_dtz(board)
+            score = 1000000 - mate_val  # High score for winning
+        # Loss for the side to move (negative value)
+        else:
+            mate_val = -tablebase.get_dtz(board)
+            score = -1000000 - mate_val  # Low score for losing
 
                 board.pop()
 
