@@ -171,7 +171,9 @@ def test_print_tablebase_info_draw() -> None:
 
 
 def test_print_board() -> None:
-    """Test that print_board correctly formats and displays a chess board."""
+    """Test that print_board correctly formats and displays a chess
+    board.
+    """
     board = Board()
 
     with StringIO() as buf, redirect_stdout(buf):
