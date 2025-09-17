@@ -44,6 +44,7 @@ def test_evaluate_move(engine_path) -> None:
         assert result_move == move
         assert isinstance(score, int)
         assert abs(score) < 10000
+
     finally:
         engine.quit()
 
