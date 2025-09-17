@@ -30,6 +30,7 @@ def test_tablebase_functionality():
         # Test with engine evaluation if possible
         if wdl is not None:
             engine = get_engine()
+
             try:
                 # Test a move evaluation using tablebase
                 moves = list(board.legal_moves)
