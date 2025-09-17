@@ -63,7 +63,9 @@ class TestEngineHandler:
             moves = [move for move in list(board.legal_moves)[:2]]
 
             # Create a custom function to only evaluate our limited move set
-            def get_limited_evals(board, engine, depth=5):
+            def get_limited_evals(
+                board, engine, depth=5
+            ) -> dict[Move, tuple[int, int | None]]:
                 moves_evaluations = {}
                 for move in moves:
                     move_obj, score_data = evaluate_move(
