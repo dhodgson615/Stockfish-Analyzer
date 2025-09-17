@@ -135,7 +135,7 @@ def test_try_tablebase_evaluation_win():
     assert mate_val == -5  # Mate in 5
 
 
-def test_try_tablebase_evaluation_none_wdl():
+def test_try_tablebase_evaluation_none_wdl() -> None:
     """Test tablebase evaluation when wdl returns None."""
     board = Board()
 
