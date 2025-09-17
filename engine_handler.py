@@ -74,6 +74,7 @@ def evaluate_move(
                     score = -1000000 - mate_val  # Low score for losing
 
                 board.pop()
+
                 return move, (
                     score,
                     mate_val if abs(mate_val or 0) < 1000 else None,
