@@ -4,8 +4,8 @@ from os import environ, path
 from unittest.mock import MagicMock, patch
 
 import pytest
-from chess import Move
-from chess.engine import Limit
+from chess import Board, Move
+from chess.engine import Limit, SimpleEngine
 
 from engine_handler import evaluate_move, get_engine, get_syzygy_tablebase
 from input_handler import from_uci
