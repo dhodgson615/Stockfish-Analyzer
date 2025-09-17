@@ -23,6 +23,7 @@ def test_print_game_result_checkmate_black_wins(checkmate_board) -> None:
 
 
 def test_print_game_result_stalemate() -> None:
+    """Test print_game_result() for a stalemate scenario."""
     # Create a verified stalemate position
     board = Board("k7/8/1Q6/8/8/8/8/7K b - - 0 1")
 
