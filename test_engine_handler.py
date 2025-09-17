@@ -36,7 +36,7 @@ def test_evaluate_move(engine_path) -> None:
 
     try:
         board = Board()
-        move = Move.from_uci("e2e4")
+        move = from_uci("e2e4")
         result_move, (score, mate) = evaluate_move(
             board, engine, move, depth=10
         )
