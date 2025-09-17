@@ -32,7 +32,7 @@ class TestEngineHandler:
         not path.exists("/opt/homebrew/bin/stockfish"),
         reason="Stockfish engine not found",
     )
-    def test_evaluate_move(self, engine_path):
+    def test_evaluate_move(self, engine_path) -> None:
         engine = get_engine(engine_path)
         try:
             board = Board()
