@@ -62,7 +62,7 @@ def test_handle_user_input_valid_move(monkeypatch):
     assert move == Move.from_uci("e2e4")
 
 
-def test_handle_user_input_illegal_move(monkeypatch):
+def test_handle_user_input_illegal_move(monkeypatch) -> None:
     """Test handle_user_input with an illegal move."""
     from input_handler import handle_user_input
 
