@@ -24,6 +24,7 @@ def test_get_engine(engine_path) -> None:
         board = Board()
         result = engine.play(board, Limit(time=0.1))
         assert result.move in board.legal_moves
+
     finally:
         engine.quit()
 
