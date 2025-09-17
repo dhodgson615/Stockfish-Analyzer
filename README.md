@@ -75,8 +75,8 @@ then prints the final board, move list, and winner/draw result.
   search each time. Multipv or a single engine.play() search would be faster.
 - Hard-coded engine path: update the string or add CLI args/env vars.
 - No PGN export: move history prints to console only.
-- No endgame tablebase support: endgame positions are redundantly calculated.
-- Planned Enhancements
+
+## Future Enhancements
 
 The following features are planned for future releases:
 
