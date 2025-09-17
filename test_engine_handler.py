@@ -119,7 +119,7 @@ def test_get_engine_invalid_path() -> None:
             engine = get_engine("/nonexistent/engine/path")
 
 
-def test_try_tablebase_evaluation_win():
+def test_try_tablebase_evaluation_win() -> None:
     """Test tablebase evaluation for a winning position."""
     board = Board("8/8/8/8/8/K7/8/k1q5 w - - 0 1")  # White to move, losing
 
