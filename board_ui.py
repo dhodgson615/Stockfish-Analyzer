@@ -107,5 +107,9 @@ def print_tablebase_info(board: Board, tablebase) -> None:
             dtz = tablebase.get_dtz(board)
             print(f"Tablebase: {result} (DTZ: {abs(dtz)})")
 
-    except (IOError, ValueError, IndexError):
+    except (
+        IOError,
+        ValueError,
+        IndexError,
+    ):  # TODO: handle specific exceptions
         pass  # Tablebase lookup failed
