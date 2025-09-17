@@ -101,7 +101,11 @@ def try_tablebase_evaluation(
 
         return score, mate_val
 
-    except (IOError, ValueError, IndexError):
+    except (
+        IOError,
+        ValueError,
+        IndexError,
+    ):  # TODO: handle specific exceptions
         return None  # Tablebase lookup failed
 
 
