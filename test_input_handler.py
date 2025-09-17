@@ -12,7 +12,7 @@ def test_from_uci_valid():
     assert move == Move.from_uci("e2e4")
 
 
-def test_from_uci_invalid():
+def test_from_uci_invalid() -> None:
     with pytest.raises(ValueError):
         from_uci("invalid")
 
