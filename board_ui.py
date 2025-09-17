@@ -96,6 +96,7 @@ def print_tablebase_info(board: Board, tablebase) -> None:
 
     try:
         wdl = tablebase.get_wdl(board)
+
         if wdl is not None:
             result = "Draw" if wdl == 0 else "Win" if wdl > 0 else "Loss"
             dtz = tablebase.get_dtz(board)
