@@ -27,6 +27,7 @@ def main() -> None:
 
     finally:
         engine.quit()
+
         if tablebase:
             tablebase.close()
 
