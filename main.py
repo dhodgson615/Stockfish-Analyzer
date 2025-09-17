@@ -22,7 +22,6 @@ def main() -> None:
         play_game(board, engine, move_history, tablebase)
         print_game_over_info(board, move_history)
 
-        # Display final tablebase info if applicable
         if tablebase:
             print_tablebase_info(board, tablebase)
 
