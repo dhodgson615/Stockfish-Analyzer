@@ -17,7 +17,7 @@ def test_from_uci_invalid():
         from_uci("invalid")
 
 
-def test_parse_move_input_san():
+def test_parse_move_input_san() -> None:
     board = Board()
 
     # Test SAN parsing
