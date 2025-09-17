@@ -95,7 +95,7 @@ def test_print_move_history() -> None:
     with StringIO() as buf, redirect_stdout(buf):
         print_move_history(moves)
         output = buf.getvalue()
-        
+
         assert "1. e2e4" in output
         assert "2. e7e5" in output
         assert "3. g1f3" in output
@@ -205,7 +205,7 @@ def test_print_tablebase_info_win() -> None:
     assert "DTZ: 10" in output
 
 
-def test_print_tablebase_info_draw() -> None:
+def test_print_tablebase_info_draw() -> None:  # TODO: Rename duplicate
     """Test tablebase info printing for a drawn position."""
     board = Board("8/8/8/8/8/2k5/8/K7 w - - 0 1")  # Just kings
 
