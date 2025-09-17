@@ -64,7 +64,7 @@ def get_limited_evals(
 
 
 @pytest.mark.skipif(PATH_NOT_FOUND, reason=PATH_NOT_FOUND_MSG)
-def test_get_move_evals_simple_position(engine_path) -> None:
+def test_get_move_evals_simple_position(engine_path: str) -> None:
     """Test that get_move_evals returns evaluations for all legal
     moves.
     """
