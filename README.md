@@ -1,8 +1,8 @@
 # Stockfish-Analyzer
 
 This project is a lightweight command-line tool that lets you play through a
-chess game while Stockfish evaluates every legal move for the side to move.
-It is ideal for learning, blunder-checking, or simply exploring engine lines
+chess game while Stockfish evaluates every legal move for the side to move. It
+is ideal for learning, blunder-checking, or simply exploring engine lines
 without a full-blown GUI.
 
 ## Key Features
