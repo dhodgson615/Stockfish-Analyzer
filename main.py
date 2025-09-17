@@ -12,8 +12,6 @@ def main() -> None:
 
     # Initialize the chess engine
     engine = get_engine(ENGINE_PATH)
-
-    # Initialize Syzygy tablebases if available
     tablebase = get_syzygy_tablebase()
 
     if tablebase:
