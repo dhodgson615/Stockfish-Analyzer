@@ -12,7 +12,7 @@ def print_board(board: Board) -> None:
     """Prints the chess board in a user-friendly format. Clears the
     terminal before printing.
     """
-    print("\033c", end="")  # Clear terminal
+    clear_terminal()
     print(str(board.unicode(borders=True)).replace("⭘", " ") + "\n")
 
 
