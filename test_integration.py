@@ -27,7 +27,7 @@ def test_main_integration_with_engine_check():
         pytest.fail(f"Engine initialization failed: {e}")
 
 
-def test_play_game_simple_sequence(engine_path, monkeypatch):
+def test_play_game_simple_sequence(engine_path, monkeypatch) -> None:
     """Test play_game with a predetermined sequence of moves."""
     pytest.importorskip("chess.engine")
     if not path.exists(engine_path):
