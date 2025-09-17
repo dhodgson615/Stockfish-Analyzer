@@ -82,6 +82,7 @@ def evaluate_move(
                     score,
                     mate_val if abs(mate_val or 0) < 1000 else None,
                 )
+
         except (IOError, ValueError, IndexError):
             pass  # Tablebase lookup failed
 
