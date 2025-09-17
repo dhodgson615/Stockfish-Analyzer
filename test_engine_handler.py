@@ -85,8 +85,8 @@ def test_get_syzygy_tablebase_nonexistent_path() -> None:
 
 
 def test_get_syzygy_tablebase_exception() -> None:
-    """Test tablebase loading with an exception during
-    initialization.
+    """Test that get_syzygy_tablebase() handles exceptions
+    gracefully.
     """
     with patch("os.path.exists", return_value=True), patch(
         "engine_handler.open_tablebase",
