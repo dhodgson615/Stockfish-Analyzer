@@ -61,7 +61,7 @@ def test_display_progress() -> None:
 
 def test_show_mate_info() -> None:
     # Create a real move and score data
-    move = Move.from_uci("e2e4")
+    move = from_uci("e2e4")
     best_move_data = (move, (100, 3))  # Score 100, mate in 3
 
     with StringIO() as buf, redirect_stdout(buf):
