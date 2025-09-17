@@ -52,7 +52,7 @@ the script).
 
 ## Quick Start
 
-1. Edit the `engine_path` variable near the top of main() so it points to your
+1. Edit the `ENGINE_PATH` constant in `engine_handler.py` so it points to your
 Stockfish executable.
 
 Example macOS Homebrew path: `/opt/homebrew/bin/stockfish`
