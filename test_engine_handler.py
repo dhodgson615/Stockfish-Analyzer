@@ -3,7 +3,7 @@ from io import StringIO
 from os import environ, path
 
 import pytest
-from chess import Board, Move
+from chess import Move
 from chess.engine import Limit
 
 from engine_handler import evaluate_move, get_engine, get_syzygy_tablebase
