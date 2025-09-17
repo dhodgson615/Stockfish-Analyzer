@@ -34,7 +34,7 @@ def test_print_game_result_stalemate() -> None:
         assert "Stalemate! The game is a draw." in output
 
 
-def test_print_game_result_insufficient_material():
+def test_print_game_result_insufficient_material() -> None:
     # Create a position with insufficient material
     board = Board("8/8/8/8/8/8/k7/K7 w - - 0 1")
 
