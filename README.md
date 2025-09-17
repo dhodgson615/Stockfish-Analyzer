@@ -22,7 +22,7 @@ without a full-blown GUI.
 ## Engine Configuration
 
 The Stockfish engine is configured with:
-- 2 threads
+- 4 threads
 - 16384 MB hash size
 - Skill Level 20 (maximum strength)
 
