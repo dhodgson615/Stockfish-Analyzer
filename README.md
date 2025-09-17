@@ -98,5 +98,5 @@ to follow its terms when redistributing the binary.
 
 [python-chess](https://python-chess.readthedocs.io/en/latest/) by Niklas Fiekas
 
-[Stockfish](https://stockfishchess.org) - the strongest open-source chess engine
-
+[Stockfish](https://stockfishchess.org) - the strongest open-source chess
+engine
