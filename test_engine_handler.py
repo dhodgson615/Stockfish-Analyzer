@@ -74,7 +74,7 @@ def test_get_move_evals_simple_position(engine_path) -> None:
 
 
 def test_get_syzygy_tablebase_nonexistent_path() -> None:
-    """Test tablebase loading with a nonexistent path."""
+    """Test that get_syzygy_tablebase() handles nonexistent paths"""
     with patch("os.path.exists", return_value=False):
         with StringIO() as buf, redirect_stdout(buf):
             tablebase = get_syzygy_tablebase("/nonexistent/path")
