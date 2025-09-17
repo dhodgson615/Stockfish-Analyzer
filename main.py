@@ -13,10 +13,7 @@ def main() -> None:
     engine = get_engine(ENGINE_PATH)
     tablebase = get_syzygy_tablebase()
 
-    if tablebase:
-        print(f"Syzygy tablebases loaded")
-    else:
-        print("Syzygy tablebases not available")
+    print("Tablebases loaded" if tablebase else "Tablebases not available")
 
     try:
         play_game(board, engine, move_history, tablebase)
