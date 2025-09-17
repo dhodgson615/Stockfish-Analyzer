@@ -5,7 +5,7 @@ from io import StringIO
 from os import path
 
 import pytest
-from chess import Board
+from chess import Board, Move
 from chess.engine import SimpleEngine
 
 from game_logic import play_game
