@@ -7,7 +7,7 @@ from chess import Board, Move
 from input_handler import from_uci, parse_move_input
 
 
-def test_from_uci_valid():
+def test_from_uci_valid() -> None:
     move = from_uci("e2e4")
     assert move == Move.from_uci("e2e4")
 
