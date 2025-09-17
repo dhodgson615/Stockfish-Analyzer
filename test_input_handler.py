@@ -47,7 +47,7 @@ def new_board():
     return Board()
 
 
-def test_handle_user_input_valid_move(monkeypatch):
+def test_handle_user_input_valid_move(monkeypatch) -> None:
     """Test handle_user_input with valid input."""
     from input_handler import handle_user_input
 
