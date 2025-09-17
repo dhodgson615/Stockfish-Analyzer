@@ -7,7 +7,10 @@ import pytest
 from chess import Board, Move
 from chess.engine import Limit, SimpleEngine
 
-from engine_handler import evaluate_move, get_engine, get_syzygy_tablebase
+from engine_handler import (EVAL_DEPTH, evaluate_move, get_engine,
+                            get_engine_evaluation, get_move_evals,
+                            get_syzygy_tablebase, popen_uci,
+                            try_tablebase_evaluation)
 from input_handler import from_uci
 
 STOCKFISH_PATH = "/opt/homebrew/bin/stockfish"
