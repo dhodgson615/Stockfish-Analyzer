@@ -10,7 +10,7 @@ from chess.engine import Limit
 from engine_handler import evaluate_move, get_engine, get_syzygy_tablebase
 
 
-class TestEngineHandler:
+class TestEngineHandler:  # TODO: Refactor without class
     """Tests that require the chess engine"""
 
     @pytest.mark.skipif(
