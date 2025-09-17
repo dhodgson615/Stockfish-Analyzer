@@ -146,7 +146,7 @@ def test_try_tablebase_evaluation_none_wdl():
     assert result is None
 
 
-def test_try_tablebase_evaluation_exceptions():
+def test_try_tablebase_evaluation_exceptions() -> None:
     """Test all specific exceptions in try_tablebase_evaluation."""
     board = Board()
     mock_tablebase = MagicMock()
