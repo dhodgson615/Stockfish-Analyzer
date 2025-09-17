@@ -104,7 +104,11 @@ def try_tablebase_evaluation(
     except (IOError, ValueError, IndexError):
         return None  # Tablebase lookup failed
 
-    # Fall back to engine evaluation
+
+def get_engine_evaluation(
+    board: Board, engine: SimpleEngine, depth: int
+) -> tuple[int | None, int | None]:
+    """Evaluates a position using the chess engine."""
     info = engine.analyse(board, Limit(depth=depth))
     score_obj = info["score"].white()
     score = score_obj.score(mate_score=1000000)
