@@ -136,7 +136,7 @@ def test_print_board() -> None:
     assert "1" in output  # Board coordinate
 
 
-def test_print_tablebase_info_win() -> None:
+def test_print_tablebase_info_win() -> None:  # TODO: Rename duplicate
     """Test tablebase info printing for a winning position."""
     board = Board(
         "8/8/8/8/8/2k5/8/K3q3 w - - 0 1"
