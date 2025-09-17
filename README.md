@@ -38,6 +38,18 @@ Install the Python dependency with:
 pip3 install python-chess
 ```
 
+## Syzygy Tablebase Support (Optional)
+
+To enable instant endgame evaluation for 3-5 piece positions, download the
+Syzygy tablebases:
+
+```bash
+bash download_syzygy.sh
+```
+
+This will install the tablebases to `~/chess/syzygy` (the default path used by
+the script).
+
 ## Quick Start
 
 1. Edit the `engine_path` variable near the top of main() so it points to your
