@@ -65,6 +65,7 @@ def test_get_move_evals_simple_position(engine_path) -> None:
             Move, tuple[int, int | None]
         ]:  # TODO: refactor to avoid nesting
             moves_evaluations = {}
+
             for move in moves:
                 move_obj, score_data = evaluate_move(
                     board, engine, move, depth
