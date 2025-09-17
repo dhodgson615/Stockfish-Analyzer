@@ -53,7 +53,7 @@ class TestEngineHandler:
         not path.exists("/opt/homebrew/bin/stockfish"),
         reason="Stockfish engine not found",
     )
-    def test_get_move_evals_simple_position(self, engine_path):
+    def test_get_move_evals_simple_position(self, engine_path) -> None:
         # This test will be slow since it evaluates all moves
         # Consider running with a lower depth for testing
         engine = get_engine(engine_path)
