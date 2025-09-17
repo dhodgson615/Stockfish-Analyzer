@@ -13,7 +13,7 @@ ENGINE_PATH = "/opt/homebrew/bin/stockfish"
 SYZYGY_PATH = path.expanduser("~/chess/syzygy")
 
 
-def get_syzygy_tablebase(filepath=SYZYGY_PATH) -> object | None:
+def get_syzygy_tablebase(filepath=SYZYGY_PATH) -> Tablebase | None:
     """Initialize a Syzygy tablebase."""
     if not path.exists(filepath):
         print(f"Syzygy tablebases not found at {filepath}")
