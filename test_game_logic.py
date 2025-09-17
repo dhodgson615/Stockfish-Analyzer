@@ -9,7 +9,7 @@ from chess.engine import SimpleEngine
 from game_logic import sort_moves_by_evaluation
 
 
-def test_sort_moves_by_evaluation():
+def test_sort_moves_by_evaluation() -> None:
     # Create real moves and evaluation data
     move1 = Move.from_uci("e2e4")
     move2 = Move.from_uci("d2d4")
