@@ -92,6 +92,7 @@ def test_get_syzygy_tablebase_nonexistent_path() -> None:
         with StringIO() as buf, redirect_stdout(buf):
             tablebase = get_syzygy_tablebase("/nonexistent/path")
             output = buf.getvalue()
+
         assert tablebase is None
         assert "not found" in output
 
