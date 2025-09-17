@@ -99,10 +99,7 @@ def try_tablebase_evaluation(
         if abs(mate_val or 0) >= 1000:
             mate_val = None
 
-                return move, (
-                    score,
-                    mate_val if abs(mate_val or 0) < 1000 else None,
-                )
+        return score, mate_val
 
         except (IOError, ValueError, IndexError):
             pass  # Tablebase lookup failed
