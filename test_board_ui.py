@@ -115,8 +115,10 @@ def test_print_possible_moves():
         assert "Eval score: 30, Mate in 2" in output
 
 
-def test_print_board():
-    """Test that print_board correctly formats and displays a chess board."""
+def test_print_board() -> None:
+    """Test that print_board correctly formats and displays a chess
+    board.
+    """
     board = Board()
 
     with StringIO() as buf, redirect_stdout(buf):
