@@ -48,10 +48,18 @@ def test_evaluate_move(engine_path) -> None:
         engine.quit()
 
 
-@pytest.mark.skipif(
-    not path.exists("/opt/homebrew/bin/stockfish"),
-    reason="Stockfish engine not found",
-)
+def get_limited_evals(
+    board, engine, moves, depth=5
+) -> dict[Move, tuple[int, int | None]]:
+    """Get evaluations for a limited set of moves."""
+    moves_evaluations = {}
+    for move in moves:
+        move_obj, score_data = evaluate_move(board, engine, move, depth)
+        moves_evaluations[move_obj] = score_data
+    return moves_evaluations
+
+
+@pytest.mark.skipif(PATH_NOT_FOUND, reason=PATH_NOT_FOUND_MSG)
 def test_get_move_evals_simple_position(engine_path) -> None:
     """Test that get_move_evals returns evaluations for all legal
     moves.
