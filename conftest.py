@@ -1,4 +1,4 @@
-import os
+from os import path
 
 import pytest
 from chess import Board, Move
