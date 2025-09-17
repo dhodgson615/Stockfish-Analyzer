@@ -3,6 +3,11 @@ from time import time
 from chess import Board
 
 
+def clear_terminal() -> None:
+    """Clears the terminal screen."""
+    print("\033c", end="")
+
+
 def print_board(board: Board) -> None:
     """Prints the chess board in a user-friendly format. Clears the
     terminal before printing.
