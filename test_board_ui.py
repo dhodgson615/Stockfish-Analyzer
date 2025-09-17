@@ -46,7 +46,7 @@ def test_print_game_result_insufficient_material() -> None:
         assert "Insufficient material" in output
 
 
-def test_display_progress():
+def test_display_progress() -> None:
     start_time = time() - 10  # 10 seconds ago
 
     with StringIO() as buf, redirect_stdout(buf):
