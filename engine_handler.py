@@ -70,7 +70,7 @@ def evaluate_move(
 
 
 def try_tablebase_evaluation(
-    board: Board, tablebase
+    board: Board, tablebase: Tablebase
 ) -> tuple[int | None, int | None] | None:
     """Attempts to evaluate position using Syzygy tablebases.
     Returns (score, mate_value) tuple if successful, None otherwise."""
