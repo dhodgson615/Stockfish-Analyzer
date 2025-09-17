@@ -101,8 +101,8 @@ def try_tablebase_evaluation(
 
         return score, mate_val
 
-        except (IOError, ValueError, IndexError):
-            pass  # Tablebase lookup failed
+    except (IOError, ValueError, IndexError):
+        return None  # Tablebase lookup failed
 
     # Fall back to engine evaluation
     info = engine.analyse(board, Limit(depth=depth))
