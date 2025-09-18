@@ -88,6 +88,7 @@ def print_game_result(board: Board) -> None:
 
     elif board.is_repetition():
         print("Threefold repetition! The game is a draw.")
+
     else:
         print(f"Game result: {board.result()}")
 
