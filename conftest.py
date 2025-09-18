@@ -12,7 +12,7 @@ def new_board() -> Board:
     return Board()
 
 
-@pytest.fixture
+@fixture
 def checkmate_board() -> Board:
     """Returns a board with a checkmate position (fool's mate)."""
     board = Board()
