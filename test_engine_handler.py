@@ -66,6 +66,7 @@ def get_limited_evals(
     for move in moves:
         move_obj, score_data = evaluate_move(board, engine, move, depth)
         moves_evaluations[move_obj] = score_data
+
     return moves_evaluations
 
 
