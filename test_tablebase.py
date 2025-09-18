@@ -1,4 +1,3 @@
-import pytest
 from chess import Board
 from pytest import skip
 
