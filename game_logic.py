@@ -69,7 +69,6 @@ def play_game(
     """Run the interactive chess game loop."""
     while not board.is_game_over():
         print_board(board)
-
         evaluate_and_show_moves(board, engine, tablebase)
         move = handle_user_input(board)
 
