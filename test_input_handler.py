@@ -74,6 +74,7 @@ def test_handle_user_input_illegal_move(monkeypatch: MonkeyPatch) -> None:
     with StringIO() as buf, redirect_stdout(buf):
         move = handle_user_input(board)
         output = buf.getvalue()
+
         assert "Illegal move" in output
 
     assert move is None
