@@ -22,7 +22,6 @@ def test_tablebase_functionality() -> None:
         if wdl is None:
             board = Board("8/8/8/8/8/2k5/8/K7 w - - 0 1")  # Just kings
             wdl = tablebase.get_wdl(board)
-            dtz = tablebase.get_dtz(board)
 
         assert wdl is not None, "WDL value should not be None"
         assert isinstance(wdl, int), "WDL should be an integer"
