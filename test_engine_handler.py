@@ -34,6 +34,7 @@ def test_get_engine(engine_path: str) -> None:
         # Check if result.move is not None before using 'in' operator
         if result.move is not None:
             assert result.move in board.legal_moves
+
         else:
             pytest.fail("Engine did not return a move")
 
