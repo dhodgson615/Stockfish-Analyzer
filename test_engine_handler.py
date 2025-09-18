@@ -227,7 +227,7 @@ def test_popen_uci_file_not_found(mock_simple_engine_class: MagicMock) -> None:
         "No file"
     )
 
-    with pytest.raises(FileNotFoundError):
+    with raises(FileNotFoundError):
         popen_uci("nonexistent/path")
 
 
