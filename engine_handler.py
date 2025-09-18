@@ -131,8 +131,11 @@ def get_engine_evaluation(
 
 
 def get_move_evals(
-    board: Board, engine: SimpleEngine, depth=EVAL_DEPTH, tablebase=None
-) -> dict:
+    board: Board,
+    engine: SimpleEngine,
+    depth: int = EVAL_DEPTH,
+    tablebase: Tablebase | None = None,
+) -> dict[Move, tuple[int | None, int | None]]:
     """Evaluates all legal moves on the board."""
     moves_evaluations = {}
     start_time = time()
