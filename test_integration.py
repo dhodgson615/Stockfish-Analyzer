@@ -55,6 +55,7 @@ def test_play_game_simple_sequence(
     def mock_handle_input(_: Board) -> Move | None:
         try:
             return next(move_iter)
+
         except StopIteration:
             return None
 
