@@ -14,7 +14,7 @@ def test_tablebase_functionality() -> None:
     board = Board("8/8/8/8/8/2k5/8/K3q3 w - - 0 1")
 
     try:
-        # Get WDL and DTZ info directly from tablebase
+        # Get WDL info directly from tablebase
         wdl = tablebase.get_wdl(board)
 
         # If we can't probe this position, try a simpler one
