@@ -21,7 +21,7 @@ PATH_NOT_FOUND_MSG = "Stockfish engine not found"
 
 
 @pytest.mark.skipif(PATH_NOT_FOUND, reason=PATH_NOT_FOUND_MSG)
-def test_get_engine(engine_path) -> None:
+def test_get_engine(engine_path: str) -> None:
     """Test that the engine can be initialized and quit properly."""
     engine = get_engine(engine_path)
 
