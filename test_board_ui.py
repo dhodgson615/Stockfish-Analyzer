@@ -82,8 +82,11 @@ def test_show_mate_info() -> None:
         show_mate_info(best_move_data_with_mate, True)  # White's turn
         assert "Mate in 3" in buf.getvalue()
 
-    # Test with no mate
-    best_move_data = (move, (100, None))
+    # Test with no mate - using a new variable to avoid type confusion
+    best_move_data_no_mate: tuple[Move, tuple[int | None, int | None]] = (
+        move,
+        (100, None),
+    )
     with StringIO() as buf, redirect_stdout(buf):
         show_mate_info(best_move_data, True)
         assert buf.getvalue() == ""
