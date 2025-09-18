@@ -37,6 +37,7 @@ def test_play_game_simple_sequence(
 ) -> None:
     """Test play_game with a predetermined sequence of moves."""
     importorskip("chess.engine")
+
     if not path.exists(engine_path):
         skip("Engine not found")
 
