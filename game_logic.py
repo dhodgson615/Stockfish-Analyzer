@@ -18,6 +18,7 @@ def sort_moves_by_evaluation(
     """Sorts the evaluated moves based on the score."""
     moves = list(moves_eval.items())
     indexed_scores = []
+
     for i in range(len(moves)):
         score = moves[i][1][0]
 
