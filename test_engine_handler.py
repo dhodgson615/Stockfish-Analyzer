@@ -167,6 +167,7 @@ def test_try_tablebase_evaluation_exceptions() -> None:
     # Test IOError
     mock_tablebase.get_wdl.side_effect = IOError("Test IO error")
     result = try_tablebase_evaluation(board, mock_tablebase)
+
     assert result is None
 
     # Test ValueError
