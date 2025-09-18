@@ -64,5 +64,6 @@ def test_evaluate_and_show_moves_timing(
             assert isinstance(moves_eval, dict)
             assert isinstance(eval_time, float)
             assert eval_time >= 0
+
         finally:
             engine.quit()
