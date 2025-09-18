@@ -87,6 +87,7 @@ def test_show_mate_info() -> None:
         move,
         (100, None),
     )
+
     with StringIO() as buf, redirect_stdout(buf):
         show_mate_info(best_move_data_no_mate, True)
         assert buf.getvalue() == ""
