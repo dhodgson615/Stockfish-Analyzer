@@ -146,6 +146,7 @@ def get_move_evals(
         move_obj, score_data = evaluate_move(
             board, engine, move, depth, tablebase
         )
+
         moves_evaluations[move_obj] = score_data
         display_progress(
             i,
