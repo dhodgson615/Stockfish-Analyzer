@@ -32,8 +32,8 @@ def sort_moves_by_evaluation(
 
 
 def evaluate_and_show_moves(
-    board: Board, engine: SimpleEngine, tablebase=None
-) -> tuple[dict, float]:
+    board: Board, engine: SimpleEngine, tablebase: Tablebase | None = None
+) -> tuple[dict[Move, tuple[int | None, int | None]], float]:
     """Evaluate moves and display them with timing information."""
     start_time = time()
 
