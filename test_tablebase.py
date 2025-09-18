@@ -36,6 +36,7 @@ def test_tablebase_functionality() -> None:
 
                 if moves:  # Make sure there are legal moves
                     move = moves[0]
+
                     move_obj, (_, mate) = evaluate_move(
                         board, engine, move, tablebase=tablebase
                     )
