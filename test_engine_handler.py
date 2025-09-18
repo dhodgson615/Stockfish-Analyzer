@@ -154,7 +154,6 @@ def test_try_tablebase_evaluation_none_wdl() -> None:
     board = Board()
     mock_tablebase = MagicMock()
     mock_tablebase.get_wdl.return_value = None
-
     result = try_tablebase_evaluation(board, mock_tablebase)
     assert result is None
 
