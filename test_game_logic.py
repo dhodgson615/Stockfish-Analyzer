@@ -6,6 +6,7 @@ from os import path
 
 from chess import Board, Move
 from chess.engine import SimpleEngine
+from pytest import MonkeyPatch, importorskip, skip
 
 from game_logic import sort_moves_by_evaluation
 
