@@ -91,6 +91,8 @@ def test_get_move_evals_simple_position(engine_path: str) -> None:
         assert len(evals) == len(moves)
 
         for move in moves:
+            score, mate = evals[move]
+
             assert move in evals
             score, mate = evals[move]
             assert isinstance(score, int)
