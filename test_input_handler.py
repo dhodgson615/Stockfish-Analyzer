@@ -13,7 +13,7 @@ def test_from_uci_valid() -> None:
 
 
 def test_from_uci_invalid() -> None:
-    with pytest.raises(ValueError):
+    with raises(ValueError):
         from_uci("invalid")
 
 
