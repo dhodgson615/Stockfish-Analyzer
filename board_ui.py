@@ -51,6 +51,7 @@ def print_possible_moves(
         mate_text = (
             f", Mate in {abs(mate_val)}" if mate_val is not None else ""
         )
+
         print(f"{move.uci():5s}-> Eval score: {score}{mate_text}")
 
 
