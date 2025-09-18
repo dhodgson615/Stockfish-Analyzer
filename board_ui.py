@@ -100,7 +100,7 @@ def show_mate_info(
     """Display mate information if a mate is found."""
     _, (_, mate_val) = best_move_data
 
-    if mate_val and (mate_val > 0) == is_white_turn:
+    if mate_val is not None and (mate_val > 0) == is_white_turn:
         print(f"\nMate in {abs(mate_val)}")
 
 
