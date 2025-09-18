@@ -36,6 +36,7 @@ def popen_uci(engine_path: str) -> SimpleEngine:
 
     except FileNotFoundError:
         raise FileNotFoundError(f"Engine not found at {engine_path}")
+
     except Exception as e:
         raise RuntimeError(f"Failed to start engine: {e}")
 
