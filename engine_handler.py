@@ -69,6 +69,7 @@ def evaluate_move(
     try:
         # First attempt tablebase evaluation if available
         tablebase_result = try_tablebase_evaluation(board, tablebase)
+
         if tablebase_result:
             return move, tablebase_result
 
