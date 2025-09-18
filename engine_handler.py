@@ -46,7 +46,8 @@ def get_engine(
     skill_level: int = 20,
 ) -> SimpleEngine:
     """Initializes and configures the chess engine."""
-    return popen_uci(engine_path).configure(
+    engine = popen_uci(engine_path)
+    engine.configure(
         {"Threads": threads, "Hash": hash_size, "Skill Level": skill_level}
     )
 
