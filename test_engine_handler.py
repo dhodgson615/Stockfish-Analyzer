@@ -202,7 +202,7 @@ def test_get_engine_evaluation() -> None:
 
 
 @patch("engine_handler.SimpleEngine")
-def test_popen_uci_success(mock_simple_engine: SimpleEngine) -> None:
+def test_popen_uci_success(mock_simple_engine_class: MagicMock) -> None:
     """Test successful engine opening."""
     mock_simple_engine.popen_uci.return_value = MagicMock()
 
