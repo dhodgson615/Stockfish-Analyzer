@@ -33,7 +33,7 @@ def test_play_game_simple_sequence(
     engine_path: str, monkeypatch: MonkeyPatch
 ) -> None:
     """Test play_game with a predetermined sequence of moves."""
-    pytest.importorskip("chess.engine")
+    importorskip("chess.engine")
     if not path.exists(engine_path):
         pytest.skip("Engine not found")
 
