@@ -5,7 +5,6 @@ from io import StringIO
 from os import environ, path
 from unittest.mock import MagicMock, patch
 
-import pytest
 from chess import Board, Move
 from chess.engine import Limit, SimpleEngine
 
