@@ -26,7 +26,7 @@ def test_main_integration_with_engine_check() -> None:
         assert engine is not None
         engine.quit()
     except Exception as e:
-        pytest.fail(f"Engine initialization failed: {e}")
+        fail(f"Engine initialization failed: {e}")
 
 
 def test_play_game_simple_sequence(
