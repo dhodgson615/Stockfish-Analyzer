@@ -9,7 +9,6 @@ def main() -> None:
     """Main function to run the interactive chess game."""
     board = Board()
     move_history: list[Move] = []  # Explicit Move type
-
     engine = get_engine(ENGINE_PATH)
     tablebase = get_syzygy_tablebase()
 
