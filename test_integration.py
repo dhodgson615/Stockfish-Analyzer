@@ -22,7 +22,7 @@ tests without the engine"""
 def test_main_integration_with_engine_check() -> None:
     """Test that the engine can be initialized and quit properly"""
     try:
-        engine = SimpleEngine.popen_uci("/opt/homebrew/bin/stockfish")
+        engine = popen_uci("/opt/homebrew/bin/stockfish")
         assert engine is not None
         engine.quit()
     except Exception as e:
