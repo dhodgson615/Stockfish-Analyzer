@@ -52,7 +52,9 @@ def print_possible_moves(
         print(f"{move.uci():5s}-> Eval score: {score}{mate_text}")
 
 
-def print_move_history(move_history: list, moves_per_line=5) -> None:
+def print_move_history(
+    move_history: list[Move], moves_per_line: int = 5
+) -> None:
     """Print the game's move history."""
     print("Moves played:")
 
