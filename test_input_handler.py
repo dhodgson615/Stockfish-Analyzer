@@ -70,7 +70,7 @@ def test_handle_user_input_illegal_move(monkeypatch: MonkeyPatch) -> None:
     board = Board()
     board.push(Move.from_uci("e2e4"))  # Already moved the e-pawn
 
-    # Mock the input function to return e2e4 again in UCI format (which is now illegal)
+    # Mock the input to return e2e4 again in UCI format (which is now illegal)
     monkeypatch.setattr("builtins.input", lambda _: "e2e4")
 
     with StringIO() as buf, redirect_stdout(buf):
