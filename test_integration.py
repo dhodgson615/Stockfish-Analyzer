@@ -30,7 +30,7 @@ def test_main_integration_with_engine_check() -> None:
 
 
 def test_play_game_simple_sequence(
-    engine_path: str, monkeypatch: object  # TODO: fix type
+    engine_path: str, monkeypatch: MonkeyPatch
 ) -> None:
     """Test play_game with a predetermined sequence of moves."""
     pytest.importorskip("chess.engine")
