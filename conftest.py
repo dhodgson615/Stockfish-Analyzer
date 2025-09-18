@@ -16,7 +16,9 @@ def new_board() -> Board:
 def checkmate_board() -> Board:
     """Returns a board with a checkmate position (fool's mate)."""
     board = Board()
-    [board.push(from_uci(move)) for move in ["f2f3", "e7e5", "g2g4", "d8h4"]]
+
+    for move in ["f2f3", "e7e5", "g2g4", "d8h4"]:
+        board.push(from_uci(move))
 
     return board
 
