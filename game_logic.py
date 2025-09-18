@@ -58,7 +58,10 @@ def evaluate_and_show_moves(
 
 
 def play_game(
-    board: Board, engine: SimpleEngine, move_history: list, tablebase=None
+    board: Board,
+    engine: SimpleEngine,
+    move_history: list[Move],
+    tablebase: Tablebase | None = None,
 ) -> None:
     """Run the interactive chess game loop."""
     while not board.is_game_over():
