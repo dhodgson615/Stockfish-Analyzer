@@ -7,6 +7,7 @@ from unittest.mock import MagicMock, patch
 
 from chess import Board, Move
 from chess.engine import Limit, SimpleEngine
+from pytest import fail, mark, raises
 
 from engine_handler import (EVAL_DEPTH, evaluate_move, get_engine,
                             get_engine_evaluation, get_move_evals,
