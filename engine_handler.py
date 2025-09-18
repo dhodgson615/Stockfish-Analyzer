@@ -57,8 +57,8 @@ def evaluate_move(
     board: Board,
     engine: SimpleEngine,
     move: Move,
-    depth=EVAL_DEPTH,
-    tablebase=None,
+    depth: int = EVAL_DEPTH,
+    tablebase: Tablebase | None = None,
 ) -> tuple[Move, tuple[int | None, int | None]]:
     """Evaluates a single move on the board using tablebase or chess
     engine.
