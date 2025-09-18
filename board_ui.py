@@ -115,7 +115,8 @@ def print_tablebase_info(board: Board, tablebase: Tablebase) -> None:
         if wdl is not None:
             result = "Draw" if wdl == 0 else "Win" if wdl > 0 else "Loss"
             dtz = tablebase.get_dtz(board)
-            print(f"Tablebase: {result} (DTZ: {abs(dtz)})")
+            dtz_str = str(abs(dtz)) if dtz is not None else "N/A"
+            print(f"Tablebase: {result} (DTZ: {dtz_str})")
 
     except (
         IOError,
