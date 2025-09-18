@@ -33,6 +33,7 @@ def popen_uci(engine_path: str) -> SimpleEngine:
     """Attempt to open the UCI engine, handling potential errors."""
     try:
         return SimpleEngine.popen_uci(engine_path)
+
     except FileNotFoundError:
         raise FileNotFoundError(f"Engine not found at {engine_path}")
     except Exception as e:
