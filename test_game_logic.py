@@ -54,6 +54,7 @@ def test_evaluate_and_show_moves_timing(
 
         mp.setattr("game_logic.get_move_evals", mock_get_evals)
         engine = SimpleEngine.popen_uci(engine_path)
+
         try:
             with StringIO() as buf, redirect_stdout(buf):
                 moves_eval, eval_time = evaluate_and_show_moves(
