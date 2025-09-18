@@ -16,7 +16,6 @@ def test_tablebase_functionality() -> None:
     try:
         # Get WDL and DTZ info directly from tablebase
         wdl = tablebase.get_wdl(board)
-        dtz = tablebase.get_dtz(board)
 
         # If we can't probe this position, try a simpler one
         if wdl is None:
