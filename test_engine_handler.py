@@ -243,7 +243,7 @@ def test_popen_uci_general_exception(
     # Set the mocked method on the class
     mock_simple_engine_class.popen_uci = mock_popen_uci
 
-    with pytest.raises(RuntimeError):
+    with raises(RuntimeError):
         popen_uci("problem/path")
 
 
