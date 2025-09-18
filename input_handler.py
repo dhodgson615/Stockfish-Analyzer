@@ -19,6 +19,7 @@ def parse_move_input(board: Board, user_input: str) -> Move | None:
     """Parse user input as a chess move."""
     try:
         return board.parse_san(user_input)
+
     except ValueError:
         try:
             return from_uci(user_input)
