@@ -30,6 +30,7 @@ def test_get_engine(engine_path: str) -> None:
 
         board = Board()
         result = engine.play(board, Limit(time=0.1))
+
         # Check if result.move is not None before using 'in' operator
         if result.move is not None:
             assert result.move in board.legal_moves
