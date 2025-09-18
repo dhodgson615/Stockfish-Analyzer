@@ -1,7 +1,6 @@
 from contextlib import redirect_stdout
 from io import StringIO
 
-from pytest import fixture, raises, MonkeyPatch
 from chess import Board, Move
 
 from input_handler import from_uci, parse_move_input
