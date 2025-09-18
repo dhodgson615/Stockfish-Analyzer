@@ -33,7 +33,7 @@ def sample_moves() -> list[Move]:
     return [Move.from_uci(m) for m in ["e2e4", "d2d4", "g1f3"]]
 
 
-@pytest.fixture
+@fixture
 def engine_path() -> str:
     """Returns path to Stockfish engine, skip tests if not found."""
     filepath = "/opt/homebrew/bin/stockfish"
