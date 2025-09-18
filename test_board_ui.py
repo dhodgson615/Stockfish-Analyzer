@@ -214,7 +214,6 @@ def test_print_board_2() -> None:  # TODO: Rename duplicate
     assert "\033c" in output  # Clear terminal command
     assert "8" in output  # Board coordinate
     assert "1" in output  # Board coordinate
-    # Check for at least one piece character (depends on encoding)
     assert any(char in output for char in ["♖", "♙", "♔", "R", "P", "K"])
 
 
