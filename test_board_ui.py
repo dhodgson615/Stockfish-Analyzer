@@ -216,7 +216,7 @@ def test_print_board_2() -> None:  # TODO: Rename duplicate
     assert any(char in output for char in ["♖", "♙", "♔", "R", "P", "K"])
 
 
-def test_print_tablebase_info_win() -> None:  # TODO: Rename duplicate
+def test_print_tablebase_info_win_2() -> None:  # TODO: Rename duplicate
     """Test tablebase info printing for a winning position."""
     board = Board(
         "8/8/8/8/8/2k5/8/K3q3 w - - 0 1"
