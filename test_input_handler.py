@@ -23,6 +23,7 @@ def test_parse_move_input_san() -> None:
     # Test SAN parsing
     result = parse_move_input(board, "e4")
     expected = Move.from_uci("e2e4")
+
     assert result == expected
 
 
