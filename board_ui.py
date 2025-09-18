@@ -85,7 +85,7 @@ def print_game_result(board: Board) -> None:
         print(f"Game result: {board.result()}")
 
 
-def print_game_over_info(board: Board, move_history: list) -> None:
+def print_game_over_info(board: Board, move_history: list[Move]) -> None:
     """Prints game over information."""
     print_board(board)
     print("Game Over!")
