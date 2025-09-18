@@ -153,6 +153,7 @@ def get_move_evals(
         )
 
         moves_evaluations[move_obj] = score_data
+
         display_progress(
             i,
             len(list(board.legal_moves)),
