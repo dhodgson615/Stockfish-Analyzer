@@ -45,7 +45,7 @@ def test_evaluate_and_show_moves_timing(
 
     from game_logic import evaluate_and_show_moves
 
-    with pytest.MonkeyPatch.context() as mp:
+    with MonkeyPatch.context() as mp:
         # Replace get_move_evals with a simple function that returns dummy data
         def mock_get_evals(
             *args: object, **kwargs: object
