@@ -133,6 +133,7 @@ def get_engine_evaluation(
     score_obj = info["score"].white()
     score = score_obj.score(mate_score=1000000)
     mate_val = score_obj.mate()
+
     return score, mate_val
 
 
