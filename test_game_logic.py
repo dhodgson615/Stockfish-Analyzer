@@ -17,7 +17,7 @@ def test_sort_moves_by_evaluation() -> None:
     move2 = Move.from_uci("d2d4")
     move3 = Move.from_uci("c2c4")
 
-    moves_eval = {
+    moves_eval: dict[Move, tuple[int | None, int | None]] = {
         move1: (100, None),
         move2: (50, None),
         move3: (75, None),
