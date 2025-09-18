@@ -79,7 +79,7 @@ def test_show_mate_info() -> None:
     )
 
     with StringIO() as buf, redirect_stdout(buf):
-        show_mate_info(best_move_data, True)  # White's turn
+        show_mate_info(best_move_data_with_mate, True)  # White's turn
         assert "Mate in 3" in buf.getvalue()
 
     # Test with no mate
