@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from contextlib import redirect_stdout
 from io import StringIO
 from os import environ, path
