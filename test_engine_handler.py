@@ -138,8 +138,8 @@ def test_try_tablebase_evaluation_win() -> None:
 
     assert result is not None
     score, mate_val = result
-    assert score < -900000  # Large negative score for losing
-    assert mate_val == -5  # Mate in 5
+    assert score is not None and score < -900000  # Large penalty for losing
+    assert mate_val is not None and mate_val == -5  # Mate in 5
 
 
 def test_try_tablebase_evaluation_none_wdl() -> None:
