@@ -71,7 +71,12 @@ def test_show_mate_info() -> None:
     """Test show_mate_info function."""
     # Create a real move and score data
     move = from_uci("e2e4")
-    best_move_data = (move, (100, 3))  # Score 100, mate in 3
+
+    # Explicitly annotate the type to allow for None values
+    best_move_data_with_mate: tuple[Move, tuple[int | None, int | None]] = (
+        move,
+        (100, 3),
+    )
 
     with StringIO() as buf, redirect_stdout(buf):
         show_mate_info(best_move_data, True)  # White's turn
