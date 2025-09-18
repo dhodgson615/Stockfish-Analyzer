@@ -94,7 +94,6 @@ def test_get_move_evals_simple_position(engine_path: str) -> None:
             score, mate = evals[move]
 
             assert move in evals
-            score, mate = evals[move]
             assert isinstance(score, int)
 
     finally:
