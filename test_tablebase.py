@@ -39,6 +39,7 @@ def test_tablebase_functionality() -> None:
                     move_obj, (_, mate) = evaluate_move(
                         board, engine, move, tablebase=tablebase
                     )
+
                     assert move_obj is not None, "Move should not be None"
 
             finally:
