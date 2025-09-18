@@ -79,6 +79,7 @@ def print_game_result(board: Board) -> None:
 
     elif board.is_stalemate():
         print("Stalemate! The game is a draw.")
+
     elif board.is_insufficient_material():
         print("Insufficient material! The game is a draw.")
     elif board.is_fifty_moves():
