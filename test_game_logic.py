@@ -53,7 +53,6 @@ def test_evaluate_and_show_moves_timing(
             return {Move.from_uci("e2e4"): (100, None)}
 
         mp.setattr("game_logic.get_move_evals", mock_get_evals)
-
         engine = SimpleEngine.popen_uci(engine_path)
         try:
             with StringIO() as buf, redirect_stdout(buf):
