@@ -48,7 +48,7 @@ def test_evaluate_and_show_moves_timing(
     with pytest.MonkeyPatch.context() as mp:
         # Replace get_move_evals with a simple function that returns dummy data
         def mock_get_evals(
-            *args, **kwargs
+            *args: object, **kwargs: object
         ) -> dict[Move, tuple[int, int | None]]:
             return {Move.from_uci("e2e4"): (100, None)}
 
