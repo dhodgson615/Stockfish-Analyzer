@@ -46,6 +46,7 @@ def evaluate_and_show_moves(
     moves_eval = get_move_evals(
         board, engine, depth=EVAL_DEPTH, tablebase=tablebase
     )
+
     eval_time = time() - start_time
 
     sorted_moves = sort_moves_by_evaluation(moves_eval, board.turn)
