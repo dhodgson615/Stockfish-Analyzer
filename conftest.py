@@ -27,7 +27,7 @@ def stalemate_board() -> Board:
     return Board("8/8/8/8/8/5k2/7p/7K w - - 0 1")
 
 
-@pytest.fixture
+@fixture
 def sample_moves() -> list[Move]:
     """Returns a list of sample chess moves."""
     return [Move.from_uci(m) for m in ["e2e4", "d2d4", "g1f3"]]
