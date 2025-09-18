@@ -228,7 +228,12 @@ def test_popen_uci_general_exception(
     mock_simple_engine_class: MagicMock,
 ) -> None:
     """Test general exception handling in popen_uci."""
-    mock_simple_engine.popen_uci.side_effect = RuntimeError("Engine error")
+    # Create a separate mock for the popen_uci method
+    mock_popen_uci = MagicMock()
+    mock_popen_uci.side_effect = RuntimeError("Engine error")
+
+    # Set the mocked method on the class
+    mock_simple_engine_class.popen_uci = mock_popen_uci
 
     with pytest.raises(RuntimeError):
         popen_uci("problem/path")
