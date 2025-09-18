@@ -102,8 +102,9 @@ def try_tablebase_evaluation(
             mate_val = dtz_val if dtz_val is not None else None
             score = 1000000 - (mate_val or 0)  # High score for winning
         else:
-            mate_val = -tablebase.get_dtz(board)
-            score = -1000000 - mate_val  # Low score for losing
+            dtz_val = tablebase.get_dtz(board)
+            mate_val = -dtz_val if dtz_val is not None else None
+            score = -1000000 - (mate_val or 0)  # Low score for losing
 
         # Filter out unreasonably large mate values
         if abs(mate_val or 0) >= 1000:
