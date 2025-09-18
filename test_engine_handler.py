@@ -215,7 +215,9 @@ def test_popen_uci_success(mock_simple_engine_class: MagicMock) -> None:
 @patch("engine_handler.SimpleEngine")
 def test_popen_uci_file_not_found(mock_simple_engine_class: MagicMock) -> None:
     """Test FileNotFoundError handling in popen_uci."""
-    mock_simple_engine.popen_uci.side_effect = FileNotFoundError("No file")
+    mock_simple_engine_class.popen_uci.side_effect = FileNotFoundError(
+        "No file"
+    )
 
     with pytest.raises(FileNotFoundError):
         popen_uci("nonexistent/path")
