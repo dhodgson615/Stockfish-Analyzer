@@ -214,6 +214,7 @@ def test_popen_uci_success(mock_simple_engine_class: MagicMock) -> None:
     mock_engine = MagicMock()
     mock_simple_engine_class.popen_uci.return_value = mock_engine
     result = popen_uci("dummy/path")
+
     assert result is not None
     mock_simple_engine_class.popen_uci.assert_called_once_with("dummy/path")
 
