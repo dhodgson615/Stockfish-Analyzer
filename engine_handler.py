@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from os import path
 from shutil import get_terminal_size
 from time import time
