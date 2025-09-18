@@ -8,7 +8,7 @@ def test_tablebase_functionality() -> None:
     # Load tablebase
     tablebase = get_syzygy_tablebase()
     if not tablebase:
-        pytest.skip("Tablebase not found or loaded. Check installation.")
+        skip("Tablebase not found or loaded. Check installation.")
 
     # Create a 3-piece endgame position (King vs King + Queen)
     board = Board("8/8/8/8/8/2k5/8/K3q3 w - - 0 1")
