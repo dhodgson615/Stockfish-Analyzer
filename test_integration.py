@@ -5,7 +5,7 @@ from io import StringIO
 from os import path
 
 from chess import Board, Move
-from chess.engine import SimpleEngine
+from pytest import MonkeyPatch, fail, importorskip, mark, skip
 
 from engine_handler import popen_uci
 from game_logic import play_game
