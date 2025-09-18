@@ -238,7 +238,6 @@ def test_print_tablebase_info_win_2() -> None:  # TODO: Rename duplicate
 def test_print_tablebase_info_draw_2() -> None:  # TODO: Rename duplicate
     """Test tablebase info printing for a drawn position."""
     board = Board("8/8/8/8/8/2k5/8/K7 w - - 0 1")  # Just kings
-
     mock_tablebase = MagicMock()
     mock_tablebase.get_wdl.return_value = 0  # Draw
     mock_tablebase.get_dtz.return_value = 0
