@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from time import time
 
-from chess import Board
+from chess import Board, Move
 from chess.engine import SimpleEngine
 
 from board_ui import (print_board, print_possible_moves, print_tablebase_info,
