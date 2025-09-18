@@ -6,7 +6,7 @@ from pytest import fixture, skip
 from input_handler import from_uci
 
 
-@pytest.fixture
+@fixture
 def new_board() -> Board:
     """Returns a fresh chess board in the starting position."""
     return Board()
