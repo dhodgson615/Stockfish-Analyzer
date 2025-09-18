@@ -123,7 +123,7 @@ def test_get_engine_invalid_path() -> None:
     """Test that get_engine() raises an error for an invalid path."""
     if not environ.get("CI"):
         with pytest.raises((FileNotFoundError, IOError)):
-            engine = get_engine("/nonexistent/engine/path")
+            get_engine("/nonexistent/engine/path")
 
 
 def test_try_tablebase_evaluation_win() -> None:
