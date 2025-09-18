@@ -142,6 +142,7 @@ def test_print_possible_moves() -> None:
     with StringIO() as buf, redirect_stdout(buf):
         print_possible_moves(moves)
         output = buf.getvalue()
+
         assert "e2e4" in output
         assert "Eval score: 42" in output
         assert "Eval score: 30, Mate in 2" in output
