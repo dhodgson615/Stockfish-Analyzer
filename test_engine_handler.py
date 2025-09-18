@@ -36,7 +36,7 @@ def test_get_engine(engine_path: str) -> None:
             assert result.move in board.legal_moves
 
         else:
-            pytest.fail("Engine did not return a move")
+            fail("Engine did not return a move")
 
     finally:
         engine.quit()
