@@ -121,7 +121,17 @@ def test_print_move_history() -> None:
 
 def test_print_possible_moves() -> None:
     """Test print_possible_moves function."""
-    # Create sorted move list with evaluation data
+    # Create move objects first
+    move1 = from_uci("e2e4")
+    move2 = from_uci("d2d4")
+    move3 = from_uci("g1f3")
+
+    # Create evaluation tuples with explicit types
+    eval1: tuple[int | None, int | None] = (42, None)
+    eval2: tuple[int | None, int | None] = (35, None)
+    eval3: tuple[int | None, int | None] = (30, 2)
+
+    # Combine into a properly typed list
     moves = [
         (from_uci("e2e4"), (42, None)),
         (from_uci("d2d4"), (35, None)),
