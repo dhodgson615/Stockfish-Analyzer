@@ -40,6 +40,7 @@ def test_parse_move_input_uci() -> None:
 def test_parse_move_input_invalid() -> None:
     board = Board()
     result = parse_move_input(board, "invalid")
+
     assert result is None
 
 
