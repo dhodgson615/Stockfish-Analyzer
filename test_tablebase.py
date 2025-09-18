@@ -7,6 +7,7 @@ from engine_handler import evaluate_move, get_engine, get_syzygy_tablebase
 def test_tablebase_functionality() -> None:
     # Load tablebase
     tablebase = get_syzygy_tablebase()
+
     if not tablebase:
         skip("Tablebase not found or loaded. Check installation.")
 
