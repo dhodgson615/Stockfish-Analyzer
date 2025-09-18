@@ -54,6 +54,7 @@ def test_evaluate_move(engine_path: str) -> None:
         result_move, (score, mate) = evaluate_move(
             board, engine, move, depth=10
         )
+
         assert result_move == move
         assert isinstance(score, int)
         assert abs(score) < 10000
