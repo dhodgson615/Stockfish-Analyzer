@@ -4,7 +4,6 @@ from contextlib import redirect_stdout
 from io import StringIO
 from os import path
 
-import pytest
 from chess import Board, Move
 from chess.engine import SimpleEngine
 
