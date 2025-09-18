@@ -133,9 +133,9 @@ def test_print_possible_moves() -> None:
 
     # Combine into a properly typed list
     moves = [
-        (from_uci("e2e4"), (42, None)),
-        (from_uci("d2d4"), (35, None)),
-        (from_uci("g1f3"), (30, 2)),  # Mate in 2
+        (move1, eval1),
+        (move2, eval2),
+        (move3, eval3),
     ]
 
     with StringIO() as buf, redirect_stdout(buf):
