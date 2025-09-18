@@ -59,8 +59,8 @@ def test_evaluate_move(engine_path: str) -> None:
 
 
 def get_limited_evals(
-    board: Board, engine: SimpleEngine, moves: list[Move], depth=5
-) -> dict[Move, tuple[int, int | None]]:
+    board: Board, engine: SimpleEngine, moves: list[Move], depth: int = 5
+) -> dict[Move, tuple[int | None, int | None]]:
     """Get evaluations for a limited set of moves."""
     moves_evaluations = {}
     for move in moves:
