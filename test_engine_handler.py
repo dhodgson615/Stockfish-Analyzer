@@ -179,6 +179,7 @@ def test_try_tablebase_evaluation_exceptions() -> None:
     # Test IndexError
     mock_tablebase.get_wdl.side_effect = IndexError("Test index error")
     result = try_tablebase_evaluation(board, mock_tablebase)
+
     assert result is None
 
 
