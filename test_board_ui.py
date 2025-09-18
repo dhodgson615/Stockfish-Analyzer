@@ -3,7 +3,6 @@ from io import StringIO
 from time import time
 from unittest.mock import MagicMock
 
-import pytest
 from chess import Board, Move
 
 from board_ui import (display_progress, print_board, print_game_over_info,
