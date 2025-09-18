@@ -204,7 +204,8 @@ def test_get_engine_evaluation() -> None:
 @patch("engine_handler.SimpleEngine")
 def test_popen_uci_success(mock_simple_engine_class: MagicMock) -> None:
     """Test successful engine opening."""
-    mock_simple_engine.popen_uci.return_value = MagicMock()
+    mock_engine = MagicMock()
+    mock_simple_engine_class.popen_uci.return_value = mock_engine
 
     result = popen_uci("dummy/path")
     assert result is not None
