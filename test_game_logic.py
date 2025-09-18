@@ -38,7 +38,7 @@ def test_evaluate_and_show_moves_timing(
     new_board: Board, engine_path: str
 ) -> None:
     """Test that evaluate_and_show_moves returns timing information."""
-    pytest.importorskip("chess.engine")
+    importorskip("chess.engine")
 
     if not path.exists(engine_path):
         pytest.skip("Engine not found")
