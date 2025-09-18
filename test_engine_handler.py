@@ -87,6 +87,7 @@ def test_get_move_evals_simple_position(engine_path: str) -> None:
         board = Board()
         moves = [move for move in list(board.legal_moves)[:2]]
         evals = get_limited_evals(board, engine, moves)
+
         assert len(evals) == len(moves)
 
         for move in moves:
