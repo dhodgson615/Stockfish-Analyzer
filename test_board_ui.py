@@ -28,7 +28,7 @@ def test_print_game_result_stalemate() -> None:
     # Create a verified stalemate position
     board = Board("k7/8/1Q6/8/8/8/8/7K b - - 0 1")
 
-    # Verify the board is indeed in stalemate
+    # Verify the board is in stalemate
     assert not board.is_check()
     assert board.is_stalemate()
 
