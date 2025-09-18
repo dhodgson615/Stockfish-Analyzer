@@ -142,8 +142,6 @@ def test_try_tablebase_evaluation_win() -> None:
     mock_tablebase.get_wdl.return_value = -2  # Loss for white
     mock_tablebase.get_dtz.return_value = 5
     result = try_tablebase_evaluation(board, mock_tablebase)
-
-    assert result is not None
     score, mate_val = result
     assert score is not None and score < -900000  # Large penalty for losing
     assert mate_val is not None and mate_val == -5  # Mate in 5
