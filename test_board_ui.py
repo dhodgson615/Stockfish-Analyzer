@@ -198,7 +198,7 @@ def test_print_tablebase_info_draw() -> None:
     assert "Draw" in output
 
 
-def test_print_board() -> None:  # TODO: Rename duplicate
+def test_print_board_2() -> None:  # TODO: Rename duplicate
     """Test that print_board correctly formats and displays a chess
     board.
     """
