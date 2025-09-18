@@ -4,7 +4,10 @@ from pytest import skip
 from engine_handler import evaluate_move, get_engine, get_syzygy_tablebase
 
 
-def test_tablebase_functionality() -> None:
+def test_tablebase_functionality() -> (
+    None
+):  # TODO: make this function use less nesting
+    """Test basic functionality of Syzygy tablebase integration."""
     # Load tablebase
     tablebase = get_syzygy_tablebase()
 
