@@ -39,6 +39,6 @@ def engine_path() -> str:
     filepath = "/opt/homebrew/bin/stockfish"
 
     if not path.exists(filepath):
-        pytest.skip("Stockfish engine not found. Skipping tests.")
+        skip("Stockfish engine not found. Skipping tests.")
 
     return filepath
