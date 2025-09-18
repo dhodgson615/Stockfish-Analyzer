@@ -24,6 +24,7 @@ def sort_moves_by_evaluation(
 
         if score is not None:
             indexed_scores.append((score, i))
+
         else:
             indexed_scores.append((0, i))  # Default score for None values
 
