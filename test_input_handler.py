@@ -64,8 +64,6 @@ def test_handle_user_input_valid_move(monkeypatch: MonkeyPatch) -> None:
 
 def test_handle_user_input_illegal_move(monkeypatch: MonkeyPatch) -> None:
     """Test handle_user_input with an illegal move."""
-    from input_handler import handle_user_input
-
     # Set up a board where e2e4 is no longer legal
     board = Board()
     board.push(Move.from_uci("e2e4"))  # Already moved the e-pawn
