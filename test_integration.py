@@ -25,6 +25,7 @@ def test_main_integration_with_engine_check() -> None:
         engine = popen_uci("/opt/homebrew/bin/stockfish")
 
         assert engine is not None
+
         engine.quit()
 
     except Exception as e:
