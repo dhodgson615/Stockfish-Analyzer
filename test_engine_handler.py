@@ -29,7 +29,11 @@ def test_get_engine(engine_path) -> None:
         assert engine is not None
         board = Board()
         result = engine.play(board, Limit(time=0.1))
-        assert result.move in board.legal_moves
+        # Check if result.move is not None before using 'in' operator
+        if result.move is not None:
+            assert result.move in board.legal_moves
+        else:
+            pytest.fail("Engine did not return a move")
 
     finally:
         engine.quit()
