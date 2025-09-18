@@ -130,7 +130,9 @@ def test_get_syzygy_tablebase_exception() -> None:
 def test_get_engine_invalid_path() -> None:
     """Test that get_engine() raises an error for an invalid path."""
     if not environ.get("CI"):
-        with raises((FileNotFoundError, IOError)):
+        with raises(
+            (FileNotFoundError, IOError)
+        ):  # FIXME: Expected type 'type[FileNotFoundError] | tuple[type[FileNotFoundError], ...]' (matched generic type 'type[E ≤: BaseException] | tuple[type[E ≤: BaseException], ...]'), got 'tuple[type[FileNotFoundError], type[OSError]]' instead
             get_engine("/nonexistent/engine/path")
 
 
