@@ -41,7 +41,9 @@ def display_progress(
     )
 
 
-def print_possible_moves(sorted_moves: list) -> None:
+def print_possible_moves(
+    sorted_moves: list[tuple[Move, tuple[int | None, int | None]]],
+) -> None:
     """Prints the possible moves along with their evaluation scores."""
     print("Possible moves:")
 
