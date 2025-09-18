@@ -12,7 +12,9 @@ from engine_handler import EVAL_DEPTH, get_move_evals
 from input_handler import handle_user_input
 
 
-def sort_moves_by_evaluation(moves_eval: dict, is_white_turn: bool) -> list:
+def sort_moves_by_evaluation(
+    moves_eval: dict[Move, tuple[int | None, int | None]], is_white_turn: bool
+) -> list[tuple[Move, tuple[int | None, int | None]]]:
     """Sorts the evaluated moves based on the score."""
     moves = list(moves_eval.items())
     indexed_scores = [(moves[i][1][0], i) for i in range(len(moves))]
