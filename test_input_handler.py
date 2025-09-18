@@ -42,7 +42,7 @@ def test_parse_move_input_invalid() -> None:
     assert result is None
 
 
-@pytest.fixture
+@fixture
 def new_board() -> Board:
     return Board()
 
