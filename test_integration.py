@@ -15,7 +15,7 @@ from input_handler import from_uci
 tests without the engine"""
 
 
-@pytest.mark.skipif(
+@mark.skipif(
     not path.exists("/opt/homebrew/bin/stockfish"),
     reason="Stockfish engine not found",
 )
