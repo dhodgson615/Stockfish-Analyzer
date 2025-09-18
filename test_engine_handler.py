@@ -63,6 +63,7 @@ def get_limited_evals(
 ) -> dict[Move, tuple[int | None, int | None]]:
     """Get evaluations for a limited set of moves."""
     moves_evaluations = {}
+
     for move in moves:
         move_obj, score_data = evaluate_move(board, engine, move, depth)
         moves_evaluations[move_obj] = score_data
