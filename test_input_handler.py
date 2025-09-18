@@ -33,6 +33,7 @@ def test_parse_move_input_uci() -> None:
     # Test UCI parsing
     result = parse_move_input(board, "e2e4")
     expected = Move.from_uci("e2e4")
+
     assert result == expected
 
 
