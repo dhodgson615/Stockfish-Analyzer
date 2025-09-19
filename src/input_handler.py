@@ -11,6 +11,7 @@ def from_uci(uci_str: str) -> Move:
     """
     try:
         return Move.from_uci(uci_str)
+
     except (ValueError, IndexError):
         raise ValueError(f"Invalid UCI string: {uci_str}")
 
