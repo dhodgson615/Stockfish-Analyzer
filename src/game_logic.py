@@ -17,7 +17,9 @@ def sort_moves_by_evaluation(
 ) -> list[tuple[Move, tuple[int | None, int | None]]]:
     """Sorts the evaluated moves based on the score."""
 
-    def sort_key(item: tuple[Move, tuple[int | None, int | None]]) -> int:
+    def sort_key(
+        item: tuple[Move, tuple[int | None, int | None]],
+    ) -> int:  #  TODO: convert this to a one liner
         """Key function for sorting moves."""
         move, (score, _) = item
 
