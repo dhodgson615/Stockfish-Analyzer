@@ -94,6 +94,7 @@ def try_tablebase_evaluation(
 
     try:
         wdl = tablebase.get_wdl(board)
+
         if wdl is None:
             return None
 
