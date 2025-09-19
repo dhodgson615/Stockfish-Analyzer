@@ -98,14 +98,10 @@ def try_tablebase_evaluation(
         if wdl is None:
             return None
 
-        if wdl == 0:
-            return 0, None  # Draw
+        dtz_val = tablebase.get_dtz(board)
 
-        # Win for the side to move (positive value)
-        if wdl > 0:
-            dtz_val = tablebase.get_dtz(board)
-            mate_val = dtz_val if dtz_val is not None else None
-            score = 1000000 - (mate_val or 0)  # High score for winning
+        if wdl == 0:  # Draw
+            return 0, None
 
         else:
             dtz_val = tablebase.get_dtz(board)
