@@ -6,6 +6,7 @@ from sys import exit
 from chess import Board, Move
 
 
+@lru_cache(maxsize=None)
 def from_uci(uci_str: str) -> Move:
     """Converts a UCI string to a chess Move object. Wraps
     Move.from_uci with error handling.
