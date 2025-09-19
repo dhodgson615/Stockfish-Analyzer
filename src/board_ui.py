@@ -128,7 +128,9 @@ def show_mate_info(
 
 
 def print_tablebase_info(board: Board, tablebase: Tablebase) -> None:
-    """Print information from Syzygy tablebase if available."""
+    """Print information from Syzygy tablebase if available. Shows WDL
+    and DTZ if applicable.
+    """
     if not tablebase:
         return
 
