@@ -158,7 +158,9 @@ def get_move_evals(
     depth: int = EVAL_DEPTH,
     tablebase: Tablebase | None = None,
 ) -> dict[Move, tuple[int | None, int | None]]:
-    """Evaluates all legal moves on the board."""
+    """Evaluates all legal moves on the board. Returns a dictionary
+    mapping moves to their (score, mate_value) tuples.
+    """
     moves_evaluations = {}
     start_time = time()
 
