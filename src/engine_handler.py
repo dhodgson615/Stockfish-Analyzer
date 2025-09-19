@@ -120,12 +120,14 @@ def try_tablebase_evaluation(
 
         return score, mate_val
 
-    except (
-        IOError,
-        ValueError,
-        IndexError,
-    ):  # TODO: handle specific exceptions
-        return None  # Tablebase lookup failed
+    except IOError:
+        return None  # Tablebase file access error
+
+    except ValueError:
+        return None  # Invalid position for tablebase
+
+    except IndexError:
+        return None  # Index out of bounds in tablebase access
 
 
 def get_engine_evaluation(
