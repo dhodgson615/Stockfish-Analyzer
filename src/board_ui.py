@@ -24,7 +24,9 @@ def print_board(board: Board) -> None:
 def display_progress(
     iteration: int, total: int, start_time: float, bar_length: int
 ) -> None:
-    """Displays a progress bar with time estimate."""
+    """Displays a progress bar with time estimate. Call this inside a
+    loop to update the progress.
+    """
     elapsed = time() - start_time
     progress_ratio = iteration / total
 
