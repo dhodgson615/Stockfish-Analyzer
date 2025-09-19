@@ -64,7 +64,9 @@ def print_possible_moves(
 def print_move_history(
     move_history: list[Move], moves_per_line: int = 5
 ) -> None:
-    """Print the game's move history."""
+    """Print the game's move history. Formats moves in lines with a set
+    number of moves per line.
+    """
     print("Moves played:")
 
     for idx, move in enumerate(move_history, start=1):
