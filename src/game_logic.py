@@ -23,7 +23,7 @@ def sort_moves_by_evaluation(
 
         return score if score is not None else 0
 
-    indexed_scores.sort(reverse=is_white_turn)
+    moves_list = list(moves_eval.items())
 
     return [moves[idx] for _, idx in indexed_scores]
 
