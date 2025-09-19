@@ -45,7 +45,6 @@ def evaluate_and_show_moves(
     )
 
     eval_time = time() - start_time
-
     sorted_moves = sort_moves_by_evaluation(moves_eval, board.turn)
     print_possible_moves(sorted_moves)
 
