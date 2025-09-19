@@ -103,10 +103,10 @@ def try_tablebase_evaluation(
         if wdl == 0:  # Draw
             return 0, None
 
-        else:
-            dtz_val = tablebase.get_dtz(board)
-            mate_val = -dtz_val if dtz_val is not None else None
-            score = -1000000 - (mate_val or 0)  # Low score for losing
+        # Win/loss for the side to move
+        mate_val = (
+            dtz_val if wdl > 0 else -dtz_val if dtz_val is not None else None
+        )
 
         # Filter out unreasonably large mate values
         if abs(mate_val or 0) >= 1000:
