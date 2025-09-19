@@ -108,7 +108,13 @@ def try_tablebase_evaluation(
             dtz_val if wdl > 0 else -dtz_val if dtz_val is not None else None
         )
 
-        # Filter out unreasonably large mate values
+        score = (
+            (1000000 - (mate_val or 0))
+            if wdl > 0
+            else (-1000000 - (mate_val or 0))
+        )
+
+        # Filter out unreasonable mate values
         if abs(mate_val or 0) >= 1000:
             mate_val = None
 
