@@ -16,11 +16,6 @@ def sort_moves_by_evaluation(
     moves_eval: dict[Move, tuple[int | None, int | None]], is_white_turn: bool
 ) -> list[tuple[Move, tuple[int | None, int | None]]]:
     """Sorts the evaluated moves based on the score."""
-    moves = list(moves_eval.items())
-    indexed_scores = []
-
-    for i in range(len(moves)):
-        score = moves[i][1][0]
 
         if score is not None:
             indexed_scores.append((score, i))
