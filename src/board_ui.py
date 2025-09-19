@@ -48,7 +48,9 @@ def display_progress(
 def print_possible_moves(
     sorted_moves: list[tuple[Move, tuple[int | None, int | None]]],
 ) -> None:
-    """Prints the possible moves along with their evaluation scores."""
+    """Prints the possible moves along with their evaluation scores.
+    Expects a list of tuples (Move, (score, mate_value)).
+    """
     print("Possible moves:")
 
     for move, (score, mate_val) in sorted_moves:
