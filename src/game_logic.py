@@ -19,7 +19,7 @@ def sort_moves_by_evaluation(
 
     def sort_key(
         item: tuple[Move, tuple[int | None, int | None]],
-    ) -> int:  #  TODO: convert this to a one liner
+    ) -> int:  # TODO: convert this to a one liner
         """Key function for sorting moves."""
         move, (score, _) = item
 
