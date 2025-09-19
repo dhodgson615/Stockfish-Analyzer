@@ -24,6 +24,7 @@ def parse_move_input(board: Board, user_input: str) -> Move | None:
     except ValueError:
         try:
             return from_uci(user_input)
+
         except ValueError:
             return None
 
