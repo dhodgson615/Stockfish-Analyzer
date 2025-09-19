@@ -143,9 +143,11 @@ def print_tablebase_info(board: Board, tablebase: Tablebase) -> None:
             dtz_str = str(abs(dtz)) if dtz is not None else "N/A"
             print(f"Tablebase: {result} (DTZ: {dtz_str})")
 
-    except (
-        IOError,
-        ValueError,
-        IndexError,
-    ):  # TODO: handle specific exceptions
-        pass  # Tablebase lookup failed
+    except IOError:
+        pass  # Tablebase file access error
+
+    except ValueError:
+        pass  # Invalid position for tablebase
+
+    except IndexError:
+        pass  # Index out of bounds in tablebase access
