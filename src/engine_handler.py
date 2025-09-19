@@ -32,7 +32,9 @@ def get_syzygy_tablebase(filepath: str = SYZYGY_PATH) -> Tablebase | None:
 
 
 def popen_uci(engine_path: str) -> SimpleEngine:
-    """Attempt to open the UCI engine, handling potential errors."""
+    """Attempt to open the UCI engine, handling potential errors.
+    Returns the engine instance if successful.
+    """
     try:
         return SimpleEngine.popen_uci(engine_path)
 
