@@ -141,7 +141,9 @@ def try_tablebase_evaluation(
 def get_engine_evaluation(
     board: Board, engine: SimpleEngine, depth: int
 ) -> tuple[int | None, int | None]:
-    """Evaluates a position using the chess engine."""
+    """Evaluates a position using the chess engine. Returns (score,
+    mate_value) tuple.
+    """
     info = engine.analyse(board, Limit(depth=depth))
     score_obj = info["score"].white()
     score = score_obj.score(mate_score=1000000)
