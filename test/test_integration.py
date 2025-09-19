@@ -7,9 +7,9 @@ from os import path
 from chess import Board, Move
 from pytest import MonkeyPatch, fail, importorskip, mark, skip
 
-from engine_handler import popen_uci
-from game_logic import play_game
-from input_handler import from_uci
+from src.engine_handler import popen_uci
+from src.game_logic import play_game
+from src.input_handler import from_uci
 
 """TODO: Consider removing this because there is no point in running
 tests without the engine"""
@@ -59,7 +59,7 @@ def test_play_game_simple_sequence(
         except StopIteration:
             return None
 
-    monkeypatch.setattr("game_logic.handle_user_input", mock_handle_input)
+    monkeypatch.setattr("src.game_logic.handle_user_input", mock_handle_input)
 
     # Skip actual move evaluation to speed up testing
     def mock_evaluate(
@@ -68,7 +68,7 @@ def test_play_game_simple_sequence(
         return {}, 0.0
 
     monkeypatch.setattr(
-        "game_logic.evaluate_and_show_moves",
+        "src.game_logic.evaluate_and_show_moves",
         lambda *args: ({}, 0.1),
     )
 

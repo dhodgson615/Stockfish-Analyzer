@@ -7,11 +7,11 @@ from unittest.mock import MagicMock
 
 from chess import Board, Move
 
-from board_ui import (display_progress, print_board, print_game_over_info,
-                      print_game_result, print_move_history,
-                      print_possible_moves, print_tablebase_info,
-                      show_mate_info)
-from input_handler import from_uci
+from src.board_ui import (display_progress, print_board, print_game_over_info,
+                          print_game_result, print_move_history,
+                          print_possible_moves, print_tablebase_info,
+                          show_mate_info)
+from src.input_handler import from_uci
 
 
 def test_print_game_result_checkmate_black_wins(

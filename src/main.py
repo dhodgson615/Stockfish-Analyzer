@@ -1,8 +1,8 @@
 from chess import Board, Move
 
-from board_ui import print_game_over_info, print_tablebase_info
-from engine_handler import ENGINE_PATH, get_engine, get_syzygy_tablebase
-from game_logic import play_game
+from src.board_ui import print_game_over_info, print_tablebase_info
+from src.engine_handler import ENGINE_PATH, get_engine, get_syzygy_tablebase
+from src.game_logic import play_game
 
 
 def main() -> None:

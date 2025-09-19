@@ -8,7 +8,7 @@ from chess import Board, Move
 from chess.engine import Limit, SimpleEngine
 from chess.syzygy import Tablebase, open_tablebase
 
-from board_ui import display_progress
+from src.board_ui import display_progress
 
 EVAL_DEPTH = 18
 ENGINE_PATH = "/opt/homebrew/bin/stockfish"

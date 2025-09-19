@@ -3,7 +3,7 @@ from os import path
 from chess import Board, Move
 from pytest import fixture, skip
 
-from input_handler import from_uci
+from src.input_handler import from_uci
 
 
 @fixture

@@ -1,7 +1,7 @@
 from chess import Board
 from pytest import skip
 
-from engine_handler import evaluate_move, get_engine, get_syzygy_tablebase
+from src.engine_handler import evaluate_move, get_engine, get_syzygy_tablebase
 
 
 def test_tablebase_functionality() -> None:

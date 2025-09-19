@@ -6,10 +6,10 @@ from chess import Board, Move
 from chess.engine import SimpleEngine
 from chess.syzygy import Tablebase
 
-from board_ui import (print_board, print_possible_moves, print_tablebase_info,
+from src.board_ui import (print_board, print_possible_moves, print_tablebase_info,
                       show_mate_info)
-from engine_handler import EVAL_DEPTH, get_move_evals
-from input_handler import handle_user_input
+from src.engine_handler import EVAL_DEPTH, get_move_evals
+from src.input_handler import handle_user_input
 
 
 def sort_moves_by_evaluation(

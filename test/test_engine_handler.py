@@ -9,11 +9,11 @@ from chess import Board, Move
 from chess.engine import Limit, SimpleEngine
 from pytest import fail, mark, raises
 
-from engine_handler import (EVAL_DEPTH, evaluate_move, get_engine,
-                            get_engine_evaluation, get_move_evals,
-                            get_syzygy_tablebase, popen_uci,
-                            try_tablebase_evaluation)
-from input_handler import from_uci
+from src.engine_handler import (EVAL_DEPTH, evaluate_move, get_engine,
+                                get_engine_evaluation, get_move_evals,
+                                get_syzygy_tablebase, popen_uci,
+                                try_tablebase_evaluation)
+from src.input_handler import from_uci
 
 STOCKFISH_PATH = "/opt/homebrew/bin/stockfish"
 PATH_NOT_FOUND = not path.exists(STOCKFISH_PATH)
@@ -116,7 +116,7 @@ def test_get_syzygy_tablebase_exception() -> None:
     gracefully.
     """
     with patch("os.path.exists", return_value=True), patch(
-        "engine_handler.open_tablebase",
+        "src.engine_handler.open_tablebase",
         side_effect=Exception("Test exception"),
     ):
         with StringIO() as buf, redirect_stdout(buf):
@@ -210,7 +210,7 @@ def test_get_engine_evaluation() -> None:
     assert mate == 3
 
 
-@patch("engine_handler.SimpleEngine")
+@patch("src.engine_handler.SimpleEngine")
 def test_popen_uci_success(mock_simple_engine_class: MagicMock) -> None:
     """Test successful engine opening."""
     mock_engine = MagicMock()
@@ -222,7 +222,7 @@ def test_popen_uci_success(mock_simple_engine_class: MagicMock) -> None:
     mock_simple_engine_class.popen_uci.assert_called_once_with("dummy/path")
 
 
-@patch("engine_handler.SimpleEngine")
+@patch("src.engine_handler.SimpleEngine")
 def test_popen_uci_file_not_found(mock_simple_engine_class: MagicMock) -> None:
     """Test FileNotFoundError handling in popen_uci."""
     mock_simple_engine_class.popen_uci.side_effect = FileNotFoundError(
@@ -233,7 +233,7 @@ def test_popen_uci_file_not_found(mock_simple_engine_class: MagicMock) -> None:
         popen_uci("nonexistent/path")
 
 
-@patch("engine_handler.SimpleEngine")
+@patch("src.engine_handler.SimpleEngine")
 def test_popen_uci_general_exception(
     mock_simple_engine_class: MagicMock,
 ) -> None:
@@ -255,7 +255,7 @@ def test_get_move_evals_with_mock() -> None:
     mock_engine = MagicMock(spec=SimpleEngine)
 
     # Create a mock evaluate_move function
-    with patch("engine_handler.evaluate_move") as mock_evaluate:
+    with patch("src.engine_handler.evaluate_move") as mock_evaluate:
         # Configure the mock to return different values for different moves
         def side_effect(
             board: Board,
@@ -269,7 +269,7 @@ def test_get_move_evals_with_mock() -> None:
         mock_evaluate.side_effect = side_effect
 
         # Test the function
-        with patch("engine_handler.display_progress"):  # Avoid terminal output
+        with patch("src.engine_handler.display_progress"):  # Avoid terminal output
             result = get_move_evals(board, mock_engine)
 
         # Verify we have evaluations for all legal moves

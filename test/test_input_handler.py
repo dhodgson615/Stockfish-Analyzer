@@ -4,7 +4,7 @@ from io import StringIO
 from chess import Board, Move
 from pytest import MonkeyPatch, fixture, raises
 
-from input_handler import from_uci, handle_user_input, parse_move_input
+from src.input_handler import from_uci, handle_user_input, parse_move_input
 
 
 def test_from_uci_valid() -> None:

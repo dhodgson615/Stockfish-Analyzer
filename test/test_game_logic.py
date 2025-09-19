@@ -8,7 +8,7 @@ from chess import Board, Move
 from chess.engine import SimpleEngine
 from pytest import MonkeyPatch, importorskip, skip
 
-from game_logic import sort_moves_by_evaluation
+from src.game_logic import sort_moves_by_evaluation
 
 
 def test_sort_moves_by_evaluation() -> None:
@@ -43,7 +43,7 @@ def test_evaluate_and_show_moves_timing(
     if not path.exists(engine_path):
         skip("Engine not found")
 
-    from game_logic import evaluate_and_show_moves
+    from src.game_logic import evaluate_and_show_moves
 
     with MonkeyPatch.context() as mp:
         # Replace get_move_evals with a simple function that returns dummy data
@@ -52,7 +52,7 @@ def test_evaluate_and_show_moves_timing(
         ) -> dict[Move, tuple[int, int | None]]:
             return {Move.from_uci("e2e4"): (100, None)}
 
-        mp.setattr("game_logic.get_move_evals", mock_get_evals)
+        mp.setattr("src.game_logic.get_move_evals", mock_get_evals)
         engine = SimpleEngine.popen_uci(engine_path)
 
         try:
