@@ -100,3 +100,5 @@ to follow its terms when redistributing the binary.
 
 [Stockfish](https://stockfishchess.org) - the strongest open-source chess
 engine
+
+[Syzygy tablebases](https://syzygy-tables.info) - for perfect endgame analysis
