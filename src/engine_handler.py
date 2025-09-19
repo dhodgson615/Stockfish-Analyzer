@@ -85,7 +85,9 @@ def evaluate_move(
 
 def try_tablebase_evaluation(
     board: Board, tablebase: Tablebase | None
-) -> tuple[int | None, int | None] | None:
+) -> (
+    tuple[int | None, int | None] | None
+):  # TODO: Refactor this to use lru_cache
     """Attempts to evaluate position using Syzygy tablebases. Returns
     (score, mate_value) tuple if successful, None otherwise.
     """
