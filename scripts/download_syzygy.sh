@@ -2,12 +2,10 @@
 
 # Create the directory if it doesn't exist
 mkdir -p ~/chess/syzygy
-
-# Download 3-4-5 piece tablebases from Lichess
 cd ~/chess/syzygy
 
 # Base URL for Lichess tablebase
-BASE_URL="https://tablebase.lichess.ovh/tables/standard/3-4-5"
+LICHESS_URL="https://tablebase.lichess.ovh/tables/standard/3-4-5"
 
 # List of all 3-4-5 piece tablebase files
 FILES=(
@@ -38,7 +36,7 @@ FILES=(
 # Download all files
 for file in "${FILES[@]}"; do
     echo "Downloading $file..."
-    curl -O "$BASE_URL/$file"
+    curl -O "$LICHESS_URL/$file"
 done
 
 echo "Download complete. Tablebases installed in ~/chess/syzygy"
