@@ -70,7 +70,7 @@ def evaluate_move(
     tablebase: Tablebase | None = None,
 ) -> tuple[Move, tuple[int | None, int | None]]:
     """Evaluates a single move on the board using tablebase or chess
-    engine.
+    engine. Returns the move and its (score, mate_value) tuple.
     """
     board.push(move)
 
