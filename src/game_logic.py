@@ -17,8 +17,9 @@ def sort_moves_by_evaluation(
 ) -> list[tuple[Move, tuple[int | None, int | None]]]:
     """Sorts the evaluated moves based on the score."""
 
-        if score is not None:
-            indexed_scores.append((score, i))
+    def sort_key(item: tuple[Move, tuple[int | None, int | None]]) -> int:
+        """Key function for sorting moves."""
+        move, (score, _) = item
 
         else:
             indexed_scores.append((0, i))  # Default score for None values
