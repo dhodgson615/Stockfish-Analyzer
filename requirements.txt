@@ -1,2 +1,2 @@
 chess~=1.11.2
-pytest~=8.3.5
+pytest~=8.4.2
