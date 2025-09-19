@@ -14,6 +14,6 @@ The following test modules are part of this package:
   input processing and move conversions.
 - test_integration: Integration tests that cover end-to-end scenarios
   involving multiple modules.
-- test_tablebae: Tests for the tablebase functionalities, ensuring
+- test_tablebase: Tests for the tablebase functionalities, ensuring
   correct evaluations and interactions with the chess engine.
 """
