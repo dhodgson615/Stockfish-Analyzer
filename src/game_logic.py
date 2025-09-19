@@ -15,8 +15,10 @@ from src.input_handler import handle_user_input
 def sort_moves_by_evaluation(
     moves_eval: dict[Move, tuple[int | None, int | None]], is_white_turn: bool
 ) -> list[tuple[Move, tuple[int | None, int | None]]]:
-    """Sorts the evaluated moves based on the score."""
-
+    """Sorts the evaluated moves based on the score. Higher scores are
+    better for White, lower scores are better for Black. Returns a list
+    of tuples (Move, (score, mate_value)).
+    """
     def sort_key(
         item: tuple[Move, tuple[int | None, int | None]],
     ) -> int:  # TODO: convert this to a one liner
