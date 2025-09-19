@@ -20,7 +20,9 @@ def from_uci(uci_str: str) -> Move:
 
 
 def parse_move_input(board: Board, user_input: str) -> Move | None:
-    """Parse user input as a chess move."""
+    """Parse user input as a chess move. Tries SAN first, then UCI.
+    Returns a Move object if successful, otherwise None.
+    """
     try:
         return board.parse_san(user_input)
 
