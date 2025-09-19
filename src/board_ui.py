@@ -105,7 +105,9 @@ def print_game_result(board: Board) -> None:
 
 
 def print_game_over_info(board: Board, move_history: list[Move]) -> None:
-    """Prints game over information."""
+    """Prints game over information. Displays the final board, move,
+    and result.
+    """
     print_board(board)
     print("Game Over!")
     print_move_history(move_history)
