@@ -7,7 +7,9 @@ from chess.syzygy import Tablebase
 
 
 def clear_terminal() -> None:
-    """Clears the terminal screen."""
+    """Clears the terminal screen. Works on Unix-like systems and
+    Windows.
+    """
     print("\033c", end="")
 
 
