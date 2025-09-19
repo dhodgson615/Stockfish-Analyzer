@@ -21,8 +21,7 @@ def sort_moves_by_evaluation(
         """Key function for sorting moves."""
         move, (score, _) = item
 
-        else:
-            indexed_scores.append((0, i))  # Default score for None values
+        return score if score is not None else 0
 
     indexed_scores.sort(reverse=is_white_turn)
 
