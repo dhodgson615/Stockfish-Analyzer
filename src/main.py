@@ -8,7 +8,7 @@ from src.game_logic import play_game
 def main() -> None:
     """Main function to run the interactive chess game."""
     board = Board()
-    move_history: list[Move] = []  # Explicit Move type
+    move_history: list[Move] = []
     engine = get_engine(ENGINE_PATH)
     tablebase = get_syzygy_tablebase()
 
