@@ -25,7 +25,7 @@ def sort_moves_by_evaluation(
 
     moves_list = list(moves_eval.items())
 
-    return [moves[idx] for _, idx in indexed_scores]
+    return sorted(moves_list, key=sort_key, reverse=is_white_turn)
 
 
 def evaluate_and_show_moves(
