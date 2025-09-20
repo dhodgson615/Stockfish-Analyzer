@@ -42,7 +42,7 @@ def test_play_game_simple_sequence(
         pytest.skip("Engine not found")
 
     # Create a board that's close to a game end to reduce iterations
-    board = Board(
+    board = chess.Board(
         "r1bqkb1r/pppp1ppp/2n2n2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 1"
     )
 
