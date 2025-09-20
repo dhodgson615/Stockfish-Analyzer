@@ -65,9 +65,9 @@ def get_engine(
 
 
 def evaluate_move(
-    board: Board,
-    engine: SimpleEngine,
-    move: Move,
+    board: chess.Board,
+    engine: chess.engine.SimpleEngine,
+    move: chess.Move,
     depth: int = EVAL_DEPTH,
     tablebase: Tablebase | None = None,
 ) -> tuple[Move, tuple[int | None, int | None]]:
