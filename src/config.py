@@ -169,8 +169,9 @@ def save_config_file(config: EngineConfig, config_path: str) -> None:
 
 
 def parse_config(args: Optional[list[str]] = None) -> EngineConfig:
-    """Parse command-line arguments and config files to create final configuration.
-    
+    """Parse command-line arguments and config files to create final
+    configuration.
+
     Args:
         args: Optional list of command-line arguments. If None, uses sys.argv.
         
