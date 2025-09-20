@@ -213,6 +213,7 @@ def test_show_mate_info_opponent_mate() -> None:
         src.board_ui.show_mate_info(opponent_mate_data, True)  # White's turn
         output = buf.getvalue()
 
+        assert output == ""  # No output expected
 
 def test_print_game_over_info(checkmate_board: chess.Board) -> None:
     """Test print_game_over_info function."""
