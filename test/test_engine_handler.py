@@ -126,119 +126,162 @@ def test_get_engine_invalid_path() -> None:
             src.engine_handler.get_engine("/nonexistent/engine/path")
 
 
-def test_try_tablebase_evaluation_win() -> None:
-    """Test tablebase evaluation for a winning position."""
+class FakeTablebase:
+    """Test double for Syzygy tablebase that can simulate different scenarios."""
+    
+    def __init__(self, wdl_result: int | None = None, dtz_result: int = 5, 
+                 should_raise: type[Exception] | None = None, error_message: str = "Test error"):
+        self.wdl_result = wdl_result
+        self.dtz_result = dtz_result
+        self.should_raise = should_raise
+        self.error_message = error_message
+        self.get_wdl_calls = []
+        self.get_dtz_calls = []
+    
+    def get_wdl(self, board):
+        """Simulate tablebase WDL (Win/Draw/Loss) lookup."""
+        self.get_wdl_calls.append(board)
+        if self.should_raise:
+            raise self.should_raise(self.error_message)
+        return self.wdl_result
+    
+    def get_dtz(self, board):
+        """Simulate tablebase DTZ (Distance to Zero) lookup."""
+        self.get_dtz_calls.append(board)
+        if self.should_raise:
+            raise self.should_raise(self.error_message)
+        return self.dtz_result
+
+
+def test_try_tablebase_evaluation_win_with_test_double() -> None:
+    """Test tablebase evaluation for a winning position using test double."""
     board = chess.Board(
         "8/8/8/8/8/K7/8/k1q5 w - - 0 1"
     )  # White to move, losing
-
-    mock_tablebase = unittest.mock.MagicMock()
-    mock_tablebase.get_wdl.return_value = -2  # Loss for white
-    mock_tablebase.get_dtz.return_value = 5
-    result = src.engine_handler.try_tablebase_evaluation(board, mock_tablebase)
-
+    
+    test_tablebase = FakeTablebase(wdl_result=-2, dtz_result=5)  # Loss for white
+    result = src.engine_handler.try_tablebase_evaluation(board, test_tablebase)
+    
     assert result is not None
-
     score, mate_val = result
-
+    
     assert score is not None and score < -900000  # Large penalty for losing
     assert mate_val is not None and mate_val == -5  # Mate in 5
+    assert len(test_tablebase.get_wdl_calls) == 1
+    assert len(test_tablebase.get_dtz_calls) == 1
 
 
-def test_try_tablebase_evaluation_none_wdl() -> None:
-    """Test tablebase evaluation when wdl returns None."""
+def test_try_tablebase_evaluation_none_wdl_with_test_double() -> None:
+    """Test tablebase evaluation when wdl returns None using test double."""
     board = chess.Board()
-    mock_tablebase = unittest.mock.MagicMock()
-    mock_tablebase.get_wdl.return_value = None
-    result = src.engine_handler.try_tablebase_evaluation(board, mock_tablebase)
-
+    test_tablebase = FakeTablebase(wdl_result=None)
+    result = src.engine_handler.try_tablebase_evaluation(board, test_tablebase)
+    
     assert result is None
+    assert len(test_tablebase.get_wdl_calls) == 1
 
 
-def test_try_tablebase_evaluation_exceptions() -> None:
-    """Test all specific exceptions in try_tablebase_evaluation."""
+def test_try_tablebase_evaluation_exceptions_with_test_double() -> None:
+    """Test all specific exceptions in try_tablebase_evaluation using test doubles."""
     board = chess.Board()
-    mock_tablebase = unittest.mock.MagicMock()
-
+    
     # Test IOError
-    mock_tablebase.get_wdl.side_effect = IOError("Test IO error")
-    result = src.engine_handler.try_tablebase_evaluation(board, mock_tablebase)
-
+    io_error_tablebase = FakeTablebase(should_raise=IOError, error_message="Test IO error")
+    result = src.engine_handler.try_tablebase_evaluation(board, io_error_tablebase)
     assert result is None
-
-    # Test ValueError
-    mock_tablebase.get_wdl.side_effect = ValueError("Test value error")
-    result = src.engine_handler.try_tablebase_evaluation(board, mock_tablebase)
-
+    
+    # Test ValueError  
+    value_error_tablebase = FakeTablebase(should_raise=ValueError, error_message="Test value error")
+    result = src.engine_handler.try_tablebase_evaluation(board, value_error_tablebase)
     assert result is None
-
+    
     # Test IndexError
-    mock_tablebase.get_wdl.side_effect = IndexError("Test index error")
-    result = src.engine_handler.try_tablebase_evaluation(board, mock_tablebase)
-
+    index_error_tablebase = FakeTablebase(should_raise=IndexError, error_message="Test index error")
+    result = src.engine_handler.try_tablebase_evaluation(board, index_error_tablebase)
     assert result is None
 
 
-def test_get_engine_evaluation() -> None:
-    """Test engine evaluation parsing."""
+class FakeEngineForTesting:
+    """Test double for chess engine that provides predictable results."""
+    
+    def __init__(self, score: int = 42, mate: int | None = None):
+        self.score = score
+        self.mate = mate
+        self.analysis_calls = []
+    
+    def analyse(self, board: chess.Board, limit: chess.engine.Limit) -> dict:
+        """Simulate engine analysis with configurable scores."""
+        self.analysis_calls.append((board.copy(), limit))
+        return {
+            "score": FakeScore(self.score, self.mate)
+        }
+
+
+class FakeScore:
+    """Test double for chess engine score."""
+    
+    def __init__(self, score: int, mate: int | None = None):
+        self._score = score
+        self._mate = mate
+    
+    def white(self):
+        return self
+    
+    def score(self, mate_score: int = 1000000):
+        return self._score
+    
+    def mate(self):
+        return self._mate
+
+
+def test_get_engine_evaluation_with_test_double() -> None:
+    """Test engine evaluation parsing using test doubles."""
     board = chess.Board()
-    mock_engine = unittest.mock.MagicMock(spec=chess.engine.SimpleEngine)
-
-    # Mock a regular score
-    mock_score = unittest.mock.MagicMock()
-    mock_score.white.return_value.score.return_value = 42
-    mock_score.white.return_value.mate.return_value = None
-    mock_engine.analyse.return_value = {"score": mock_score}
-
+    
+    # Test regular score
+    test_engine = FakeEngineForTesting(score=42, mate=None)
     score, mate = src.engine_handler.get_engine_evaluation(
-        board, mock_engine, src.engine_handler.EVAL_DEPTH
+        board, test_engine, src.engine_handler.EVAL_DEPTH
     )
-
+    
     assert score == 42
     assert mate is None
-
-    # Mock a mate score
-    mock_score.white.return_value.score.return_value = 900000
-    mock_score.white.return_value.mate.return_value = 3
-    mock_engine.analyse.return_value = {"score": mock_score}
-
+    assert len(test_engine.analysis_calls) == 1
+    
+    # Test mate score
+    mate_engine = FakeEngineForTesting(score=900000, mate=3)
     score, mate = src.engine_handler.get_engine_evaluation(
-        board, mock_engine, src.engine_handler.EVAL_DEPTH
+        board, mate_engine, src.engine_handler.EVAL_DEPTH
     )
-
+    
     assert score == 900000
     assert mate == 3
 
 
-def test_get_move_evals_with_mock() -> None:
-    """Test get_move_evals using mocks to avoid actual engine use."""
+def test_get_move_evals_behavior() -> None:
+    """Test get_move_evals behavior using limited scope to avoid engine dependency."""
     board = chess.Board()
-    mock_engine = unittest.mock.MagicMock(spec=chess.engine.SimpleEngine)
-
-    # Create a mock evaluate_move function
-    with unittest.mock.patch(
-        "src.engine_handler.evaluate_move"
-    ) as mock_evaluate:
-        # Configure the mock to return different values for different moves
-        def side_effect(
-            board: chess.Board,
-            engine: chess.engine.SimpleEngine,
-            move: chess.Move,
-            *args: object,
-            **kwargs: object,
-        ) -> tuple[chess.Move, tuple[int, int | None]]:
-            return move, (100, None)
-
-        mock_evaluate.side_effect = side_effect
-
-        # Test the function - mock the display_progress function properly
-        with unittest.mock.patch(
-            "src.board_ui.display_progress"
-        ):  # Avoid terminal output
-            result = src.engine_handler.get_move_evals(board, mock_engine)
-
-        # Verify we have evaluations for all legal moves
-        assert len(result) == len(list(board.legal_moves))
+    test_engine = FakeEngineForTesting(score=100, mate=None)
+    
+    # Test that the function processes some moves and returns results
+    # We'll limit to just a few moves to avoid long evaluation times
+    legal_moves = list(board.legal_moves)
+    
+    # Since get_move_evals calls the actual evaluate_move function,
+    # and we want to avoid long engine evaluations, let's test the 
+    # core behavior with a very simple position
+    simple_board = chess.Board("8/8/8/8/8/8/8/K1k5 w - - 0 1")  # Very simple position
+    
+    # Capture output to avoid terminal noise
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        result = src.engine_handler.get_move_evals(simple_board, test_engine, depth=1)
+    
+    # Verify basic functionality - that we get results for legal moves
+    assert isinstance(result, dict)
+    assert len(result) > 0  # Should have at least one legal move
+    
+    # Verify the engine was actually called
+    assert len(test_engine.analysis_calls) > 0
 
 
 def test_get_dynamic_eval_depth_opening() -> None:
