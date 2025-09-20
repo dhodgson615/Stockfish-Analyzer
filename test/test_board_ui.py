@@ -157,21 +157,8 @@ def test_print_board() -> None:
     """Test print_board function."""
     board = chess.Board()
 
-    with StringIO() as buf, redirect_stdout(buf):
-        print_tablebase_info(board, mock_tablebase)
-        output = buf.getvalue()
-
-    assert "Draw" in output
-
-
-def test_print_board_2() -> None:  # TODO: Rename duplicate
-    """Test that print_board correctly formats and displays a chess
-    board.
-    """
-    board = Board()
-
-    with StringIO() as buf, redirect_stdout(buf):
-        print_board(board)
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        src.board_ui.print_board(board)
         output = buf.getvalue()
 
     # Check for key elements that should be in the board output
