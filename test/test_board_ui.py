@@ -215,11 +215,12 @@ def test_show_mate_info_opponent_mate() -> None:
 
         assert output == ""  # No output expected
 
-def test_print_game_over_info(checkmate_board: chess.Board) -> None:
-    """Test print_game_over_info function."""
-    move_history = [
-        chess.Move.from_uci(m) for m in ["f2f3", "e7e5", "g2g4", "d8h4"]
-    ]
+
+def test_print_tablebase_info_io_error() -> None:
+    """Test print_tablebase_info when IOError occurs."""
+    board = chess.Board()
+    mock_tablebase = unittest.mock.MagicMock()
+    mock_tablebase.get_wdl.side_effect = IOError("Test IO error")
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.print_game_over_info(checkmate_board, move_history)
