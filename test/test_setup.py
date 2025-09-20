@@ -60,8 +60,8 @@ class TestSetupScript(unittest.TestCase):
             self.assertEqual(loaded_config["skill_level"], 20)
             self.assertEqual(loaded_config["eval_depth"], 18)
             self.assertIn("chess/syzygy", loaded_config["syzygy_path"])
-    
-    def test_setup_script_help_functions(self):
+
+    def test_setup_script_help_functions(self) -> None:
         """Test that the helper functions in the script work correctly."""
         # Test the OS detection logic - extract just the function, not run the whole script
         result = subprocess.run(
