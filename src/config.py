@@ -194,6 +194,7 @@ def parse_config(args: Optional[list[str]] = None) -> EngineConfig:
     if parsed_args.config:
         try:
             file_config = load_config_file(parsed_args.config)
+
             # Update config with file values
             for key, value in file_config.items():
                 if hasattr(config, key):
