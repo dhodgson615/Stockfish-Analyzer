@@ -5,19 +5,6 @@ import sys
 import chess
 
 
-@functools.lru_cache(maxsize=None)
-def from_uci(uci_str: str) -> chess.Move:
-    """Converts a UCI string to a chess Move object. Wraps
-    Move.from_uci with error handling. Returns a Move object if
-    successful, otherwise raises ValueError.
-    """
-    try:
-        return chess.Move.from_uci(uci_str)
-
-    except (ValueError, IndexError):
-        raise ValueError(f"Invalid UCI string: {uci_str}")
-
-
 def parse_move_input(board: chess.Board, user_input: str) -> chess.Move | None:
     """Parse user input as a chess move. Tries SAN first, then UCI.
     Returns a Move object if successful, otherwise None.
