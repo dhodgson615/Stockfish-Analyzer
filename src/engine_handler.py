@@ -22,7 +22,7 @@ SYZYGY_PATH = os.path.expanduser("~/chess/syzygy")
 
 def get_dynamic_eval_depth(board: chess.Board) -> int:
     """Determine the appropriate evaluation depth based on game stage.
-    
+
     Game stages are determined by:
     - Piece count: More pieces = earlier stage
     - Move count: More moves = later stage
