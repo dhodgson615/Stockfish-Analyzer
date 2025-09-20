@@ -1,8 +1,8 @@
 import contextlib
 import io
 
-from chess import Board, Move
-from pytest import MonkeyPatch, fixture, raises
+import chess
+import pytest
 
 from src.input_handler import from_uci, handle_user_input, parse_move_input
 
