@@ -1,5 +1,5 @@
-from chess import Board
-from pytest import skip
+import chess
+import pytest
 
 from src.engine_handler import evaluate_move, get_engine, get_syzygy_tablebase
 
