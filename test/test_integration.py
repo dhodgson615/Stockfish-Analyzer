@@ -46,7 +46,7 @@ def test_play_game_simple_sequence(
         "r1bqkb1r/pppp1ppp/2n2n2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 1"
     )
 
-    move_history: list[Move] = []
+    move_history: list[chess.Move] = []
 
     # Mock handle_user_input to return a checkmate sequence
     moves = [from_uci(m) for m in ["f1c4", "f8c5", "d1f3", "g7g6", "f3f7"]]
