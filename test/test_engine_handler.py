@@ -277,9 +277,25 @@ def test_get_dynamic_eval_depth_middlegame() -> None:
     board = chess.Board()
 
     # Simulate moves - this is still opening according to our logic
-    moves = ["e4", "e5", "Nf3", "Nc6", "Bb5", "a6", "Ba4", "Nf6", 
-             "O-O", "Be7", "Re1", "b5", "Bb3", "d6", "c3", "O-O"]
-    
+    moves = [
+        "e4",
+        "e5",
+        "Nf3",
+        "Nc6",
+        "Bb5",
+        "a6",
+        "Ba4",
+        "Nf6",
+        "O-O",
+        "Be7",
+        "Re1",
+        "b5",
+        "Bb3",
+        "d6",
+        "c3",
+        "O-O",
+    ]
+
     for move in moves:
         board.push_san(move)
     
