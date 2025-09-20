@@ -51,12 +51,18 @@ def test_parse_config_defaults():
 def test_parse_config_cli_args():
     """Test parsing with CLI arguments."""
     args = [
-        '--engine-path', '/custom/engine',
-        '--threads', '8',
-        '--hash-size', '8192',
-        '--skill-level', '15',
-        '--depth', '12',
-        '--syzygy-path', '/custom/syzygy'
+        "--engine-path",
+        "/custom/engine",
+        "--threads",
+        "8",
+        "--hash-size",
+        "8192",
+        "--skill-level",
+        "15",
+        "--depth",
+        "12",
+        "--syzygy-path",
+        "/custom/syzygy",
     ]
     
     cfg = config.parse_config(args)
