@@ -61,7 +61,6 @@ def check_docstring_length(file_path: str, max_length: int = 72) -> List[int]:
                 continue
 
         # Check for docstring end if we're in a docstring
-        # Check for docstring end if we're in a docstring
         elif in_docstring:
             if docstring_delimiter is not None and docstring_delimiter in line:
                 in_docstring = False
