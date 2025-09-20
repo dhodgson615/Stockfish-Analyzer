@@ -21,7 +21,7 @@ def get_syzygy_tablebase(
     """Initialize a Syzygy tablebase. Returns None if not found or on
     error.
     """
-    if not path.exists(filepath):
+    if not os.path.exists(filepath):
         print(f"Syzygy tablebases not found at {filepath}")
         return None
 
