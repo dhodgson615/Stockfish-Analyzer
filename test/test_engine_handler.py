@@ -276,9 +276,9 @@ def test_get_move_evals_with_mock() -> None:
     ) as mock_evaluate:
         # Configure the mock to return different values for different moves
         def side_effect(
-            board: Board,
-            engine: SimpleEngine,
-            move: Move,
+            board: chess.Board,
+            engine: chess.engine.SimpleEngine,
+            move: chess.Move,
             *args: object,
             **kwargs: object,
         ) -> tuple[Move, tuple[int, int | None]]:
