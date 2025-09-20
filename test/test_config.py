@@ -245,7 +245,7 @@ def test_parse_config_save_config_exits():
 def test_get_default_config():
     """Test get_default_config function."""
     cfg = config.get_default_config()
-    
+
     assert isinstance(cfg, config.EngineConfig)
     assert cfg.engine_path == "/usr/games/stockfish"
     assert cfg.threads == 4
