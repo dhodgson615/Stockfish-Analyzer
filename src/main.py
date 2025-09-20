@@ -1,8 +1,14 @@
 import chess
 
-import src.board_ui
-import src.engine_handler
-import src.game_logic
+try:
+    import board_ui
+    import engine_handler
+    import game_logic
+
+except ImportError:
+    import src.board_ui as board_ui
+    import src.engine_handler as engine_handler
+    import src.game_logic as game_logic
 
 
 def main() -> None:
