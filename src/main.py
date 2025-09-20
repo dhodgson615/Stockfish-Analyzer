@@ -28,7 +28,7 @@ def main() -> None:
 
     board = chess.Board()
     move_history: list[chess.Move] = []
-    
+
     # Initialize engine with configuration
     engine = engine_handler.get_engine(
         engine_path=app_config.engine_path,
