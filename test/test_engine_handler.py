@@ -182,7 +182,7 @@ def test_try_tablebase_evaluation_exceptions() -> None:
 
     # Test ValueError
     mock_tablebase.get_wdl.side_effect = ValueError("Test value error")
-    result = try_tablebase_evaluation(board, mock_tablebase)
+    result = src.engine_handler.try_tablebase_evaluation(board, mock_tablebase)
 
     assert result is None
 
