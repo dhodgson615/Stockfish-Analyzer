@@ -25,7 +25,7 @@ def check_docstring_length(file_path: str, max_length: int = 72) -> List[int]:
     docstring_delimiter = None
 
     for i, line in enumerate(lines):
-        line_no = i + 1  # 1-based line numbering
+        line_number = i + 1  # 1-based line numbering
         line = line.rstrip("\n")
         stripped = line.strip()
 
