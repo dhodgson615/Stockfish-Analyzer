@@ -44,8 +44,8 @@ class TestSetupScript(unittest.TestCase):
                 "eval_depth": 18,
                 "syzygy_path": f"{Path.home()}/chess/syzygy",
             }
-            
-            with open(config_path, 'w') as f:
+
+            with open(config_path, "w") as f:
                 json.dump(config_data, f, indent=2)
             
             # Verify the config file is valid
