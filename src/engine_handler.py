@@ -51,7 +51,7 @@ def get_dynamic_eval_depth(board: chess.Board) -> int:
     # Late opening/early middlegame
     elif move_count <= 15 and piece_count >= 16:
         return 16
-    
+
     # Middlegame: Most complex phase
     else:
         return 20  # Slightly deeper than default for tactical precision
