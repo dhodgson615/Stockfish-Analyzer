@@ -52,7 +52,27 @@ the script).
 
 ## Quick Start
 
-### Method 1: Using Command Line Arguments
+### Method 1: First-Time Setup (Recommended)
+
+For first-time users, run the interactive setup script that will help you install Stockfish and optionally download tablebases:
+
+```bash
+./setup.sh
+```
+
+This script will:
+- Detect or help install Stockfish engine on your system
+- Optionally download Syzygy tablebases for perfect endgame analysis
+- Create a configuration file with the detected paths
+- Test the installation to ensure everything works
+
+Once setup is complete, run the analyzer with your configuration:
+
+```bash
+python3 src/main.py --config stockfish_config.json
+```
+
+### Method 2: Using Command Line Arguments
 
 Run the script with your preferred settings:
 
@@ -70,7 +90,7 @@ python3 src/main.py --skill-level 15 --depth 12
 python3 src/main.py --syzygy-path /my/tablebase/path
 ```
 
-### Method 2: Using Configuration Files
+### Method 3: Using Configuration Files
 
 1. Create a configuration file:
 
@@ -84,7 +104,7 @@ python3 src/main.py --threads 8 --depth 20 --save-config my_config.json
 python3 src/main.py --config my_config.json
 ```
 
-### Method 3: Legacy Method (Still Supported)
+### Method 4: Legacy Method (Still Supported)
 
 1. Edit the `ENGINE_PATH` constant in `engine_handler.py` so it points to your
 Stockfish executable.
