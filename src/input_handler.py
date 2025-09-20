@@ -14,7 +14,7 @@ def parse_move_input(board: chess.Board, user_input: str) -> chess.Move | None:
 
     except ValueError:
         try:
-            return from_uci(user_input)
+            return chess.Move.from_uci(user_input)
 
         except ValueError:
             return None
