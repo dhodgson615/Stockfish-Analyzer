@@ -75,6 +75,7 @@ def test_evaluate_and_show_moves_timing(
         mp.setattr(
             "src.board_ui.print_possible_moves", mock_print_possible_moves
         )
+
         mp.setattr("src.board_ui.show_mate_info", mock_show_mate_info)
 
         with io.StringIO() as buf, contextlib.redirect_stdout(buf):
