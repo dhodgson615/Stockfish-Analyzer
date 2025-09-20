@@ -7,10 +7,10 @@ import src.game_logic
 
 def main() -> None:
     """Main function to run the interactive chess game."""
-    board = Board()
-    move_history: list[Move] = []
-    engine = get_engine(ENGINE_PATH)
-    tablebase = get_syzygy_tablebase()
+    board = chess.Board()
+    move_history: list[chess.Move] = []
+    engine = src.engine_handler.get_engine(src.engine_handler.ENGINE_PATH)
+    tablebase = src.engine_handler.get_syzygy_tablebase()
 
     print("Tablebases loaded" if tablebase else "Tablebases not available")
 
