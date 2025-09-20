@@ -112,10 +112,17 @@ def try_tablebase_evaluation(
     if wdl == 0:  # Draw
         return 0, None
 
-        # Win/loss for the side to move
-        mate_val = (
-            dtz_val if wdl > 0 else -dtz_val if dtz_val is not None else None
-        )
+    # Get DTZ from tablebase
+    try:
+        dtz_val = tablebase.get_dtz(board)
+
+    except (IOError, ValueError, IndexError):
+        return None  # Any tablebase access error
+
+    # Win/loss for the side to move
+    mate_val = (
+        dtz_val if wdl > 0 else -dtz_val if dtz_val is not None else None
+    )
 
         score = (
             (1000000 - (mate_val or 0))
