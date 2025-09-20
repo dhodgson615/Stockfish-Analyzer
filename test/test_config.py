@@ -110,8 +110,8 @@ def test_save_and_load_config_file():
         
         # Verify file exists and has correct content
         assert os.path.exists(config_path)
-        
-        with open(config_path, 'r') as f:
+
+        with open(config_path, "r") as f:
             saved_data = json.load(f)
 
         assert saved_data["engine_path"] == "/test/engine"
