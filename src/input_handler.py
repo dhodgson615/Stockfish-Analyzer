@@ -25,7 +25,14 @@ def handle_user_input(board: chess.Board) -> chess.Move | None:
     or None if the input is invalid.
     """
     user_input = input("Enter your move (UCI or SAN): ")
+    return process_user_input(board, user_input)
 
+
+def process_user_input(board: chess.Board, user_input: str) -> chess.Move | None:
+    """Processes a user input string and returns a valid Move object
+    or None if the input is invalid. Separated from handle_user_input 
+    for better testability.
+    """
     if user_input.lower() in ["quit", "q", "exit"]:
         print("Exiting game...")
         sys.exit(0)
