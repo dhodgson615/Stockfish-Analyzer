@@ -16,7 +16,7 @@ def test_tablebase_functionality() -> None:
         wdl = tablebase.get_wdl(board)
 
         if wdl is None:
-            board = Board("8/8/8/8/8/2k5/8/K7 w - - 0 1")
+            board = chess.Board("8/8/8/8/8/2k5/8/K7 w - - 0 1")
             wdl = tablebase.get_wdl(board)
 
         assert wdl is not None, "WDL value should not be None"
