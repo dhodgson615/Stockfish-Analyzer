@@ -47,7 +47,7 @@ class TestSetupScript(unittest.TestCase):
 
             with open(config_path, "w") as f:
                 json.dump(config_data, f, indent=2)
-            
+
             # Verify the config file is valid
             self.assertTrue(config_path.exists())
             
