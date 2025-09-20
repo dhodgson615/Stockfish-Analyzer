@@ -169,11 +169,15 @@ def test_parse_config_cli_overrides_file():
             json.dump(config_data, f)
         
         # Parse with CLI override
-        cfg = config.parse_config([
-            '--config', config_path,
-            '--threads', '8'  # Override threads, keep eval_depth from file
-        ])
-        
+        cfg = config.parse_config(
+            [
+                "--config",
+                config_path,
+                "--threads",
+                "8",  # Override threads, keep eval_depth from file
+            ]
+        )
+
         assert cfg.threads == 8  # From CLI
         assert cfg.eval_depth == 15  # From file
 
