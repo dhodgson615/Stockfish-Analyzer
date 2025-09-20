@@ -57,6 +57,7 @@ def get_limited_evals(
         move_obj, score_data = src.engine_handler.evaluate_move(
             board, engine, move, depth
         )
+
         moves_evaluations[move_obj] = score_data
 
     return moves_evaluations
