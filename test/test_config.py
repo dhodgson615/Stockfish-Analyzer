@@ -197,8 +197,10 @@ def test_load_config_file_invalid_json() -> None:
             config.load_config_file(config_path)
 
 
-def test_load_config_file_invalid_fields():
-    """Test loading config with invalid fields shows warning and filters them."""
+def test_load_config_file_invalid_fields() -> None:
+    """Test loading config with invalid fields shows warning and
+    filters them.
+    """
     with tempfile.TemporaryDirectory() as temp_dir:
         config_path = os.path.join(temp_dir, "invalid_fields.json")
 
