@@ -20,9 +20,12 @@ def main() -> None:
 
     # Display configuration summary
     print(f"Engine: {app_config.engine_path}")
-    print(f"Threads: {app_config.threads}, Hash: {app_config.hash_size}MB, "
-          f"Skill: {app_config.skill_level}, Depth: {app_config.eval_depth}")
-    
+
+    print(
+        f"Threads: {app_config.threads}, Hash: {app_config.hash_size}MB, "
+        f"Skill: {app_config.skill_level}, Depth: {app_config.eval_depth}"
+    )
+
     board = chess.Board()
     move_history: list[chess.Move] = []
     
