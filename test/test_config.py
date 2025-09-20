@@ -37,7 +37,7 @@ def test_create_argument_parser() -> None:
         parser.parse_args(["--help"])
 
 
-def test_parse_config_defaults():
+def test_parse_config_defaults() -> None:
     """Test parsing with no arguments uses defaults."""
     cfg = config.parse_config([])
 
