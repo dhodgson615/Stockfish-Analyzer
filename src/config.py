@@ -68,7 +68,7 @@ Config file format (JSON):
         type=str,
         help="Path to Stockfish engine binary (default: /usr/games/stockfish)",
     )
-    
+
     # Engine performance settings
     parser.add_argument(
         "--threads",
