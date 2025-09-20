@@ -5,9 +5,15 @@ import time
 import chess.engine
 import chess.syzygy
 
-import src.board_ui
-import src.engine_handler
-import src.input_handler
+try:
+    import board_ui
+    import engine_handler
+    import input_handler
+
+except ImportError:
+    import src.board_ui as board_ui
+    import src.engine_handler as engine_handler
+    import src.input_handler as input_handler
 
 
 def get_move_score(
