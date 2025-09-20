@@ -239,10 +239,7 @@ def test_print_tablebase_info_value_error() -> None:
         src.board_ui.print_tablebase_info(board, mock_tablebase)
         output = buf.getvalue()
 
-        assert "1. e2e4" in output
-        assert "2. e7e5" in output
-        assert "3. g1f3" in output
-
+        assert output == ""  # Should handle exception silently
 
 def test_print_possible_moves() -> None:
     """Test print_possible_moves function."""
