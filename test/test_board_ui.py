@@ -266,8 +266,8 @@ def test_print_tablebase_info_none_tablebase() -> None:
         assert output == ""  # Should handle None silently
 
 
-def test_print_tablebase_info() -> None:
-    """Test print_tablebase_info function with a mock tablebase."""
+def test_print_tablebase_info_draw() -> None:
+    """Test print_tablebase_info for draw position."""
     board = chess.Board()
     mock_tablebase = unittest.mock.MagicMock()
     mock_tablebase.get_wdl.return_value = 1  # Win
