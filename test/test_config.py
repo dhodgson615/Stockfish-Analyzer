@@ -164,7 +164,7 @@ def test_parse_config_cli_overrides_file():
 
         with open(config_path, "w") as f:
             json.dump(config_data, f)
-        
+
         # Parse with CLI override
         cfg = config.parse_config(
             [
