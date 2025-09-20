@@ -191,7 +191,7 @@ def test_load_config_file_invalid_json():
 
         with open(config_path, "w") as f:
             f.write("{ invalid json content")
-        
+
         with pytest.raises(ValueError, match="Invalid JSON"):
             config.load_config_file(config_path)
 
