@@ -26,7 +26,7 @@ def get_syzygy_tablebase(
         return None
 
     try:
-        return open_tablebase(filepath)
+        return chess.syzygy.open_tablebase(filepath)
 
     except Exception as e:  # TODO: handle specific exceptions
         print(f"Error loading Syzygy tablebases: {e}")
