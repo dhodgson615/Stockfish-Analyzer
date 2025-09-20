@@ -222,8 +222,10 @@ def test_get_engine_evaluation() -> None:
     assert mate == 3
 
 
-@patch("src.engine_handler.SimpleEngine")
-def test_popen_uci_success(mock_simple_engine_class: MagicMock) -> None:
+@unittest.mock.patch("chess.engine.SimpleEngine")
+def test_popen_uci_success(
+    mock_simple_engine_class: unittest.mock.MagicMock,
+) -> None:
     """Test successful engine opening."""
     mock_engine = MagicMock()
     mock_simple_engine_class.popen_uci.return_value = mock_engine
