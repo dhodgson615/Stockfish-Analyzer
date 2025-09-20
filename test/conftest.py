@@ -12,8 +12,8 @@ def new_board() -> chess.Board:
     return chess.Board()
 
 
-@fixture
-def checkmate_board() -> Board:
+@pytest.fixture
+def checkmate_board() -> chess.Board:
     """Returns a board with a checkmate position (fool's mate)."""
     board = Board()
 
