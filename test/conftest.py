@@ -1,7 +1,7 @@
 import os
 
-from chess import Board, Move
-from pytest import fixture, skip
+import chess
+import pytest
 
 from src.input_handler import from_uci
 
