@@ -4,9 +4,9 @@ import os
 import shutil
 import time
 
-from chess import Board, Move
-from chess.engine import Limit, SimpleEngine
-from chess.syzygy import Tablebase, open_tablebase
+import chess
+import chess.engine
+import chess.syzygy
 
 from src.board_ui import display_progress
 
