@@ -27,6 +27,50 @@ ENGINE_PATH = (
 SYZYGY_PATH = os.path.expanduser("~/chess/syzygy")
 
 
+def find_stockfish_path() -> tuple[bool, str]:
+    """Find the Stockfish binary path and return existence status and
+    path.
+    """
+
+    # Check multiple possible locations
+    paths_to_check = [
+        "/opt/homebrew/bin/stockfish",  # Apple Silicon Mac default
+        "/usr/local/bin/stockfish",  # Intel Mac default
+        "/opt/local/bin/stockfish",  # MacPorts location
+        "/usr/bin/stockfish",  # Uncommon but possible
+        "/usr/games/stockfish",  # Linux default
+    ]
+
+    # Try using 'which' first (most reliable)
+    try:
+        result = subprocess.run(
+            ["which", "stockfish"], capture_output=True, text=True, check=False
+        )
+
+        if result.returncode == 0 and result.stdout.strip():
+            path = result.stdout.strip()
+
+            if os.path.exists(path) and os.access(path, os.X_OK):
+                return True, path
+
+    except Exception:
+        pass
+
+    # Check each path in our list
+    for path in paths_to_check:
+        if os.path.exists(path) and os.access(path, os.X_OK):
+            return True, path
+
+    # Default fallback path based on OS
+    default_path = (
+        "/opt/homebrew/bin/stockfish"
+        if os.name == "darwin"
+        else "/usr/games/stockfish"
+    )
+
+    return False, default_path
+
+
 def get_engine(
     engine_path: str = ENGINE_PATH,
     threads: int = 4,
