@@ -77,7 +77,7 @@ def test_play_game_simple_sequence(
         lambda *args: ({}, 0.1),
     )
 
-    engine = popen_uci(engine_path)
+    engine = src.engine_handler.popen_uci(engine_path)
 
     try:
         with StringIO() as buf, redirect_stdout(buf):
