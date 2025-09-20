@@ -53,7 +53,7 @@ class TestSetupScript(unittest.TestCase):
 
             with open(config_path) as f:
                 loaded_config = json.load(f)
-            
+
             self.assertEqual(loaded_config["engine_path"], str(mock_stockfish))
             self.assertEqual(loaded_config["threads"], 4)
             self.assertEqual(loaded_config["hash_size"], 16384)
