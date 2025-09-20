@@ -258,7 +258,7 @@ def test_get_dynamic_eval_depth_opening() -> None:
     # Starting position - should use opening depth
     board = chess.Board()
     depth = src.engine_handler.get_dynamic_eval_depth(board)
-    
+
     assert depth == 14  # Opening depth
     
     # After a few moves, still opening
