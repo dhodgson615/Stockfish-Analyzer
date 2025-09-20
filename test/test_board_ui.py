@@ -116,8 +116,8 @@ def test_print_move_history() -> None:
     """Test print_move_history function."""
     moves = [chess.Move.from_uci(m) for m in ["e2e4", "e7e5", "g1f3"]]
 
-    with StringIO() as buf, redirect_stdout(buf):
-        print_move_history(moves)
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        src.board_ui.print_move_history(moves)
         output = buf.getvalue()
 
         assert "1. e2e4" in output
