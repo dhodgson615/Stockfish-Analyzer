@@ -16,8 +16,10 @@ from typing import Any, Dict, Optional, cast
 
 @dataclass
 class EngineConfig:
-    """Configuration settings for the Stockfish engine and application."""
-    
+    """Configuration settings for the Stockfish engine and
+    application.
+    """
+
     # Engine binary settings
     engine_path: str = "/usr/games/stockfish"
     
