@@ -3,8 +3,6 @@ import os
 import chess
 import pytest
 
-import src.input_handler
-
 
 @pytest.fixture
 def new_board() -> chess.Board:
