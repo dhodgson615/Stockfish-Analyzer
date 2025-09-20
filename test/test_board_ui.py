@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from contextlib import redirect_stdout
-from io import StringIO
-from time import time
-from unittest.mock import MagicMock
+import contextlib
+import io
+import time
+import unittest.mock
 
 from chess import Board, Move
 
