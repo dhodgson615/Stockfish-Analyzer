@@ -113,14 +113,14 @@ def test_save_and_load_config_file():
         
         with open(config_path, 'r') as f:
             saved_data = json.load(f)
-        
-        assert saved_data['engine_path'] == "/test/engine"
-        assert saved_data['threads'] == 6
-        assert saved_data['hash_size'] == 4096
-        assert saved_data['skill_level'] == 18
-        assert saved_data['eval_depth'] == 15
-        assert saved_data['syzygy_path'] == "/test/syzygy"
-        
+
+        assert saved_data["engine_path"] == "/test/engine"
+        assert saved_data["threads"] == 6
+        assert saved_data["hash_size"] == 4096
+        assert saved_data["skill_level"] == 18
+        assert saved_data["eval_depth"] == 15
+        assert saved_data["syzygy_path"] == "/test/syzygy"
+
         # Load config from file
         loaded_data = config.load_config_file(config_path)
 
