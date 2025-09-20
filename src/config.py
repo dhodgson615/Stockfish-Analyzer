@@ -92,7 +92,7 @@ Config file format (JSON):
         "--eval-depth",
         type=int,
         dest="eval_depth",
-        help="Evaluation depth in plies (default: 18)"
+        help="Evaluation depth in plies (default: 18)",
     )
     
     # Tablebase settings
