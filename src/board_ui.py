@@ -116,7 +116,7 @@ def print_game_over_info(
 
 
 def show_mate_info(
-    best_move_data: tuple[Move, tuple[int | None, int | None]],
+    best_move_data: tuple[chess.Move, tuple[int | None, int | None]],
     is_white_turn: bool,
 ) -> None:
     """Display mate information if a mate is found. Expects a tuple
