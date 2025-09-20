@@ -138,7 +138,7 @@ def test_parse_config_with_config_file():
             "threads": 12,
             "hash_size": 2048,
             "skill_level": 16,
-            "eval_depth": 22
+            "eval_depth": 22,
         }
 
         with open(config_path, "w") as f:
