@@ -192,9 +192,8 @@ def test_show_mate_info_black_win() -> None:
         assert "Mate in 3" in output
 
 
-def test_show_mate_info() -> None:
-    """Test show_mate_info function."""
-    # Create a real move and score data
+def test_show_mate_info_no_mate() -> None:
+    """Test show_mate_info when no mate is found."""
     move = chess.Move.from_uci("e2e4")
 
     # Explicitly annotate the type to allow for None values
