@@ -79,8 +79,9 @@ class TestSetupScript(unittest.TestCase):
                 fi
             }
             detect_os
-            '''], 
-            capture_output=True, 
+            """,
+            ],
+            capture_output=True,
             text=True,
             cwd=self.test_dir
         )
