@@ -60,7 +60,7 @@ Config file format (JSON):
     parser.add_argument(
         "--engine-path",
         type=str,
-        help="Path to Stockfish engine binary (default: /usr/games/stockfish)",
+        help="Path to Stockfish binary (default: /usr/games/stockfish)",
     )
 
     # Engine performance settings
