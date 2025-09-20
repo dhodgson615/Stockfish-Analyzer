@@ -81,9 +81,7 @@ def test_evaluate_and_show_moves_timing(
             )
             output = buf.getvalue()
 
-            assert isinstance(moves_eval, dict)
-            assert isinstance(eval_time, float)
-            assert eval_time >= 0
-
-        finally:
-            engine.quit()
+        assert isinstance(eval_time, float)
+        assert eval_time >= 0
+        assert len(moves_eval) == 1
+        assert "Evaluation time:" in output
