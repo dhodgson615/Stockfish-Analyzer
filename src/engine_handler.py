@@ -154,8 +154,8 @@ def get_engine_evaluation(
 
 
 def get_move_evals(
-    board: Board,
-    engine: SimpleEngine,
+    board: chess.Board,
+    engine: chess.engine.SimpleEngine,
     depth: int = EVAL_DEPTH,
     tablebase: Tablebase | None = None,
 ) -> dict[Move, tuple[int | None, int | None]]:
