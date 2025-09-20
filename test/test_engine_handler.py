@@ -94,6 +94,7 @@ def test_get_syzygy_tablebase_nonexistent_path() -> None:
             tablebase = src.engine_handler.get_syzygy_tablebase(
                 "/nonexistent/path"
             )
+
             output = buf.getvalue()
 
         assert tablebase is None
