@@ -43,7 +43,10 @@ def main() -> None:
 
     try:
         # Pass configuration to game logic for evaluation depth
-        game_logic.play_game(board, engine, move_history, tablebase, app_config)
+        game_logic.play_game(
+            board, engine, move_history, tablebase, app_config
+        )
+
         board_ui.print_game_over_info(board, move_history)
 
         if tablebase:
