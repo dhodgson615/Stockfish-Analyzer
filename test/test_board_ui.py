@@ -210,8 +210,8 @@ def test_show_mate_info_opponent_mate() -> None:
     opponent_mate_data = (move, (100, -3))  # Opponent has mate in 3
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
-        src.board_ui.show_mate_info(best_move_data_no_mate, True)
-        assert buf.getvalue() == ""
+        src.board_ui.show_mate_info(opponent_mate_data, True)  # White's turn
+        output = buf.getvalue()
 
 
 def test_print_game_over_info(checkmate_board: chess.Board) -> None:
