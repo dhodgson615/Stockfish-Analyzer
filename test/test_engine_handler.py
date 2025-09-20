@@ -298,7 +298,7 @@ def test_get_dynamic_eval_depth_middlegame() -> None:
 
     for move in moves:
         board.push_san(move)
-    
+
     depth = src.engine_handler.get_dynamic_eval_depth(board)
     
     # This is still opening (move 8, 30 pieces) -> opening depth
