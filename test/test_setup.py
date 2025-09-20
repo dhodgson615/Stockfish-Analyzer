@@ -88,7 +88,7 @@ class TestSetupScript(unittest.TestCase):
         
         # Should return either 'linux', 'macos', or 'unknown'
         output = result.stdout.strip()
-        self.assertIn(output, ['linux', 'macos', 'unknown'])
+        self.assertIn(output, ["linux", "macos", "unknown"])
         self.assertEqual(result.returncode, 0)
 
     def test_existing_download_script_integration(self) -> None:
