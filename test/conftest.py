@@ -3,7 +3,7 @@ import os
 import chess
 import pytest
 
-from src.input_handler import from_uci
+import src.input_handler
 
 
 @fixture
