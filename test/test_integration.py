@@ -69,7 +69,7 @@ def test_play_game_simple_sequence(
     # Skip actual move evaluation to speed up testing
     def mock_evaluate(
         *args: object,
-    ) -> tuple[dict[Move, tuple[int, int | None]], float]:
+    ) -> tuple[dict[chess.Move, tuple[int, int | None]], float]:
         return {}, 0.0
 
     monkeypatch.setattr(
