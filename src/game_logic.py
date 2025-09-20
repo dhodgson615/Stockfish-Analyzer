@@ -12,6 +12,13 @@ from src.engine_handler import EVAL_DEPTH, get_move_evals
 from src.input_handler import handle_user_input
 
 
+def get_move_score(item: tuple[Move, tuple[int | None, int | None]]) -> int:
+    """Key function for sorting moves. Takes (Move, (score, mate_value))
+    and returns score for sorting.
+    """
+    return item[1][0] if item[1][0] is not None else 0
+
+
 def sort_moves_by_evaluation(
     moves_eval: dict[Move, tuple[int | None, int | None]], is_white_turn: bool
 ) -> list[tuple[Move, tuple[int | None, int | None]]]:
