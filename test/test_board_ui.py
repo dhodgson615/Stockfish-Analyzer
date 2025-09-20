@@ -144,8 +144,8 @@ def test_print_possible_moves() -> None:
         (move3, eval3),
     ]
 
-    with StringIO() as buf, redirect_stdout(buf):
-        print_possible_moves(moves)
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        src.board_ui.print_possible_moves(moves)
         output = buf.getvalue()
 
         assert "e2e4" in output
