@@ -67,8 +67,13 @@ def test_evaluate_and_show_moves_timing(
         def mock_show_mate_info(*args: object, **kwargs: object) -> None:
             pass
 
-        mp.setattr("src.game_logic.get_move_evals", mock_get_evals)
-        engine = SimpleEngine.popen_uci(engine_path)
+        mp.setattr(
+            "src.board_ui.print_tablebase_info", mock_print_tablebase_info
+        )
+        mp.setattr(
+            "src.board_ui.print_possible_moves", mock_print_possible_moves
+        )
+        mp.setattr("src.board_ui.show_mate_info", mock_show_mate_info)
 
         try:
             with StringIO() as buf, redirect_stdout(buf):
