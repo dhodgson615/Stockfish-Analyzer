@@ -7,11 +7,13 @@ import chess.syzygy
 
 try:
     import board_ui
+    import config
     import engine_handler
     import input_handler
 
 except ImportError:
     import src.board_ui as board_ui
+    import src.config as config
     import src.engine_handler as engine_handler
     import src.input_handler as input_handler
 
@@ -42,6 +44,7 @@ def evaluate_and_show_moves(
     board: chess.Board,
     engine: chess.engine.SimpleEngine,
     tablebase: chess.syzygy.Tablebase | None = None,
+    app_config: config.EngineConfig | None = None,
 ) -> tuple[dict[chess.Move, tuple[int | None, int | None]], float]:
     """Evaluate moves and display them with timing information. Returns
     a tuple containing the moves evaluation dictionary and the time
@@ -52,10 +55,16 @@ def evaluate_and_show_moves(
     if tablebase:
         board_ui.print_tablebase_info(board, tablebase)
 
+    # Use configured eval depth, fall back to dynamic depth if not provided
+    if app_config:
+        eval_depth = app_config.eval_depth
+    else:
+        eval_depth = engine_handler.get_dynamic_eval_depth(board)
+
     moves_eval = engine_handler.get_move_evals(
         board,
         engine,
-        depth=engine_handler.get_dynamic_eval_depth(board),
+        depth=eval_depth,
         tablebase=tablebase,
     )
 

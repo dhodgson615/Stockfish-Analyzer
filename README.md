@@ -52,6 +52,40 @@ the script).
 
 ## Quick Start
 
+### Method 1: Using Command Line Arguments
+
+Run the script with your preferred settings:
+
+```bash
+# Basic usage with default settings
+python3 src/main.py
+
+# Custom engine path and performance settings
+python3 src/main.py --engine-path /usr/local/bin/stockfish --threads 8 --hash-size 8192
+
+# Adjust engine strength and evaluation depth
+python3 src/main.py --skill-level 15 --depth 12
+
+# Custom tablebase location
+python3 src/main.py --syzygy-path /my/tablebase/path
+```
+
+### Method 2: Using Configuration Files
+
+1. Create a configuration file:
+
+```bash
+python3 src/main.py --threads 8 --depth 20 --save-config my_config.json
+```
+
+2. Use the configuration file:
+
+```bash
+python3 src/main.py --config my_config.json
+```
+
+### Method 3: Legacy Method (Still Supported)
+
 1. Edit the `ENGINE_PATH` constant in `engine_handler.py` so it points to your
 Stockfish executable.
 
@@ -60,20 +94,34 @@ Example macOS Homebrew path: `/opt/homebrew/bin/stockfish`
 2. Run the script:
 
 ```bash
-python3 main.py
+python3 src/main.py
 ```
 
-3. When it is your turn, type a move (SAN or UCI) and press Enter. The engine
+### Command Line Options
+
+- `--engine-path`: Path to Stockfish binary (default: /usr/games/stockfish)
+- `--threads`: Number of threads (default: 4)  
+- `--hash-size`: Hash table size in MB (default: 16384)
+- `--skill-level`: Engine skill 0-20, where 20 is strongest (default: 20)
+- `--depth`: Evaluation depth in plies (default: 18)
+- `--syzygy-path`: Path to Syzygy tablebase files (default: ~/chess/syzygy)
+- `--config`: Load settings from JSON config file
+- `--save-config`: Save current settings to JSON file and exit
+
+For complete usage information: `python3 src/main.py --help`
+
+### Gameplay
+
+When it is your turn, type a move (SAN or UCI) and press Enter. The engine
 will re-evaluate the new position and show fresh advice.
 
-4. Play until checkmate, stalemate, or another terminal condition; the script
+Play until checkmate, stalemate, or another terminal condition; the script
 then prints the final board, move list, and winner/draw result.
 
 ## Known Limitations
 
 - Slow for complex positions: analysing each move separately restarts the
   search each time. Multipv or a single engine.play() search would be faster.
-- Hard-coded engine path: update the string or add CLI args/env vars.
 - No PGN export: move history prints to console only.
 
 ## Future Enhancements
@@ -86,7 +134,6 @@ The following features are planned for future releases:
 - Improved user interface
 - Performance optimizations
 - Optional GUI support
-- Configurable engine settings via command line
 - Logging for better debugging
 
 ## License
