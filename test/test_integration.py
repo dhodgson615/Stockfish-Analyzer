@@ -80,8 +80,8 @@ def test_play_game_simple_sequence(
     engine = src.engine_handler.popen_uci(engine_path)
 
     try:
-        with StringIO() as buf, redirect_stdout(buf):
-            play_game(board, engine, move_history)
+        with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+            src.game_logic.play_game(board, engine, move_history)
 
     finally:
         engine.quit()
