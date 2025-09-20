@@ -39,8 +39,8 @@ def test_evaluate_and_show_moves_timing(
     """Test that evaluate_and_show_moves returns timing information."""
     pytest.importorskip("chess.engine")
 
-    if not path.exists(engine_path):
-        skip("Engine not found")
+    if not os.path.exists(engine_path):
+        pytest.skip("Engine not found")
 
     from src.game_logic import evaluate_and_show_moves
 
