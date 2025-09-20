@@ -84,8 +84,8 @@ def test_parse_config_skill_level_validation():
 
     # Invalid skill level should raise SystemExit (argparse error)
     with pytest.raises(SystemExit):
-        config.parse_config(['--skill-level', '21'])
-    
+        config.parse_config(["--skill-level", "21"])
+
     with pytest.raises(SystemExit):
         config.parse_config(['--skill-level', '-1'])
 
