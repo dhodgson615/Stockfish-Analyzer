@@ -195,8 +195,8 @@ def test_try_tablebase_evaluation_exceptions() -> None:
 
 def test_get_engine_evaluation() -> None:
     """Test engine evaluation parsing."""
-    board = Board()
-    mock_engine = MagicMock(spec=SimpleEngine)
+    board = chess.Board()
+    mock_engine = unittest.mock.MagicMock(spec=chess.engine.SimpleEngine)
 
     # Mock a regular score
     mock_score = MagicMock()
