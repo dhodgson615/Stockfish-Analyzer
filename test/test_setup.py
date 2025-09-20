@@ -65,7 +65,10 @@ class TestSetupScript(unittest.TestCase):
         """Test that the helper functions in the script work correctly."""
         # Test the OS detection logic - extract just the function
         result = subprocess.run(
-            ["bash", "-c", '''
+            [
+                "bash",
+                "-c",
+                """
             detect_os() {
                 if [[ "$OSTYPE" == "darwin"* ]]; then
                     echo "macos"
