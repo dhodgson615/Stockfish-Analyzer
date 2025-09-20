@@ -115,7 +115,7 @@ Config file format (JSON):
         type=str,
         help="Save current settings to JSON config file and exit",
     )
-    
+
     return parser
 
 
