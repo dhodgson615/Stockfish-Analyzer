@@ -43,6 +43,7 @@ def get_engine(
     instance.
     """
     engine = chess.engine.SimpleEngine.popen_uci(engine_path)
+
     engine.configure(
         {"Threads": threads, "Hash": hash_size, "Skill Level": skill_level}
     )
