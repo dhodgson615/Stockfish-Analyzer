@@ -335,7 +335,7 @@ def test_get_dynamic_eval_depth_endgame() -> None:
     depth = src.engine_handler.get_dynamic_eval_depth(board)
 
     assert depth == 25  # Very few pieces, deepest search
-    
+
     # Test with slightly more pieces
     board = chess.Board("8/8/8/8/8/K1k5/1P1p4/8 w - - 0 1")  # Kings + pawns
     
