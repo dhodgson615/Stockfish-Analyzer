@@ -17,7 +17,7 @@ def main() -> None:
     """Main function to run the interactive chess game."""
     # Parse configuration from CLI args and config files
     app_config = config.parse_config()
-    
+
     # Display configuration summary
     print(f"Engine: {app_config.engine_path}")
     print(f"Threads: {app_config.threads}, Hash: {app_config.hash_size}MB, "
