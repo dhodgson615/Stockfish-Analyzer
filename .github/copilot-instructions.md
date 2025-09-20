@@ -85,7 +85,7 @@ functionality:
 
 ### Test Suite Validation
 1. `python3 -m pytest -v` - run all tests
-2. Verify *all* tests pass (some may skip if engine path is incorrect)
+2. Verify **all** tests pass (some may skip if engine path is incorrect)
 3. Check that no new test failures are introduced by your changes
 
 ## Engine Configuration and Performance
