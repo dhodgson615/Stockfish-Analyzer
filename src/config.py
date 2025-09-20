@@ -137,8 +137,10 @@ def load_config_file(config_path: str) -> Dict[str, Any]:
                 f"{invalid_fields}"
             )
             # Remove invalid fields
-            config_data = {k: v for k, v in config_data.items() if k in valid_fields}
-        
+            config_data = {
+                k: v for k, v in config_data.items() if k in valid_fields
+            }
+
         return config_data
         
     except FileNotFoundError:
