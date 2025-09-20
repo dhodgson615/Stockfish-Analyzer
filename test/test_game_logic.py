@@ -92,7 +92,7 @@ def test_evaluate_and_show_moves_uses_dynamic_depth() -> None:
     """Test that evaluate_and_show_moves uses dynamic depth instead of fixed depth."""
     board = chess.Board()
     mock_engine = unittest.mock.MagicMock()
-    
+
     # Track the depth parameter passed to get_move_evals
     with unittest.mock.patch(
         "src.engine_handler.get_move_evals"
