@@ -55,11 +55,12 @@ def test_handle_user_input_valid_move(monkeypatch: pytest.MonkeyPatch) -> None:
     assert result == expected
 
 
-def test_handle_user_input_illegal_move(monkeypatch: MonkeyPatch) -> None:
-    """Test handle_user_input with an illegal move."""
-    # Set up a board where e2e4 is no longer legal
-    board = Board()
-    board.push(Move.from_uci("e2e4"))  # Already moved the e-pawn
+def test_handle_user_input_invalid_move(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Test handle_user_input with an invalid move."""
+    board = chess.Board()
+    monkeypatch.setattr("builtins.input", lambda _: "invalid")
 
     # Mock the input to return e2e4 again in UCI format (which is now illegal)
     monkeypatch.setattr("builtins.input", lambda _: "e2e4")
