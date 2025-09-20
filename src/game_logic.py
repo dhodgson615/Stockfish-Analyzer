@@ -63,10 +63,10 @@ def evaluate_and_show_moves(
 
 
 def play_game(
-    board: Board,
-    engine: SimpleEngine,
-    move_history: list[Move],
-    tablebase: Tablebase | None = None,
+    board: chess.Board,
+    engine: chess.engine.SimpleEngine,
+    move_history: list[chess.Move],
+    tablebase: chess.syzygy.Tablebase | None = None,
 ) -> None:
     """Run the interactive chess game loop. Continues until the game is
     over. Displays the board, evaluates moves, and handles user input
