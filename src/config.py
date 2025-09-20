@@ -101,7 +101,7 @@ Config file format (JSON):
         type=str,
         help="Path to Syzygy tablebase files (default: ~/chess/syzygy)",
     )
-    
+
     # Config file support
     parser.add_argument(
         "--config",
