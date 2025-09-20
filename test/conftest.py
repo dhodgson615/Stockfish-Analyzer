@@ -1,4 +1,4 @@
-from os import path
+import os
 
 from chess import Board, Move
 from pytest import fixture, skip
