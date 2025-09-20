@@ -80,7 +80,7 @@ def test_play_game_simple_sequence(
         lambda *args: ({}, 0.1),
     )
 
-    engine = src.engine_handler.popen_uci(engine_path)
+    engine = chess.engine.SimpleEngine.popen_uci(engine_path)
 
     try:
         with io.StringIO() as buf, contextlib.redirect_stdout(buf):
