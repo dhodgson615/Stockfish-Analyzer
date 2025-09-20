@@ -200,7 +200,7 @@ def test_load_config_file_invalid_fields():
     """Test loading config with invalid fields shows warning and filters them."""
     with tempfile.TemporaryDirectory() as temp_dir:
         config_path = os.path.join(temp_dir, "invalid_fields.json")
-        
+
         config_data = {
             "threads": 8,
             "invalid_field": "should_be_ignored",
