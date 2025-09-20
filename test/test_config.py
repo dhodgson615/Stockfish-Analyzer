@@ -236,8 +236,8 @@ def test_parse_config_save_config_exits():
         
         # Should exit after saving
         with pytest.raises(SystemExit):
-            config.parse_config(['--save-config', config_path])
-        
+            config.parse_config(["--save-config", config_path])
+
         # Verify file was created
         assert os.path.exists(config_path)
 
