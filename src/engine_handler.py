@@ -38,7 +38,7 @@ def popen_uci(engine_path: str) -> chess.engine.SimpleEngine:
     Returns the engine instance if successful.
     """
     try:
-        return SimpleEngine.popen_uci(engine_path)
+        return chess.engine.SimpleEngine.popen_uci(engine_path)
 
     except FileNotFoundError:
         raise FileNotFoundError(f"Engine not found at {engine_path}")
