@@ -171,8 +171,8 @@ def test_try_tablebase_evaluation_none_wdl() -> None:
 
 def test_try_tablebase_evaluation_exceptions() -> None:
     """Test all specific exceptions in try_tablebase_evaluation."""
-    board = Board()
-    mock_tablebase = MagicMock()
+    board = chess.Board()
+    mock_tablebase = unittest.mock.MagicMock()
 
     # Test IOError
     mock_tablebase.get_wdl.side_effect = IOError("Test IO error")
