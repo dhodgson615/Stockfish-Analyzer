@@ -31,8 +31,8 @@ def test_parse_move_input_uci() -> None:
     board = chess.Board()
 
     # Test UCI parsing
-    result = parse_move_input(board, "e2e4")
-    expected = Move.from_uci("e2e4")
+    result = src.input_handler.parse_move_input(board, "e2e4")
+    expected = chess.Move.from_uci("e2e4")
 
     assert result == expected
 
