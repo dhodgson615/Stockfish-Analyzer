@@ -145,8 +145,8 @@ def test_parse_config_with_config_file():
             json.dump(config_data, f)
         
         # Parse config from file
-        cfg = config.parse_config(['--config', config_path])
-        
+        cfg = config.parse_config(["--config", config_path])
+
         assert cfg.engine_path == "/file/engine"
         assert cfg.threads == 12
         assert cfg.hash_size == 2048
