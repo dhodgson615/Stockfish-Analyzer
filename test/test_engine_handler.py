@@ -199,7 +199,7 @@ def test_get_engine_evaluation() -> None:
     mock_engine = unittest.mock.MagicMock(spec=chess.engine.SimpleEngine)
 
     # Mock a regular score
-    mock_score = MagicMock()
+    mock_score = unittest.mock.MagicMock()
     mock_score.white.return_value.score.return_value = 42
     mock_score.white.return_value.mate.return_value = None
     mock_engine.analyse.return_value = {"score": mock_score}
