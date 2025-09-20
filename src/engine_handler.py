@@ -12,7 +12,7 @@ import src.board_ui
 
 EVAL_DEPTH = 18
 ENGINE_PATH = "/opt/homebrew/bin/stockfish"
-SYZYGY_PATH = path.expanduser("~/chess/syzygy")
+SYZYGY_PATH = os.path.expanduser("~/chess/syzygy")
 
 
 def get_syzygy_tablebase(filepath: str = SYZYGY_PATH) -> Tablebase | None:
