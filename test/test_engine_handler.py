@@ -5,9 +5,9 @@ import io
 import os
 import unittest.mock
 
-from chess import Board, Move
-from chess.engine import Limit, SimpleEngine
-from pytest import fail, mark, raises
+import chess
+import chess.engine
+import pytest
 
 from src.engine_handler import (EVAL_DEPTH, evaluate_move, get_engine,
                                 get_engine_evaluation, get_move_evals,
