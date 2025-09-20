@@ -62,7 +62,7 @@ def check_docstring_length(file_path: str, max_length: int = 72) -> List[int]:
 
             # Check line length for all lines in a docstring
             if len(line) > max_length:
-                long_lines.append(line_no)
+                long_lines.append(line_number)
 
     return long_lines
 
