@@ -145,6 +145,7 @@ def load_config_file(config_path: str) -> Dict[str, Any]:
 
     except FileNotFoundError:
         raise FileNotFoundError(f"Config file not found: {config_path}")
+
     except json.JSONDecodeError as e:
         raise ValueError(f"Invalid JSON in config file {config_path}: {e}")
     except Exception as e:
