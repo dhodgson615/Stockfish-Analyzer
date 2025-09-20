@@ -113,7 +113,7 @@ Config file format (JSON):
     parser.add_argument(
         "--save-config",
         type=str,
-        help="Save current settings to JSON config file and exit"
+        help="Save current settings to JSON config file and exit",
     )
     
     return parser
