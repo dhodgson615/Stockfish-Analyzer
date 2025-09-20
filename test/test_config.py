@@ -104,7 +104,7 @@ def test_save_and_load_config_file():
             eval_depth=15,
             syzygy_path="/test/syzygy"
         )
-        
+
         # Save config
         config.save_config_file(original_cfg, config_path)
 
