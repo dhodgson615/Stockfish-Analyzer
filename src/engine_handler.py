@@ -134,16 +134,7 @@ def try_tablebase_evaluation(
     if abs(mate_val or 0) >= 1000:
         mate_val = None
 
-        return score, mate_val
-
-    except IOError:
-        return None  # Tablebase file access error
-
-    except ValueError:
-        return None  # Invalid position for tablebase
-
-    except IndexError:
-        return None  # Index out of bounds in tablebase access
+    return score, mate_val
 
 
 def get_engine_evaluation(
