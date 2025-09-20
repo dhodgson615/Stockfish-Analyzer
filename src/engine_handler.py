@@ -109,10 +109,8 @@ def try_tablebase_evaluation(
     if wdl is None:
         return None
 
-        dtz_val = tablebase.get_dtz(board)
-
-        if wdl == 0:  # Draw
-            return 0, None
+    if wdl == 0:  # Draw
+        return 0, None
 
         # Win/loss for the side to move
         mate_val = (
