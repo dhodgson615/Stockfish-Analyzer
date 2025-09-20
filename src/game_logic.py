@@ -5,10 +5,9 @@ import time
 import chess.engine
 import chess.syzygy
 
-from src.board_ui import (print_board, print_possible_moves,
-                          print_tablebase_info, show_mate_info)
-from src.engine_handler import EVAL_DEPTH, get_move_evals
-from src.input_handler import handle_user_input
+import src.board_ui
+import src.engine_handler
+import src.input_handler
 
 
 def get_move_score(item: tuple[Move, tuple[int | None, int | None]]) -> int:
