@@ -176,7 +176,7 @@ def get_move_evals(
             i,
             len(list(board.legal_moves)),
             start_time,
-            max(10, get_terminal_size().columns - 40),
+            max(10, shutil.get_terminal_size().columns - 40),
         )
 
     # Clear progress bar
