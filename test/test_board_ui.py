@@ -277,5 +277,5 @@ def test_print_tablebase_info_draw() -> None:
         src.board_ui.print_tablebase_info(board, mock_tablebase)
         output = buf.getvalue()
 
-        assert "Tablebase: Win" in output
-        assert "DTZ: 5" in output
+        assert "Draw" in output
+        assert "DTZ: 0" in output
