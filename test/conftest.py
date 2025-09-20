@@ -59,4 +59,70 @@ def engine_path() -> str:
     print(f"\nDEBUG: Current working directory: {os.getcwd()}")
     print(f"DEBUG: PATH environment: {os.environ.get('PATH', '')}")
 
-    return filepath
+    # Try to find stockfish executable
+    if os.name == "darwin" or os.name == "posix":
+        # First try using 'which' to find where stockfish is actually installed
+        for binary in binary_names:
+            try:
+                result = subprocess.run(
+                    ["which", binary],
+                    capture_output=True,
+                    text=True,
+                    check=False,
+                )
+
+                if result.returncode == 0 and result.stdout.strip():
+                    filepath = result.stdout.strip()
+
+                    if os.path.exists(filepath) and os.access(
+                        filepath, os.X_OK
+                    ):
+                        print(f"DEBUG: Found Stockfish at {filepath}")
+                        return filepath
+
+            except Exception as e:
+                print(f"DEBUG: Error running 'which {binary}': {e}")
+
+        # Try the predefined paths
+        for path in macos_paths:
+            if os.path.exists(path) and os.access(path, os.X_OK):
+                print(f"DEBUG: Found Stockfish at {path}")
+                return path
+
+        # Check homebrew alternative locations
+        try:
+            # Get homebrew prefix
+            result = subprocess.run(
+                ["brew", "--prefix"],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            if result.returncode == 0 and result.stdout.strip():
+                brew_prefix = result.stdout.strip()
+                brew_path = os.path.join(brew_prefix, "bin", "stockfish")
+
+                if os.path.exists(brew_path) and os.access(brew_path, os.X_OK):
+                    print(f"DEBUG: Found Stockfish at {brew_path}")
+                    return brew_path
+
+        except Exception as e:
+            print(f"DEBUG: Error checking brew prefix: {e}")
+
+    else:
+        filepath = "/usr/games/stockfish"  # Linux default path
+
+        if os.path.exists(filepath) and os.access(filepath, os.X_OK):
+            return filepath
+
+    # No engine found, skip the test with detailed information
+    debug_info = "\n".join(
+        [
+            f"Checked binary names: {binary_names}",
+            f"Checked paths: {macos_paths}",
+            f"PATH environment: {os.environ.get('PATH', '')}",
+            "Try running 'which stockfish' in your terminal to locate it",
+        ]
+    )
+    pytest.skip(f"Stockfish engine not found. {debug_info}")
