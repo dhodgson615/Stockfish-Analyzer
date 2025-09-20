@@ -104,7 +104,7 @@ def test_evaluate_and_show_moves_uses_dynamic_depth() -> None:
             
             with io.StringIO() as buf, contextlib.redirect_stdout(buf):
                 src.game_logic.evaluate_and_show_moves(board, mock_engine)
-        
+
         # Verify get_move_evals was called with dynamic depth
         mock_get_evals.assert_called_once()
         call_args = mock_get_evals.call_args
