@@ -209,7 +209,7 @@ def parse_config(args: Optional[list[str]] = None) -> EngineConfig:
         if value is not None and key not in ["config", "save_config"]:
             if hasattr(config, key):
                 setattr(config, key, value)
-    
+
     # Handle save-config option
     if parsed_args.save_config:
         save_config_file(config, parsed_args.save_config)
