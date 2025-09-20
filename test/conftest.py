@@ -15,7 +15,7 @@ def new_board() -> chess.Board:
 @pytest.fixture
 def checkmate_board() -> chess.Board:
     """Returns a board with a checkmate position (fool's mate)."""
-    board = Board()
+    board = chess.Board()
 
     for move in ["f2f3", "e7e5", "g2g4", "d8h4"]:
         board.push(from_uci(move))
