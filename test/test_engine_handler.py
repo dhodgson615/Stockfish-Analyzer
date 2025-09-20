@@ -260,7 +260,7 @@ def test_get_dynamic_eval_depth_opening() -> None:
     depth = src.engine_handler.get_dynamic_eval_depth(board)
 
     assert depth == 14  # Opening depth
-    
+
     # After a few moves, still opening
     board.push_san("e4")
     board.push_san("e5")
