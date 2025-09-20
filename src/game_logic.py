@@ -53,7 +53,10 @@ def evaluate_and_show_moves(
         board_ui.print_tablebase_info(board, tablebase)
 
     moves_eval = engine_handler.get_move_evals(
-        board, engine, depth=engine_handler.get_dynamic_eval_depth(board), tablebase=tablebase
+        board,
+        engine,
+        depth=engine_handler.get_dynamic_eval_depth(board),
+        tablebase=tablebase,
     )
 
     eval_time = time.time() - start_time
