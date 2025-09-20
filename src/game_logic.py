@@ -20,8 +20,9 @@ def get_move_score(
 
 
 def sort_moves_by_evaluation(
-    moves_eval: dict[Move, tuple[int | None, int | None]], is_white_turn: bool
-) -> list[tuple[Move, tuple[int | None, int | None]]]:
+    moves_eval: dict[chess.Move, tuple[int | None, int | None]],
+    is_white_turn: bool,
+) -> list[tuple[chess.Move, tuple[int | None, int | None]]]:
     """Sorts the evaluated moves based on the score. Higher scores are
     better for White, lower scores are better for Black. Returns a list
     of tuples (Move, (score, mate_value)).
