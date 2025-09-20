@@ -22,7 +22,14 @@ def test_tablebase_functionality() -> None:
         assert wdl is not None, "WDL value should not be None"
         assert isinstance(wdl, int), "WDL should be an integer"
 
-        engine = src.engine_handler.get_engine()
+        engine = src.engine_handler.get_engine("/opt/homebrew/bin/stockfish")
+
+        if engine:
+            result = src.engine_handler.try_tablebase_evaluation(
+                board, tablebase
+            )
+
+            assert result is not None, "Should get a result from tablebase"
 
         try:
             moves = list(board.legal_moves)
