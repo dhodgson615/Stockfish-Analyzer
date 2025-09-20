@@ -332,7 +332,6 @@ def test_get_dynamic_eval_depth_endgame() -> None:
     """Test dynamic depth calculation for endgame positions."""
     # Create an endgame position with few pieces
     board = chess.Board("8/8/8/8/8/K1k5/8/8 w - - 0 1")  # King vs King
-
     depth = src.engine_handler.get_dynamic_eval_depth(board)
     
     assert depth == 25  # Very few pieces, deepest search
