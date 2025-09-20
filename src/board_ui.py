@@ -5,6 +5,8 @@ from time import time
 from chess import Board, Move
 from chess.syzygy import Tablebase
 
+CLEAR_BEFORE_PRINT = True
+
 
 def clear_terminal() -> None:
     """Clears the terminal screen. Works on Unix-like systems and
