@@ -161,7 +161,7 @@ def save_config_file(config: EngineConfig, config_path: str) -> None:
 
         with open(config_path, "w") as f:
             json.dump(asdict(config), f, indent=2)
-        
+
         print(f"Configuration saved to: {config_path}")
         
     except Exception as e:
