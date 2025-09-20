@@ -84,7 +84,7 @@ Config file format (JSON):
         "--skill-level",
         type=int,
         choices=range(0, 21),
-        help="Engine skill level 0-20, where 20 is strongest (default: 20)"
+        help="Engine skill level 0-20, where 20 is strongest (default: 20)",
     )
     
     parser.add_argument(
