@@ -40,6 +40,7 @@ def get_dynamic_eval_depth(board: chess.Board) -> int:
     if piece_count <= 10:
         if piece_count <= 6:
             return 25  # Very few pieces, can search deeply
+
         else:
             return 22  # Transitioning to endgame
     
