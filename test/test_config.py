@@ -143,7 +143,7 @@ def test_parse_config_with_config_file():
         
         with open(config_path, 'w') as f:
             json.dump(config_data, f)
-        
+
         # Parse config from file
         cfg = config.parse_config(["--config", config_path])
 
