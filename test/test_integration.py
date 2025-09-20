@@ -53,7 +53,7 @@ def test_play_game_simple_sequence(
 
     # Mock handle_user_input to return a checkmate sequence
     moves = [
-        src.input_handler.from_uci(m)
+        chess.Move.from_uci(m)
         for m in ["f1c4", "f8c5", "d1f3", "g7g6", "f3f7"]
     ]
     move_iter = iter(moves)
