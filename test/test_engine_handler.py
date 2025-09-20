@@ -245,8 +245,8 @@ def test_popen_uci_file_not_found(
         "No file"
     )
 
-    with raises(FileNotFoundError):
-        popen_uci("nonexistent/path")
+    with pytest.raises(FileNotFoundError):
+        src.engine_handler.popen_uci("nonexistent/path")
 
 
 @patch("src.engine_handler.SimpleEngine")
