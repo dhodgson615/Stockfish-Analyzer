@@ -23,8 +23,8 @@ def checkmate_board() -> chess.Board:
     return board
 
 
-@fixture
-def stalemate_board() -> Board:
+@pytest.fixture
+def stalemate_board() -> chess.Board:
     """Returns a board with a stalemate position."""
     return Board("8/8/8/8/8/5k2/7p/7K w - - 0 1")
 
