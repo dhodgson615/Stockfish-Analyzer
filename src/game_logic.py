@@ -52,8 +52,8 @@ def evaluate_and_show_moves(
     if tablebase:
         src.board_ui.print_tablebase_info(board, tablebase)
 
-    moves_eval = src.engine_handler.get_move_evals(
-        board, engine, depth=src.engine_handler.EVAL_DEPTH, tablebase=tablebase
+    moves_eval = engine_handler.get_move_evals(
+        board, engine, depth=engine_handler.EVAL_DEPTH, tablebase=tablebase
     )
 
     eval_time = time.time() - start_time
