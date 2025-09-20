@@ -203,7 +203,7 @@ def parse_config(args: Optional[list[str]] = None) -> EngineConfig:
         except (FileNotFoundError, ValueError) as e:
             print(f"Error loading config file: {e}")
             print("Using default configuration...")
-    
+
     # Override with command-line arguments (highest precedence)
     for key, value in vars(parsed_args).items():
         if value is not None and key not in ['config', 'save_config']:
