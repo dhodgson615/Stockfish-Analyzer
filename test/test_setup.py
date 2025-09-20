@@ -29,7 +29,7 @@ class TestSetupScript(unittest.TestCase):
         """Test that the script can create valid configuration files."""
         with tempfile.TemporaryDirectory() as tmpdir:
             config_path = Path(tmpdir) / "test_config.json"
-            
+
             # Create a mock stockfish binary
             mock_stockfish = Path(tmpdir) / "stockfish"
             mock_stockfish.write_text("#!/bin/bash\nexit 0\n")
