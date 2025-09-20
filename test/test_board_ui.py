@@ -186,7 +186,7 @@ def test_show_mate_info_black_win() -> None:
     mate_data = (move, (100, -3))  # Black mates in 3
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
-        src.board_ui.display_progress(5, 10, start_time, 20)
+        src.board_ui.show_mate_info(mate_data, False)  # Black's turn
         output = buf.getvalue()
 
         assert "[##########----------]" in output
