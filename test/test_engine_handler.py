@@ -83,7 +83,7 @@ def test_get_move_evals_simple_position(engine_path: str) -> None:
     """Test that get_move_evals returns evaluations for all legal
     moves.
     """
-    engine = get_engine(engine_path)
+    engine = src.engine_handler.get_engine(engine_path)
 
     try:
         board = Board()
