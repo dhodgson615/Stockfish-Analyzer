@@ -48,7 +48,7 @@ def test_parse_config_defaults() -> None:
     assert cfg.eval_depth == 18
 
 
-def test_parse_config_cli_args():
+def test_parse_config_cli_args() -> None:
     """Test parsing with CLI arguments."""
     args = [
         "--engine-path",
