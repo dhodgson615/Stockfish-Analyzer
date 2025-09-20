@@ -34,7 +34,7 @@ def test_sort_moves_by_evaluation() -> None:
 
 
 def test_evaluate_and_show_moves_timing(
-    new_board: Board, engine_path: str
+    new_board: chess.Board, engine_path: str
 ) -> None:
     """Test that evaluate_and_show_moves returns timing information."""
     importorskip("chess.engine")
