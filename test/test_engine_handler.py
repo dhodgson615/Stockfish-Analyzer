@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from contextlib import redirect_stdout
-from io import StringIO
-from os import environ, path
-from unittest.mock import MagicMock, patch
+import contextlib
+import io
+import os
+import unittest.mock
 
 from chess import Board, Move
 from chess.engine import Limit, SimpleEngine
