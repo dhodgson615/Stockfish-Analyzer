@@ -186,7 +186,7 @@ def parse_config(args: Optional[list[str]] = None) -> EngineConfig:
     """
     parser = create_argument_parser()
     parsed_args = parser.parse_args(args)
-    
+
     # Start with default configuration
     config = EngineConfig()
     
