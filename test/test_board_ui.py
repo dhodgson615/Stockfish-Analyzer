@@ -242,17 +242,11 @@ def test_print_tablebase_info_value_error() -> None:
         assert output == ""  # Should handle exception silently
 
 
-    # Create evaluation tuples with explicit types
-    eval1: tuple[int | None, int | None] = (42, None)
-    eval2: tuple[int | None, int | None] = (35, None)
-    eval3: tuple[int | None, int | None] = (30, 2)
-
-    # Combine into a properly typed list
-    moves = [
-        (move1, eval1),
-        (move2, eval2),
-        (move3, eval3),
-    ]
+def test_print_tablebase_info_index_error() -> None:
+    """Test print_tablebase_info when IndexError occurs."""
+    board = chess.Board()
+    mock_tablebase = unittest.mock.MagicMock()
+    mock_tablebase.get_wdl.side_effect = IndexError("Test index error")
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.print_possible_moves(moves)
