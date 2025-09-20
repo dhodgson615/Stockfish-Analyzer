@@ -94,7 +94,7 @@ Config file format (JSON):
         dest="eval_depth",
         help="Evaluation depth in plies (default: 18)",
     )
-    
+
     # Tablebase settings
     parser.add_argument(
         "--syzygy-path",
