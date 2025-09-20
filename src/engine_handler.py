@@ -145,7 +145,7 @@ def get_engine_evaluation(
     """Evaluates a position using the chess engine. Returns (score,
     mate_value) tuple.
     """
-    info = engine.analyse(board, Limit(depth=depth))
+    info = engine.analyse(board, chess.engine.Limit(depth=depth))
     score_obj = info["score"].white()
     score = score_obj.score(mate_score=1000000)
     mate_val = score_obj.mate()
