@@ -44,16 +44,9 @@ def test_parse_move_input_invalid() -> None:
     assert result is None
 
 
-@fixture
-def new_board() -> Board:
-    return Board()
-
-
-def test_handle_user_input_valid_move(monkeypatch: MonkeyPatch) -> None:
-    """Test handle_user_input with valid input."""
-    board = Board()
-
-    # Mock the input function to return a valid move
+def test_handle_user_input_valid_move(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Test handle_user_input with a valid move."""
+    board = chess.Board()
     monkeypatch.setattr("builtins.input", lambda _: "e4")
 
     with StringIO() as buf, redirect_stdout(buf):
