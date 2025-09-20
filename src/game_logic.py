@@ -79,7 +79,7 @@ def play_game(
     for moves.
     """
     while not board.is_game_over():
-        src.board_ui.print_board(board)
+        board_ui.print_board(board)
         evaluate_and_show_moves(board, engine, tablebase)
         move = input_handler.handle_user_input(board)
 
