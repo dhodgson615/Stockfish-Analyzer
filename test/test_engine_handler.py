@@ -119,8 +119,10 @@ def test_get_syzygy_tablebase_exception() -> None:
     """Test that get_syzygy_tablebase() handles exceptions
     gracefully.
     """
-    with patch("os.path.exists", return_value=True), patch(
-        "src.engine_handler.open_tablebase",
+    with unittest.mock.patch(
+        "os.path.exists", return_value=True
+    ), unittest.mock.patch(
+        "chess.syzygy.open_tablebase",
         side_effect=Exception("Test exception"),
     ):
         with StringIO() as buf, redirect_stdout(buf):
