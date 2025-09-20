@@ -28,7 +28,7 @@ class EngineConfig:
     hash_size: int = 16384  # MB
     skill_level: int = 20
     eval_depth: int = 18
-    
+
     # Tablebase settings
     syzygy_path: str = "~/chess/syzygy"
     
