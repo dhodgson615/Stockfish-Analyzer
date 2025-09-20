@@ -83,7 +83,7 @@ class TestSetupScript(unittest.TestCase):
             ],
             capture_output=True,
             text=True,
-            cwd=self.test_dir
+            cwd=self.test_dir,
         )
         
         # Should return either 'linux', 'macos', or 'unknown'
