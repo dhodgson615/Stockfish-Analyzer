@@ -24,6 +24,7 @@ def test_engine_config_defaults():
 def test_engine_config_post_init():
     """Test that __post_init__ expands user paths."""
     cfg = config.EngineConfig(syzygy_path="~/test/path")
+
     assert cfg.syzygy_path == os.path.expanduser("~/test/path")
 
 
