@@ -11,7 +11,7 @@ import json
 import os
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Optional, Dict, Any, cast
+from typing import Any, Dict, Optional, cast
 
 
 @dataclass
