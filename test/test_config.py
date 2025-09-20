@@ -140,8 +140,8 @@ def test_parse_config_with_config_file():
             "skill_level": 16,
             "eval_depth": 22
         }
-        
-        with open(config_path, 'w') as f:
+
+        with open(config_path, "w") as f:
             json.dump(config_data, f)
 
         # Parse config from file
