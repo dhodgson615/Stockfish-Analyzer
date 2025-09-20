@@ -244,7 +244,7 @@ def test_parse_config_save_config_exits() -> None:
         assert os.path.exists(config_path)
 
 
-def test_get_default_config():
+def test_get_default_config() -> None:
     """Test get_default_config function."""
     cfg = config.get_default_config()
 
