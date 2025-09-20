@@ -6,8 +6,8 @@ import pytest
 import src.input_handler
 
 
-@fixture
-def new_board() -> Board:
+@pytest.fixture
+def new_board() -> chess.Board:
     """Returns a fresh chess board in the starting position."""
     return Board()
 
