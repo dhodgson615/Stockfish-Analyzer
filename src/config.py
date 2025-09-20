@@ -59,7 +59,7 @@ Config file format (JSON):
     "eval_depth": 20,
     "syzygy_path": "~/chess/syzygy"
 }
-        """
+        """,
     )
     
     # Engine binary settings
