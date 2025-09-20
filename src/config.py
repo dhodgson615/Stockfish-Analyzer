@@ -61,7 +61,7 @@ Config file format (JSON):
 }
         """,
     )
-    
+
     # Engine binary settings
     parser.add_argument(
         "--engine-path",
