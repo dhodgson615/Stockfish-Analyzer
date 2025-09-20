@@ -31,7 +31,7 @@ class EngineConfig:
 
     # Tablebase settings
     syzygy_path: str = "~/chess/syzygy"
-    
+
     def __post_init__(self) -> None:
         """Expand user paths after initialization."""
         self.syzygy_path = os.path.expanduser(self.syzygy_path)
