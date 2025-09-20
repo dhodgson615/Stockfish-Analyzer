@@ -64,7 +64,7 @@ def test_parse_config_cli_args():
         "--syzygy-path",
         "/custom/syzygy",
     ]
-    
+
     cfg = config.parse_config(args)
 
     assert cfg.engine_path == "/custom/engine"
