@@ -49,7 +49,10 @@ def test_play_game_simple_sequence(
     move_history: list[chess.Move] = []
 
     # Mock handle_user_input to return a checkmate sequence
-    moves = [from_uci(m) for m in ["f1c4", "f8c5", "d1f3", "g7g6", "f3f7"]]
+    moves = [
+        src.input_handler.from_uci(m)
+        for m in ["f1c4", "f8c5", "d1f3", "g7g6", "f3f7"]
+    ]
     move_iter = iter(moves)
 
     def mock_handle_input(_: Board) -> Move | None:
