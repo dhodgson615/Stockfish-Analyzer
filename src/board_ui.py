@@ -34,7 +34,6 @@ def display_progress(
     avg_time = elapsed / max(1, iteration)  # Avoid division by zero
     remaining_secs = avg_time * (total - iteration)
     mins, secs = divmod(int(remaining_secs), 60)
-
     filled = max(0, min(int(round(progress_ratio * bar_length)), bar_length))
     bar = "#" * filled + "-" * (bar_length - filled)
 
