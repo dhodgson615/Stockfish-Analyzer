@@ -9,7 +9,7 @@ def test_tablebase_functionality() -> None:
     tablebase = src.engine_handler.get_syzygy_tablebase()
 
     if not tablebase:
-        skip("Tablebase not found or loaded. Check installation.")
+        pytest.skip("Tablebase not found or loaded. Check installation.")
 
     try:
         board = Board("8/8/8/8/8/2k5/8/K3q3 w - - 0 1")
