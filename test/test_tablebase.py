@@ -22,7 +22,7 @@ def test_tablebase_functionality() -> None:
         assert wdl is not None, "WDL value should not be None"
         assert isinstance(wdl, int), "WDL should be an integer"
 
-        engine = get_engine()
+        engine = src.engine_handler.get_engine()
 
         try:
             moves = list(board.legal_moves)
