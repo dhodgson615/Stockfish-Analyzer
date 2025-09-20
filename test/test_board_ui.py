@@ -144,7 +144,9 @@ def test_print_game_result_fifty_moves() -> None:
             assert "Fifty-move rule" in output
 
 
-    assert board.is_insufficient_material()
+def test_print_game_result_threefold_repetition() -> None:
+    """Test print_game_result for threefold repetition."""
+    board = chess.Board()
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.print_game_result(board)
