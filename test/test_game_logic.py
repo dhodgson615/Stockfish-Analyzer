@@ -22,8 +22,8 @@ def test_sort_moves_by_evaluation() -> None:
         move3: (75, None),
     }
 
-    white_sorted = sort_moves_by_evaluation(moves_eval, True)
-    black_sorted = sort_moves_by_evaluation(moves_eval, False)
+    white_sorted = src.game_logic.sort_moves_by_evaluation(moves_eval, True)
+    black_sorted = src.game_logic.sort_moves_by_evaluation(moves_eval, False)
 
     assert white_sorted[0][0] == move1
     assert white_sorted[1][0] == move3
