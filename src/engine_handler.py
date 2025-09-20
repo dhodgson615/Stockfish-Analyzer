@@ -33,7 +33,7 @@ def get_syzygy_tablebase(
         return None
 
 
-def popen_uci(engine_path: str) -> SimpleEngine:
+def popen_uci(engine_path: str) -> chess.engine.SimpleEngine:
     """Attempt to open the UCI engine, handling potential errors.
     Returns the engine instance if successful.
     """
