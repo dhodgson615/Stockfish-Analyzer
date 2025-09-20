@@ -135,9 +135,9 @@ def test_get_syzygy_tablebase_exception() -> None:
 
 def test_get_engine_invalid_path() -> None:
     """Test that get_engine() raises an error for an invalid path."""
-    if not environ.get("CI"):
-        with raises((FileNotFoundError, OSError)):
-            get_engine("/nonexistent/engine/path")
+    if not os.environ.get("CI"):
+        with pytest.raises((FileNotFoundError, OSError)):
+            src.engine_handler.get_engine("/nonexistent/engine/path")
 
 
 def test_try_tablebase_evaluation_win() -> None:
