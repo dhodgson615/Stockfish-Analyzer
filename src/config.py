@@ -130,7 +130,7 @@ def load_config_file(config_path: str) -> Dict[str, Any]:
             EngineConfig.__dataclass_fields__.keys()
         )  # TODO: fix whatever nresolved attribute reference '__dataclass_fields__' for class 'EngineConfig' is
         invalid_fields = set(config_data.keys()) - valid_fields
-        
+
         if invalid_fields:
             print(f"Warning: Unknown config fields will be ignored: {invalid_fields}")
             # Remove invalid fields
