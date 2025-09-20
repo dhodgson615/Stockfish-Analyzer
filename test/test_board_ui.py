@@ -67,7 +67,7 @@ def test_display_progress() -> None:
 def test_show_mate_info() -> None:
     """Test show_mate_info function."""
     # Create a real move and score data
-    move = src.input_handler.from_uci("e2e4")
+    move = chess.Move.from_uci("e2e4")
 
     # Explicitly annotate the type to allow for None values
     best_move_data_with_mate: tuple[
