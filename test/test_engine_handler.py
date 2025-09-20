@@ -164,7 +164,7 @@ def test_try_tablebase_evaluation_none_wdl() -> None:
     board = chess.Board()
     mock_tablebase = unittest.mock.MagicMock()
     mock_tablebase.get_wdl.return_value = None
-    result = try_tablebase_evaluation(board, mock_tablebase)
+    result = src.engine_handler.try_tablebase_evaluation(board, mock_tablebase)
 
     assert result is None
 
