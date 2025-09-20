@@ -28,7 +28,7 @@ def test_parse_move_input_san() -> None:
 
 
 def test_parse_move_input_uci() -> None:
-    board = Board()
+    board = chess.Board()
 
     # Test UCI parsing
     result = parse_move_input(board, "e2e4")
