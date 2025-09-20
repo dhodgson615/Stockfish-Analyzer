@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from time import time
+import time
 
 from chess import Board, Move
 from chess.syzygy import Tablebase
