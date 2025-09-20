@@ -77,8 +77,10 @@ def test_show_mate_info() -> None:
         (100, 3),
     )
 
-    with StringIO() as buf, redirect_stdout(buf):
-        show_mate_info(best_move_data_with_mate, True)  # White's turn
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        src.board_ui.show_mate_info(
+            best_move_data_with_mate, True
+        )  # White's turn
         assert "Mate in 3" in buf.getvalue()
 
     # Test with no mate - using a new variable to avoid type confusion
