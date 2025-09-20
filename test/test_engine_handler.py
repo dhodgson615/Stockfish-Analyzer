@@ -86,7 +86,7 @@ def test_get_move_evals_simple_position(engine_path: str) -> None:
     engine = src.engine_handler.get_engine(engine_path)
 
     try:
-        board = Board()
+        board = chess.Board()
         moves = [move for move in list(board.legal_moves)[:2]]
         evals = get_limited_evals(board, engine, moves)
 
