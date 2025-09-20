@@ -12,7 +12,7 @@ from pathlib import Path
 class TestSetupScript(unittest.TestCase):
     """Test the setup.sh script functionality."""
 
-    def setUp(self):
+    def setUp(self) -> None:
         """Set up test environment."""
         self.test_dir = Path(__file__).parent.parent
         self.setup_script = self.test_dir / "scripts" / "setup.sh"
