@@ -42,7 +42,7 @@ class TestSetupScript(unittest.TestCase):
                 "hash_size": 16384,
                 "skill_level": 20,
                 "eval_depth": 18,
-                "syzygy_path": f"{Path.home()}/chess/syzygy"
+                "syzygy_path": f"{Path.home()}/chess/syzygy",
             }
             
             with open(config_path, 'w') as f:
