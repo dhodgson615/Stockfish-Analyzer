@@ -85,7 +85,7 @@ class TestSetupScript(unittest.TestCase):
             text=True,
             cwd=self.test_dir,
         )
-        
+
         # Should return either 'linux', 'macos', or 'unknown'
         output = result.stdout.strip()
         self.assertIn(output, ["linux", "macos", "unknown"])
