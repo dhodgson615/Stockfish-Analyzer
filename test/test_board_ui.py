@@ -24,11 +24,40 @@ def test_print_board_with_clear() -> None:
     original_value = src.board_ui.CLEAR_BEFORE_PRINT
     src.board_ui.CLEAR_BEFORE_PRINT = True
 
-def test_print_game_result_checkmate_black_wins(
-    checkmate_board: chess.Board,
-) -> None:
-    """Test print_game_result() for a checkmate scenario."""
-    # The checkmate_board fixture has White checkmated (Black wins)
+    with unittest.mock.patch("src.board_ui.clear_terminal") as mock_clear:
+        with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+            src.board_ui.print_board(board)
+            output = buf.getvalue()
+
+        mock_clear.assert_called_once()
+        assert "♜" in output or "♖" in output  # Verify board was printed
+
+    # Restore original value
+    src.board_ui.CLEAR_BEFORE_PRINT = original_value
+
+
+def test_print_board_without_clear() -> None:
+    """Test print_board with CLEAR_BEFORE_PRINT disabled."""
+    board = chess.Board()
+    original_value = src.board_ui.CLEAR_BEFORE_PRINT
+    src.board_ui.CLEAR_BEFORE_PRINT = False
+
+    with unittest.mock.patch("src.board_ui.clear_terminal") as mock_clear:
+        with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+            src.board_ui.print_board(board)
+            output = buf.getvalue()
+
+        mock_clear.assert_not_called()
+        assert "♜" in output or "♖" in output  # Verify board was printed
+
+    # Restore original value
+    src.board_ui.CLEAR_BEFORE_PRINT = original_value
+
+
+def test_display_progress_zero_iteration() -> None:
+    """Test display_progress with zero iterations (edge case)."""
+    start_time = time.time() - 10
+
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.print_game_result(checkmate_board)
         output = buf.getvalue()
