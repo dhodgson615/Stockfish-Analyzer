@@ -3,7 +3,7 @@ from __future__ import annotations
 import functools
 import sys
 
-from chess import Board, Move
+import chess
 
 
 @lru_cache(maxsize=None)
