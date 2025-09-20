@@ -178,7 +178,7 @@ def parse_config(args: Optional[list[str]] = None) -> EngineConfig:
 
     Returns:
         EngineConfig object with all settings resolved.
-        
+
     Precedence order (highest to lowest):
     1. Command-line arguments
     2. Config file settings (if --config specified)
