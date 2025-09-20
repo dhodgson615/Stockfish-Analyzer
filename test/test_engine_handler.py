@@ -303,7 +303,7 @@ def test_get_dynamic_eval_depth_middlegame() -> None:
 
     # This is still opening (move 8, 30 pieces) -> opening depth
     assert depth == 14  # Opening depth
-    
+
     # Test a position that reaches late opening (move 12-15, many pieces)
     middlegame_fen = "r1bq1rk1/pp3ppp/2n1pn2/3p4/3P4/2N1PN2/PP3PPP/R1BQKB1R w KQ - 0 12"
     late_opening_board = chess.Board(middlegame_fen)
