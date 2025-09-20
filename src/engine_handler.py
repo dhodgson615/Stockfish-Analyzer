@@ -33,20 +33,6 @@ def get_syzygy_tablebase(
         return None
 
 
-def popen_uci(engine_path: str) -> chess.engine.SimpleEngine:
-    """Attempt to open the UCI engine, handling potential errors.
-    Returns the engine instance if successful.
-    """
-    try:
-        return chess.engine.SimpleEngine.popen_uci(engine_path)
-
-    except FileNotFoundError:
-        raise FileNotFoundError(f"Engine not found at {engine_path}")
-
-    except Exception as e:
-        raise RuntimeError(f"Failed to start engine: {e}")
-
-
 def get_engine(
     engine_path: str = ENGINE_PATH,
     threads: int = 4,
