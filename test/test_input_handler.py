@@ -38,7 +38,6 @@ def test_handle_user_input_valid_move(monkeypatch: pytest.MonkeyPatch) -> None:
     """Test handle_user_input with a valid move."""
     board = chess.Board()
     monkeypatch.setattr("builtins.input", lambda _: "e4")
-
     result = src.input_handler.handle_user_input(board)
     expected = chess.Move.from_uci("e2e4")
 
