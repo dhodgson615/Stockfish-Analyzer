@@ -9,11 +9,8 @@ import chess
 import chess.engine
 import pytest
 
-from src.engine_handler import (EVAL_DEPTH, evaluate_move, get_engine,
-                                get_engine_evaluation, get_move_evals,
-                                get_syzygy_tablebase, popen_uci,
-                                try_tablebase_evaluation)
-from src.input_handler import from_uci
+import src.engine_handler
+import src.input_handler
 
 STOCKFISH_PATH = "/opt/homebrew/bin/stockfish"
 PATH_NOT_FOUND = not path.exists(STOCKFISH_PATH)
