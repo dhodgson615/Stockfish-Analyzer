@@ -40,7 +40,7 @@ def test_print_game_result_stalemate() -> None:
 def test_print_game_result_insufficient_material() -> None:
     """Test print_game_result() for an insufficient material scenario."""
     # Create a position with insufficient material
-    board = Board("8/8/8/8/8/8/k7/K7 w - - 0 1")
+    board = chess.Board("8/8/8/8/8/8/k7/K7 w - - 0 1")
 
     assert board.is_insufficient_material()
 
