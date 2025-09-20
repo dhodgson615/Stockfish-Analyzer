@@ -94,7 +94,7 @@ def test_save_and_load_config_file():
     """Test saving and loading configuration files."""
     with tempfile.TemporaryDirectory() as temp_dir:
         config_path = os.path.join(temp_dir, "test_config.json")
-        
+
         # Create a custom config
         original_cfg = config.EngineConfig(
             engine_path="/test/engine",
