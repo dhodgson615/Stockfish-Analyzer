@@ -59,7 +59,7 @@ def test_display_progress_zero_iteration() -> None:
     start_time = time.time() - 10
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
-        src.board_ui.print_game_result(checkmate_board)
+        src.board_ui.display_progress(0, 10, start_time, 20)
         output = buf.getvalue()
         assert "Checkmate! Winner: Black" in output
 
