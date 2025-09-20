@@ -90,9 +90,11 @@ class TestSetupScript(unittest.TestCase):
         output = result.stdout.strip()
         self.assertIn(output, ['linux', 'macos', 'unknown'])
         self.assertEqual(result.returncode, 0)
-    
-    def test_existing_download_script_integration(self):
-        """Test that the setup script can find the existing download script."""
+
+    def test_existing_download_script_integration(self) -> None:
+        """Test that the setup script can find the existing download
+        script.
+        """
         download_script = self.test_dir / "scripts" / "download_syzygy.sh"
         self.assertTrue(download_script.exists(), 
                        "download_syzygy.sh should exist for integration")
