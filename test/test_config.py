@@ -75,7 +75,7 @@ def test_parse_config_cli_args() -> None:
     assert cfg.syzygy_path == "/custom/syzygy"
 
 
-def test_parse_config_skill_level_validation():
+def test_parse_config_skill_level_validation() -> None:
     """Test that skill level is validated correctly."""
     # Valid skill level
     cfg = config.parse_config(["--skill-level", "10"])
