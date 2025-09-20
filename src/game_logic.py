@@ -26,9 +26,7 @@ def sort_moves_by_evaluation(
         """Key function for sorting moves. Takes (Move, (score,
         mate_value)) and returns score for sorting.
         """
-        move, (score, _) = item
-
-        return score if score is not None else 0
+        return item[1][0] if item[1][0] is not None else 0
 
     moves_list = list(moves_eval.items())
 
