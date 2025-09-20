@@ -311,7 +311,7 @@ def test_get_dynamic_eval_depth_middlegame() -> None:
     late_opening_board = chess.Board(middlegame_fen)
 
     depth_lo = src.engine_handler.get_dynamic_eval_depth(late_opening_board)
-    
+
     # Move 12 with 26 pieces -> late opening depth
     assert depth_lo == 16  # Late opening depth
     
