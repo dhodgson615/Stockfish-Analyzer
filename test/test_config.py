@@ -87,7 +87,7 @@ def test_parse_config_skill_level_validation():
         config.parse_config(["--skill-level", "21"])
 
     with pytest.raises(SystemExit):
-        config.parse_config(['--skill-level', '-1'])
+        config.parse_config(["--skill-level", "-1"])
 
 
 def test_save_and_load_config_file():
