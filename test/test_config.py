@@ -78,7 +78,8 @@ def test_parse_config_cli_args():
 def test_parse_config_skill_level_validation():
     """Test that skill level is validated correctly."""
     # Valid skill level
-    cfg = config.parse_config(['--skill-level', '10'])
+    cfg = config.parse_config(["--skill-level", "10"])
+
     assert cfg.skill_level == 10
     
     # Invalid skill level should raise SystemExit (argparse error)
