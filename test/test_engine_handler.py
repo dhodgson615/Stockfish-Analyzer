@@ -203,7 +203,9 @@ def test_get_engine_evaluation() -> None:
     mock_score.white.return_value.score.return_value = 42
     mock_score.white.return_value.mate.return_value = None
     mock_engine.analyse.return_value = {"score": mock_score}
-    score, mate = get_engine_evaluation(board, mock_engine, EVAL_DEPTH)
+    score, mate = src.engine_handler.get_engine_evaluation(
+        board, mock_engine, src.engine_handler.EVAL_DEPTH
+    )
 
     assert score == 42
     assert mate is None
