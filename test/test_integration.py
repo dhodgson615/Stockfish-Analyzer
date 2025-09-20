@@ -7,9 +7,9 @@ import os
 import chess
 import pytest
 
-from src.engine_handler import popen_uci
-from src.game_logic import play_game
-from src.input_handler import from_uci
+import src.engine_handler
+import src.game_logic
+import src.input_handler
 
 """TODO: Consider removing this because there is no point in running
 tests without the engine"""
