@@ -223,7 +223,7 @@ def test_print_tablebase_info_io_error() -> None:
     mock_tablebase.get_wdl.side_effect = IOError("Test IO error")
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
-        src.board_ui.print_game_over_info(checkmate_board, move_history)
+        src.board_ui.print_tablebase_info(board, mock_tablebase)
         output = buf.getvalue()
 
         assert "Game Over!" in output
