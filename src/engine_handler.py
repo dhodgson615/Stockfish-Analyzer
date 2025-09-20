@@ -180,6 +180,10 @@ def get_move_evals(
         )
 
     # Clear progress bar
-    print("\r" + " " * get_terminal_size().columns + "\r", end="", flush=True)
+    print(
+        "\r" + " " * shutil.get_terminal_size().columns + "\r",
+        end="",
+        flush=True,
+    )
 
     return moves_evaluations
