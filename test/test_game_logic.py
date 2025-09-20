@@ -94,9 +94,13 @@ def test_evaluate_and_show_moves_uses_dynamic_depth() -> None:
     mock_engine = unittest.mock.MagicMock()
     
     # Track the depth parameter passed to get_move_evals
-    with unittest.mock.patch("src.engine_handler.get_move_evals") as mock_get_evals:
-        mock_get_evals.return_value = {chess.Move.from_uci("e2e4"): (100, None)}
-        
+    with unittest.mock.patch(
+        "src.engine_handler.get_move_evals"
+    ) as mock_get_evals:
+        mock_get_evals.return_value = {
+            chess.Move.from_uci("e2e4"): (100, None)
+        }
+
         # Mock the UI functions
         with unittest.mock.patch(
             "src.board_ui.print_tablebase_info"
