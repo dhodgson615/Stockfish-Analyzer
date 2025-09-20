@@ -5,6 +5,7 @@ import io
 import os
 
 import chess
+import chess.engine
 import pytest
 
 import src.engine_handler
