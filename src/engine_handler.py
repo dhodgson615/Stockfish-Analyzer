@@ -8,7 +8,7 @@ import chess
 import chess.engine
 import chess.syzygy
 
-from src.board_ui import display_progress
+import src.board_ui
 
 EVAL_DEPTH = 18
 ENGINE_PATH = "/opt/homebrew/bin/stockfish"
