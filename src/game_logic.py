@@ -33,8 +33,10 @@ def sort_moves_by_evaluation(
 
 
 def evaluate_and_show_moves(
-    board: Board, engine: SimpleEngine, tablebase: Tablebase | None = None
-) -> tuple[dict[Move, tuple[int | None, int | None]], float]:
+    board: chess.Board,
+    engine: chess.engine.SimpleEngine,
+    tablebase: chess.syzygy.Tablebase | None = None,
+) -> tuple[dict[chess.Move, tuple[int | None, int | None]], float]:
     """Evaluate moves and display them with timing information. Returns
     a tuple containing the moves evaluation dictionary and the time
     taken for the evaluation.
