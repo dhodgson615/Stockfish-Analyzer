@@ -5,7 +5,7 @@ import io
 import time
 import unittest.mock
 
-from chess import Board, Move
+import chess
 
 from src.board_ui import (display_progress, print_board, print_game_over_info,
                           print_game_result, print_move_history,
