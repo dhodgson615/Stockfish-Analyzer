@@ -349,6 +349,6 @@ def test_get_dynamic_eval_depth_transition() -> None:
     # Position with medium piece count (around 12-16 pieces)
     board = chess.Board("r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1")
     depth = src.engine_handler.get_dynamic_eval_depth(board)
-    
+
     # Should be endgame depth since only 6 pieces
     assert depth == 25
