@@ -18,7 +18,7 @@ def test_from_uci_invalid() -> None:
 
 
 def test_parse_move_input_san() -> None:
-    board = Board()
+    board = chess.Board()
 
     # Test SAN parsing
     result = parse_move_input(board, "e4")
