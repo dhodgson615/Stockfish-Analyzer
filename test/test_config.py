@@ -212,7 +212,7 @@ def test_load_config_file_invalid_fields():
         
         # Should not raise error, but filter invalid fields
         loaded_data = config.load_config_file(config_path)
-        
+
         assert "threads" in loaded_data
         assert "invalid_field" not in loaded_data
         assert "another_invalid" not in loaded_data
