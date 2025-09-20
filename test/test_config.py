@@ -160,12 +160,9 @@ def test_parse_config_cli_overrides_file():
         config_path = os.path.join(temp_dir, "test.json")
 
         # Create config file
-        config_data = {
-            "threads": 4,
-            "eval_depth": 15
-        }
-        
-        with open(config_path, 'w') as f:
+        config_data = {"threads": 4, "eval_depth": 15}
+
+        with open(config_path, "w") as f:
             json.dump(config_data, f)
         
         # Parse with CLI override
