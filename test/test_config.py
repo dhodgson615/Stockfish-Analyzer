@@ -204,7 +204,7 @@ def test_load_config_file_invalid_fields():
         config_data = {
             "threads": 8,
             "invalid_field": "should_be_ignored",
-            "another_invalid": 123
+            "another_invalid": 123,
         }
 
         with open(config_path, "w") as f:
