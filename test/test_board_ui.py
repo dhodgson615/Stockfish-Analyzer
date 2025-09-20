@@ -255,8 +255,8 @@ def test_print_tablebase_info_index_error() -> None:
         assert output == ""  # Should handle exception silently
 
 
-def test_print_board() -> None:
-    """Test print_board function."""
+def test_print_tablebase_info_none_tablebase() -> None:
+    """Test print_tablebase_info with None tablebase."""
     board = chess.Board()
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
