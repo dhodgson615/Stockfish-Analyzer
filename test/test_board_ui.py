@@ -18,6 +18,11 @@ def test_clear_terminal() -> None:
         assert output == "\033c"
 
 
+def test_print_board_with_clear() -> None:
+    """Test print_board with CLEAR_BEFORE_PRINT enabled."""
+    board = chess.Board()
+    original_value = src.board_ui.CLEAR_BEFORE_PRINT
+    src.board_ui.CLEAR_BEFORE_PRINT = True
 
 def test_print_game_result_checkmate_black_wins(
     checkmate_board: chess.Board,
