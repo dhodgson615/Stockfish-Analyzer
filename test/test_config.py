@@ -185,7 +185,7 @@ def test_load_config_file_not_found() -> None:
         config.load_config_file("/nonexistent/config.json")
 
 
-def test_load_config_file_invalid_json():
+def test_load_config_file_invalid_json() -> None:
     """Test loading invalid JSON raises error."""
     with tempfile.TemporaryDirectory() as temp_dir:
         config_path = os.path.join(temp_dir, "invalid.json")
