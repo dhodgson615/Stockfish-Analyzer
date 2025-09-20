@@ -44,7 +44,6 @@ def evaluate_and_show_moves(
     """
     start_time = time()
 
-    # Print tablebase info for current position
     if tablebase:
         print_tablebase_info(board, tablebase)
 
