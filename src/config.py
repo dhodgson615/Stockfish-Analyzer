@@ -189,7 +189,7 @@ def parse_config(args: Optional[list[str]] = None) -> EngineConfig:
 
     # Start with default configuration
     config = EngineConfig()
-    
+
     # Load config file if specified
     if parsed_args.config:
         try:
