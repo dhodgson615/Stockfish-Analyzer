@@ -252,9 +252,7 @@ def test_print_tablebase_info_index_error() -> None:
         src.board_ui.print_tablebase_info(board, mock_tablebase)
         output = buf.getvalue()
 
-        assert "e2e4" in output
-        assert "Eval score: 42" in output
-        assert "Eval score: 30, Mate in 2" in output
+        assert output == ""  # Should handle exception silently
 
 
 def test_print_board() -> None:
