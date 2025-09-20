@@ -130,9 +130,9 @@ def try_tablebase_evaluation(
         else (-1000000 - (mate_val or 0))
     )
 
-        # Filter out unreasonable mate values
-        if abs(mate_val or 0) >= 1000:
-            mate_val = None
+    # Filter out unreasonable mate values
+    if abs(mate_val or 0) >= 1000:
+        mate_val = None
 
         return score, mate_val
 
