@@ -251,3 +251,85 @@ def test_get_move_evals_with_mock() -> None:
 
         # Verify we have evaluations for all legal moves
         assert len(result) == len(list(board.legal_moves))
+
+
+def test_get_dynamic_eval_depth_opening() -> None:
+    """Test dynamic depth calculation for opening positions."""
+    # Starting position - should use opening depth
+    board = chess.Board()
+    depth = src.engine_handler.get_dynamic_eval_depth(board)
+    
+    assert depth == 14  # Opening depth
+    
+    # After a few moves, still opening
+    board.push_san("e4")
+    board.push_san("e5")
+    board.push_san("Nf3")
+    board.push_san("Nc6")
+    depth = src.engine_handler.get_dynamic_eval_depth(board)
+    
+    assert depth == 14  # Still opening
+
+
+def test_get_dynamic_eval_depth_middlegame() -> None:
+    """Test dynamic depth calculation for middlegame-like positions."""
+    # Test opening position (move 8, many pieces)
+    board = chess.Board()
+    
+    # Simulate moves - this is still opening according to our logic
+    moves = ["e4", "e5", "Nf3", "Nc6", "Bb5", "a6", "Ba4", "Nf6", 
+             "O-O", "Be7", "Re1", "b5", "Bb3", "d6", "c3", "O-O"]
+    
+    for move in moves:
+        board.push_san(move)
+    
+    depth = src.engine_handler.get_dynamic_eval_depth(board)
+    
+    # This is still opening (move 8, 30 pieces) -> opening depth
+    assert depth == 14  # Opening depth
+    
+    # Test a position that reaches late opening (move 12-15, many pieces)
+    middlegame_fen = "r1bq1rk1/pp3ppp/2n1pn2/3p4/3P4/2N1PN2/PP3PPP/R1BQKB1R w KQ - 0 12"
+    late_opening_board = chess.Board(middlegame_fen)
+    
+    depth_lo = src.engine_handler.get_dynamic_eval_depth(late_opening_board)
+    
+    # Move 12 with 26 pieces -> late opening depth
+    assert depth_lo == 16  # Late opening depth
+    
+    # Test true middlegame (move 20+, many pieces)
+    middlegame_fen = "r1bq1rk1/pp3ppp/2n1pn2/3p4/3P4/2N1PN2/PP3PPP/R1BQKB1R w KQ - 0 20"
+    middlegame_board = chess.Board(middlegame_fen)
+    
+    depth_mg = src.engine_handler.get_dynamic_eval_depth(middlegame_board)
+    
+    # Move 20 with 26 pieces -> middlegame depth
+    assert depth_mg == 20  # True middlegame depth
+
+
+def test_get_dynamic_eval_depth_endgame() -> None:
+    """Test dynamic depth calculation for endgame positions."""
+    # Create an endgame position with few pieces
+    board = chess.Board("8/8/8/8/8/K1k5/8/8 w - - 0 1")  # King vs King
+    
+    depth = src.engine_handler.get_dynamic_eval_depth(board)
+    
+    assert depth == 25  # Very few pieces, deepest search
+    
+    # Test with slightly more pieces
+    board = chess.Board("8/8/8/8/8/K1k5/1P1p4/8 w - - 0 1")  # Kings + pawns
+    
+    depth = src.engine_handler.get_dynamic_eval_depth(board)
+    
+    assert depth >= 22  # Still endgame but with a few more pieces
+
+
+def test_get_dynamic_eval_depth_transition() -> None:
+    """Test dynamic depth calculation for transitional positions."""
+    # Position with medium piece count (around 12-16 pieces)
+    board = chess.Board("r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1")
+    
+    depth = src.engine_handler.get_dynamic_eval_depth(board)
+    
+    # Should be endgame depth since only 6 pieces
+    assert depth == 25

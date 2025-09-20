@@ -15,9 +15,45 @@ except ImportError:
     import src.board_ui as board_ui
 
 
-EVAL_DEPTH = 18
+EVAL_DEPTH = 18  # Default depth, used as fallback
 ENGINE_PATH = "/opt/homebrew/bin/stockfish"
 SYZYGY_PATH = os.path.expanduser("~/chess/syzygy")
+
+
+def get_dynamic_eval_depth(board: chess.Board) -> int:
+    """Determine the appropriate evaluation depth based on game stage.
+    
+    Game stages are determined by:
+    - Piece count: More pieces = earlier stage
+    - Move count: More moves = later stage
+    
+    Returns:
+        Opening (early game): 12-15 depth (faster evaluation)
+        Middlegame: 18-20 depth (balanced approach) 
+        Endgame: 20-25 depth (deeper search, fewer pieces)
+    """
+    # Count pieces on the board (excluding kings)
+    piece_count = len(board.piece_map()) - 2  # Subtract 2 kings
+    move_count = board.fullmove_number
+    
+    # Endgame: Few pieces remaining (typically <= 10 pieces)
+    if piece_count <= 10:
+        if piece_count <= 6:
+            return 25  # Very few pieces, can search deeply
+        else:
+            return 22  # Transitioning to endgame
+    
+    # Opening: Many pieces, early moves (first 10 moves)
+    elif move_count <= 10 and piece_count >= 20:
+        return 14  # Fast evaluation in opening
+    
+    # Late opening/early middlegame
+    elif move_count <= 15 and piece_count >= 16:
+        return 16
+    
+    # Middlegame: Most complex phase
+    else:
+        return 20  # Slightly deeper than default for tactical precision
 
 
 def get_syzygy_tablebase(

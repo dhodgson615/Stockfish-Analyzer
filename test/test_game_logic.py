@@ -3,6 +3,7 @@ from __future__ import annotations
 import contextlib
 import io
 import os
+import unittest.mock
 
 import chess
 import pytest
@@ -85,3 +86,28 @@ def test_evaluate_and_show_moves_timing(
         assert eval_time >= 0
         assert len(moves_eval) == 1
         assert "Evaluation time:" in output
+
+
+def test_evaluate_and_show_moves_uses_dynamic_depth() -> None:
+    """Test that evaluate_and_show_moves uses dynamic depth instead of fixed depth."""
+    board = chess.Board()
+    mock_engine = unittest.mock.MagicMock()
+    
+    # Track the depth parameter passed to get_move_evals
+    with unittest.mock.patch("src.engine_handler.get_move_evals") as mock_get_evals:
+        mock_get_evals.return_value = {chess.Move.from_uci("e2e4"): (100, None)}
+        
+        # Mock the UI functions
+        with unittest.mock.patch("src.board_ui.print_tablebase_info"), \
+             unittest.mock.patch("src.board_ui.print_possible_moves"), \
+             unittest.mock.patch("src.board_ui.show_mate_info"):
+            
+            with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+                src.game_logic.evaluate_and_show_moves(board, mock_engine)
+        
+        # Verify get_move_evals was called with dynamic depth
+        mock_get_evals.assert_called_once()
+        call_args = mock_get_evals.call_args
+        
+        # The depth should be the dynamic depth for starting position (14)
+        assert call_args.kwargs["depth"] == 14
