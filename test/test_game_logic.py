@@ -98,10 +98,14 @@ def test_evaluate_and_show_moves_uses_dynamic_depth() -> None:
         mock_get_evals.return_value = {chess.Move.from_uci("e2e4"): (100, None)}
         
         # Mock the UI functions
-        with unittest.mock.patch("src.board_ui.print_tablebase_info"), \
-             unittest.mock.patch("src.board_ui.print_possible_moves"), \
-             unittest.mock.patch("src.board_ui.show_mate_info"):
-            
+        with unittest.mock.patch(
+            "src.board_ui.print_tablebase_info"
+        ), unittest.mock.patch(
+            "src.board_ui.print_possible_moves"
+        ), unittest.mock.patch(
+            "src.board_ui.show_mate_info"
+        ):
+
             with io.StringIO() as buf, contextlib.redirect_stdout(buf):
                 src.game_logic.evaluate_and_show_moves(board, mock_engine)
 
