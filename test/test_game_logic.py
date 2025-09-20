@@ -71,6 +71,7 @@ def test_evaluate_and_show_moves_timing(
         mp.setattr(
             "src.board_ui.print_tablebase_info", mock_print_tablebase_info
         )
+
         mp.setattr(
             "src.board_ui.print_possible_moves", mock_print_possible_moves
         )
