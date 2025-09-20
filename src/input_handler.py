@@ -34,7 +34,7 @@ def parse_move_input(board: chess.Board, user_input: str) -> chess.Move | None:
             return None
 
 
-def handle_user_input(board: Board) -> Move | None:
+def handle_user_input(board: chess.Board) -> chess.Move | None:
     """Handles user input for making moves. Returns a valid Move object
     or None if the input is invalid.
     """
