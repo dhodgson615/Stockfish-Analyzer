@@ -95,6 +95,7 @@ def test_print_possible_moves_empty() -> None:
 def test_print_possible_moves_with_none_values() -> None:
     """Test print_possible_moves with None score values."""
     move = chess.Move.from_uci("e2e4")
+
     moves_data: list[tuple[chess.Move, tuple[int | None, int | None]]] = [
         (move, (None, None))
     ]
