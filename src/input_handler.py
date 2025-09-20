@@ -6,8 +6,8 @@ import sys
 import chess
 
 
-@lru_cache(maxsize=None)
-def from_uci(uci_str: str) -> Move:
+@functools.lru_cache(maxsize=None)
+def from_uci(uci_str: str) -> chess.Move:
     """Converts a UCI string to a chess Move object. Wraps
     Move.from_uci with error handling. Returns a Move object if
     successful, otherwise raises ValueError.
