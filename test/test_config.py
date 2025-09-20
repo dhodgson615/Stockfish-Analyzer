@@ -28,7 +28,7 @@ def test_engine_config_post_init() -> None:
     assert cfg.syzygy_path == os.path.expanduser("~/test/path")
 
 
-def test_create_argument_parser():
+def test_create_argument_parser() -> None:
     """Test that argument parser is created correctly."""
     parser = config.create_argument_parser()
 
