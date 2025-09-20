@@ -271,7 +271,9 @@ def test_get_move_evals_with_mock() -> None:
     mock_engine = unittest.mock.MagicMock(spec=chess.engine.SimpleEngine)
 
     # Create a mock evaluate_move function
-    with patch("src.engine_handler.evaluate_move") as mock_evaluate:
+    with unittest.mock.patch(
+        "src.engine_handler.evaluate_move"
+    ) as mock_evaluate:
         # Configure the mock to return different values for different moves
         def side_effect(
             board: Board,
