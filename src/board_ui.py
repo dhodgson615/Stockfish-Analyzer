@@ -79,7 +79,7 @@ def print_move_history(
     print()
 
 
-def print_game_result(board: Board) -> None:
+def print_game_result(board: chess.Board) -> None:
     """Print the game result based on the board state. Handles
     checkmate, stalemate, insufficient material, fifty-move rule, and
     threefold repetition.
