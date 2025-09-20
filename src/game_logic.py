@@ -44,7 +44,7 @@ def evaluate_and_show_moves(
     start_time = time.time()
 
     if tablebase:
-        print_tablebase_info(board, tablebase)
+        src.board_ui.print_tablebase_info(board, tablebase)
 
     moves_eval = get_move_evals(
         board, engine, depth=EVAL_DEPTH, tablebase=tablebase
