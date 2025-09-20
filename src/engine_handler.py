@@ -26,7 +26,7 @@ def get_dynamic_eval_depth(board: chess.Board) -> int:
     Game stages are determined by:
     - Piece count: More pieces = earlier stage
     - Move count: More moves = later stage
-    
+
     Returns:
         Opening (early game): 12-15 depth (faster evaluation)
         Middlegame: 18-20 depth (balanced approach) 
