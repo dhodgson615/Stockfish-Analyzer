@@ -290,7 +290,7 @@ def test_get_move_evals_with_mock() -> None:
         with unittest.mock.patch(
             "src.board_ui.display_progress"
         ):  # Avoid terminal output
-            result = get_move_evals(board, mock_engine)
+            result = src.engine_handler.get_move_evals(board, mock_engine)
 
         # Verify we have evaluations for all legal moves
         assert len(result) == len(list(board.legal_moves))
