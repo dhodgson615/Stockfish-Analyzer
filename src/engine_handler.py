@@ -94,8 +94,8 @@ def try_tablebase_evaluation(
 ) -> (
     tuple[int | None, int | None] | None
 ):  # TODO: Refactor this to use lru_cache
-    """Attempts to evaluate position using Syzygy tablebases. Returns
-    (score, mate_value) tuple if successful, None otherwise.
+    """Attempts to evaluate the position using the Syzygy tablebase.
+    Returns (score, mate_value) tuple if successful, otherwise None.
     """
     if not tablebase:
         return None
