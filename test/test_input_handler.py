@@ -87,4 +87,13 @@ def test_handle_user_input_illegal_move(
     assert result is None
     assert "Illegal move" in output
 
-    assert move is None
+
+def test_handle_user_input_quit_command(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Test handle_user_input with quit command."""
+    board = chess.Board()
+    monkeypatch.setattr("builtins.input", lambda _: "quit")
+
+    with pytest.raises(SystemExit):
+        src.input_handler.handle_user_input(board)
