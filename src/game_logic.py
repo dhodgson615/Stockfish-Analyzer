@@ -41,7 +41,7 @@ def evaluate_and_show_moves(
     a tuple containing the moves evaluation dictionary and the time
     taken for the evaluation.
     """
-    start_time = time()
+    start_time = time.time()
 
     if tablebase:
         print_tablebase_info(board, tablebase)
