@@ -61,7 +61,7 @@ def evaluate_and_show_moves(
     src.board_ui.print_possible_moves(sorted_moves)
 
     if sorted_moves:
-        src.board_ui.show_mate_info(sorted_moves[0], board.turn)
+        board_ui.show_mate_info(sorted_moves[0], board.turn)
 
     print(f"\nEvaluation time: {eval_time:.2f} sec\n")
 
