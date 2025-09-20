@@ -15,8 +15,8 @@ def main() -> None:
     print("Tablebases loaded" if tablebase else "Tablebases not available")
 
     try:
-        play_game(board, engine, move_history, tablebase)
-        print_game_over_info(board, move_history)
+        src.game_logic.play_game(board, engine, move_history, tablebase)
+        src.board_ui.print_game_over_info(board, move_history)
 
         if tablebase:
             print_tablebase_info(board, tablebase)
