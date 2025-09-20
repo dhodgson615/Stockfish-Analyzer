@@ -4,8 +4,8 @@ import contextlib
 import io
 import os
 
-from chess import Board, Move
-from pytest import MonkeyPatch, fail, importorskip, mark, skip
+import chess
+import pytest
 
 from src.engine_handler import popen_uci
 from src.game_logic import play_game
