@@ -267,7 +267,7 @@ def test_get_dynamic_eval_depth_opening() -> None:
     board.push_san("Nf3")
     board.push_san("Nc6")
     depth = src.engine_handler.get_dynamic_eval_depth(board)
-    
+
     assert depth == 14  # Still opening
 
 
