@@ -226,10 +226,7 @@ def test_print_tablebase_info_io_error() -> None:
         src.board_ui.print_tablebase_info(board, mock_tablebase)
         output = buf.getvalue()
 
-        assert "Game Over!" in output
-        assert "Checkmate! Winner: Black" in output
-        assert "1. f2f3" in output
-        assert "4. d8h4" in output
+        assert output == ""  # Should handle exception silently
 
 
 def test_print_move_history() -> None:
