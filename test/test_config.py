@@ -131,7 +131,7 @@ def test_parse_config_with_config_file():
     """Test parsing with config file."""
     with tempfile.TemporaryDirectory() as temp_dir:
         config_path = os.path.join(temp_dir, "test.json")
-        
+
         # Create config file
         config_data = {
             "engine_path": "/file/engine",
