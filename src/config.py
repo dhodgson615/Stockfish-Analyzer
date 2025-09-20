@@ -142,7 +142,7 @@ def load_config_file(config_path: str) -> Dict[str, Any]:
             }
 
         return config_data
-        
+
     except FileNotFoundError:
         raise FileNotFoundError(f"Config file not found: {config_path}")
     except json.JSONDecodeError as e:
