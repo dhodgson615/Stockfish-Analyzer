@@ -82,11 +82,6 @@ def check_indentation(file_path: str) -> List[int]:
         if not curr_line.strip() or not prev_line.strip():
             continue
 
-        # Skip if previous line is blank
-        if not prev_line.strip():
-            continue
-
-        # Calculate indentation levels
         prev_indent = len(prev_line) - len(prev_line.lstrip())
         curr_indent = len(curr_line) - len(curr_line.lstrip())
 
