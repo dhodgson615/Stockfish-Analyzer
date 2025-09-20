@@ -4,7 +4,7 @@ import io
 import chess
 import pytest
 
-from src.input_handler import from_uci, handle_user_input, parse_move_input
+import src.input_handler
 
 
 def test_from_uci_valid() -> None:
