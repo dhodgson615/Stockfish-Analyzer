@@ -49,7 +49,7 @@ def evaluate_and_show_moves(
     """Evaluate moves and display them with timing information. Returns
     a tuple containing the moves evaluation dictionary and the time
     taken for the evaluation.
-    """
+    """  # FIXME: mixes evaluation logic with display logic (wrong module)
     start_time = time.time()
 
     if tablebase:
