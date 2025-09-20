@@ -241,12 +241,6 @@ def test_print_tablebase_info_value_error() -> None:
 
         assert output == ""  # Should handle exception silently
 
-def test_print_possible_moves() -> None:
-    """Test print_possible_moves function."""
-    # Create move objects first
-    move1 = chess.Move.from_uci("e2e4")
-    move2 = chess.Move.from_uci("d2d4")
-    move3 = chess.Move.from_uci("g1f3")
 
     # Create evaluation tuples with explicit types
     eval1: tuple[int | None, int | None] = (42, None)
