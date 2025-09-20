@@ -13,7 +13,7 @@ def from_uci(uci_str: str) -> chess.Move:
     successful, otherwise raises ValueError.
     """
     try:
-        return Move.from_uci(uci_str)
+        return chess.Move.from_uci(uci_str)
 
     except (ValueError, IndexError):
         raise ValueError(f"Invalid UCI string: {uci_str}")
