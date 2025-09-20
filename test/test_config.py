@@ -231,7 +231,7 @@ def test_save_config_creates_directory() -> None:
         assert os.path.exists(nested_path)
 
 
-def test_parse_config_save_config_exits():
+def test_parse_config_save_config_exits() -> None:
     """Test that --save-config option saves and exits."""
     with tempfile.TemporaryDirectory() as temp_dir:
         config_path = os.path.join(temp_dir, "save_test.json")
