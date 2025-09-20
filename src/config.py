@@ -148,6 +148,7 @@ def load_config_file(config_path: str) -> Dict[str, Any]:
 
     except json.JSONDecodeError as e:
         raise ValueError(f"Invalid JSON in config file {config_path}: {e}")
+
     except Exception as e:
         raise ValueError(f"Error reading config file {config_path}: {e}")
 
