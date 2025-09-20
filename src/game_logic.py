@@ -10,7 +10,9 @@ import src.engine_handler
 import src.input_handler
 
 
-def get_move_score(item: tuple[Move, tuple[int | None, int | None]]) -> int:
+def get_move_score(
+    item: tuple[chess.Move, tuple[int | None, int | None]],
+) -> int:
     """Key function for sorting moves. Takes (Move, (score, mate_value))
     and returns score for sorting.
     """
