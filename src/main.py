@@ -15,8 +15,8 @@ def main() -> None:
     """Main function to run the interactive chess game."""
     board = chess.Board()
     move_history: list[chess.Move] = []
-    engine = src.engine_handler.get_engine(src.engine_handler.ENGINE_PATH)
-    tablebase = src.engine_handler.get_syzygy_tablebase()
+    engine = engine_handler.get_engine(engine_handler.ENGINE_PATH)
+    tablebase = engine_handler.get_syzygy_tablebase()
 
     print("Tablebases loaded" if tablebase else "Tablebases not available")
 
