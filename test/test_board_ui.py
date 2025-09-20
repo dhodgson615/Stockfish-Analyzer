@@ -102,8 +102,8 @@ def test_print_game_over_info(checkmate_board: Board) -> None:
         chess.Move.from_uci(m) for m in ["f2f3", "e7e5", "g2g4", "d8h4"]
     ]
 
-    with StringIO() as buf, redirect_stdout(buf):
-        print_game_over_info(checkmate_board, move_history)
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        src.board_ui.print_game_over_info(checkmate_board, move_history)
         output = buf.getvalue()
 
         assert "Game Over!" in output
