@@ -47,7 +47,7 @@ def get_dynamic_eval_depth(board: chess.Board) -> int:
     # Opening: Many pieces, early moves (first 10 moves)
     elif move_count <= 10 and piece_count >= 20:
         return 14  # Fast evaluation in opening
-    
+
     # Late opening/early middlegame
     elif move_count <= 15 and piece_count >= 16:
         return 16
