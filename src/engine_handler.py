@@ -164,7 +164,7 @@ def get_move_evals(
 
         moves_evaluations[move_obj] = score_data
 
-        src.board_ui.display_progress(
+        board_ui.display_progress(
             i,
             len(list(board.legal_moves)),
             start_time,
