@@ -249,7 +249,7 @@ def test_popen_uci_file_not_found(
         src.engine_handler.popen_uci("nonexistent/path")
 
 
-@patch("src.engine_handler.SimpleEngine")
+@unittest.mock.patch("chess.engine.SimpleEngine")
 def test_popen_uci_general_exception(
     mock_simple_engine_class: MagicMock,
 ) -> None:
