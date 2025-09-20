@@ -124,7 +124,7 @@ def load_config_file(config_path: str) -> Dict[str, Any]:
     try:
         with open(config_path, "r") as f:
             config_data = cast(Dict[str, Any], json.load(f))
-        
+
         # Validate that all keys are valid EngineConfig fields
         valid_fields = set(EngineConfig.__dataclass_fields__.keys())
         invalid_fields = set(config_data.keys()) - valid_fields
