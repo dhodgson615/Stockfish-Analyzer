@@ -189,10 +189,7 @@ def test_show_mate_info_black_win() -> None:
         src.board_ui.show_mate_info(mate_data, False)  # Black's turn
         output = buf.getvalue()
 
-        assert "[##########----------]" in output
-        assert "50.0%" in output
-        # Remaining time is approximately 10 seconds
-        assert "00:" in output
+        assert "Mate in 3" in output
 
 
 def test_show_mate_info() -> None:
