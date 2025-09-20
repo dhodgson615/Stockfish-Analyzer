@@ -16,8 +16,8 @@ def test_print_game_result_checkmate_black_wins(
 ) -> None:
     """Test print_game_result() for a checkmate scenario."""
     # The checkmate_board fixture has White checkmated (Black wins)
-    with StringIO() as buf, redirect_stdout(buf):
-        print_game_result(checkmate_board)
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        src.board_ui.print_game_result(checkmate_board)
         output = buf.getvalue()
         assert "Checkmate! Winner: Black" in output
 
