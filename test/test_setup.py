@@ -50,7 +50,7 @@ class TestSetupScript(unittest.TestCase):
 
             # Verify the config file is valid
             self.assertTrue(config_path.exists())
-            
+
             with open(config_path) as f:
                 loaded_config = json.load(f)
             
