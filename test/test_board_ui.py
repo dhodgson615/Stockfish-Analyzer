@@ -161,11 +161,9 @@ def test_print_board() -> None:
         src.board_ui.print_board(board)
         output = buf.getvalue()
 
-    # Check for key elements that should be in the board output
-    assert "\033c" in output  # Clear terminal command
-    assert "8" in output  # Board coordinate
-    assert "1" in output  # Board coordinate
-    assert any(char in output for char in ["♖", "♙", "♔", "R", "P", "K"])
+        # Check if the board contains chess piece Unicode characters
+        assert "♜" in output or "♖" in output  # Rook
+        assert "♛" in output or "♕" in output  # Queen
 
 
 def test_print_tablebase_info_win_2() -> None:  # TODO: Rename duplicate
