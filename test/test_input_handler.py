@@ -65,6 +65,7 @@ def test_handle_user_input_illegal_move(
 ) -> None:
     """Test handle_user_input with a move that's illegal in the position."""
     board = chess.Board()
+
     # Use a move that parses correctly but is illegal in the starting position
     monkeypatch.setattr(
         "builtins.input", lambda _: "e2e5"
