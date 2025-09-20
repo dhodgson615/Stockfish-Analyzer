@@ -206,7 +206,7 @@ def parse_config(args: Optional[list[str]] = None) -> EngineConfig:
 
     # Override with command-line arguments (highest precedence)
     for key, value in vars(parsed_args).items():
-        if value is not None and key not in ['config', 'save_config']:
+        if value is not None and key not in ["config", "save_config"]:
             if hasattr(config, key):
                 setattr(config, key, value)
     
