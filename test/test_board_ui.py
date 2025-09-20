@@ -195,14 +195,7 @@ def test_show_mate_info_black_win() -> None:
 def test_show_mate_info_no_mate() -> None:
     """Test show_mate_info when no mate is found."""
     move = chess.Move.from_uci("e2e4")
-
-    # Explicitly annotate the type to allow for None values
-    best_move_data_with_mate: tuple[
-        chess.Move, tuple[int | None, int | None]
-    ] = (
-        move,
-        (100, 3),
-    )
+    no_mate_data = (move, (100, None))
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.show_mate_info(
