@@ -91,8 +91,8 @@ def test_show_mate_info() -> None:
         (100, None),
     )
 
-    with StringIO() as buf, redirect_stdout(buf):
-        show_mate_info(best_move_data_no_mate, True)
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        src.board_ui.show_mate_info(best_move_data_no_mate, True)
         assert buf.getvalue() == ""
 
 
