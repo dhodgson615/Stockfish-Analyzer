@@ -62,7 +62,9 @@ def test_play_game_simple_sequence(
         except StopIteration:
             return None
 
-    monkeypatch.setattr("src.game_logic.handle_user_input", mock_handle_input)
+    monkeypatch.setattr(
+        "src.input_handler.handle_user_input", mock_handle_input
+    )
 
     # Skip actual move evaluation to speed up testing
     def mock_evaluate(
