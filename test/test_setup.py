@@ -63,7 +63,7 @@ class TestSetupScript(unittest.TestCase):
 
     def test_setup_script_help_functions(self) -> None:
         """Test that the helper functions in the script work correctly."""
-        # Test the OS detection logic - extract just the function, not run the whole script
+        # Test the OS detection logic - extract just the function
         result = subprocess.run(
             ["bash", "-c", '''
             detect_os() {
