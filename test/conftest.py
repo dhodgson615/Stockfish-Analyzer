@@ -36,8 +36,24 @@ def sample_moves() -> list[chess.Move]:
 
 @pytest.fixture
 def engine_path() -> str:
-    """Returns path to Stockfish engine, skip tests if not found."""
-    filepath = "/usr/games/stockfish"
+    """Returns path to Stockfish engine, checking multiple common locations."""
+    # Check multiple possible locations for Stockfish on macOS
+    macos_paths = [
+        "/opt/homebrew/bin/stockfish",  # Apple Silicon Mac default
+        "/usr/local/bin/stockfish",  # Intel Mac default
+        "/opt/local/bin/stockfish",  # MacPorts location
+        os.path.expanduser("~/homebrew/bin/stockfish"),  # User Homebrew
+        "/usr/bin/stockfish",  # Uncommon but possible
+        "/usr/games/stockfish",  # Linux default
+    ]
+
+    # Check for common stockfish binary variations
+    binary_names = [
+        "stockfish",
+        "stockfish-16",
+        "stockfish-15",
+        "stockfish-14",
+    ]
 
     if not os.path.exists(filepath):
         pytest.skip("Stockfish engine not found. Skipping tests.")
