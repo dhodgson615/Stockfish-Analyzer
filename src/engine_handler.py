@@ -157,8 +157,8 @@ def get_move_evals(
     board: chess.Board,
     engine: chess.engine.SimpleEngine,
     depth: int = EVAL_DEPTH,
-    tablebase: Tablebase | None = None,
-) -> dict[Move, tuple[int | None, int | None]]:
+    tablebase: chess.syzygy.Tablebase | None = None,
+) -> dict[chess.Move, tuple[int | None, int | None]]:
     """Evaluates all legal moves on the board. Returns a dictionary
     mapping moves to their (score, mate_value) tuples.
     """
