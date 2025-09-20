@@ -173,12 +173,8 @@ def test_print_tablebase_info() -> None:
     mock_tablebase.get_wdl.return_value = 1  # Win
     mock_tablebase.get_dtz.return_value = 5  # Distance to zero
 
-    mock_tablebase = MagicMock()
-    mock_tablebase.get_wdl.return_value = -2  # Loss for white
-    mock_tablebase.get_dtz.return_value = 10
-
-    with StringIO() as buf, redirect_stdout(buf):
-        print_tablebase_info(board, mock_tablebase)
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        src.board_ui.print_tablebase_info(board, mock_tablebase)
         output = buf.getvalue()
 
     assert "Loss" in output
