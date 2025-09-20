@@ -29,7 +29,7 @@ def get_dynamic_eval_depth(board: chess.Board) -> int:
 
     Returns:
         Opening (early game): 12-15 depth (faster evaluation)
-        Middlegame: 18-20 depth (balanced approach) 
+        Middlegame: 18-20 depth (balanced approach)
         Endgame: 20-25 depth (deeper search, fewer pieces)
     """
     # Count pieces on the board (excluding kings)
