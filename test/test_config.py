@@ -81,7 +81,7 @@ def test_parse_config_skill_level_validation():
     cfg = config.parse_config(["--skill-level", "10"])
 
     assert cfg.skill_level == 10
-    
+
     # Invalid skill level should raise SystemExit (argparse error)
     with pytest.raises(SystemExit):
         config.parse_config(['--skill-level', '21'])
