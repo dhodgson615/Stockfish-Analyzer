@@ -260,7 +260,7 @@ def test_print_tablebase_info_none_tablebase() -> None:
     board = chess.Board()
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
-        src.board_ui.print_board(board)
+        src.board_ui.print_tablebase_info(board, None)  # type: ignore
         output = buf.getvalue()
 
         # Check if the board contains chess piece Unicode characters
