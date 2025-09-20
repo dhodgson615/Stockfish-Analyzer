@@ -222,7 +222,6 @@ def test_save_config_creates_directory():
     """Test that save_config_file creates parent directories."""
     with tempfile.TemporaryDirectory() as temp_dir:
         nested_path = os.path.join(temp_dir, "nested", "dir", "config.json")
-        
         cfg = config.EngineConfig()
         config.save_config_file(cfg, nested_path)
 
