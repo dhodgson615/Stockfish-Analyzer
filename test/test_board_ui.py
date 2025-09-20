@@ -156,9 +156,34 @@ def test_print_game_result_threefold_repetition() -> None:
             assert "Threefold repetition" in output
 
 
-def test_display_progress() -> None:
-    """Test the display_progress function with mocked time."""
-    start_time = time.time() - 10  # 10 seconds ago
+def test_print_game_result_other() -> None:
+    """Test print_game_result for other results."""
+    board = chess.Board()
+
+    with unittest.mock.patch.object(
+        board, "is_checkmate", return_value=False
+    ), unittest.mock.patch.object(
+        board, "is_stalemate", return_value=False
+    ), unittest.mock.patch.object(
+        board, "is_insufficient_material", return_value=False
+    ), unittest.mock.patch.object(
+        board, "is_fifty_moves", return_value=False
+    ), unittest.mock.patch.object(
+        board, "is_repetition", return_value=False
+    ), unittest.mock.patch.object(
+        board, "result", return_value="1/2-1/2"
+    ):
+        with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+            src.board_ui.print_game_result(board)
+            output = buf.getvalue()
+
+            assert "Game result: 1/2-1/2" in output
+
+
+def test_show_mate_info_black_win() -> None:
+    """Test show_mate_info for Black's mate."""
+    move = chess.Move.from_uci("e7e5")
+    mate_data = (move, (100, -3))  # Black mates in 3
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.display_progress(5, 10, start_time, 20)
