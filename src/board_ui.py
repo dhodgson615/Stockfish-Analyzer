@@ -128,7 +128,9 @@ def show_mate_info(
         print(f"\nMate in {abs(mate_val)}")
 
 
-def print_tablebase_info(board: Board, tablebase: Tablebase) -> None:
+def print_tablebase_info(
+    board: chess.Board, tablebase: chess.syzygy.Tablebase
+) -> None:
     """Print information from Syzygy tablebase if available. Shows WDL
     and DTZ if applicable.
     """
