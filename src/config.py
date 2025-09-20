@@ -122,7 +122,7 @@ Config file format (JSON):
 def load_config_file(config_path: str) -> Dict[str, Any]:
     """Load configuration from a JSON file."""
     try:
-        with open(config_path, 'r') as f:
+        with open(config_path, "r") as f:
             config_data = cast(Dict[str, Any], json.load(f))
         
         # Validate that all keys are valid EngineConfig fields
