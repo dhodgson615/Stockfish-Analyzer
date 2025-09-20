@@ -199,6 +199,7 @@ def parse_config(args: Optional[list[str]] = None) -> EngineConfig:
             for key, value in file_config.items():
                 if hasattr(config, key):
                     setattr(config, key, value)
+
         except (FileNotFoundError, ValueError) as e:
             print(f"Error loading config file: {e}")
             print("Using default configuration...")
