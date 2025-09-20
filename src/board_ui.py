@@ -60,6 +60,59 @@ def print_possible_moves(
         print(f"{move.uci():5s}-> Eval score: {score}{mate_text}")
 
 
+def show_mate_info(
+    best_move_data: tuple[chess.Move, tuple[int | None, int | None]],
+    is_white_turn: bool,
+) -> None:
+    """Display mate information if a mate is found. Expects a tuple
+    (Move, (score, mate_value)).
+    """
+    _, (_, mate_val) = best_move_data
+
+    if mate_val is not None and (mate_val > 0) == is_white_turn:
+        print(f"\nMate in {abs(mate_val)}")
+
+
+def print_tablebase_info(
+    board: chess.Board, tablebase: chess.syzygy.Tablebase
+) -> None:
+    """Print information from Syzygy tablebase if available. Shows WDL
+    and DTZ if applicable.
+    """
+    if not tablebase:
+        return
+
+    try:
+        wdl = tablebase.get_wdl(board)
+
+        if wdl is not None:
+            result = "Draw" if wdl == 0 else "Win" if wdl > 0 else "Loss"
+            dtz = tablebase.get_dtz(board)
+            dtz_str = str(abs(dtz)) if dtz is not None else "N/A"
+            print(f"Tablebase: {result} (DTZ: {dtz_str})")
+
+    except IOError:
+        pass  # Tablebase file access error
+
+    except ValueError:
+        pass  # Invalid position for tablebase
+
+    except IndexError:
+        pass  # Index out of bounds in tablebase access
+
+
+def print_game_over_info(
+    board: chess.Board, move_history: list[chess.Move]
+) -> None:
+    """Prints game over information. Displays the final board, move,
+    and result.
+    """
+    print_board(board)
+    print("Game Over!")
+    print_move_history(move_history)
+    print_game_result(board)
+
+
 def print_move_history(
     move_history: list[chess.Move], moves_per_line: int = 5
 ) -> None:
@@ -100,56 +153,3 @@ def print_game_result(board: chess.Board) -> None:
 
     else:
         print(f"Game result: {board.result()}")
-
-
-def print_game_over_info(
-    board: chess.Board, move_history: list[chess.Move]
-) -> None:
-    """Prints game over information. Displays the final board, move,
-    and result.
-    """
-    print_board(board)
-    print("Game Over!")
-    print_move_history(move_history)
-    print_game_result(board)
-
-
-def show_mate_info(
-    best_move_data: tuple[chess.Move, tuple[int | None, int | None]],
-    is_white_turn: bool,
-) -> None:
-    """Display mate information if a mate is found. Expects a tuple
-    (Move, (score, mate_value)).
-    """
-    _, (_, mate_val) = best_move_data
-
-    if mate_val is not None and (mate_val > 0) == is_white_turn:
-        print(f"\nMate in {abs(mate_val)}")
-
-
-def print_tablebase_info(
-    board: chess.Board, tablebase: chess.syzygy.Tablebase
-) -> None:
-    """Print information from Syzygy tablebase if available. Shows WDL
-    and DTZ if applicable.
-    """
-    if not tablebase:
-        return
-
-    try:
-        wdl = tablebase.get_wdl(board)
-
-        if wdl is not None:
-            result = "Draw" if wdl == 0 else "Win" if wdl > 0 else "Loss"
-            dtz = tablebase.get_dtz(board)
-            dtz_str = str(abs(dtz)) if dtz is not None else "N/A"
-            print(f"Tablebase: {result} (DTZ: {dtz_str})")
-
-    except IOError:
-        pass  # Tablebase file access error
-
-    except ValueError:
-        pass  # Invalid position for tablebase
-
-    except IndexError:
-        pass  # Index out of bounds in tablebase access

@@ -20,6 +20,42 @@ ENGINE_PATH = "/usr/games/stockfish"
 SYZYGY_PATH = os.path.expanduser("~/chess/syzygy")
 
 
+def get_engine(
+    engine_path: str = ENGINE_PATH,
+    threads: int = 4,
+    hash_size: int = 16384,
+    skill_level: int = 20,
+) -> chess.engine.SimpleEngine:
+    """Initializes and configures the chess engine. Returns the engine
+    instance.
+    """
+    engine = chess.engine.SimpleEngine.popen_uci(engine_path)
+
+    engine.configure(
+        {"Threads": threads, "Hash": hash_size, "Skill Level": skill_level}
+    )
+
+    return engine
+
+
+def get_syzygy_tablebase(
+    filepath: str = SYZYGY_PATH,
+) -> chess.syzygy.Tablebase | None:
+    """Initialize a Syzygy tablebase. Returns None if not found or on
+    error.
+    """
+    if not os.path.exists(filepath):
+        print(f"Syzygy tablebases not found at {filepath}")
+        return None
+
+    try:
+        return chess.syzygy.open_tablebase(filepath)
+
+    except Exception as e:  # TODO: handle specific exceptions
+        print(f"Error loading Syzygy tablebases: {e}")
+        return None
+
+
 def get_dynamic_eval_depth(board: chess.Board) -> int:
     """Determine the appropriate evaluation depth based on game stage.
 
@@ -57,40 +93,40 @@ def get_dynamic_eval_depth(board: chess.Board) -> int:
         return 20  # Slightly deeper than default for tactical precision
 
 
-def get_syzygy_tablebase(
-    filepath: str = SYZYGY_PATH,
-) -> chess.syzygy.Tablebase | None:
-    """Initialize a Syzygy tablebase. Returns None if not found or on
-    error.
+def get_move_evals(
+    board: chess.Board,
+    engine: chess.engine.SimpleEngine,
+    depth: int = EVAL_DEPTH,
+    tablebase: chess.syzygy.Tablebase | None = None,
+) -> dict[chess.Move, tuple[int | None, int | None]]:
+    """Evaluates all legal moves on the board. Returns a dictionary
+    mapping moves to their (score, mate_value) tuples.
     """
-    if not os.path.exists(filepath):
-        print(f"Syzygy tablebases not found at {filepath}")
-        return None
+    moves_evaluations = {}
+    start_time = time.time()
 
-    try:
-        return chess.syzygy.open_tablebase(filepath)
+    for i, move in enumerate(list(board.legal_moves), 1):
+        move_obj, score_data = evaluate_move(
+            board, engine, move, depth, tablebase
+        )
 
-    except Exception as e:  # TODO: handle specific exceptions
-        print(f"Error loading Syzygy tablebases: {e}")
-        return None
+        moves_evaluations[move_obj] = score_data
 
+        board_ui.display_progress(
+            i,
+            len(list(board.legal_moves)),
+            start_time,
+            max(10, shutil.get_terminal_size().columns - 40),
+        )
 
-def get_engine(
-    engine_path: str = ENGINE_PATH,
-    threads: int = 4,
-    hash_size: int = 16384,
-    skill_level: int = 20,
-) -> chess.engine.SimpleEngine:
-    """Initializes and configures the chess engine. Returns the engine
-    instance.
-    """
-    engine = chess.engine.SimpleEngine.popen_uci(engine_path)
-
-    engine.configure(
-        {"Threads": threads, "Hash": hash_size, "Skill Level": skill_level}
+    # Clear progress bar
+    print(
+        "\r" + " " * shutil.get_terminal_size().columns + "\r",
+        end="",
+        flush=True,
     )
 
-    return engine
+    return moves_evaluations
 
 
 def evaluate_move(
@@ -180,39 +216,3 @@ def get_engine_evaluation(
     mate_val = score_obj.mate()
 
     return score, mate_val
-
-
-def get_move_evals(
-    board: chess.Board,
-    engine: chess.engine.SimpleEngine,
-    depth: int = EVAL_DEPTH,
-    tablebase: chess.syzygy.Tablebase | None = None,
-) -> dict[chess.Move, tuple[int | None, int | None]]:
-    """Evaluates all legal moves on the board. Returns a dictionary
-    mapping moves to their (score, mate_value) tuples.
-    """
-    moves_evaluations = {}
-    start_time = time.time()
-
-    for i, move in enumerate(list(board.legal_moves), 1):
-        move_obj, score_data = evaluate_move(
-            board, engine, move, depth, tablebase
-        )
-
-        moves_evaluations[move_obj] = score_data
-
-        board_ui.display_progress(
-            i,
-            len(list(board.legal_moves)),
-            start_time,
-            max(10, shutil.get_terminal_size().columns - 40),
-        )
-
-    # Clear progress bar
-    print(
-        "\r" + " " * shutil.get_terminal_size().columns + "\r",
-        end="",
-        flush=True,
-    )
-
-    return moves_evaluations

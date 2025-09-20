@@ -32,6 +32,8 @@ info here.**
 - Default macOS Homebrew path: `/opt/homebrew/bin/stockfish` (default in code)
 - Default Ubuntu/Debian path: `/usr/games/stockfish`
 - Verify engine works: `stockfish --help`
+- Ensure the engine paths are correct for Ubuntu/Debian **and** macOS, using
+  fallback paths as needed.
 - **NOTE**: Application will fail with "No such file or directory" error if
   path is incorrect
 
@@ -85,7 +87,7 @@ functionality:
 
 ### Test Suite Validation
 1. `python3 -m pytest -v` - run all tests
-2. Verify most tests pass (some may skip if engine path is incorrect)
+2. Verify **all** tests pass (some may skip if engine path is incorrect)
 3. Check that no new test failures are introduced by your changes
 
 ## Engine Configuration and Performance
