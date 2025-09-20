@@ -34,7 +34,7 @@ class TestSetupScript(unittest.TestCase):
             mock_stockfish = Path(tmpdir) / "stockfish"
             mock_stockfish.write_text("#!/bin/bash\nexit 0\n")
             mock_stockfish.chmod(0o755)
-            
+
             # Simulate the config creation function from the script
             config_data = {
                 "engine_path": str(mock_stockfish),
