@@ -35,7 +35,7 @@ def get_dynamic_eval_depth(board: chess.Board) -> int:
     # Count pieces on the board (excluding kings)
     piece_count = len(board.piece_map()) - 2  # Subtract 2 kings
     move_count = board.fullmove_number
-    
+
     # Endgame: Few pieces remaining (typically <= 10 pieces)
     if piece_count <= 10:
         if piece_count <= 6:
