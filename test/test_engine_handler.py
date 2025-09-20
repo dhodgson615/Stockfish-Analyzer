@@ -104,9 +104,11 @@ def test_get_move_evals_simple_position(engine_path: str) -> None:
 
 def test_get_syzygy_tablebase_nonexistent_path() -> None:
     """Test that get_syzygy_tablebase() handles nonexistent paths"""
-    with patch("os.path.exists", return_value=False):
-        with StringIO() as buf, redirect_stdout(buf):
-            tablebase = get_syzygy_tablebase("/nonexistent/path")
+    with unittest.mock.patch("os.path.exists", return_value=False):
+        with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+            tablebase = src.engine_handler.get_syzygy_tablebase(
+                "/nonexistent/path"
+            )
             output = buf.getvalue()
 
         assert tablebase is None
