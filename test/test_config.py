@@ -209,7 +209,7 @@ def test_load_config_file_invalid_fields():
         
         with open(config_path, 'w') as f:
             json.dump(config_data, f)
-        
+
         # Should not raise error, but filter invalid fields
         loaded_data = config.load_config_file(config_path)
 
