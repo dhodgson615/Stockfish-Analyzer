@@ -281,7 +281,7 @@ def test_get_move_evals_with_mock() -> None:
             move: chess.Move,
             *args: object,
             **kwargs: object,
-        ) -> tuple[Move, tuple[int, int | None]]:
+        ) -> tuple[chess.Move, tuple[int, int | None]]:
             return move, (100, None)
 
         mock_evaluate.side_effect = side_effect
