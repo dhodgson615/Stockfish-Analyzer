@@ -13,7 +13,7 @@ import src.engine_handler
 import src.input_handler
 
 STOCKFISH_PATH = "/opt/homebrew/bin/stockfish"
-PATH_NOT_FOUND = not path.exists(STOCKFISH_PATH)
+PATH_NOT_FOUND = not os.path.exists(STOCKFISH_PATH)
 PATH_NOT_FOUND_MSG = "Stockfish engine not found"
 
 
