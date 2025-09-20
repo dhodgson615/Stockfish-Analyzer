@@ -221,7 +221,7 @@ def test_load_config_file_invalid_fields() -> None:
         assert "another_invalid" not in loaded_data
 
 
-def test_save_config_creates_directory():
+def test_save_config_creates_directory() -> None:
     """Test that save_config_file creates parent directories."""
     with tempfile.TemporaryDirectory() as temp_dir:
         nested_path = os.path.join(temp_dir, "nested", "dir", "config.json")
