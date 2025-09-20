@@ -2,9 +2,8 @@ from __future__ import annotations
 
 import time
 
-from chess import Board, Move
-from chess.engine import SimpleEngine
-from chess.syzygy import Tablebase
+import chess.engine
+import chess.syzygy
 
 from src.board_ui import (print_board, print_possible_moves,
                           print_tablebase_info, show_mate_info)
