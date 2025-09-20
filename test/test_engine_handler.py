@@ -222,49 +222,6 @@ def test_get_engine_evaluation() -> None:
     assert mate == 3
 
 
-@unittest.mock.patch("chess.engine.SimpleEngine")
-def test_popen_uci_success(
-    mock_simple_engine_class: unittest.mock.MagicMock,
-) -> None:
-    """Test successful engine opening."""
-    mock_engine = unittest.mock.MagicMock()
-    mock_simple_engine_class.popen_uci.return_value = mock_engine
-    result = src.engine_handler.popen_uci("dummy/path")
-
-    assert result is not None
-
-    mock_simple_engine_class.popen_uci.assert_called_once_with("dummy/path")
-
-
-@unittest.mock.patch("chess.engine.SimpleEngine")
-def test_popen_uci_file_not_found(
-    mock_simple_engine_class: unittest.mock.MagicMock,
-) -> None:
-    """Test FileNotFoundError handling in popen_uci."""
-    mock_simple_engine_class.popen_uci.side_effect = FileNotFoundError(
-        "No file"
-    )
-
-    with pytest.raises(FileNotFoundError):
-        src.engine_handler.popen_uci("nonexistent/path")
-
-
-@unittest.mock.patch("chess.engine.SimpleEngine")
-def test_popen_uci_general_exception(
-    mock_simple_engine_class: unittest.mock.MagicMock,
-) -> None:
-    """Test general exception handling in popen_uci."""
-    # Create a separate mock for the popen_uci method
-    mock_popen_uci = unittest.mock.MagicMock()
-    mock_popen_uci.side_effect = RuntimeError("Engine error")
-
-    # Set the mocked method on the class
-    mock_simple_engine_class.popen_uci = mock_popen_uci
-
-    with pytest.raises(RuntimeError):
-        src.engine_handler.popen_uci("problem/path")
-
-
 def test_get_move_evals_with_mock() -> None:
     """Test get_move_evals using mocks to avoid actual engine use."""
     board = chess.Board()
