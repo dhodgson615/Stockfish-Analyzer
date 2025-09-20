@@ -166,11 +166,12 @@ def test_print_board() -> None:
         assert "♛" in output or "♕" in output  # Queen
 
 
-def test_print_tablebase_info_win_2() -> None:  # TODO: Rename duplicate
-    """Test tablebase info printing for a winning position."""
-    board = Board(
-        "8/8/8/8/8/2k5/8/K3q3 w - - 0 1"
-    )  # White to move, losing position
+def test_print_tablebase_info() -> None:
+    """Test print_tablebase_info function with a mock tablebase."""
+    board = chess.Board()
+    mock_tablebase = unittest.mock.MagicMock()
+    mock_tablebase.get_wdl.return_value = 1  # Win
+    mock_tablebase.get_dtz.return_value = 5  # Distance to zero
 
     mock_tablebase = MagicMock()
     mock_tablebase.get_wdl.return_value = -2  # Loss for white
