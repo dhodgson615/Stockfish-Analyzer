@@ -7,7 +7,7 @@ import os
 import chess
 import pytest
 
-from src.game_logic import sort_moves_by_evaluation
+import src.game_logic
 
 
 def test_sort_moves_by_evaluation() -> None:
