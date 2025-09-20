@@ -251,7 +251,7 @@ def test_popen_uci_file_not_found(
 
 @unittest.mock.patch("chess.engine.SimpleEngine")
 def test_popen_uci_general_exception(
-    mock_simple_engine_class: MagicMock,
+    mock_simple_engine_class: unittest.mock.MagicMock,
 ) -> None:
     """Test general exception handling in popen_uci."""
     # Create a separate mock for the popen_uci method
