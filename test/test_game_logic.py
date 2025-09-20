@@ -75,11 +75,11 @@ def test_evaluate_and_show_moves_timing(
         )
         mp.setattr("src.board_ui.show_mate_info", mock_show_mate_info)
 
-        try:
-            with StringIO() as buf, redirect_stdout(buf):
-                moves_eval, eval_time = evaluate_and_show_moves(
-                    new_board, engine
-                )
+        with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+            moves_eval, eval_time = src.game_logic.evaluate_and_show_moves(
+                new_board, None  # type: ignore
+            )
+            output = buf.getvalue()
 
             assert isinstance(moves_eval, dict)
             assert isinstance(eval_time, float)
