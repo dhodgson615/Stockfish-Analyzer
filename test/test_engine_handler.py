@@ -149,7 +149,7 @@ def test_try_tablebase_evaluation_win() -> None:
     mock_tablebase = unittest.mock.MagicMock()
     mock_tablebase.get_wdl.return_value = -2  # Loss for white
     mock_tablebase.get_dtz.return_value = 5
-    result = try_tablebase_evaluation(board, mock_tablebase)
+    result = src.engine_handler.try_tablebase_evaluation(board, mock_tablebase)
 
     assert result is not None
 
