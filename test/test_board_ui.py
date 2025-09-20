@@ -263,9 +263,7 @@ def test_print_tablebase_info_none_tablebase() -> None:
         src.board_ui.print_tablebase_info(board, None)  # type: ignore
         output = buf.getvalue()
 
-        # Check if the board contains chess piece Unicode characters
-        assert "♜" in output or "♖" in output  # Rook
-        assert "♛" in output or "♕" in output  # Queen
+        assert output == ""  # Should handle None silently
 
 
 def test_print_tablebase_info() -> None:
