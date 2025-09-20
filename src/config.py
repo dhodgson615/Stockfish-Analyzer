@@ -1,9 +1,3 @@
-"""Configuration management for Stockfish-Analyzer.
-
-This module handles CLI arguments, config files, and provides a centralized
-configuration system for all engine and application settings.
-"""
-
 from __future__ import annotations
 
 import argparse
