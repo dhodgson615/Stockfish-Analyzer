@@ -102,7 +102,7 @@ def test_save_and_load_config_file():
             hash_size=4096,
             skill_level=18,
             eval_depth=15,
-            syzygy_path="/test/syzygy"
+            syzygy_path="/test/syzygy",
         )
 
         # Save config
