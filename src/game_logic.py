@@ -67,7 +67,10 @@ def play_game(
     move_history: list[Move],
     tablebase: Tablebase | None = None,
 ) -> None:
-    """Run the interactive chess game loop."""
+    """Run the interactive chess game loop. Continues until the game is
+    over. Displays the board, evaluates moves, and handles user input
+    for moves.
+    """
     while not board.is_game_over():
         print_board(board)
         evaluate_and_show_moves(board, engine, tablebase)
