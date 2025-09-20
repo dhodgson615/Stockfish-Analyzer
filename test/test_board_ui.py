@@ -203,13 +203,11 @@ def test_show_mate_info_no_mate() -> None:
 
         assert output == ""  # No output expected
 
-    # Test with no mate - using a new variable to avoid type confusion
-    best_move_data_no_mate: tuple[
-        chess.Move, tuple[int | None, int | None]
-    ] = (
-        move,
-        (100, None),
-    )
+
+def test_show_mate_info_opponent_mate() -> None:
+    """Test show_mate_info when opponent has mate (should not display)."""
+    move = chess.Move.from_uci("e2e4")
+    opponent_mate_data = (move, (100, -3))  # Opponent has mate in 3
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.show_mate_info(best_move_data_no_mate, True)
