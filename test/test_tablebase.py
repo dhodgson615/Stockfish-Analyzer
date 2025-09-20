@@ -12,7 +12,7 @@ def test_tablebase_functionality() -> None:
         pytest.skip("Tablebase not found or loaded. Check installation.")
 
     try:
-        board = Board("8/8/8/8/8/2k5/8/K3q3 w - - 0 1")
+        board = chess.Board("8/8/8/8/8/2k5/8/K3q3 w - - 0 1")
         wdl = tablebase.get_wdl(board)
 
         if wdl is None:
