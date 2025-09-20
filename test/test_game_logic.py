@@ -46,8 +46,26 @@ def test_evaluate_and_show_moves_timing(
         # Replace get_move_evals with a simple function that returns dummy data
         def mock_get_evals(
             *args: object, **kwargs: object
-        ) -> dict[Move, tuple[int, int | None]]:
-            return {Move.from_uci("e2e4"): (100, None)}
+        ) -> dict[chess.Move, tuple[int, int | None]]:
+            return {chess.Move.from_uci("e2e4"): (100, None)}
+
+        mp.setattr("src.engine_handler.get_move_evals", mock_get_evals)
+
+        # Mock the display_progress function to avoid terminal output
+        def mock_display_progress(*args: object, **kwargs: object) -> None:
+            pass
+
+        mp.setattr("src.board_ui.display_progress", mock_display_progress)
+
+        # Mock the print functions to capture output
+        def mock_print_tablebase_info(*args: object, **kwargs: object) -> None:
+            pass
+
+        def mock_print_possible_moves(*args: object, **kwargs: object) -> None:
+            pass
+
+        def mock_show_mate_info(*args: object, **kwargs: object) -> None:
+            pass
 
         mp.setattr("src.game_logic.get_move_evals", mock_get_evals)
         engine = SimpleEngine.popen_uci(engine_path)
