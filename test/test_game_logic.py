@@ -4,9 +4,8 @@ import contextlib
 import io
 import os
 
-from chess import Board, Move
-from chess.engine import SimpleEngine
-from pytest import MonkeyPatch, importorskip, skip
+import chess
+import pytest
 
 from src.game_logic import sort_moves_by_evaluation
 
