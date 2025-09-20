@@ -32,6 +32,8 @@ info here.**
 - Default macOS Homebrew path: `/opt/homebrew/bin/stockfish` (default in code)
 - Default Ubuntu/Debian path: `/usr/games/stockfish`
 - Verify engine works: `stockfish --help`
+- Ensure the engine paths are correct for Ubuntu/Debian **and** macOS, using
+  fallback paths as needed.
 - **NOTE**: Application will fail with "No such file or directory" error if
   path is incorrect
 
