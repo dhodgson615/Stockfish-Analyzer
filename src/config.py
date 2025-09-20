@@ -108,7 +108,7 @@ Config file format (JSON):
         type=str,
         help="Path to JSON config file with engine settings",
     )
-    
+
     # Output config
     parser.add_argument(
         "--save-config",
