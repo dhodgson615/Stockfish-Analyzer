@@ -46,7 +46,7 @@ def test_evaluate_move(engine_path: str) -> None:
 
     try:
         board = chess.Board()
-        move = src.input_handler.from_uci("e2e4")
+        move = chess.Move.from_uci("e2e4")
 
         result_move, (score, mate) = src.engine_handler.evaluate_move(
             board, engine, move, depth=10
