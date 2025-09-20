@@ -90,7 +90,7 @@ def test_parse_config_skill_level_validation() -> None:
         config.parse_config(["--skill-level", "-1"])
 
 
-def test_save_and_load_config_file():
+def test_save_and_load_config_file() -> None:
     """Test saving and loading configuration files."""
     with tempfile.TemporaryDirectory() as temp_dir:
         config_path = os.path.join(temp_dir, "test_config.json")
