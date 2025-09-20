@@ -158,7 +158,7 @@ def test_parse_config_cli_overrides_file():
     """Test that CLI arguments override config file settings."""
     with tempfile.TemporaryDirectory() as temp_dir:
         config_path = os.path.join(temp_dir, "test.json")
-        
+
         # Create config file
         config_data = {
             "threads": 4,
