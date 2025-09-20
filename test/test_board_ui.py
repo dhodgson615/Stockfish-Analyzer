@@ -128,9 +128,9 @@ def test_print_move_history() -> None:
 def test_print_possible_moves() -> None:
     """Test print_possible_moves function."""
     # Create move objects first
-    move1 = from_uci("e2e4")
-    move2 = from_uci("d2d4")
-    move3 = from_uci("g1f3")
+    move1 = src.input_handler.from_uci("e2e4")
+    move2 = src.input_handler.from_uci("d2d4")
+    move3 = src.input_handler.from_uci("g1f3")
 
     # Create evaluation tuples with explicit types
     eval1: tuple[int | None, int | None] = (42, None)
