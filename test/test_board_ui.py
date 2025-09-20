@@ -66,9 +66,9 @@ def test_display_progress_zero_iteration() -> None:
         assert "0.0%" in output
 
 
-    # Verify the board is in stalemate
-    assert not board.is_check()
-    assert board.is_stalemate()
+def test_display_progress_completed() -> None:
+    """Test display_progress at 100% completion."""
+    start_time = time.time() - 10
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.print_game_result(board)
