@@ -81,7 +81,7 @@ def play_game(
     while not board.is_game_over():
         src.board_ui.print_board(board)
         evaluate_and_show_moves(board, engine, tablebase)
-        move = src.input_handler.handle_user_input(board)
+        move = input_handler.handle_user_input(board)
 
         if not move:
             continue
