@@ -103,7 +103,9 @@ def print_game_result(board: chess.Board) -> None:
         print(f"Game result: {board.result()}")
 
 
-def print_game_over_info(board: Board, move_history: list[Move]) -> None:
+def print_game_over_info(
+    board: chess.Board, move_history: list[chess.Move]
+) -> None:
     """Prints game over information. Displays the final board, move,
     and result.
     """
