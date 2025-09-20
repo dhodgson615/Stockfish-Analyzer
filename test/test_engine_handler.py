@@ -12,9 +12,9 @@ import pytest
 import src.engine_handler
 import src.input_handler
 
-STOCKFISH_PATH = "/usr/games/stockfish"
-PATH_NOT_FOUND = not os.path.exists(STOCKFISH_PATH)
-PATH_NOT_FOUND_MSG = "Stockfish engine not found"
+STOCKFISH_FOUND, STOCKFISH_PATH = src.engine_handler.find_stockfish_path()
+PATH_NOT_FOUND_MSG = f"Stockfish engine not found (checked: {STOCKFISH_PATH})"
+PATH_NOT_FOUND = not STOCKFISH_FOUND
 
 
 @pytest.mark.skipif(PATH_NOT_FOUND, reason=PATH_NOT_FOUND_MSG)
