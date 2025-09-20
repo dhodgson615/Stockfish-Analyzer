@@ -13,8 +13,8 @@ def test_from_uci_valid() -> None:
 
 
 def test_from_uci_invalid() -> None:
-    with raises(ValueError):
-        from_uci("invalid")
+    with pytest.raises(ValueError):
+        src.input_handler.from_uci("invalid")
 
 
 def test_parse_move_input_san() -> None:
