@@ -42,7 +42,7 @@ def get_engine(
     """Initializes and configures the chess engine. Returns the engine
     instance.
     """
-    engine = popen_uci(engine_path)
+    engine = chess.engine.SimpleEngine.popen_uci(engine_path)
     engine.configure(
         {"Threads": threads, "Hash": hash_size, "Skill Level": skill_level}
     )
