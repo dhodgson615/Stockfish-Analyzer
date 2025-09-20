@@ -42,9 +42,7 @@ def test_evaluate_and_show_moves_timing(
     if not os.path.exists(engine_path):
         pytest.skip("Engine not found")
 
-    from src.game_logic import evaluate_and_show_moves
-
-    with MonkeyPatch.context() as mp:
+    with pytest.MonkeyPatch.context() as mp:
         # Replace get_move_evals with a simple function that returns dummy data
         def mock_get_evals(
             *args: object, **kwargs: object
