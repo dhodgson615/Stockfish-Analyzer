@@ -29,7 +29,7 @@ def display_progress(
     """Displays a progress bar with time estimate. Call this inside a
     loop to update the progress.
     """
-    elapsed = time() - start_time
+    elapsed = time.time() - start_time
     progress_ratio = iteration / total
     avg_time = elapsed / max(1, iteration)  # Avoid division by zero
     remaining_secs = avg_time * (total - iteration)
