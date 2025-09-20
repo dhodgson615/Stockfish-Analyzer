@@ -9,7 +9,7 @@ import pytest
 import src.config as config
 
 
-def test_engine_config_defaults():
+def test_engine_config_defaults() -> None:
     """Test that EngineConfig has correct default values."""
     cfg = config.EngineConfig()
 
