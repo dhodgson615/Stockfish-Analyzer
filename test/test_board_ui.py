@@ -229,9 +229,11 @@ def test_print_tablebase_info_io_error() -> None:
         assert output == ""  # Should handle exception silently
 
 
-def test_print_move_history() -> None:
-    """Test print_move_history function."""
-    moves = [chess.Move.from_uci(m) for m in ["e2e4", "e7e5", "g1f3"]]
+def test_print_tablebase_info_value_error() -> None:
+    """Test print_tablebase_info when ValueError occurs."""
+    board = chess.Board()
+    mock_tablebase = unittest.mock.MagicMock()
+    mock_tablebase.get_wdl.side_effect = ValueError("Test value error")
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.print_move_history(moves)
