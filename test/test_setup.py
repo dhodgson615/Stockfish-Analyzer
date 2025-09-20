@@ -96,8 +96,10 @@ class TestSetupScript(unittest.TestCase):
         script.
         """
         download_script = self.test_dir / "scripts" / "download_syzygy.sh"
-        self.assertTrue(download_script.exists(), 
-                       "download_syzygy.sh should exist for integration")
+        self.assertTrue(
+            download_script.exists(),
+            "download_syzygy.sh should exist for integration",
+        )
 
 
 if __name__ == "__main__":
