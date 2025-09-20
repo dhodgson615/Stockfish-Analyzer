@@ -8,8 +8,8 @@ import src.input_handler
 
 
 def test_from_uci_valid() -> None:
-    move = from_uci("e2e4")
-    assert move == from_uci("e2e4")
+    move = src.input_handler.from_uci("e2e4")
+    assert move == src.input_handler.from_uci("e2e4")
 
 
 def test_from_uci_invalid() -> None:
