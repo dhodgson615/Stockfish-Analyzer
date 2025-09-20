@@ -128,7 +128,8 @@ def load_config_file(config_path: str) -> Dict[str, Any]:
         # Validate that all keys are valid EngineConfig fields
         valid_fields = set(
             EngineConfig.__dataclass_fields__.keys()
-        )  # TODO: fix whatever nresolved attribute reference '__dataclass_fields__' for class 'EngineConfig' is
+        )  # TODO: fix unresolved reference
+
         invalid_fields = set(config_data.keys()) - valid_fields
 
         if invalid_fields:
