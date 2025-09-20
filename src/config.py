@@ -77,9 +77,7 @@ Config file format (JSON):
     )
 
     parser.add_argument(
-        "--hash-size",
-        type=int,
-        help="Hash table size in MB (default: 16384)"
+        "--hash-size", type=int, help="Hash table size in MB (default: 16384)"
     )
     
     parser.add_argument(
