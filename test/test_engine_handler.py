@@ -25,8 +25,8 @@ def test_get_engine(engine_path: str) -> None:
     try:
         assert engine is not None
 
-        board = Board()
-        result = engine.play(board, Limit(time=0.1))
+        board = chess.Board()
+        result = engine.play(board, chess.engine.Limit(time=0.1))
 
         # Check if result.move is not None before using 'in' operator
         if result.move is not None:
