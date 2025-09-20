@@ -70,7 +70,9 @@ def get_limited_evals(
     moves_evaluations = {}
 
     for move in moves:
-        move_obj, score_data = evaluate_move(board, engine, move, depth)
+        move_obj, score_data = src.engine_handler.evaluate_move(
+            board, engine, move, depth
+        )
         moves_evaluations[move_obj] = score_data
 
     return moves_evaluations
