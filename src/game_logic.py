@@ -26,18 +26,9 @@ def sort_moves_by_evaluation(
     better for White, lower scores are better for Black. Returns a list
     of tuples (Move, (score, mate_value)).
     """
-
-    def sort_key(
-        item: tuple[Move, tuple[int | None, int | None]],
-    ) -> int:
-        """Key function for sorting moves. Takes (Move, (score,
-        mate_value)) and returns score for sorting.
-        """
-        return item[1][0] if item[1][0] is not None else 0
-
-    moves_list = list(moves_eval.items())
-
-    return sorted(moves_list, key=sort_key, reverse=is_white_turn)
+    return sorted(
+        list(moves_eval.items()), key=get_move_score, reverse=is_white_turn
+    )
 
 
 def evaluate_and_show_moves(
