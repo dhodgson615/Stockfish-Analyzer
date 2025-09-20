@@ -154,7 +154,7 @@ def test_parse_config_with_config_file() -> None:
         assert cfg.eval_depth == 22
 
 
-def test_parse_config_cli_overrides_file():
+def test_parse_config_cli_overrides_file() -> None:
     """Test that CLI arguments override config file settings."""
     with tempfile.TemporaryDirectory() as temp_dir:
         config_path = os.path.join(temp_dir, "test.json")
