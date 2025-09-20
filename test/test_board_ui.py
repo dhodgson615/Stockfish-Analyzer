@@ -70,7 +70,9 @@ def test_show_mate_info() -> None:
     move = src.input_handler.from_uci("e2e4")
 
     # Explicitly annotate the type to allow for None values
-    best_move_data_with_mate: tuple[Move, tuple[int | None, int | None]] = (
+    best_move_data_with_mate: tuple[
+        chess.Move, tuple[int | None, int | None]
+    ] = (
         move,
         (100, 3),
     )
