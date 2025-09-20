@@ -236,8 +236,10 @@ def test_popen_uci_success(
     mock_simple_engine_class.popen_uci.assert_called_once_with("dummy/path")
 
 
-@patch("src.engine_handler.SimpleEngine")
-def test_popen_uci_file_not_found(mock_simple_engine_class: MagicMock) -> None:
+@unittest.mock.patch("chess.engine.SimpleEngine")
+def test_popen_uci_file_not_found(
+    mock_simple_engine_class: unittest.mock.MagicMock,
+) -> None:
     """Test FileNotFoundError handling in popen_uci."""
     mock_simple_engine_class.popen_uci.side_effect = FileNotFoundError(
         "No file"
