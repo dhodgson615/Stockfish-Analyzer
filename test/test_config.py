@@ -31,7 +31,7 @@ def test_engine_config_post_init():
 def test_create_argument_parser():
     """Test that argument parser is created correctly."""
     parser = config.create_argument_parser()
-    
+
     # Test help doesn't crash
     with pytest.raises(SystemExit):  # argparse calls sys.exit for help
         parser.parse_args(['--help'])
