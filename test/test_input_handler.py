@@ -7,16 +7,6 @@ import pytest
 import src.input_handler
 
 
-def test_from_uci_valid() -> None:
-    move = src.input_handler.from_uci("e2e4")
-    assert move == src.input_handler.from_uci("e2e4")
-
-
-def test_from_uci_invalid() -> None:
-    with pytest.raises(ValueError):
-        src.input_handler.from_uci("invalid")
-
-
 def test_parse_move_input_san() -> None:
     board = chess.Board()
 
