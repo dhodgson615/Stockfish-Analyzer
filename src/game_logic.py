@@ -13,8 +13,8 @@ import src.input_handler
 def get_move_score(
     item: tuple[chess.Move, tuple[int | None, int | None]],
 ) -> int:
-    """Key function for sorting moves. Takes (Move, (score, mate_value))
-    and returns score for sorting.
+    """Key function for sorting moves. Takes (Move, (score,
+    mate_value)) and returns score for sorting.
     """
     return item[1][0] if item[1][0] is not None else 0
 
