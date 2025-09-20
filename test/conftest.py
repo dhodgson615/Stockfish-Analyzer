@@ -18,7 +18,7 @@ def checkmate_board() -> chess.Board:
     board = chess.Board()
 
     for move in ["f2f3", "e7e5", "g2g4", "d8h4"]:
-        board.push(src.input_handler.from_uci(move))
+        board.push(chess.Move.from_uci(move))
 
     return board
 
