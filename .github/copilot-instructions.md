@@ -126,7 +126,8 @@ Stockfish-Analyzer is a Python command-line chess analysis tool that provides in
 ### Before Committing Changes
 1. **MANDATORY**: `python3 -m pytest -v` - all tests must pass or maintain existing skip count
 2. **MANDATORY**: `python3 -m mypy src/` - must show "Success: no issues found"
-3. **RECOMMENDED**: Test one complete application scenario manually
+3. **MANDATORY**: `black -l79 src/*.py; black -l79 test/*.py;  isort src/*.py; isort test/*.py;  mypy --strict src/*.py; mypy --strict test/*.py; flake8 src/*.py; flake8 test/*.py; pytest;` - code formatting and linting checks
+4. **RECOMMENDED**: Test one complete application scenario manually
 
 ## Troubleshooting
 
