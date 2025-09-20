@@ -125,8 +125,8 @@ def test_get_syzygy_tablebase_exception() -> None:
         "chess.syzygy.open_tablebase",
         side_effect=Exception("Test exception"),
     ):
-        with StringIO() as buf, redirect_stdout(buf):
-            tablebase = get_syzygy_tablebase()
+        with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+            tablebase = src.engine_handler.get_syzygy_tablebase()
             output = buf.getvalue()
 
         assert tablebase is None
