@@ -99,5 +99,5 @@ def get_move_score(
 ) -> int:
     """Key function for sorting moves. Takes (Move, (score,
     mate_value)) and returns score for sorting.
-    """
+    """  # FIXME: wrong module (evaluation logic, not game logic)
     return item[1][0] if item[1][0] is not None else 0
