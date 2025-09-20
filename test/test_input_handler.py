@@ -62,11 +62,8 @@ def test_handle_user_input_invalid_move(
     board = chess.Board()
     monkeypatch.setattr("builtins.input", lambda _: "invalid")
 
-    # Mock the input to return e2e4 again in UCI format (which is now illegal)
-    monkeypatch.setattr("builtins.input", lambda _: "e2e4")
-
-    with StringIO() as buf, redirect_stdout(buf):
-        move = handle_user_input(board)
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        result = src.input_handler.handle_user_input(board)
         output = buf.getvalue()
 
         assert "Illegal move" in output
