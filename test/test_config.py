@@ -21,7 +21,7 @@ def test_engine_config_defaults() -> None:
     assert cfg.syzygy_path.endswith("chess/syzygy")  # Expanded path
 
 
-def test_engine_config_post_init():
+def test_engine_config_post_init() -> None:
     """Test that __post_init__ expands user paths."""
     cfg = config.EngineConfig(syzygy_path="~/test/path")
 
