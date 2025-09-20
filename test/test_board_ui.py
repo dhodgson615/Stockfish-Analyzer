@@ -249,7 +249,7 @@ def test_print_tablebase_info_index_error() -> None:
     mock_tablebase.get_wdl.side_effect = IndexError("Test index error")
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
-        src.board_ui.print_possible_moves(moves)
+        src.board_ui.print_tablebase_info(board, mock_tablebase)
         output = buf.getvalue()
 
         assert "e2e4" in output
