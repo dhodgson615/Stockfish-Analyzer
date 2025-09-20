@@ -173,8 +173,9 @@ def parse_config(args: Optional[list[str]] = None) -> EngineConfig:
     configuration.
 
     Args:
-        args: Optional list of command-line arguments. If None, uses sys.argv.
-        
+        args: Optional list of command-line arguments. If None, uses
+            sys.argv.
+
     Returns:
         EngineConfig object with all settings resolved.
         
