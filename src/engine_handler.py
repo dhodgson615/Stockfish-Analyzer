@@ -16,7 +16,7 @@ except ImportError:
 
 
 EVAL_DEPTH = 18  # Default depth, used as fallback
-ENGINE_PATH = "/opt/homebrew/bin/stockfish"
+ENGINE_PATH = "/usr/games/stockfish"
 SYZYGY_PATH = os.path.expanduser("~/chess/syzygy")
 
 
