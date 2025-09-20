@@ -132,7 +132,10 @@ def load_config_file(config_path: str) -> Dict[str, Any]:
         invalid_fields = set(config_data.keys()) - valid_fields
 
         if invalid_fields:
-            print(f"Warning: Unknown config fields will be ignored: {invalid_fields}")
+            print(
+                f"Warning: Unknown config fields will be ignored: "
+                f"{invalid_fields}"
+            )
             # Remove invalid fields
             config_data = {k: v for k, v in config_data.items() if k in valid_fields}
         
