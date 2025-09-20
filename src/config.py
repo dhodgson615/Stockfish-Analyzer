@@ -158,8 +158,8 @@ def save_config_file(config: EngineConfig, config_path: str) -> None:
     try:
         # Ensure directory exists
         Path(config_path).parent.mkdir(parents=True, exist_ok=True)
-        
-        with open(config_path, 'w') as f:
+
+        with open(config_path, "w") as f:
             json.dump(asdict(config), f, indent=2)
         
         print(f"Configuration saved to: {config_path}")
