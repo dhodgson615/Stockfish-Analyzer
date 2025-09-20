@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import time
 
-import chess
 import chess.syzygy
 
 CLEAR_BEFORE_PRINT = True
