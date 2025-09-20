@@ -107,7 +107,7 @@ def test_save_and_load_config_file():
         
         # Save config
         config.save_config_file(original_cfg, config_path)
-        
+
         # Verify file exists and has correct content
         assert os.path.exists(config_path)
 
