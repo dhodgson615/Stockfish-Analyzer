@@ -58,6 +58,7 @@ def evaluate_and_show_moves(
     # Use configured eval depth, fall back to dynamic depth if not provided
     if app_config:
         eval_depth = app_config.eval_depth
+
     else:
         eval_depth = engine_handler.get_dynamic_eval_depth(board)
 
