@@ -73,7 +73,7 @@ Config file format (JSON):
     parser.add_argument(
         "--threads",
         type=int,
-        help="Number of threads for engine to use (default: 4)"
+        help="Number of threads for engine to use (default: 4)",
     )
     
     parser.add_argument(
