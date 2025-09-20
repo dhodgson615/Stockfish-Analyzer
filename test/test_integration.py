@@ -38,8 +38,8 @@ def test_play_game_simple_sequence(
     """Test play_game with a predetermined sequence of moves."""
     pytest.importorskip("chess.engine")
 
-    if not path.exists(engine_path):
-        skip("Engine not found")
+    if not os.path.exists(engine_path):
+        pytest.skip("Engine not found")
 
     # Create a board that's close to a game end to reduce iterations
     board = Board(
