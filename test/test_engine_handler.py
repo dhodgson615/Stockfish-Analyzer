@@ -227,7 +227,7 @@ def test_popen_uci_success(
     mock_simple_engine_class: unittest.mock.MagicMock,
 ) -> None:
     """Test successful engine opening."""
-    mock_engine = MagicMock()
+    mock_engine = unittest.mock.MagicMock()
     mock_simple_engine_class.popen_uci.return_value = mock_engine
     result = popen_uci("dummy/path")
 
