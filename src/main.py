@@ -1,4 +1,4 @@
-from chess import Board, Move
+import chess
 
 from src.board_ui import print_game_over_info, print_tablebase_info
 from src.engine_handler import ENGINE_PATH, get_engine, get_syzygy_tablebase
