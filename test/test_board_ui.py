@@ -54,8 +54,8 @@ def test_display_progress() -> None:
     """Test the display_progress function with mocked time."""
     start_time = time.time() - 10  # 10 seconds ago
 
-    with StringIO() as buf, redirect_stdout(buf):
-        display_progress(5, 10, start_time, 20)
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        src.board_ui.display_progress(5, 10, start_time, 20)
         output = buf.getvalue()
 
         assert "[##########----------]" in output
