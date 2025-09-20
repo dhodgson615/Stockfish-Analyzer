@@ -31,6 +31,7 @@ def test_print_board_with_clear() -> None:
             output = buf.getvalue()
 
         mock_clear.assert_called_once()
+
         assert "♜" in output or "♖" in output  # Verify board was printed
 
     # Restore original value
