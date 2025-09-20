@@ -206,8 +206,8 @@ def test_load_config_file_invalid_fields():
             "invalid_field": "should_be_ignored",
             "another_invalid": 123
         }
-        
-        with open(config_path, 'w') as f:
+
+        with open(config_path, "w") as f:
             json.dump(config_data, f)
 
         # Should not raise error, but filter invalid fields
