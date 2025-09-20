@@ -35,7 +35,7 @@ def sample_moves() -> list[chess.Move]:
     return [chess.Move.from_uci(m) for m in ["e2e4", "d2d4", "g1f3"]]
 
 
-@fixture
+@pytest.fixture
 def engine_path() -> str:
     """Returns path to Stockfish engine, skip tests if not found."""
     filepath = "/opt/homebrew/bin/stockfish"
