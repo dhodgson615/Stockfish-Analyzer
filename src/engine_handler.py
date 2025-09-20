@@ -52,7 +52,7 @@ def get_engine(
     threads: int = 4,
     hash_size: int = 16384,
     skill_level: int = 20,
-) -> SimpleEngine:
+) -> chess.engine.SimpleEngine:
     """Initializes and configures the chess engine. Returns the engine
     instance.
     """
