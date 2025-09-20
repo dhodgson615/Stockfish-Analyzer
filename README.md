@@ -57,7 +57,7 @@ the script).
 For first-time users, run the interactive setup script that will help you install Stockfish and optionally download tablebases:
 
 ```bash
-./setup.sh
+scripts/setup.sh
 ```
 
 This script will:

@@ -15,7 +15,7 @@ class TestSetupScript(unittest.TestCase):
     def setUp(self):
         """Set up test environment."""
         self.test_dir = Path(__file__).parent.parent
-        self.setup_script = self.test_dir / "setup.sh"
+        self.setup_script = self.test_dir / "scripts" / "setup.sh"
         
     def test_setup_script_exists_and_executable(self):
         """Test that setup script exists and is executable."""
