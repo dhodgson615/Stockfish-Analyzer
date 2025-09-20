@@ -4,15 +4,12 @@ from typing import List
 
 def find_python_files(root_dir: str) -> List[str]:
     """Find all .py files in the repository recursively."""
-    python_files = []
-
-    for dirpath, _, filenames in os.walk(root_dir):
-        for filename in filenames:
-            if filename.endswith(".py"):
-                full_path = os.path.join(dirpath, filename)
-                python_files.append(full_path)
-
-    return python_files
+    return [
+        os.path.join(dirpath, filename)
+        for dirpath, _, filenames in os.walk(root_dir)
+        for filename in filenames
+        if filename.endswith(".py")
+    ]
 
 
 def check_docstring_length(file_path: str, max_length: int = 72) -> List[int]:
