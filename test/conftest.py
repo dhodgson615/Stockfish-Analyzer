@@ -9,7 +9,7 @@ import src.input_handler
 @pytest.fixture
 def new_board() -> chess.Board:
     """Returns a fresh chess board in the starting position."""
-    return Board()
+    return chess.Board()
 
 
 @fixture
