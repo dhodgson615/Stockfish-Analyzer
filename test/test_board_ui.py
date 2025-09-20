@@ -96,7 +96,7 @@ def test_show_mate_info() -> None:
         assert buf.getvalue() == ""
 
 
-def test_print_game_over_info(checkmate_board: Board) -> None:
+def test_print_game_over_info(checkmate_board: chess.Board) -> None:
     """Test print_game_over_info function."""
     move_history = [
         chess.Move.from_uci(m) for m in ["f2f3", "e7e5", "g2g4", "d8h4"]
