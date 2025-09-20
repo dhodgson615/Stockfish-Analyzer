@@ -188,8 +188,8 @@ def test_load_config_file_invalid_json():
     """Test loading invalid JSON raises error."""
     with tempfile.TemporaryDirectory() as temp_dir:
         config_path = os.path.join(temp_dir, "invalid.json")
-        
-        with open(config_path, 'w') as f:
+
+        with open(config_path, "w") as f:
             f.write("{ invalid json content")
         
         with pytest.raises(ValueError, match="Invalid JSON"):
