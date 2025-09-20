@@ -236,7 +236,7 @@ def test_print_tablebase_info_value_error() -> None:
     mock_tablebase.get_wdl.side_effect = ValueError("Test value error")
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
-        src.board_ui.print_move_history(moves)
+        src.board_ui.print_tablebase_info(board, mock_tablebase)
         output = buf.getvalue()
 
         assert "1. e2e4" in output
