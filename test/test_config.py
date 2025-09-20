@@ -179,7 +179,7 @@ def test_parse_config_cli_overrides_file() -> None:
         assert cfg.eval_depth == 15  # From file
 
 
-def test_load_config_file_not_found():
+def test_load_config_file_not_found() -> None:
     """Test loading non-existent config file raises error."""
     with pytest.raises(FileNotFoundError):
         config.load_config_file("/nonexistent/config.json")
