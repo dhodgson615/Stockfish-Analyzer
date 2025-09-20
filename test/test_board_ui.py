@@ -198,10 +198,10 @@ def test_show_mate_info_no_mate() -> None:
     no_mate_data = (move, (100, None))
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
-        src.board_ui.show_mate_info(
-            best_move_data_with_mate, True
-        )  # White's turn
-        assert "Mate in 3" in buf.getvalue()
+        src.board_ui.show_mate_info(no_mate_data, True)
+        output = buf.getvalue()
+
+        assert output == ""  # No output expected
 
     # Test with no mate - using a new variable to avoid type confusion
     best_move_data_no_mate: tuple[
