@@ -20,9 +20,12 @@ class TestSetupScript(unittest.TestCase):
     def test_setup_script_exists_and_executable(self) -> None:
         """Test that setup script exists and is executable."""
         self.assertTrue(self.setup_script.exists(), "setup.sh should exist")
-        self.assertTrue(os.access(self.setup_script, os.X_OK), "setup.sh should be executable")
-    
-    def test_config_file_creation(self):
+        self.assertTrue(
+            os.access(self.setup_script, os.X_OK),
+            "setup.sh should be executable",
+        )
+
+    def test_config_file_creation(self) -> None:
         """Test that the script can create valid configuration files."""
         with tempfile.TemporaryDirectory() as tmpdir:
             config_path = Path(tmpdir) / "test_config.json"
