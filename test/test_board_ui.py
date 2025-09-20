@@ -44,8 +44,8 @@ def test_print_game_result_insufficient_material() -> None:
 
     assert board.is_insufficient_material()
 
-    with StringIO() as buf, redirect_stdout(buf):
-        print_game_result(board)
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        src.board_ui.print_game_result(board)
         output = buf.getvalue()
         assert "Insufficient material" in output
 
