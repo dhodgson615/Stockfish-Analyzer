@@ -141,6 +141,7 @@ def test_print_game_result_fifty_moves() -> None:
             src.board_ui.print_game_result(board)
             output = buf.getvalue()
 
+            assert "Fifty-move rule" in output
 
 def test_print_game_result_insufficient_material() -> None:
     """Test print_game_result() for an insufficient material scenario."""
