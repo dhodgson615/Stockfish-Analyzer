@@ -225,7 +225,7 @@ def test_save_config_creates_directory():
         
         cfg = config.EngineConfig()
         config.save_config_file(cfg, nested_path)
-        
+
         assert os.path.exists(nested_path)
 
 
