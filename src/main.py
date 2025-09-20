@@ -39,7 +39,6 @@ def main() -> None:
 
     # Initialize tablebase with configuration
     tablebase = engine_handler.get_syzygy_tablebase(app_config.syzygy_path)
-
     print("Tablebases loaded" if tablebase else "Tablebases not available")
 
     try:
