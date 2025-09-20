@@ -16,26 +16,26 @@ except ImportError:
     import src.input_handler as input_handler
 
 
-def get_move_score(
-    item: tuple[chess.Move, tuple[int | None, int | None]],
-) -> int:
-    """Key function for sorting moves. Takes (Move, (score,
-    mate_value)) and returns score for sorting.
+def play_game(
+    board: chess.Board,
+    engine: chess.engine.SimpleEngine,
+    move_history: list[chess.Move],
+    tablebase: chess.syzygy.Tablebase | None = None,
+) -> None:
+    """Run the interactive chess game loop. Continues until the game is
+    over. Displays the board, evaluates moves, and handles user input
+    for moves.
     """
-    return item[1][0] if item[1][0] is not None else 0
+    while not board.is_game_over():
+        board_ui.print_board(board)
+        evaluate_and_show_moves(board, engine, tablebase)
+        move = input_handler.handle_user_input(board)
 
+        if not move:
+            continue
 
-def sort_moves_by_evaluation(
-    moves_eval: dict[chess.Move, tuple[int | None, int | None]],
-    is_white_turn: bool,
-) -> list[tuple[chess.Move, tuple[int | None, int | None]]]:
-    """Sorts the evaluated moves based on the score. Higher scores are
-    better for White, lower scores are better for Black. Returns a list
-    of tuples (Move, (score, mate_value)).
-    """
-    return sorted(
-        list(moves_eval.items()), key=get_move_score, reverse=is_white_turn
-    )
+        board.push(move)
+        move_history.append(move)
 
 
 def evaluate_and_show_moves(
@@ -71,23 +71,23 @@ def evaluate_and_show_moves(
     return moves_eval, eval_time
 
 
-def play_game(
-    board: chess.Board,
-    engine: chess.engine.SimpleEngine,
-    move_history: list[chess.Move],
-    tablebase: chess.syzygy.Tablebase | None = None,
-) -> None:
-    """Run the interactive chess game loop. Continues until the game is
-    over. Displays the board, evaluates moves, and handles user input
-    for moves.
+def sort_moves_by_evaluation(
+    moves_eval: dict[chess.Move, tuple[int | None, int | None]],
+    is_white_turn: bool,
+) -> list[tuple[chess.Move, tuple[int | None, int | None]]]:
+    """Sorts the evaluated moves based on the score. Higher scores are
+    better for White, lower scores are better for Black. Returns a list
+    of tuples (Move, (score, mate_value)).
     """
-    while not board.is_game_over():
-        board_ui.print_board(board)
-        evaluate_and_show_moves(board, engine, tablebase)
-        move = input_handler.handle_user_input(board)
+    return sorted(
+        list(moves_eval.items()), key=get_move_score, reverse=is_white_turn
+    )
 
-        if not move:
-            continue
 
-        board.push(move)
-        move_history.append(move)
+def get_move_score(
+    item: tuple[chess.Move, tuple[int | None, int | None]],
+) -> int:
+    """Key function for sorting moves. Takes (Move, (score,
+    mate_value)) and returns score for sorting.
+    """
+    return item[1][0] if item[1][0] is not None else 0
