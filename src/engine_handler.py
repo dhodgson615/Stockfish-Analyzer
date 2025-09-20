@@ -8,7 +8,12 @@ import chess
 import chess.engine
 import chess.syzygy
 
-import src.board_ui
+try:
+    import board_ui
+
+except ImportError:
+    import src.board_ui as board_ui
+
 
 EVAL_DEPTH = 18
 ENGINE_PATH = "/opt/homebrew/bin/stockfish"
