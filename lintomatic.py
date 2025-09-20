@@ -10,11 +10,6 @@ def find_python_files(root_dir: str) -> List[str]:
         for filename in filenames:
             if filename.endswith(".py"):
                 full_path = os.path.join(dirpath, filename)
-
-                # Skip the script itself
-                if os.path.abspath(full_path) == os.path.abspath(__file__):
-                    continue
-
                 python_files.append(full_path)
 
     return python_files
