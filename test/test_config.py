@@ -127,7 +127,7 @@ def test_save_and_load_config_file() -> None:
         assert loaded_data == saved_data
 
 
-def test_parse_config_with_config_file():
+def test_parse_config_with_config_file() -> None:
     """Test parsing with config file."""
     with tempfile.TemporaryDirectory() as temp_dir:
         config_path = os.path.join(temp_dir, "test.json")
