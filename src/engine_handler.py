@@ -163,7 +163,7 @@ def get_move_evals(
     mapping moves to their (score, mate_value) tuples.
     """
     moves_evaluations = {}
-    start_time = time()
+    start_time = time.time()
 
     for i, move in enumerate(list(board.legal_moves), 1):
         move_obj, score_data = evaluate_move(
