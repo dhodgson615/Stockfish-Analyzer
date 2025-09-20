@@ -19,7 +19,7 @@ def from_uci(uci_str: str) -> chess.Move:
         raise ValueError(f"Invalid UCI string: {uci_str}")
 
 
-def parse_move_input(board: Board, user_input: str) -> Move | None:
+def parse_move_input(board: chess.Board, user_input: str) -> chess.Move | None:
     """Parse user input as a chess move. Tries SAN first, then UCI.
     Returns a Move object if successful, otherwise None.
     """
