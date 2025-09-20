@@ -85,8 +85,7 @@ def print_game_result(board: Board) -> None:
     threefold repetition.
     """
     if board.is_checkmate():
-        winner = "Black" if board.turn else "White"
-        print(f"Checkmate! Winner: {winner}")
+        print(f"Checkmate! Winner: {'Black' if board.turn else 'White'}")
 
     elif board.is_stalemate():
         print("Stalemate! The game is a draw.")
