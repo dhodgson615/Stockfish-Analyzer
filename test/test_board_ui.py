@@ -71,9 +71,75 @@ def test_display_progress_completed() -> None:
     start_time = time.time() - 10
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
-        src.board_ui.print_game_result(board)
+        src.board_ui.display_progress(10, 10, start_time, 20)
         output = buf.getvalue()
-        assert "Stalemate! The game is a draw." in output
+
+        assert "[####################]" in output
+        assert "100.0%" in output
+        assert "Remaining: 00:00" in output
+
+
+def test_print_possible_moves_empty() -> None:
+    """Test print_possible_moves with empty list."""
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        src.board_ui.print_possible_moves([])
+        output = buf.getvalue()
+
+        assert "Possible moves:" in output
+        # No moves should be listed
+
+
+def test_print_possible_moves_with_none_values() -> None:
+    """Test print_possible_moves with None score values."""
+    move = chess.Move.from_uci("e2e4")
+    moves_data: list[tuple[chess.Move, tuple[int | None, int | None]]] = [
+        (move, (None, None))
+    ]
+
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        src.board_ui.print_possible_moves(moves_data)
+        output = buf.getvalue()
+
+        assert "e2e4" in output
+        assert "Eval score: None" in output
+
+
+def test_print_move_history_empty() -> None:
+    """Test print_move_history with empty list."""
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        src.board_ui.print_move_history([])
+        output = buf.getvalue()
+
+        assert "Moves played:" in output
+        # No moves should be listed
+
+
+def test_print_move_history_custom_moves_per_line() -> None:
+    """Test print_move_history with custom moves per line."""
+    moves = [
+        chess.Move.from_uci(m)
+        for m in ["e2e4", "e7e5", "g1f3", "b8c6", "f1c4", "g8f6"]
+    ]
+
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        src.board_ui.print_move_history(moves, moves_per_line=3)
+        output = buf.getvalue()
+
+        # Check if there's a newline after the 3rd move
+        assert "3. g1f3\n" in output
+
+
+def test_print_game_result_fifty_moves() -> None:
+    """Test print_game_result for fifty-move rule."""
+    board = chess.Board()
+    board.halfmove_clock = 100  # Set fifty-move counter
+
+    with unittest.mock.patch.object(
+        board, "is_fifty_moves", return_value=True
+    ):
+        with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+            src.board_ui.print_game_result(board)
+            output = buf.getvalue()
 
 
 def test_print_game_result_insufficient_material() -> None:
