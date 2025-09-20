@@ -1,5 +1,5 @@
-from contextlib import redirect_stdout
-from io import StringIO
+import contextlib
+import io
 
 from chess import Board, Move
 from pytest import MonkeyPatch, fixture, raises
