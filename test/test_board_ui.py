@@ -270,8 +270,8 @@ def test_print_tablebase_info_draw() -> None:
     """Test print_tablebase_info for draw position."""
     board = chess.Board()
     mock_tablebase = unittest.mock.MagicMock()
-    mock_tablebase.get_wdl.return_value = 1  # Win
-    mock_tablebase.get_dtz.return_value = 5  # Distance to zero
+    mock_tablebase.get_wdl.return_value = 0  # Draw
+    mock_tablebase.get_dtz.return_value = 0
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.print_tablebase_info(board, mock_tablebase)
