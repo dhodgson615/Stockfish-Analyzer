@@ -286,9 +286,9 @@ def test_get_move_evals_with_mock() -> None:
 
         mock_evaluate.side_effect = side_effect
 
-        # Test the function
-        with patch(
-            "src.engine_handler.display_progress"
+        # Test the function - mock the display_progress function properly
+        with unittest.mock.patch(
+            "src.board_ui.display_progress"
         ):  # Avoid terminal output
             result = get_move_evals(board, mock_engine)
 
