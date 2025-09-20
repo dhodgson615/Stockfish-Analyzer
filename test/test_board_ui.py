@@ -12,7 +12,7 @@ import src.input_handler
 
 
 def test_print_game_result_checkmate_black_wins(
-    checkmate_board: Board,
+    checkmate_board: chess.Board,
 ) -> None:
     """Test print_game_result() for a checkmate scenario."""
     # The checkmate_board fixture has White checkmated (Black wins)
