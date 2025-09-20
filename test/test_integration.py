@@ -55,7 +55,7 @@ def test_play_game_simple_sequence(
     ]
     move_iter = iter(moves)
 
-    def mock_handle_input(_: Board) -> Move | None:
+    def mock_handle_input(_: chess.Board) -> chess.Move | None:
         try:
             return next(move_iter)
 
