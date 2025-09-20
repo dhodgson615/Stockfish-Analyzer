@@ -39,7 +39,7 @@ def test_get_engine(engine_path: str) -> None:
         engine.quit()
 
 
-@mark.skipif(PATH_NOT_FOUND, reason=PATH_NOT_FOUND_MSG)
+@pytest.mark.skipif(PATH_NOT_FOUND, reason=PATH_NOT_FOUND_MSG)
 def test_evaluate_move(engine_path: str) -> None:
     """Test that evaluate_move returns a move and score."""
     engine = get_engine(engine_path)
