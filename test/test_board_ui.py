@@ -8,7 +8,15 @@ import unittest.mock
 import chess
 
 import src.board_ui
-import src.input_handler
+
+
+def test_clear_terminal() -> None:
+    """Test that clear_terminal uses the correct escape sequence."""
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        src.board_ui.clear_terminal()
+        output = buf.getvalue()
+        assert output == "\033c"
+
 
 
 def test_print_game_result_checkmate_black_wins(
