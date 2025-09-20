@@ -6,7 +6,7 @@ import src.engine_handler
 
 def test_tablebase_functionality() -> None:
     """Test basic functionality of Syzygy tablebase integration."""
-    tablebase = get_syzygy_tablebase()
+    tablebase = src.engine_handler.get_syzygy_tablebase()
 
     if not tablebase:
         skip("Tablebase not found or loaded. Check installation.")
