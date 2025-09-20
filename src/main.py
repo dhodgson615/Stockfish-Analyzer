@@ -19,7 +19,7 @@ def main() -> None:
         src.board_ui.print_game_over_info(board, move_history)
 
         if tablebase:
-            print_tablebase_info(board, tablebase)
+            src.board_ui.print_tablebase_info(board, tablebase)
 
     finally:
         engine.quit()
