@@ -106,7 +106,7 @@ Config file format (JSON):
     parser.add_argument(
         "--config",
         type=str,
-        help="Path to JSON config file with engine settings"
+        help="Path to JSON config file with engine settings",
     )
     
     # Output config
