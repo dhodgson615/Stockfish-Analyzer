@@ -92,7 +92,7 @@ def evaluate_move(
 
 
 def try_tablebase_evaluation(
-    board: Board, tablebase: Tablebase | None
+    board: chess.Board, tablebase: chess.syzygy.Tablebase | None
 ) -> (
     tuple[int | None, int | None] | None
 ):  # TODO: Refactor this to use lru_cache
