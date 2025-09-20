@@ -31,8 +31,8 @@ def test_print_game_result_stalemate() -> None:
     assert not board.is_check()
     assert board.is_stalemate()
 
-    with StringIO() as buf, redirect_stdout(buf):
-        print_game_result(board)
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        src.board_ui.print_game_result(board)
         output = buf.getvalue()
         assert "Stalemate! The game is a draw." in output
 
