@@ -84,7 +84,9 @@ def test_show_mate_info() -> None:
         assert "Mate in 3" in buf.getvalue()
 
     # Test with no mate - using a new variable to avoid type confusion
-    best_move_data_no_mate: tuple[Move, tuple[int | None, int | None]] = (
+    best_move_data_no_mate: tuple[
+        chess.Move, tuple[int | None, int | None]
+    ] = (
         move,
         (100, None),
     )
