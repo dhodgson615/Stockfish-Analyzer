@@ -52,7 +52,7 @@ def test_handle_user_input_valid_move(monkeypatch: pytest.MonkeyPatch) -> None:
     result = src.input_handler.handle_user_input(board)
     expected = chess.Move.from_uci("e2e4")
 
-    assert move == from_uci("e2e4")
+    assert result == expected
 
 
 def test_handle_user_input_illegal_move(monkeypatch: MonkeyPatch) -> None:
