@@ -233,7 +233,7 @@ def test_parse_config_save_config_exits():
     """Test that --save-config option saves and exits."""
     with tempfile.TemporaryDirectory() as temp_dir:
         config_path = os.path.join(temp_dir, "save_test.json")
-        
+
         # Should exit after saving
         with pytest.raises(SystemExit):
             config.parse_config(["--save-config", config_path])
