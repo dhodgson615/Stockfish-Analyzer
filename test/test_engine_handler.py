@@ -267,8 +267,8 @@ def test_popen_uci_general_exception(
 
 def test_get_move_evals_with_mock() -> None:
     """Test get_move_evals using mocks to avoid actual engine use."""
-    board = Board()
-    mock_engine = MagicMock(spec=SimpleEngine)
+    board = chess.Board()
+    mock_engine = unittest.mock.MagicMock(spec=chess.engine.SimpleEngine)
 
     # Create a mock evaluate_move function
     with patch("src.engine_handler.evaluate_move") as mock_evaluate:
