@@ -323,7 +323,7 @@ def test_get_dynamic_eval_depth_middlegame() -> None:
     middlegame_board = chess.Board(middlegame_fen)
 
     depth_mg = src.engine_handler.get_dynamic_eval_depth(middlegame_board)
-    
+
     # Move 20 with 26 pieces -> middlegame depth
     assert depth_mg == 20  # True middlegame depth
 
