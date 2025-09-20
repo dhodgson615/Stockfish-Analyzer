@@ -55,7 +55,8 @@ def engine_path() -> str:
         "stockfish-14",
     ]
 
-    if not os.path.exists(filepath):
-        pytest.skip("Stockfish engine not found. Skipping tests.")
+    # Print current working directory and PATH for debugging
+    print(f"\nDEBUG: Current working directory: {os.getcwd()}")
+    print(f"DEBUG: PATH environment: {os.environ.get('PATH', '')}")
 
     return filepath
