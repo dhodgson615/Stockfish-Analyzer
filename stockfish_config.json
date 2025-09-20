@@ -1,0 +1,8 @@
+{
+    "engine_path": "/usr/games/stockfish",
+    "threads": 4,
+    "hash_size": 16384,
+    "skill_level": 20,
+    "eval_depth": 18,
+    "syzygy_path": "/home/runner/chess/syzygy"
+}
