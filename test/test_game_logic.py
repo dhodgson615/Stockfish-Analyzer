@@ -12,9 +12,9 @@ import src.game_logic
 
 def test_sort_moves_by_evaluation() -> None:
     # Create real moves and evaluation data
-    move1 = Move.from_uci("e2e4")
-    move2 = Move.from_uci("d2d4")
-    move3 = Move.from_uci("c2c4")
+    move1 = chess.Move.from_uci("e2e4")
+    move2 = chess.Move.from_uci("d2d4")
+    move3 = chess.Move.from_uci("c2c4")
 
     moves_eval: dict[Move, tuple[int | None, int | None]] = {
         move1: (100, None),
