@@ -146,7 +146,7 @@ def test_try_tablebase_evaluation_win() -> None:
         "8/8/8/8/8/K7/8/k1q5 w - - 0 1"
     )  # White to move, losing
 
-    mock_tablebase = MagicMock()
+    mock_tablebase = unittest.mock.MagicMock()
     mock_tablebase.get_wdl.return_value = -2  # Loss for white
     mock_tablebase.get_dtz.return_value = 5
     result = try_tablebase_evaluation(board, mock_tablebase)
