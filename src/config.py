@@ -214,7 +214,7 @@ def parse_config(args: Optional[list[str]] = None) -> EngineConfig:
     if parsed_args.save_config:
         save_config_file(config, parsed_args.save_config)
         exit(0)
-    
+
     # Expand paths after all settings are resolved
     config.__post_init__()
     
