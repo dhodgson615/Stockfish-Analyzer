@@ -36,7 +36,7 @@ def main() -> None:
         hash_size=app_config.hash_size,
         skill_level=app_config.skill_level,
     )
-    
+
     # Initialize tablebase with configuration
     tablebase = engine_handler.get_syzygy_tablebase(app_config.syzygy_path)
 
