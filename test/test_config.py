@@ -34,7 +34,7 @@ def test_create_argument_parser() -> None:
 
     # Test help doesn't crash
     with pytest.raises(SystemExit):  # argparse calls sys.exit for help
-        parser.parse_args(['--help'])
+        parser.parse_args(["--help"])
 
 
 def test_parse_config_defaults():
