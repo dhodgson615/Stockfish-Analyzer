@@ -78,8 +78,8 @@ def check_indentation(file_path: str) -> List[int]:
         prev_line = lines[i - 1].rstrip("\n")
         curr_line = lines[i].rstrip("\n")
 
-        # Skip if current line is blank
-        if not curr_line.strip():
+        # Skip if either line is empty
+        if not curr_line.strip() or not prev_line.strip():
             continue
 
         # Skip if previous line is blank
