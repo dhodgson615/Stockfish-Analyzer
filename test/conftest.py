@@ -36,7 +36,9 @@ def sample_moves() -> list[chess.Move]:
 
 @pytest.fixture
 def engine_path() -> str:
-    """Returns path to Stockfish engine, checking multiple common locations."""
+    """Returns path to Stockfish engine, checking multiple common
+    locations.
+    """  # FIXME: duplicate of src/engine_handler.py logic
     # Check multiple possible locations for Stockfish on macOS
     macos_paths = [
         "/opt/homebrew/bin/stockfish",  # Apple Silicon Mac default
