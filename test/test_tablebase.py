@@ -32,7 +32,7 @@ def test_tablebase_functionality() -> None:
 
             move = moves[0]
 
-            move_obj, (_, mate) = evaluate_move(
+            move_obj, (_, mate) = src.engine_handler.evaluate_move(
                 board, engine, move, tablebase=tablebase
             )
 
