@@ -12,7 +12,7 @@ import src.config as config
 def test_engine_config_defaults():
     """Test that EngineConfig has correct default values."""
     cfg = config.EngineConfig()
-    
+
     assert cfg.engine_path == "/usr/games/stockfish"
     assert cfg.threads == 4
     assert cfg.hash_size == 16384
