@@ -7,15 +7,19 @@ import chess.syzygy
 
 try:
     import board_ui
-    import config
     import engine_handler
     import input_handler
 
 except ImportError:
     import src.board_ui as board_ui
-    import src.config as config
     import src.engine_handler as engine_handler
     import src.input_handler as input_handler
+
+# Import config module separately to avoid name conflicts
+try:
+    from . import config as config_module
+except ImportError:
+    import src.config as config_module
 
 
 def play_game(
@@ -44,7 +48,7 @@ def evaluate_and_show_moves(
     board: chess.Board,
     engine: chess.engine.SimpleEngine,
     tablebase: chess.syzygy.Tablebase | None = None,
-    app_config: config.EngineConfig | None = None,
+    app_config: config_module.EngineConfig | None = None,
 ) -> tuple[dict[chess.Move, tuple[int | None, int | None]], float]:
     """Evaluate moves and display them with timing information. Returns
     a tuple containing the moves evaluation dictionary and the time
