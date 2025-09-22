@@ -15,20 +15,21 @@ except ImportError:
         import src.board_ui as board_ui
         import src.engine_handler as engine_handler
         import src.input_handler as input_handler
+
     except ImportError:
-        # Last resort - try current directory
         import board_ui
         import engine_handler
         import input_handler
 
-# Import config module separately to avoid name conflicts
 try:
     from . import config as config_module
+
 except ImportError:
     try:
-        import config as config_module  # type: ignore
+        import config as config_module
+    
     except ImportError:
-        import src.config as config_module  # type: ignore
+        import src.config as config_module
 
 
 def play_game(
