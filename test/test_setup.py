@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Test for the setup script functionality."""
 
 import json
@@ -20,6 +19,7 @@ class TestSetupScript(unittest.TestCase):
     def test_setup_script_exists_and_executable(self) -> None:
         """Test that setup script exists and is executable."""
         self.assertTrue(self.setup_script.exists(), "setup.sh should exist")
+    
         self.assertTrue(
             os.access(self.setup_script, os.X_OK),
             "setup.sh should be executable",
@@ -98,6 +98,7 @@ class TestSetupScript(unittest.TestCase):
         script.
         """
         download_script = self.test_dir / "scripts" / "download_syzygy.sh"
+    
         self.assertTrue(
             download_script.exists(),
             "download_syzygy.sh should exist for integration",
