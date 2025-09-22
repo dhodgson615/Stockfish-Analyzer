@@ -127,4 +127,5 @@ def engine_path() -> str:
             "Try running 'which stockfish' in your terminal to locate it",
         ]
     )
+
     pytest.skip(f"Stockfish engine not found. {debug_info}")
