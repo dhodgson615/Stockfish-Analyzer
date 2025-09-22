@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Stockfish-Analyzer Setup Script
-# Configures engine and downloads tablebases via CLI prompts
-# Usage: setup.sh [config_template]
-
 set -e  # Exit on any error
 
 # Colors for output
@@ -13,12 +9,10 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-# Default paths and configuration
 DEFAULT_SYZYGY_PATH="$HOME/chess/syzygy"
 DEFAULT_CONFIG_PATH="config/stockfish_config.json"
 DEFAULT_CONFIG_TEMPLATE="config/example_config.json"
 
-# Parse command line arguments
 CONFIG_TEMPLATE="$DEFAULT_CONFIG_TEMPLATE"
 if [[ $# -ge 1 ]]; then
     CONFIG_TEMPLATE="$1"
@@ -35,7 +29,6 @@ else
 fi
 echo
 
-# Function to load configuration template
 load_config_template() {
     local template_file="$1"
     
@@ -60,7 +53,6 @@ load_config_template() {
     fi
 }
 
-# Function to detect OS
 detect_os() {
     if [[ "$OSTYPE" == "darwin"* ]]; then
         echo "macos"
@@ -71,12 +63,10 @@ detect_os() {
     fi
 }
 
-# Function to check if command exists
 command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
-# Function to find existing Stockfish installation
 find_stockfish() {
     local paths=(
         "/opt/homebrew/bin/stockfish"    # Apple Silicon Mac
@@ -106,7 +96,6 @@ find_stockfish() {
     return 1
 }
 
-# Function to install Stockfish on different systems
 install_stockfish() {
     local os=$(detect_os)
     
@@ -144,7 +133,6 @@ install_stockfish() {
     esac
 }
 
-# Function to test Stockfish installation
 test_stockfish() {
     local stockfish_path="$1"
     
@@ -165,14 +153,11 @@ test_stockfish() {
     fi
 }
 
-# Function to download tablebases
 download_tablebases() {
     local syzygy_path="$1"
     
     echo -e "${YELLOW}Downloading Syzygy tablebases...${NC}"
     echo "This may take several minutes and requires several GB of space."
-    
-    # Create directory
     mkdir -p "$syzygy_path"
     
     # Use existing download script if available
@@ -197,7 +182,6 @@ EOF
     fi
 }
 
-# Function to create configuration file
 create_config() {
     local stockfish_path="$1"
     local syzygy_path="$2"
@@ -223,7 +207,6 @@ EOF
     echo -e "${GREEN}Configuration saved to: $config_path${NC}"
 }
 
-# Function to get user input with default
 get_input() {
     local prompt="$1"
     local default="$2"
@@ -238,7 +221,6 @@ get_input() {
     fi
 }
 
-# Function to get yes/no input
 get_yes_no() {
     local prompt="$1"
     local default="$2"
@@ -260,7 +242,6 @@ get_yes_no() {
     done
 }
 
-# Main setup flow
 main() {
     local stockfish_path=""
     local syzygy_path=""
@@ -270,7 +251,6 @@ main() {
     local skill_level=""
     local eval_depth=""
     
-    # Load configuration template
     load_config_template "$CONFIG_TEMPLATE"
     
     # Check for existing Stockfish
@@ -314,8 +294,7 @@ main() {
         else
             echo -e "${YELLOW}Skipping Stockfish installation.${NC}"
             echo "You'll need to install it manually and update the configuration."
-            # Use a placeholder path
-            stockfish_path="/usr/games/stockfish"
+            stockfish_path="/usr/games/stockfish" # placeholder path
         fi
     fi
     
