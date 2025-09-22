@@ -13,7 +13,11 @@ try:
     import board_ui
 
 except ImportError:
-    import src.board_ui as board_ui
+    try:
+        import src.board_ui as board_ui
+    except ImportError:
+        # Last resort - try current directory
+        import board_ui
 
 
 EVAL_DEPTH = 18  # Default depth, used as fallback
