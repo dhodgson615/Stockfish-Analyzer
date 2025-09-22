@@ -1,0 +1,8 @@
+{
+  "syzygy_path": "~/chess/syzygy",
+  "base_url": "https://tablebase.lichess.ovh/tables/standard/3-4-5",
+  "download_3_piece": true,
+  "download_4_piece": true,
+  "download_5_piece": true,
+  "confirm_overwrite": true
+}

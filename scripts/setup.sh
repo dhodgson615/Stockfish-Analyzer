@@ -2,6 +2,7 @@
 
 # Stockfish-Analyzer Setup Script
 # Configures engine and downloads tablebases via CLI prompts
+# Usage: setup.sh [config_template]
 
 set -e  # Exit on any error
 
@@ -12,13 +13,52 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-# Default paths
+# Default paths and configuration
 DEFAULT_SYZYGY_PATH="$HOME/chess/syzygy"
 DEFAULT_CONFIG_PATH="stockfish_config.json"
+DEFAULT_CONFIG_TEMPLATE="config/example_config.json"
+
+# Parse command line arguments
+CONFIG_TEMPLATE="$DEFAULT_CONFIG_TEMPLATE"
+if [[ $# -ge 1 ]]; then
+    CONFIG_TEMPLATE="$1"
+fi
 
 echo -e "${BLUE}=== Stockfish-Analyzer Setup ===${NC}"
 echo "This script will help you configure Stockfish engine and optionally download tablebases."
 echo
+if [[ -f "$CONFIG_TEMPLATE" ]]; then
+    echo -e "${BLUE}Using configuration template: $CONFIG_TEMPLATE${NC}"
+else
+    echo -e "${YELLOW}Configuration template not found: $CONFIG_TEMPLATE${NC}"
+    echo -e "${YELLOW}Using built-in defaults${NC}"
+fi
+echo
+
+# Function to load configuration template
+load_config_template() {
+    local template_file="$1"
+    
+    if [[ -f "$template_file" ]] && command -v python3 >/dev/null 2>&1; then
+        echo -e "${BLUE}Loading template from: $template_file${NC}"
+        
+        # Load defaults from template
+        TEMPLATE_ENGINE_PATH=$(python3 -c "import json; config=json.load(open('$template_file')); print(config.get('engine_path', '/usr/games/stockfish'))" 2>/dev/null || echo "/usr/games/stockfish")
+        TEMPLATE_THREADS=$(python3 -c "import json; config=json.load(open('$template_file')); print(config.get('threads', 4))" 2>/dev/null || echo "4")
+        TEMPLATE_HASH_SIZE=$(python3 -c "import json; config=json.load(open('$template_file')); print(config.get('hash_size', 16384))" 2>/dev/null || echo "16384")
+        TEMPLATE_SKILL_LEVEL=$(python3 -c "import json; config=json.load(open('$template_file')); print(config.get('skill_level', 20))" 2>/dev/null || echo "20")
+        TEMPLATE_EVAL_DEPTH=$(python3 -c "import json; config=json.load(open('$template_file')); print(config.get('eval_depth', 18))" 2>/dev/null || echo "18")
+        TEMPLATE_SYZYGY_PATH=$(python3 -c "import json; config=json.load(open('$template_file')); print(config.get('syzygy_path', '$DEFAULT_SYZYGY_PATH'))" 2>/dev/null || echo "$DEFAULT_SYZYGY_PATH")
+    else
+        # Use built-in defaults
+        TEMPLATE_ENGINE_PATH="/usr/games/stockfish"
+        TEMPLATE_THREADS="4"
+        TEMPLATE_HASH_SIZE="16384"
+        TEMPLATE_SKILL_LEVEL="20"
+        TEMPLATE_EVAL_DEPTH="18"
+        TEMPLATE_SYZYGY_PATH="$DEFAULT_SYZYGY_PATH"
+    fi
+}
 
 # Function to detect OS
 detect_os() {
@@ -137,12 +177,20 @@ download_tablebases() {
     
     # Use existing download script if available
     if [[ -f "scripts/download_syzygy.sh" ]]; then
-        echo "Using existing download script..."
-        # Modify the script to use custom path
-        sed "s|~/chess/syzygy|$syzygy_path|g" scripts/download_syzygy.sh > /tmp/download_syzygy_custom.sh
-        chmod +x /tmp/download_syzygy_custom.sh
-        /tmp/download_syzygy_custom.sh
-        rm /tmp/download_syzygy_custom.sh
+        echo "Using configurable download script..."
+        # Create a temporary config for the download
+        local temp_config="/tmp/download_config_$$.json"
+        cat > "$temp_config" << EOF
+{
+    "syzygy_path": "$syzygy_path",
+    "base_url": "https://tablebase.lichess.ovh/tables/standard/3-4-5",
+    "confirm_overwrite": false
+}
+EOF
+        
+        # Run the download script with our config
+        scripts/download_syzygy.sh "$temp_config" "$syzygy_path"
+        rm -f "$temp_config"
     else
         echo -e "${RED}Error: Download script not found${NC}"
         return 1
@@ -154,16 +202,20 @@ create_config() {
     local stockfish_path="$1"
     local syzygy_path="$2"
     local config_path="$3"
+    local threads="$4"
+    local hash_size="$5"
+    local skill_level="$6"
+    local eval_depth="$7"
     
     echo -e "${YELLOW}Creating configuration file: $config_path${NC}"
     
     cat > "$config_path" << EOF
 {
     "engine_path": "$stockfish_path",
-    "threads": 4,
-    "hash_size": 16384,
-    "skill_level": 20,
-    "eval_depth": 18,
+    "threads": $threads,
+    "hash_size": $hash_size,
+    "skill_level": $skill_level,
+    "eval_depth": $eval_depth,
     "syzygy_path": "$syzygy_path"
 }
 EOF
@@ -213,6 +265,13 @@ main() {
     local stockfish_path=""
     local syzygy_path=""
     local config_path=""
+    local threads=""
+    local hash_size=""
+    local skill_level=""
+    local eval_depth=""
+    
+    # Load configuration template
+    load_config_template "$CONFIG_TEMPLATE"
     
     # Check for existing Stockfish
     echo -e "${BLUE}Step 1: Stockfish Engine Setup${NC}"
@@ -292,12 +351,21 @@ main() {
     # Configuration file creation
     echo
     echo -e "${BLUE}Step 3: Configuration File${NC}"
+    echo "Configure engine performance settings:"
+    
+    # Get engine settings with template defaults
+    threads=$(get_input "Number of threads" "$TEMPLATE_THREADS")
+    hash_size=$(get_input "Hash size (MB)" "$TEMPLATE_HASH_SIZE")
+    skill_level=$(get_input "Skill level (0-20)" "$TEMPLATE_SKILL_LEVEL")
+    eval_depth=$(get_input "Evaluation depth" "$TEMPLATE_EVAL_DEPTH")
+    
+    echo
     config_path=$(get_input "Save configuration to" "$DEFAULT_CONFIG_PATH")
     
     # Use default path if user doesn't want tablebases
-    local final_syzygy_path="${syzygy_path:-$DEFAULT_SYZYGY_PATH}"
+    local final_syzygy_path="${syzygy_path:-$TEMPLATE_SYZYGY_PATH}"
     
-    create_config "$stockfish_path" "$final_syzygy_path" "$config_path"
+    create_config "$stockfish_path" "$final_syzygy_path" "$config_path" "$threads" "$hash_size" "$skill_level" "$eval_depth"
     
     # Final instructions
     echo
