@@ -15,7 +15,7 @@ NC='\033[0m' # No Color
 
 # Default paths and configuration
 DEFAULT_SYZYGY_PATH="$HOME/chess/syzygy"
-DEFAULT_CONFIG_PATH="stockfish_config.json"
+DEFAULT_CONFIG_PATH="config/stockfish_config.json"
 DEFAULT_CONFIG_TEMPLATE="config/example_config.json"
 
 # Parse command line arguments

@@ -69,7 +69,7 @@ This script will:
 Once setup is complete, run the analyzer with your configuration:
 
 ```bash
-python3 src/main.py --config stockfish_config.json
+python3 src/main.py --config config/stockfish_config.json
 ```
 
 ### Method 2: Using Command Line Arguments
