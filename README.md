@@ -38,6 +38,21 @@ Install the Python dependency with:
 pip3 install python-chess
 ```
 
+## Docker Support
+
+For the easiest setup, you can use Docker which includes all dependencies:
+
+```bash
+# Build and run with Docker
+docker build -t stockfish-analyzer .
+docker run -it stockfish-analyzer
+
+# Or use Docker Compose
+docker-compose up stockfish-analyzer
+```
+
+See [DOCKER.md](DOCKER.md) for detailed Docker instructions and configuration options.
+
 ## Syzygy Tablebase Support (Optional)
 
 To enable instant endgame evaluation for 3-5 piece positions, download the
@@ -69,7 +84,7 @@ This script will:
 Once setup is complete, run the analyzer with your configuration:
 
 ```bash
-python3 src/main.py --config stockfish_config.json
+python3 src/main.py --config config/stockfish_config.json
 ```
 
 ### Method 2: Using Command Line Arguments

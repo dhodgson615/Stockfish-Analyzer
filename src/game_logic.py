@@ -11,15 +11,24 @@ try:
     import input_handler
 
 except ImportError:
-    import src.board_ui as board_ui
-    import src.engine_handler as engine_handler
-    import src.input_handler as input_handler
+    try:
+        import src.board_ui as board_ui
+        import src.engine_handler as engine_handler
+        import src.input_handler as input_handler
+    except ImportError:
+        # Last resort - try current directory
+        import board_ui
+        import engine_handler
+        import input_handler
 
 # Import config module separately to avoid name conflicts
 try:
     from . import config as config_module
 except ImportError:
-    import src.config as config_module
+    try:
+        import config as config_module  # type: ignore
+    except ImportError:
+        import src.config as config_module  # type: ignore
 
 
 def play_game(
