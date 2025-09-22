@@ -15,8 +15,8 @@ try:
 except ImportError:
     try:
         import src.board_ui as board_ui
+
     except ImportError:
-        # Last resort - try current directory
         import board_ui
 
 
