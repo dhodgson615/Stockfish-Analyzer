@@ -10,28 +10,26 @@ except ImportError:
         import src.board_ui as board_ui
         import src.engine_handler as engine_handler
         import src.game_logic as game_logic
+
     except ImportError:
-        # Last resort - try current directory
         import board_ui
         import engine_handler  
         import game_logic
 
-# Import config module separately to avoid name conflicts
 try:
     from . import config as config_module
+
 except ImportError:
     try:
-        import config as config_module  # type: ignore
+        import config as config_module
+
     except ImportError:
-        import src.config as config_module  # type: ignore
+        import src.config as config_module
 
 
 def main() -> None:
     """Main function to run the interactive chess game."""
-    # Parse configuration from CLI args and config files
     app_config = config_module.parse_config()
-
-    # Display configuration summary
     print(f"Engine: {app_config.engine_path}")
 
     print(
