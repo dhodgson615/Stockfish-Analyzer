@@ -25,6 +25,7 @@ def handle_user_input(board: chess.Board) -> chess.Move | None:
     or None if the input is invalid.
     """
     user_input = input("Enter your move (UCI or SAN): ")
+
     return process_user_input(board, user_input)
 
 
