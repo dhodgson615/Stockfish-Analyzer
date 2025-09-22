@@ -13,11 +13,7 @@ class EngineConfig:
     """Configuration settings for the Stockfish engine and
     application.
     """
-
-    # Engine binary settings
     engine_path: str = "/usr/games/stockfish"
-
-    # Engine performance settings
     threads: int = 4
     hash_size: int = 16384  # MB
     skill_level: int = 20
