@@ -32,7 +32,7 @@ def process_user_input(
     board: chess.Board, user_input: str
 ) -> chess.Move | None:
     """Processes a user input string and returns a valid Move object
-    or None if the input is invalid. Separated from handle_user_input 
+    or None if the input is invalid. Separated from handle_user_input
     for better testability.
     """
     if user_input.lower() in ["quit", "q", "exit"]:
