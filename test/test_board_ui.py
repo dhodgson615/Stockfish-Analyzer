@@ -186,8 +186,7 @@ def test_show_mate_info_no_mate() -> None:
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.show_mate_info(no_mate_data, True)
         output = buf.getvalue()
-
-        assert output == ""  # No output expected
+        assert output == ""
 
 
 def test_show_mate_info_opponent_mate() -> None:
