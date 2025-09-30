@@ -70,7 +70,6 @@ def test_display_progress_completed() -> None:
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.display_progress(10, 10, start_time, 20)
         output = buf.getvalue()
-
         assert "[####################]" in output
         assert "100.0%" in output
         assert "Remaining: 00:00" in output
