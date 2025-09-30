@@ -249,3 +249,37 @@ def test_get_default_config() -> None:
     assert isinstance(cfg, config.EngineConfig)
     assert cfg.engine_path == "/usr/games/stockfish"
     assert cfg.threads == 4
+
+
+def test_load_config_file_generic_exception(monkeypatch):
+    """Simulate unexpected exception (e.g., permission error)"""
+
+    def bad_open(*args, **kwargs):
+        """Mock open that raises an exception"""
+        raise Exception("Unexpected error")
+
+    monkeypatch.setattr("builtins.open", bad_open)
+    with pytest.raises(ValueError, match="Error reading config file"):
+        config.load_config_file("dummy_path.json")
+
+
+def test_save_config_file_generic_exception(tmp_path, monkeypatch):
+    """Simulate unexpected exception (e.g., permission error)"""
+
+    def bad_open(*args, **kwargs):
+        """Mock open that raises an exception"""
+        raise Exception("Unexpected error")
+
+    monkeypatch.setattr("builtins.open", bad_open)
+    cfg = config.EngineConfig()
+
+    with pytest.raises(ValueError, match="Error saving config file"):
+        config.save_config_file(cfg, str(tmp_path / "file.json"))
+
+
+def test_parse_config_save_config_exits(tmp_path):
+    """Test that --save-config option saves and exits."""
+    config_path = str(tmp_path / "save_test.json")
+
+    with pytest.raises(SystemExit):
+        config.parse_config(["--save-config", config_path])
