@@ -258,3 +258,76 @@ def test_print_tablebase_info_draw() -> None:
         output = buf.getvalue()
         assert "Draw" in output
         assert "DTZ: 0" in output
+
+
+def test_print_move_history_final_newline() -> None:
+    """Test that print_move_history ends with two newlines."""
+    moves = [chess.Move.from_uci(m) for m in ["e2e4", "e7e5", "g1f3", "b8c6"]]
+
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        src.board_ui.print_move_history(moves, moves_per_line=3)
+        output = buf.getvalue()
+
+    assert output.endswith("\n\n")
+
+
+def test_print_game_result_else_branch() -> None:
+    """Test print_game_result for the else branch."""
+    board = chess.Board()
+    with unittest.mock.patch.object(
+        board, "is_checkmate", return_value=False
+    ), unittest.mock.patch.object(
+        board, "is_stalemate", return_value=False
+    ), unittest.mock.patch.object(
+        board, "is_insufficient_material", return_value=False
+    ), unittest.mock.patch.object(
+        board, "is_fifty_moves", return_value=False
+    ), unittest.mock.patch.object(
+        board, "is_repetition", return_value=False
+    ), unittest.mock.patch.object(
+        board, "result", return_value="1/2-1/2"
+    ):
+        with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+            src.board_ui.print_game_result(board)
+            output = buf.getvalue()
+
+        assert "Game result: 1/2-1/2" in output
+
+
+def test_print_tablebase_info_ioerror() -> None:
+    """Test print_tablebase_info with IOError handling."""
+    board = chess.Board()
+    mock_tablebase = unittest.mock.MagicMock()
+    mock_tablebase.get_wdl.side_effect = IOError
+
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        src.board_ui.print_tablebase_info(board, mock_tablebase)
+        output = buf.getvalue()
+
+    assert output == ""
+
+
+def test_print_tablebase_info_valueerror() -> None:
+    """Test print_tablebase_info with ValueError handling."""
+    board = chess.Board()
+    mock_tablebase = unittest.mock.MagicMock()
+    mock_tablebase.get_wdl.side_effect = ValueError
+
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        src.board_ui.print_tablebase_info(board, mock_tablebase)
+        output = buf.getvalue()
+
+    assert output == ""
+
+
+def test_print_tablebase_info_indexerror() -> None:
+    """Test print_tablebase_info with IndexError handling."""
+    board = chess.Board()
+    mock_tablebase = unittest.mock.MagicMock()
+    mock_tablebase.get_wdl.side_effect = IndexError
+
+    with io.StringIO() as buf, contextlib.redirect_stdout(buf):
+        src.board_ui.print_tablebase_info(board, mock_tablebase)
+        output = buf.getvalue()
+
+    assert output == ""
