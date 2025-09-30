@@ -192,7 +192,7 @@ def test_show_mate_info_no_mate() -> None:
 def test_show_mate_info_opponent_mate() -> None:
     """Test show_mate_info when opponent has mate (should not display)."""
     move = chess.Move.from_uci("e2e4")
-    opponent_mate_data = (move, (100, -3))  # Opponent has mate in 3
+    opponent_mate_data = (move, (100, -3))
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.show_mate_info(opponent_mate_data, True)  # White's turn
