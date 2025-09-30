@@ -195,7 +195,7 @@ def test_show_mate_info_opponent_mate() -> None:
     opponent_mate_data = (move, (100, -3))
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
-        src.board_ui.show_mate_info(opponent_mate_data, True)  # White's turn
+        src.board_ui.show_mate_info(opponent_mate_data, True)
         output = buf.getvalue()
 
         assert output == ""  # No output expected
