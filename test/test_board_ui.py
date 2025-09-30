@@ -164,7 +164,6 @@ def test_print_game_result_other() -> None:
         with io.StringIO() as buf, contextlib.redirect_stdout(buf):
             src.board_ui.print_game_result(board)
             output = buf.getvalue()
-
             assert "Game result: 1/2-1/2" in output
 
 
