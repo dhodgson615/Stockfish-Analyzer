@@ -62,7 +62,6 @@ def test_parse_config_cli_args() -> None:
     ]
 
     cfg = config.parse_config(args)
-
     assert cfg.engine_path == "/custom/engine"
     assert cfg.threads == 8
     assert cfg.hash_size == 8192
