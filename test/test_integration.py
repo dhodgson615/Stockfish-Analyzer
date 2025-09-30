@@ -44,7 +44,7 @@ def test_game_integration_with_predetermined_moves(engine_path: str) -> None:
     )
 
     move_history: list[chess.Move] = []
-    
+
     # Simulate a very short game by making just a few moves directly
     test_moves = [
         chess.Move.from_uci("f1c4"),  # Bishop to c4
