@@ -49,9 +49,6 @@ def test_print_board_without_clear() -> None:
         mock_clear.assert_not_called()
         assert "♜" in output or "♖" in output
 
-        assert "♜" in output or "♖" in output  # Verify board was printed
-
-    # Restore original value
     src.board_ui.CLEAR_BEFORE_PRINT = original_value
 
 
