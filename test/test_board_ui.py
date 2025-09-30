@@ -116,8 +116,6 @@ def test_print_move_history_custom_moves_per_line() -> None:
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.print_move_history(moves, moves_per_line=3)
         output = buf.getvalue()
-
-        # Check if there's a newline after the 3rd move
         assert "3. g1f3\n" in output
 
 
