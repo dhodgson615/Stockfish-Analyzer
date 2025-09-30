@@ -103,7 +103,6 @@ def test_print_move_history_empty() -> None:
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.print_move_history([])
         output = buf.getvalue()
-
         assert "Moves played:" in output
         # No moves should be listed
 
