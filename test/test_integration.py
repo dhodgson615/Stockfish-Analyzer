@@ -50,7 +50,7 @@ def test_game_integration_with_predetermined_moves(engine_path: str) -> None:
         chess.Move.from_uci("f1c4"),  # Bishop to c4
         chess.Move.from_uci("d7d6"),  # Pawn to d6
     ]
-    
+
     engine = chess.engine.SimpleEngine.popen_uci(engine_path)
     
     try:
