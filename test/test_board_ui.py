@@ -243,8 +243,7 @@ def test_print_tablebase_info_none_tablebase() -> None:
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.print_tablebase_info(board, None)
         output = buf.getvalue()
-
-        assert output == ""  # Should handle None silently
+        assert output == ""
 
 
 def test_print_tablebase_info_draw() -> None:
