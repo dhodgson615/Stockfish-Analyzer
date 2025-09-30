@@ -13,7 +13,7 @@ except ImportError:
 
     except ImportError:
         import board_ui
-        import engine_handler  
+        import engine_handler
         import game_logic
 
 try:
