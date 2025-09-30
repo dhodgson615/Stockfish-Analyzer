@@ -94,7 +94,6 @@ def test_print_possible_moves_with_none_values() -> None:
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.print_possible_moves(moves_data)
         output = buf.getvalue()
-
         assert "e2e4" in output
         assert "Eval score: None" in output
 
