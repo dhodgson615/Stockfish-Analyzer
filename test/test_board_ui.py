@@ -256,6 +256,5 @@ def test_print_tablebase_info_draw() -> None:
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.print_tablebase_info(board, mock_tablebase)
         output = buf.getvalue()
-
         assert "Draw" in output
         assert "DTZ: 0" in output
