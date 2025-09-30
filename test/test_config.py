@@ -37,7 +37,6 @@ def test_create_argument_parser() -> None:
 def test_parse_config_defaults() -> None:
     """Test parsing with no arguments uses defaults."""
     cfg = config.parse_config([])
-
     assert cfg.engine_path == "/usr/games/stockfish"
     assert cfg.threads == 4
     assert cfg.hash_size == 16384
