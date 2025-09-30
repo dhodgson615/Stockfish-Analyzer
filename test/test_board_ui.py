@@ -81,7 +81,6 @@ def test_print_possible_moves_empty() -> None:
         src.board_ui.print_possible_moves([])
         output = buf.getvalue()
         assert "Possible moves:" in output
-        # No moves should be listed
 
 
 def test_print_possible_moves_with_none_values() -> None:
