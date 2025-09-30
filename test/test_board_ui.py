@@ -175,7 +175,6 @@ def test_show_mate_info_black_win() -> None:
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.show_mate_info(mate_data, False)
         output = buf.getvalue()
-
         assert "Mate in 3" in output
 
 
