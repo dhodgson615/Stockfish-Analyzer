@@ -117,7 +117,6 @@ def test_save_and_load_config_file() -> None:
 
         # Load config from file
         loaded_data = config.load_config_file(config_path)
-
         assert loaded_data == saved_data
 
 
