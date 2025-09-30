@@ -59,7 +59,6 @@ def test_display_progress_zero_iteration() -> None:
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.display_progress(0, 10, start_time, 20)
         output = buf.getvalue()
-
         assert "[--------------------]" in output
         assert "0.0%" in output
 
