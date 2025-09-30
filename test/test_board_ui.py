@@ -15,7 +15,6 @@ def test_clear_terminal() -> None:
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.clear_terminal()
         output = buf.getvalue()
-
         assert output == "\033c"
 
 
