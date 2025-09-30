@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  stockfish-analyzer:
+    build: .
+    image: stockfish-analyzer
+    container_name: stockfish-analyzer
+    stdin_open: true
+    tty: true
+    volumes:
+      # Mount config directory for custom configurations
+      - ./config:/app/config
+      # Mount syzygy directory if you have downloaded tablebases
+      - ./syzygy:/app/syzygy:ro
+    environment:
+      - STOCKFISH_PATH=/usr/games/stockfish
+    # Override default command to use your custom config
+    command: ["python3", "src/main.py", "--config", "config/stockfish_config.json"]
+
+  # Development service with source code mounted
+  dev:
+    build: .
+    image: stockfish-analyzer
+    container_name: stockfish-analyzer-dev
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: ["bash"]
+
+  # Testing service
+  test:
+    build: .
+    image: stockfish-analyzer
+    container_name: stockfish-analyzer-test
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: ["python3", "-m", "pytest", "-v"]

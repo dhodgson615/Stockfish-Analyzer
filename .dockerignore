@@ -1,0 +1,34 @@
+# Ignore build artifacts and development files
+.git
+.gitignore
+.pytest_cache
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.mypy_cache
+.DS_Store
+.vscode
+.idea
+
+# Ignore test files
+test/
+
+# Ignore temporary files
+tmp/
+*.tmp
+*.log
+
+# Ignore documentation build artifacts
+docs/_build/
+*.md
+
+# Ignore user-specific config files (keep examples)
+config/*.json
+!config/example_config.json
+!config/download_config.json
+
+# Ignore large tablebase files
+syzygy/
+*.rtbw
+*.rtbz

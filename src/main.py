@@ -2,23 +2,34 @@ import chess
 
 try:
     import board_ui
-    import config
     import engine_handler
     import game_logic
 
 except ImportError:
-    import src.board_ui as board_ui
-    import src.config as config
-    import src.engine_handler as engine_handler
-    import src.game_logic as game_logic
+    try:
+        import src.board_ui as board_ui
+        import src.engine_handler as engine_handler
+        import src.game_logic as game_logic
+
+    except ImportError:
+        import board_ui
+        import engine_handler  
+        import game_logic
+
+try:
+    from . import config as config_module
+
+except ImportError:
+    try:
+        import config as config_module
+
+    except ImportError:
+        import src.config as config_module
 
 
 def main() -> None:
     """Main function to run the interactive chess game."""
-    # Parse configuration from CLI args and config files
-    app_config = config.parse_config()
-
-    # Display configuration summary
+    app_config = config_module.parse_config()
     print(f"Engine: {app_config.engine_path}")
 
     print(

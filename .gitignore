@@ -74,3 +74,8 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
+
+# Configuration files (keep examples, ignore user configs)
+/config/*.json
+!/config/example_config.json
+!/config/download_config.json
