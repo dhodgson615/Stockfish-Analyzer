@@ -130,7 +130,6 @@ def test_print_game_result_fifty_moves() -> None:
         with io.StringIO() as buf, contextlib.redirect_stdout(buf):
             src.board_ui.print_game_result(board)
             output = buf.getvalue()
-
             assert "Fifty-move rule" in output
 
 
