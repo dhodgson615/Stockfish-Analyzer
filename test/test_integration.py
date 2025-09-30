@@ -39,7 +39,10 @@ def test_game_integration_with_predetermined_moves(engine_path: str) -> None:
         pytest.skip("Stockfish engine not found. Checked binary paths")
 
     # Start with a position near checkmate to keep the test short
-    board = chess.Board("rnbqkb1r/pppp1ppp/5n2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3")
+    board = chess.Board(
+        "rnbqkb1r/pppp1ppp/5n2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3"
+    )
+
     move_history: list[chess.Move] = []
     
     # Simulate a very short game by making just a few moves directly
