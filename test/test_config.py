@@ -218,7 +218,6 @@ def test_save_config_creates_directory() -> None:
         nested_path = os.path.join(temp_dir, "nested", "dir", "config.json")
         cfg = config.EngineConfig()
         config.save_config_file(cfg, nested_path)
-
         assert os.path.exists(nested_path)
 
 
