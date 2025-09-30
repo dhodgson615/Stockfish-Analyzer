@@ -221,8 +221,7 @@ def test_print_tablebase_info_value_error() -> None:
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.print_tablebase_info(board, mock_tablebase)
         output = buf.getvalue()
-
-        assert output == ""  # Should handle exception silently
+        assert output == ""
 
 
 def test_print_tablebase_info_index_error() -> None:
