@@ -170,7 +170,7 @@ def test_print_game_result_other() -> None:
 def test_show_mate_info_black_win() -> None:
     """Test show_mate_info for Black's mate."""
     move = chess.Move.from_uci("e7e5")
-    mate_data = (move, (100, -3))  # Black mates in 3
+    mate_data = (move, (100, -3))
 
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.show_mate_info(mate_data, False)  # Black's turn
