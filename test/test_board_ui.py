@@ -122,7 +122,7 @@ def test_print_move_history_custom_moves_per_line() -> None:
 def test_print_game_result_fifty_moves() -> None:
     """Test print_game_result for fifty-move rule."""
     board = chess.Board()
-    board.halfmove_clock = 100  # Set fifty-move counter
+    board.halfmove_clock = 100
 
     with unittest.mock.patch.object(
         board, "is_fifty_moves", return_value=True
