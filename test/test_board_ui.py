@@ -104,7 +104,6 @@ def test_print_move_history_empty() -> None:
         src.board_ui.print_move_history([])
         output = buf.getvalue()
         assert "Moves played:" in output
-        # No moves should be listed
 
 
 def test_print_move_history_custom_moves_per_line() -> None:
