@@ -80,7 +80,6 @@ def test_print_possible_moves_empty() -> None:
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
         src.board_ui.print_possible_moves([])
         output = buf.getvalue()
-
         assert "Possible moves:" in output
         # No moves should be listed
 
