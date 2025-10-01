@@ -10,26 +10,45 @@ try:
     import engine_handler
     import input_handler
 
+    print(
+        "Imported board_ui, engine_handler, and input_handler from the last except block"
+    )
+
 except ImportError:
     try:
         import src.board_ui as board_ui
         import src.engine_handler as engine_handler
         import src.input_handler as input_handler
 
+        print(
+            "Imported board_ui, engine_handler, and input_handler from the except block"
+        )
+
     except ImportError:
         import board_ui
         import engine_handler
         import input_handler
 
+        print(
+            "Imported board_ui, engine_handler, and input_handler from the except block"
+        )
+
 try:
     from . import config as config_module
+
+    print("Imported config from config_module")
 
 except ImportError:
     try:
         import config as config_module
-    
+
+        print("Imported config from config_module in except block")
+
     except ImportError:
         import src.config as config_module
+
+        print("Imported config from config_module in last except block")
+        # This is a bit clunky, but avoids circular imports
 
 
 def play_game(
@@ -37,6 +56,7 @@ def play_game(
     engine: chess.engine.SimpleEngine,
     move_history: list[chess.Move],
     tablebase: chess.syzygy.Tablebase | None = None,
+    app_config: config_module.EngineConfig | None = None,
 ) -> None:
     """Run the interactive chess game loop. Continues until the game is
     over. Displays the board, evaluates moves, and handles user input

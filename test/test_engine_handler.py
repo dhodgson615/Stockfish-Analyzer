@@ -4,9 +4,11 @@ import contextlib
 import io
 import os
 import unittest.mock
+from typing import Any, Iterable, Literal, Mapping, overload
 
 import chess
 import chess.engine
+import chess.syzygy
 import pytest
 
 import src.engine_handler
@@ -126,30 +128,39 @@ def test_get_engine_invalid_path() -> None:
             src.engine_handler.get_engine("/nonexistent/engine/path")
 
 
-class FakeTablebase:
-    """Test double for Syzygy tablebase that can simulate different scenarios."""
-    
-    def __init__(self, wdl_result: int | None = None, dtz_result: int = 5, 
-                 should_raise: type[Exception] | None = None, error_message: str = "Test error"):
+class FakeTablebase(chess.syzygy.Tablebase):
+    def __init__(
+        self,
+        wdl_result: int | None = None,
+        dtz_result: int = 5,
+        should_raise: type[Exception] | None = None,
+        error_message: str = "Test error",
+    ) -> None:
         self.wdl_result = wdl_result
         self.dtz_result = dtz_result
         self.should_raise = should_raise
         self.error_message = error_message
-        self.get_wdl_calls = []
-        self.get_dtz_calls = []
-    
-    def get_wdl(self, board):
-        """Simulate tablebase WDL (Win/Draw/Loss) lookup."""
+        self.get_wdl_calls: list[chess.Board] = []
+        self.get_dtz_calls: list[chess.Board] = []
+
+    def get_wdl(
+        self, board: chess.Board, default: int | None = None
+    ) -> int | None:
         self.get_wdl_calls.append(board)
+
         if self.should_raise:
             raise self.should_raise(self.error_message)
+
         return self.wdl_result
-    
-    def get_dtz(self, board):
-        """Simulate tablebase DTZ (Distance to Zero) lookup."""
+
+    def get_dtz(
+        self, board: chess.Board, default: int | None = None
+    ) -> int | None:
         self.get_dtz_calls.append(board)
+
         if self.should_raise:
             raise self.should_raise(self.error_message)
+
         return self.dtz_result
 
 
@@ -158,13 +169,15 @@ def test_try_tablebase_evaluation_win_with_test_double() -> None:
     board = chess.Board(
         "8/8/8/8/8/K7/8/k1q5 w - - 0 1"
     )  # White to move, losing
-    
-    test_tablebase = FakeTablebase(wdl_result=-2, dtz_result=5)  # Loss for white
+
+    test_tablebase = FakeTablebase(
+        wdl_result=-2, dtz_result=5
+    )  # Loss for white
     result = src.engine_handler.try_tablebase_evaluation(board, test_tablebase)
-    
+
     assert result is not None
     score, mate_val = result
-    
+
     assert score is not None and score < -900000  # Large penalty for losing
     assert mate_val is not None and mate_val == -5  # Mate in 5
     assert len(test_tablebase.get_wdl_calls) == 1
@@ -176,110 +189,189 @@ def test_try_tablebase_evaluation_none_wdl_with_test_double() -> None:
     board = chess.Board()
     test_tablebase = FakeTablebase(wdl_result=None)
     result = src.engine_handler.try_tablebase_evaluation(board, test_tablebase)
-    
+
     assert result is None
     assert len(test_tablebase.get_wdl_calls) == 1
 
 
 def test_try_tablebase_evaluation_exceptions_with_test_double() -> None:
-    """Test all specific exceptions in try_tablebase_evaluation using test doubles."""
+    """Test all specific exceptions in try_tablebase_evaluation using
+    test doubles.
+    """
     board = chess.Board()
-    
+
     # Test IOError
-    io_error_tablebase = FakeTablebase(should_raise=IOError, error_message="Test IO error")
-    result = src.engine_handler.try_tablebase_evaluation(board, io_error_tablebase)
+    io_error_tablebase = FakeTablebase(
+        should_raise=IOError, error_message="Test IO error"
+    )
+    result = src.engine_handler.try_tablebase_evaluation(
+        board, io_error_tablebase
+    )
     assert result is None
-    
-    # Test ValueError  
-    value_error_tablebase = FakeTablebase(should_raise=ValueError, error_message="Test value error")
-    result = src.engine_handler.try_tablebase_evaluation(board, value_error_tablebase)
+
+    # Test ValueError
+    value_error_tablebase = FakeTablebase(
+        should_raise=ValueError, error_message="Test value error"
+    )
+    result = src.engine_handler.try_tablebase_evaluation(
+        board, value_error_tablebase
+    )
     assert result is None
-    
+
     # Test IndexError
-    index_error_tablebase = FakeTablebase(should_raise=IndexError, error_message="Test index error")
-    result = src.engine_handler.try_tablebase_evaluation(board, index_error_tablebase)
+    index_error_tablebase = FakeTablebase(
+        should_raise=IndexError, error_message="Test index error"
+    )
+    result = src.engine_handler.try_tablebase_evaluation(
+        board, index_error_tablebase
+    )
     assert result is None
 
 
-class FakeEngineForTesting:
+class FakeEngineForTesting(chess.engine.SimpleEngine):
     """Test double for chess engine that provides predictable results."""
-    
+
     def __init__(self, score: int = 42, mate: int | None = None):
         self.score = score
         self.mate = mate
-        self.analysis_calls = []
-    
-    def analyse(self, board: chess.Board, limit: chess.engine.Limit) -> dict:
-        """Simulate engine analysis with configurable scores."""
-        self.analysis_calls.append((board.copy(), limit))
-        return {
-            "score": FakeScore(self.score, self.mate)
-        }
+        self.analysis_calls: list[
+            tuple[
+                chess.Board,
+                chess.engine.Limit,
+                chess.engine.Info | None,
+            ]
+        ] = []
+
+    def analyse(
+        self,
+        board: chess.Board,
+        limit: chess.engine.Limit,
+        *,
+        multipv: int | None = None,
+        game: object = None,
+        info: chess.engine.Info = chess.engine.Info.ALL,
+        root_moves: Iterable[chess.Move] | None = None,
+        options: Mapping[str, str | int | bool | None] = {},
+    ) -> dict[str, Any] | list[dict[str, Any]]:  # TODO: fix type
+        self.analysis_calls.append((board.copy(), limit, info))
+        # Return a dict with a fake score, matching expected chess.engine.InfoDict
+        result: dict[str, Any] = {"score": FakeScore(self.score, self.mate)}
+        if multipv:
+            return [result] * multipv
+        return result
+
+
+"""error: Signature of "analyse" incompatible with supertype
+          "chess.engine.SimpleEngine"  [override]
+
+Superclass:
+    @overload
+    def analyse(self, board: Board, limit: Limit, *, game: object = ..., info:
+                Info = ..., root_moves: Iterable[Move] | None = ..., options:
+                Mapping[str, str | int | bool | None] = ...) -> InfoDict
+    @overload
+    def analyse(self, board: Board, limit: Limit, *, multipv: int, game: object
+                = ..., info: Info = ..., root_moves: Iterable[Move] | None =
+                ..., options: Mapping[str, str | int | bool | None] = ...) ->
+                list[InfoDict]
+    @overload
+    def analyse(self, board: Board, limit: Limit, *, multipv: int | None = ...,
+                game: object = ..., info: Info = ..., root_moves:
+                Iterable[Move] | None = ..., options: Mapping[str, str | int |
+                bool | None] = ...) -> InfoDict | list[InfoDict]
+Subclass:
+    def analyse(self, board: Board, limit: Limit, *, multipv: int | None = ...,
+                game: object = ..., info: Info = ..., root_moves:
+                Iterable[Move] | None = ..., options: Mapping[str, str | int |
+                bool | None] = ...) -> dict[str, Any] | list[dict[str, Any]]
+"""
 
 
 class FakeScore:
-    """Test double for chess engine score."""
-    
-    def __init__(self, score: int, mate: int | None = None):
+    def __init__(self, score: int, mate: int | None = None) -> None:
         self._score = score
         self._mate = mate
-    
-    def white(self):
+
+    def white(self) -> FakeScore:
         return self
-    
-    def score(self, mate_score: int = 1000000):
+
+    @overload
+    def score(self, *, mate_score: int) -> int: ...
+
+    @overload
+    def score(self, *, mate_score: int | None = None) -> int | None: ...
+
+    def score(self, *, mate_score: int | None = None) -> int | None:
         return self._score
-    
-    def mate(self):
+
+    def mate(self) -> int | None:
         return self._mate
+
+    def __abs__(self) -> FakeScore:
+        return FakeScore(abs(self._score), self._mate)
+
+    def __neg__(self) -> FakeScore:
+        return FakeScore(-self._score, self._mate)
+
+    def __pos__(self) -> FakeScore:
+        return FakeScore(+self._score, self._mate)
+
+    def wdl(
+        self,
+        *,
+        model: Literal[
+            "sf", "sf16.1", "sf16", "sf15.1", "sf15", "sf14", "sf12", "lichess"
+        ] = "sf",
+        ply: int = 0,
+    ) -> Any:
+        return None
 
 
 def test_get_engine_evaluation_with_test_double() -> None:
     """Test engine evaluation parsing using test doubles."""
     board = chess.Board()
-    
+
     # Test regular score
     test_engine = FakeEngineForTesting(score=42, mate=None)
     score, mate = src.engine_handler.get_engine_evaluation(
-        board, test_engine, src.engine_handler.EVAL_DEPTH
+        board, test_engine, depth=src.engine_handler.EVAL_DEPTH
     )
-    
+
     assert score == 42
     assert mate is None
     assert len(test_engine.analysis_calls) == 1
-    
+
     # Test mate score
     mate_engine = FakeEngineForTesting(score=900000, mate=3)
     score, mate = src.engine_handler.get_engine_evaluation(
-        board, mate_engine, src.engine_handler.EVAL_DEPTH
+        board, mate_engine, depth=src.engine_handler.EVAL_DEPTH
     )
-    
+
     assert score == 900000
     assert mate == 3
 
 
 def test_get_move_evals_behavior() -> None:
-    """Test get_move_evals behavior using limited scope to avoid engine dependency."""
-    board = chess.Board()
+    """Test get_move_evals behavior using limited scope to avoid
+    engine dependency.
+    """
     test_engine = FakeEngineForTesting(score=100, mate=None)
-    
+
     # Test that the function processes some moves and returns results
-    # We'll limit to just a few moves to avoid long evaluation times
-    legal_moves = list(board.legal_moves)
-    
-    # Since get_move_evals calls the actual evaluate_move function,
-    # and we want to avoid long engine evaluations, let's test the 
-    # core behavior with a very simple position
-    simple_board = chess.Board("8/8/8/8/8/8/8/K1k5 w - - 0 1")  # Very simple position
-    
+    simple_board = chess.Board(
+        "8/8/8/8/8/8/8/K1k5 w - - 0 1"
+    )  # Very simple position
+
     # Capture output to avoid terminal noise
     with io.StringIO() as buf, contextlib.redirect_stdout(buf):
-        result = src.engine_handler.get_move_evals(simple_board, test_engine, depth=1)
-    
+        result = src.engine_handler.get_move_evals(
+            simple_board, test_engine, depth=1
+        )
+
     # Verify basic functionality - that we get results for legal moves
     assert isinstance(result, dict)
     assert len(result) > 0  # Should have at least one legal move
-    
+
     # Verify the engine was actually called
     assert len(test_engine.analysis_calls) > 0
 

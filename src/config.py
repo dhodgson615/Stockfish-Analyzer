@@ -3,24 +3,36 @@ from __future__ import annotations
 import argparse
 import json
 import os
-from dataclasses import asdict, dataclass
+import platform
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Dict, Optional, cast
 
 
+def get_default_engine_path() -> str:
+    """Determine the default Stockfish engine path based on OS."""
+    if platform.system() == "Darwin" and os.uname().machine == "arm64":
+        return "/opt/homebrew/bin/stockfish"
+
+    elif platform.system() == "Darwin":
+        return "/usr/local/bin/stockfish"
+
+    else:
+        return "/usr/games/stockfish"
+
+
 @dataclass
 class EngineConfig:
-    """Configuration settings for the Stockfish engine and
-    application.
-    """
-    engine_path: str = "/usr/games/stockfish"
+    """Configuration for the chess engine."""
+
+    engine_path: str = field(default_factory=get_default_engine_path)
     threads: int = 4
-    hash_size: int = 16384  # MB
+    hash_size: int = 16384
     skill_level: int = 20
     eval_depth: int = 18
-
-    # Tablebase settings
-    syzygy_path: str = "~/chess/syzygy"
+    syzygy_path: str = field(
+        default_factory=lambda: os.path.expanduser("~/chess/syzygy")
+    )
 
     def __post_init__(self) -> None:
         """Expand user paths after initialization."""
@@ -127,6 +139,7 @@ def load_config_file(config_path: str) -> Dict[str, Any]:
                 f"Warning: Unknown config fields will be ignored: "
                 f"{invalid_fields}"
             )
+
             # Remove invalid fields
             config_data = {
                 k: v for k, v in config_data.items() if k in valid_fields

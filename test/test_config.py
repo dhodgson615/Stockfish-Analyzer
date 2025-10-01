@@ -1,8 +1,10 @@
 import json
 import os
 import tempfile
+from pathlib import Path
 
 import pytest
+from _pytest.monkeypatch import MonkeyPatch
 
 import src.config as config
 
@@ -10,8 +12,16 @@ import src.config as config
 def test_engine_config_defaults() -> None:
     """Test that EngineConfig has correct default values."""
     cfg = config.EngineConfig()
+    assert isinstance(cfg, config.EngineConfig)
+    # Depending on OS, the default engine path may vary
+    # Default engine path depends on OS, so just check it's one of the expected
+    # paths
+    assert cfg.engine_path in [
+        "/usr/games/stockfish",
+        "/opt/homebrew/bin/stockfish",
+    ]
 
-    assert cfg.engine_path == "/usr/games/stockfish"
+    assert cfg.engine_path == config.EngineConfig().engine_path
     assert cfg.threads == 4
     assert cfg.hash_size == 16384
     assert cfg.skill_level == 20
@@ -37,7 +47,16 @@ def test_create_argument_parser() -> None:
 def test_parse_config_defaults() -> None:
     """Test parsing with no arguments uses defaults."""
     cfg = config.parse_config([])
-    assert cfg.engine_path == "/usr/games/stockfish"
+    assert isinstance(cfg, config.EngineConfig)
+    # Depending on OS, the default engine path may vary
+    # Default engine path depends on OS, so just check it's one of the expected
+    # paths
+    assert cfg.engine_path in [
+        "/usr/games/stockfish",
+        "/opt/homebrew/bin/stockfish",
+    ]
+
+    assert cfg.engine_path == config.EngineConfig().engine_path
     assert cfg.threads == 4
     assert cfg.hash_size == 16384
     assert cfg.skill_level == 20
@@ -237,16 +256,24 @@ def test_parse_config_save_config_exits() -> None:
 def test_get_default_config() -> None:
     """Test get_default_config function."""
     cfg = config.get_default_config()
-
     assert isinstance(cfg, config.EngineConfig)
-    assert cfg.engine_path == "/usr/games/stockfish"
+    # Depending on OS, the default engine path may vary
+    # Default engine path depends on OS, so just check it's one of the expected
+    # paths
+    assert cfg.engine_path in [
+        "/usr/games/stockfish",
+        "/opt/homebrew/bin/stockfish",
+    ]
+
+    assert cfg.engine_path == config.EngineConfig().engine_path
+    assert isinstance(cfg, config.EngineConfig)
     assert cfg.threads == 4
 
 
-def test_load_config_file_generic_exception(monkeypatch):
+def test_load_config_file_generic_exception(monkeypatch: MonkeyPatch) -> None:
     """Simulate unexpected exception (e.g., permission error)"""
 
-    def bad_open(*args, **kwargs):
+    def bad_open(*args: str, **kwargs: str) -> None:
         """Mock open that raises an exception"""
         raise Exception("Unexpected error")
 
@@ -255,10 +282,12 @@ def test_load_config_file_generic_exception(monkeypatch):
         config.load_config_file("dummy_path.json")
 
 
-def test_save_config_file_generic_exception(tmp_path, monkeypatch):
+def test_save_config_file_generic_exception(
+    tmp_path: Path, monkeypatch: MonkeyPatch
+) -> None:
     """Simulate unexpected exception (e.g., permission error)"""
 
-    def bad_open(*args, **kwargs):
+    def bad_open(*args: str, **kwargs: str) -> None:
         """Mock open that raises an exception"""
         raise Exception("Unexpected error")
 
@@ -267,11 +296,3 @@ def test_save_config_file_generic_exception(tmp_path, monkeypatch):
 
     with pytest.raises(ValueError, match="Error saving config file"):
         config.save_config_file(cfg, str(tmp_path / "file.json"))
-
-
-def test_parse_config_save_config_exits(tmp_path):
-    """Test that --save-config option saves and exits."""
-    config_path = str(tmp_path / "save_test.json")
-
-    with pytest.raises(SystemExit):
-        config.parse_config(["--save-config", config_path])

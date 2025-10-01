@@ -1,9 +1,21 @@
 import chess
 
+__all__ = [
+    "config",
+    "engine_handler",
+    "game_logic",
+    "board_ui",
+    "main",
+]
+
 try:
     import board_ui
     import engine_handler
     import game_logic
+
+    print(
+        "Imported board_ui, engine_handler, and game_logic from the first try block"
+    )
 
 except ImportError:
     try:
@@ -11,25 +23,39 @@ except ImportError:
         import src.engine_handler as engine_handler
         import src.game_logic as game_logic
 
+        print(
+            "Imported board_ui, engine_handler, and game_logic from the except block"
+        )
+
     except ImportError:
         import board_ui
         import engine_handler
         import game_logic
 
+        print(
+            "Imported board_ui, engine_handler, and game_logic from the last except block"
+        )
+
 try:
-    from . import config as config_module
+    from . import config
+
+    print("Imported config from the first try block")
 
 except ImportError:
     try:
-        import config as config_module
+        import config
+
+        print("Imported config from the except block")
 
     except ImportError:
-        import src.config as config_module
+        import src.config as config
+
+        print("Imported config from the last except block")
 
 
 def main() -> None:
     """Main function to run the interactive chess game."""
-    app_config = config_module.parse_config()
+    app_config = config.parse_config()
     print(f"Engine: {app_config.engine_path}")
 
     print(

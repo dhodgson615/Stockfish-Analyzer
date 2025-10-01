@@ -12,19 +12,25 @@ import chess.syzygy
 try:
     import board_ui
 
+    print("Imported board_ui from the try block")
+
 except ImportError:
     try:
         import src.board_ui as board_ui
 
+        print("Imported board_ui from the except block")
+
     except ImportError:
         import board_ui
+
+        print("Imported board_ui from the last except block")
 
 
 EVAL_DEPTH = 18  # Default depth, used as fallback
 
 ENGINE_PATH = (
     "/opt/homebrew/bin/stockfish"
-    if os.name == "darwin"
+    if (os.name == "posix" and os.uname().machine == "arm64")
     else "/usr/games/stockfish"
 )
 

@@ -4,7 +4,7 @@ import time
 
 import chess.syzygy
 
-CLEAR_BEFORE_PRINT = True
+CLEAR_BEFORE_PRINT = False  # This should be in config
 
 
 def clear_terminal() -> None:
