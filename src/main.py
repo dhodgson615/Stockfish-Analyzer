@@ -1,4 +1,4 @@
-import chess
+from chess import Board, Move
 
 __all__ = [
     "config",
@@ -63,8 +63,8 @@ def main() -> None:
         f"Skill: {app_config.skill_level}, Depth: {app_config.eval_depth}"
     )
 
-    board = chess.Board()
-    move_history: list[chess.Move] = []
+    board = Board()
+    move_history: list[Move] = []
 
     # Initialize engine with configuration
     engine = engine_handler.get_engine(

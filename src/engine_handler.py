@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-import os
-import shutil
-import subprocess
-import time
+from os import X_OK, access, name, path, uname
+from shutil import get_terminal_size
+from subprocess import run
+from time import time
 
 import chess
 import chess.engine
@@ -30,11 +30,11 @@ EVAL_DEPTH = 18  # Default depth, used as fallback
 
 ENGINE_PATH = (
     "/opt/homebrew/bin/stockfish"
-    if (os.name == "posix" and os.uname().machine == "arm64")
+    if (name == "posix" and uname().machine == "arm64")
     else "/usr/games/stockfish"
 )
 
-SYZYGY_PATH = os.path.expanduser("~/chess/syzygy")
+SYZYGY_PATH = path.expanduser("~/chess/syzygy")
 
 
 def find_stockfish_path() -> tuple[bool, str]:
@@ -53,28 +53,28 @@ def find_stockfish_path() -> tuple[bool, str]:
 
     # Try using 'which' first (most reliable)
     try:
-        result = subprocess.run(
+        result = run(
             ["which", "stockfish"], capture_output=True, text=True, check=False
         )
 
         if result.returncode == 0 and result.stdout.strip():
-            path = result.stdout.strip()
+            filepath = result.stdout.strip()
 
-            if os.path.exists(path) and os.access(path, os.X_OK):
-                return True, path
+            if path.exists(filepath) and access(filepath, X_OK):
+                return True, filepath
 
     except Exception:
         pass
 
     # Check each path in our list
-    for path in paths_to_check:
-        if os.path.exists(path) and os.access(path, os.X_OK):
-            return True, path
+    for filepath in paths_to_check:
+        if path.exists(filepath) and access(filepath, X_OK):
+            return True, filepath
 
     # Default fallback path based on OS
     default_path = (
         "/opt/homebrew/bin/stockfish"
-        if os.name == "darwin"
+        if name == "darwin"
         else "/usr/games/stockfish"
     )
 
@@ -105,7 +105,7 @@ def get_syzygy_tablebase(
     """Initialize a Syzygy tablebase. Returns None if not found or on
     error.
     """
-    if not os.path.exists(filepath):
+    if not path.exists(filepath):
         print(f"Syzygy tablebases not found at {filepath}")
         return None
 
@@ -164,7 +164,7 @@ def get_move_evals(
     mapping moves to their (score, mate_value) tuples.
     """
     moves_evaluations = {}
-    start_time = time.time()
+    start_time = time()
 
     for i, move in enumerate(list(board.legal_moves), 1):
         move_obj, score_data = evaluate_move(
@@ -177,12 +177,12 @@ def get_move_evals(
             i,
             len(list(board.legal_moves)),
             start_time,
-            max(10, shutil.get_terminal_size().columns - 40),
+            max(10, get_terminal_size().columns - 40),
         )
 
     # Clear progress bar
     print(
-        "\r" + " " * shutil.get_terminal_size().columns + "\r",
+        "\r" + " " * get_terminal_size().columns + "\r",
         end="",
         flush=True,
     )

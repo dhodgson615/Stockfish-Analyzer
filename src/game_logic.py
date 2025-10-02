@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import time
+from time import time
 
 import chess.engine
 import chess.syzygy
@@ -11,7 +11,8 @@ try:
     import input_handler
 
     print(
-        "Imported board_ui, engine_handler, and input_handler from the last except block"
+        "Imported board_ui, engine_handler, and input_handler "
+        "from the last except block"
     )
 
 except ImportError:
@@ -21,7 +22,8 @@ except ImportError:
         import src.input_handler as input_handler
 
         print(
-            "Imported board_ui, engine_handler, and input_handler from the except block"
+            "Imported board_ui, engine_handler, and input_handler "
+            "from the except block"
         )
 
     except ImportError:
@@ -30,7 +32,8 @@ except ImportError:
         import input_handler
 
         print(
-            "Imported board_ui, engine_handler, and input_handler from the except block"
+            "Imported board_ui, engine_handler, and input_handler "
+            "from the except block"
         )
 
 try:
@@ -84,7 +87,7 @@ def evaluate_and_show_moves(
     a tuple containing the moves evaluation dictionary and the time
     taken for the evaluation.
     """  # FIXME: mixes evaluation logic with display logic (wrong module)
-    start_time = time.time()
+    start_time = time()
 
     if tablebase:
         board_ui.print_tablebase_info(board, tablebase)
@@ -103,7 +106,7 @@ def evaluate_and_show_moves(
         tablebase=tablebase,
     )
 
-    eval_time = time.time() - start_time
+    eval_time = time() - start_time
     sorted_moves = sort_moves_by_evaluation(moves_eval, board.turn)
     board_ui.print_possible_moves(sorted_moves)
 

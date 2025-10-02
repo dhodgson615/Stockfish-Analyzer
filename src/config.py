@@ -1,20 +1,20 @@
 from __future__ import annotations
 
-import argparse
-import json
-import os
-import platform
+from argparse import ArgumentParser, RawDescriptionHelpFormatter
 from dataclasses import asdict, dataclass, field
+from json import JSONDecodeError, dump, load
+from os import path, uname
 from pathlib import Path
+from platform import system
 from typing import Any, Dict, Optional, cast
 
 
 def get_default_engine_path() -> str:
     """Determine the default Stockfish engine path based on OS."""
-    if platform.system() == "Darwin" and os.uname().machine == "arm64":
+    if system() == "Darwin" and uname().machine == "arm64":
         return "/opt/homebrew/bin/stockfish"
 
-    elif platform.system() == "Darwin":
+    elif system() == "Darwin":
         return "/usr/local/bin/stockfish"
 
     else:
@@ -31,19 +31,19 @@ class EngineConfig:
     skill_level: int = 20
     eval_depth: int = 18
     syzygy_path: str = field(
-        default_factory=lambda: os.path.expanduser("~/chess/syzygy")
+        default_factory=lambda: path.expanduser("~/chess/syzygy")
     )
 
     def __post_init__(self) -> None:
         """Expand user paths after initialization."""
-        self.syzygy_path = os.path.expanduser(self.syzygy_path)
+        self.syzygy_path = path.expanduser(self.syzygy_path)
 
 
-def create_argument_parser() -> argparse.ArgumentParser:
+def create_argument_parser() -> ArgumentParser:
     """Create and configure the command-line argument parser."""
-    parser = argparse.ArgumentParser(
+    parser = ArgumentParser(
         description="Interactive chess analysis with Stockfish engine",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
+        formatter_class=RawDescriptionHelpFormatter,
         epilog="""
 Examples:
   python3 src/main.py
@@ -125,7 +125,7 @@ def load_config_file(config_path: str) -> Dict[str, Any]:
     """Load configuration from a JSON file."""
     try:
         with open(config_path, "r") as f:
-            config_data = cast(Dict[str, Any], json.load(f))
+            config_data = cast(Dict[str, Any], load(f))
 
         # Validate that all keys are valid EngineConfig fields
         valid_fields = set(
@@ -150,7 +150,7 @@ def load_config_file(config_path: str) -> Dict[str, Any]:
     except FileNotFoundError:
         raise FileNotFoundError(f"Config file not found: {config_path}")
 
-    except json.JSONDecodeError as e:
+    except JSONDecodeError as e:
         raise ValueError(f"Invalid JSON in config file {config_path}: {e}")
 
     except Exception as e:
@@ -164,7 +164,7 @@ def save_config_file(config: EngineConfig, config_path: str) -> None:
         Path(config_path).parent.mkdir(parents=True, exist_ok=True)
 
         with open(config_path, "w") as f:
-            json.dump(asdict(config), f, indent=2)
+            dump(asdict(config), f, indent=2)
 
         print(f"Configuration saved to: {config_path}")
 

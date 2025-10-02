@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import time
+from time import time
 
 import chess.syzygy
 
@@ -28,7 +28,7 @@ def display_progress(
     """Displays a progress bar with time estimate. Call this inside a
     loop to update the progress.
     """
-    elapsed = time.time() - start_time
+    elapsed = time() - start_time
     progress_ratio = iteration / total
     avg_time = elapsed / max(1, iteration)  # Avoid division by zero
     remaining_secs = avg_time * (total - iteration)

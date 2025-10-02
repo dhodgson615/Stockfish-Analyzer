@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-import sys
+from sys import exit
 
-import chess
+from chess import Board, Move
 
 
-def parse_move_input(board: chess.Board, user_input: str) -> chess.Move | None:
+def parse_move_input(board: Board, user_input: str) -> Move | None:
     """Parse user input as a chess move. Tries SAN first, then UCI.
     Returns a Move object if successful, otherwise None.
     """
@@ -14,13 +14,13 @@ def parse_move_input(board: chess.Board, user_input: str) -> chess.Move | None:
 
     except ValueError:
         try:
-            return chess.Move.from_uci(user_input)
+            return Move.from_uci(user_input)
 
         except ValueError:
             return None
 
 
-def handle_user_input(board: chess.Board) -> chess.Move | None:
+def handle_user_input(board: Board) -> Move | None:
     """Handles user input for making moves. Returns a valid Move object
     or None if the input is invalid.
     """
@@ -29,16 +29,14 @@ def handle_user_input(board: chess.Board) -> chess.Move | None:
     return process_user_input(board, user_input)
 
 
-def process_user_input(
-    board: chess.Board, user_input: str
-) -> chess.Move | None:
+def process_user_input(board: Board, user_input: str) -> Move | None:
     """Processes a user input string and returns a valid Move object
     or None if the input is invalid. Separated from handle_user_input
     for better testability.
     """
     if user_input.lower() in ["quit", "q", "exit"]:
         print("Exiting game...")
-        sys.exit(0)
+        exit(0)
 
     move = parse_move_input(board, user_input)
 
