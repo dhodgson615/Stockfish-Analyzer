@@ -112,7 +112,7 @@ def print_game_over_info(board: Board, move_history: list[Move]) -> None:
 
 
 def print_move_history(
-    move_history: list[chess.Move], moves_per_line: int = 5
+    move_history: list[Move], moves_per_line: int = 5
 ) -> None:
     """Print the game's move history. Formats moves in lines with a set
     number of moves per line.
