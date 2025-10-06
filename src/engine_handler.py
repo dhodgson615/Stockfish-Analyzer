@@ -129,29 +129,25 @@ def get_dynamic_eval_depth(board: chess.Board) -> int:
         Middlegame: 18-20 depth (balanced approach)
         Endgame: 20-25 depth (deeper search, fewer pieces)
     """
-    # Count pieces on the board (excluding kings)
-    piece_count = len(board.piece_map()) - 2  # Subtract 2 kings
-    move_count = board.fullmove_number
-
-    # Endgame: Few pieces remaining (typically <= 10 pieces)
-    if piece_count <= 10:
-        if piece_count <= 6:
-            return 25  # Very few pieces, can search deeply
-
-        else:
-            return 22  # Transitioning to endgame
-
-    # Opening: Many pieces, early moves (first 10 moves)
-    elif move_count <= 10 and piece_count >= 20:
-        return 14  # Fast evaluation in opening
-
-    # Late opening/early middlegame
-    elif move_count <= 15 and piece_count >= 16:
-        return 16
-
-    # Middlegame: Most complex phase
-    else:
-        return 20  # Slightly deeper than default for tactical precision
+    return (
+        25
+        if len(board.piece_map()) - 2 <= 6
+        else (
+            22
+            if len(board.piece_map()) - 2 <= 10
+            else (
+                14
+                if board.fullmove_number <= 10
+                and len(board.piece_map()) - 2 >= 20
+                else (
+                    16
+                    if board.fullmove_number <= 15
+                    and len(board.piece_map()) - 2 >= 16
+                    else 20
+                )
+            )
+        )
+    )
 
 
 def get_move_evals(
