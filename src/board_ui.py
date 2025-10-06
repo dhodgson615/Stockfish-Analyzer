@@ -117,16 +117,19 @@ def print_move_history(
     """Print the game's move history. Formats moves in lines with a set
     number of moves per line.
     """
-    print("Moves played:")
-
-    for idx, move in enumerate(move_history, start=1):
-        end_char = "\n" if idx % moves_per_line == 0 else "  "
-        print(f"{idx:2d}. {move.uci()}", end=end_char)
-
-    if len(move_history) % moves_per_line != 0:
-        print()
-
-    print()
+    print(
+        "Moves played:\n"
+        + "\n".join(
+            "".join(
+                f"{i:2d}. {move.uci()}{'  ' if (i % moves_per_line) != 0 else ''}"
+                for i, move in enumerate(
+                    move_history[j : j + moves_per_line], start=j + 1
+                )
+            )
+            for j in range(0, len(move_history), moves_per_line)
+        )
+        + "\n"
+    )
 
 
 def print_game_result(board: Board) -> None:
