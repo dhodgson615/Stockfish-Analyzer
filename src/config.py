@@ -11,14 +11,15 @@ from typing import Any, Dict, Optional, cast
 
 def get_default_engine_path() -> str:
     """Determine the default Stockfish engine path based on OS."""
-    if system() == "Darwin" and uname().machine == "arm64":
-        return "/opt/homebrew/bin/stockfish"
-
-    elif system() == "Darwin":
-        return "/usr/local/bin/stockfish"
-
-    else:
-        return "/usr/games/stockfish"
+    return (
+        "/opt/homebrew/bin/stockfish"
+        if system() == "Darwin" and uname().machine == "arm64"
+        else (
+            "/usr/local/bin/stockfish"
+            if system() == "Darwin"
+            else "/usr/games/stockfish"
+        )
+    )
 
 
 @dataclass
