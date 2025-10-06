@@ -50,11 +50,12 @@ def print_possible_moves(
     """Prints the possible moves along with their evaluation scores.
     Expects a list of tuples (Move, (score, mate_value)).
     """
-    print("Possible moves:")
-
-    for move, (score, mate_val) in sorted_moves:
-        mate_text = (
-            f", Mate in {abs(mate_val)}" if mate_val is not None else ""
+    print(
+        "Possible moves:\n"
+        + "\n".join(
+            f"{move.uci():5s}-> Eval score: {score}"
+            + (f", Mate in {abs(mate_val)}" if mate_val else "")
+            for move, (score, mate_val) in sorted_moves
         )
 
         print(f"{move.uci():5s}-> Eval score: {score}{mate_text}")
