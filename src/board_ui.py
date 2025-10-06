@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from time import time
 
-import chess.syzygy
+from chess import Board, Move, syzygy
 
 CLEAR_BEFORE_PRINT = False  # This should be in config
 
