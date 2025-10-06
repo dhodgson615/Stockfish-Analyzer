@@ -74,7 +74,7 @@ def show_mate_info(
 
 
 def print_tablebase_info(
-    board: chess.Board, tablebase: chess.syzygy.Tablebase
+    board: Board, tablebase: syzygy.Tablebase | None
 ) -> None:
     """Print information from Syzygy tablebase if available. Shows WDL
     and DTZ if applicable.
