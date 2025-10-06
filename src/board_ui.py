@@ -57,8 +57,7 @@ def print_possible_moves(
             + (f", Mate in {abs(mate_val)}" if mate_val else "")
             for move, (score, mate_val) in sorted_moves
         )
-
-        print(f"{move.uci():5s}-> Eval score: {score}{mate_text}")
+    )
 
 
 def show_mate_info(
