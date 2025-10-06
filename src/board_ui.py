@@ -64,13 +64,16 @@ def show_mate_info(
     best_move_data: tuple[Move, tuple[int | None, int | None]],
     is_white_turn: bool,
 ) -> None:
-    """Display mate information if a mate is found. Expects a tuple
-    (Move, (score, mate_value)).
-    """
-    _, (_, mate_val) = best_move_data
-
-    if mate_val is not None and (mate_val > 0) == is_white_turn:
-        print(f"\nMate in {abs(mate_val)}")
+    """Display mate information if a mate is found. Expects a tuple (Move, (score, mate_value))."""
+    print(
+        (
+            f"\nMate in {abs(best_move_data[1][1])}"
+            if best_move_data[1][1] is not None
+            and (best_move_data[1][1] > 0) == is_white_turn
+            else ""
+        ),
+        end="",
+    )
 
 
 def print_tablebase_info(
