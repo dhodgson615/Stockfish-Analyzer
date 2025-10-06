@@ -14,7 +14,7 @@ def clear_terminal() -> None:
     print("\033c", end="")
 
 
-def print_board(board: chess.Board) -> None:
+def print_board(board: Board) -> None:
     """Prints the chess board in a user-friendly format. Clears the
     terminal before printing.
     """
