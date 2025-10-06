@@ -31,6 +31,7 @@ class EngineConfig:
     hash_size: int = 16384
     skill_level: int = 20
     eval_depth: int = 18
+
     syzygy_path: str = field(
         default_factory=lambda: path.expanduser("~/chess/syzygy")
     )
