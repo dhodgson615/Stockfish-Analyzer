@@ -6,8 +6,9 @@ from subprocess import run
 from time import time
 
 import chess
-import chess.engine
-import chess.syzygy
+from chess import Board
+from chess.engine import Limit, SimpleEngine
+from chess.syzygy import Tablebase, open_tablebase
 
 try:
     import board_ui
@@ -86,11 +87,11 @@ def get_engine(
     threads: int = 4,
     hash_size: int = 16384,
     skill_level: int = 20,
-) -> chess.engine.SimpleEngine:
+) -> SimpleEngine:
     """Initializes and configures the chess engine. Returns the engine
     instance.
     """
-    engine = chess.engine.SimpleEngine.popen_uci(engine_path)
+    engine = SimpleEngine.popen_uci(engine_path)
 
     engine.configure(
         {"Threads": threads, "Hash": hash_size, "Skill Level": skill_level}
@@ -99,9 +100,7 @@ def get_engine(
     return engine
 
 
-def get_syzygy_tablebase(
-    filepath: str = SYZYGY_PATH,
-) -> chess.syzygy.Tablebase | None:
+def get_syzygy_tablebase(filepath: str = SYZYGY_PATH) -> Tablebase | None:
     """Initialize a Syzygy tablebase. Returns None if not found or on
     error.
     """
@@ -110,14 +109,14 @@ def get_syzygy_tablebase(
         return None
 
     try:
-        return chess.syzygy.open_tablebase(filepath)
+        return open_tablebase(filepath)
 
     except Exception as e:  # TODO: handle specific exceptions
         print(f"Error loading Syzygy tablebases: {e}")
         return None
 
 
-def get_dynamic_eval_depth(board: chess.Board) -> int:
+def get_dynamic_eval_depth(board: Board) -> int:
     """Determine the appropriate evaluation depth based on game
     stage.
     """
@@ -143,10 +142,10 @@ def get_dynamic_eval_depth(board: chess.Board) -> int:
 
 
 def get_move_evals(
-    board: chess.Board,
-    engine: chess.engine.SimpleEngine,
+    board: Board,
+    engine: SimpleEngine,
     depth: int = EVAL_DEPTH,
-    tablebase: chess.syzygy.Tablebase | None = None,
+    tablebase: Tablebase | None = None,
 ) -> dict[chess.Move, tuple[int | None, int | None]]:
     """Evaluates all legal moves on the board. Returns a dictionary
     mapping moves to their (score, mate_value) tuples.
@@ -179,11 +178,11 @@ def get_move_evals(
 
 
 def evaluate_move(
-    board: chess.Board,
-    engine: chess.engine.SimpleEngine,
+    board: Board,
+    engine: SimpleEngine,
     move: chess.Move,
     depth: int = EVAL_DEPTH,
-    tablebase: chess.syzygy.Tablebase | None = None,
+    tablebase: Tablebase | None = None,
 ) -> tuple[chess.Move, tuple[int | None, int | None]]:
     """Evaluates a single move on the board using tablebase or chess
     engine. Returns the move and its (score, mate_value) tuple.
@@ -202,7 +201,7 @@ def evaluate_move(
 
 
 def try_tablebase_evaluation(
-    board: chess.Board, tablebase: chess.syzygy.Tablebase | None
+    board: Board, tablebase: Tablebase | None
 ) -> (
     tuple[int | None, int | None] | None
 ):  # TODO: Refactor this to use lru_cache
@@ -250,12 +249,12 @@ def try_tablebase_evaluation(
 
 
 def get_engine_evaluation(
-    board: chess.Board, engine: chess.engine.SimpleEngine, depth: int
+    board: Board, engine: SimpleEngine, depth: int
 ) -> tuple[int | None, int | None]:
     """Evaluates a position using the chess engine. Returns (score,
     mate_value) tuple.
     """
-    info = engine.analyse(board, chess.engine.Limit(depth=depth))
+    info = engine.analyse(board, Limit(depth=depth))
     score_obj = info["score"].white()
     score = score_obj.score(mate_score=1000000)
     mate_val = score_obj.mate()
