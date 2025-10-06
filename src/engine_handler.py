@@ -203,14 +203,10 @@ def evaluate_move(
     board.push(move)
 
     try:
-        # First attempt tablebase evaluation if available
-        tablebase_result = try_tablebase_evaluation(board, tablebase)
-
-        if tablebase_result:
-            return move, tablebase_result
-
-        # Fall back to engine evaluation
-        return move, get_engine_evaluation(board, engine, depth)
+        return move, (
+            try_tablebase_evaluation(board, tablebase)
+            or get_engine_evaluation(board, engine, depth)
+        )
 
     finally:
         # Ensure we restore the board state
