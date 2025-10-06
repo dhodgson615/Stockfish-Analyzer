@@ -118,16 +118,8 @@ def get_syzygy_tablebase(
 
 
 def get_dynamic_eval_depth(board: chess.Board) -> int:
-    """Determine the appropriate evaluation depth based on game stage.
-
-    Game stages are determined by:
-    - Piece count: More pieces = earlier stage
-    - Move count: More moves = later stage
-
-    Returns:
-        Opening (early game): 12-15 depth (faster evaluation)
-        Middlegame: 18-20 depth (balanced approach)
-        Endgame: 20-25 depth (deeper search, fewer pieces)
+    """Determine the appropriate evaluation depth based on game
+    stage.
     """
     return (
         25
