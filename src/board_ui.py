@@ -45,7 +45,7 @@ def display_progress(
 
 
 def print_possible_moves(
-    sorted_moves: list[tuple[chess.Move, tuple[int | None, int | None]]],
+    sorted_moves: list[tuple[Move, tuple[int | None, int | None]]],
 ) -> None:
     """Prints the possible moves along with their evaluation scores.
     Expects a list of tuples (Move, (score, mate_value)).
