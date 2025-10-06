@@ -134,20 +134,28 @@ def print_game_result(board: Board) -> None:
     checkmate, stalemate, insufficient material, fifty-move rule, and
     threefold repetition.
     """
-    if board.is_checkmate():
-        print(f"Checkmate! Winner: {'Black' if board.turn else 'White'}")
-
-    elif board.is_stalemate():
-        print("Stalemate! The game is a draw.")
-
-    elif board.is_insufficient_material():
-        print("Insufficient material! The game is a draw.")
-
-    elif board.is_fifty_moves():
-        print("Fifty-move rule! The game is a draw.")
-
-    elif board.is_repetition():
-        print("Threefold repetition! The game is a draw.")
-
-    else:
-        print(f"Game result: {board.result()}")
+    print(
+        "Checkmate! Winner: Black"
+        if board.is_checkmate() and board.turn
+        else (
+            "Checkmate! Winner: White"
+            if board.is_checkmate()
+            else (
+                "Stalemate! The game is a draw."
+                if board.is_stalemate()
+                else (
+                    "Insufficient material! The game is a draw."
+                    if board.is_insufficient_material()
+                    else (
+                        "Fifty-move rule! The game is a draw."
+                        if board.is_fifty_moves()
+                        else (
+                            "Threefold repetition! The game is a draw."
+                            if board.is_repetition()
+                            else f"Game result: {board.result()}"
+                        )
+                    )
+                )
+            )
+        )
+    )
