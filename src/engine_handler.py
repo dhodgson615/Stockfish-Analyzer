@@ -63,7 +63,7 @@ def find_stockfish_path() -> tuple[bool, str]:
             if path.exists(filepath) and access(filepath, X_OK):
                 return True, filepath
 
-    except Exception:
+    except Exception:  # FIXME: too broad exception
         pass
 
     # Check each path in our list
