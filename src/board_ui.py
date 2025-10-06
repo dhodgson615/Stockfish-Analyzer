@@ -101,9 +101,7 @@ def print_tablebase_info(
         pass  # Index out of bounds in tablebase access
 
 
-def print_game_over_info(
-    board: chess.Board, move_history: list[chess.Move]
-) -> None:
+def print_game_over_info(board: Board, move_history: list[Move]) -> None:
     """Prints game over information. Displays the final board, move,
     and result.
     """
