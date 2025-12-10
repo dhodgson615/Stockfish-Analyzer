@@ -45,7 +45,7 @@ def main() -> None:
     print("Tablebases loaded" if tablebase else "Tablebases not available")
 
     try:
-        play_game(board, engine, move_history, tablebase, app_config)
+        play_game(board, engine, move_history, tablebase)
         print_game_over_info(board, move_history)
 
         if tablebase:
@@ -689,7 +689,6 @@ def play_game(
     engine: chess.engine.SimpleEngine,
     move_history: list[chess.Move],
     tablebase: chess.syzygy.Tablebase | None = None,
-    app_config: EngineConfig | None = None,
 ) -> None:
     """Run the interactive chess game loop. Continues until the game is
     over. Displays the board, evaluates moves, and handles user input
