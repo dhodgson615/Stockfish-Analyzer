@@ -8,7 +8,6 @@ from os import X_OK, access, name, path, uname
 from pathlib import Path
 from platform import system
 from shutil import get_terminal_size, which
-from subprocess import run
 from sys import exit
 from time import time
 from typing import Any, Optional, cast
@@ -18,6 +17,7 @@ import chess.syzygy
 from chess import Board, Move, syzygy
 from chess.engine import Limit, SimpleEngine
 from chess.syzygy import Tablebase, open_tablebase
+
 
 # TODO: refactor the script to use as little try/except as possible
 
