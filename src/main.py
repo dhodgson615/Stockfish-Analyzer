@@ -471,7 +471,7 @@ def print_game_result(board: Board) -> None:
     )
 
 
-EVAL_DEPTH = 18  # Default depth, used as fallback
+EVAL_DEPTH = 18
 
 ENGINE_PATH = (
     "/opt/homebrew/bin/stockfish"
@@ -494,7 +494,7 @@ def find_stockfish_path() -> tuple[bool, str]:
         "/usr/games/stockfish",  # Linux default
     ]
 
-    try:
+    with suppress(Exception):  # FIXME: too broad exception handling
         result = run(
             ["which", "stockfish"], capture_output=True, text=True, check=False
         )
@@ -505,12 +505,9 @@ def find_stockfish_path() -> tuple[bool, str]:
             if path.exists(filepath) and access(filepath, X_OK):
                 return True, filepath
 
-    except Exception:  # FIXME: too broad exception
-        pass
-
-    for filepath in paths_to_check:
-        if path.exists(filepath) and access(filepath, X_OK):
-            return True, filepath
+        for filepath in paths_to_check:
+            if path.exists(filepath) and access(filepath, X_OK):
+                return True, filepath
 
     default_path = (
         "/opt/homebrew/bin/stockfish"
