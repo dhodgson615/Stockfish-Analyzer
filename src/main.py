@@ -18,7 +18,6 @@ from chess import Board, Move, syzygy
 from chess.engine import Limit, SimpleEngine
 from chess.syzygy import Tablebase, open_tablebase
 
-
 # TODO: refactor the script to use as little try/except as possible
 
 
@@ -721,13 +720,9 @@ def evaluate_and_show_moves(
     if tablebase:
         print_tablebase_info(board, tablebase)
 
-    if app_config:
-        eval_depth = app_config.eval_depth  # TODO: use ternary assignment
-
-    else:
-        eval_depth = get_dynamic_eval_depth(
-            board
-        )  # TODO: use ternary assignment
+    eval_depth = (
+        app_config.eval_depth if app_config else get_dynamic_eval_depth(board)
+    )
 
     moves_eval = get_move_evals(
         board,
@@ -754,7 +749,7 @@ def sort_moves_by_evaluation(
     """Sorts the evaluated moves based on the score. Higher scores are
     better for White, lower scores are better for Black. Returns a list
     of tuples (Move, (score, mate_value)).
-    """  # FIXME: wrong module (evaluation logic, not game logic)
+    """
     return sorted(
         list(moves_eval.items()), key=get_move_score, reverse=is_white_turn
     )
@@ -765,7 +760,7 @@ def get_move_score(
 ) -> int:
     """Key function for sorting moves. Takes (Move, (score,
     mate_value)) and returns score for sorting.
-    """  # FIXME: wrong module (evaluation logic, not game logic)
+    """
     return item[1][0] if item[1][0] is not None else 0
 
 
