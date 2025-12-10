@@ -9,6 +9,7 @@ from pathlib import Path
 from platform import system
 from shutil import get_terminal_size, which
 from sys import exit
+from textwrap import dedent
 from time import time
 from typing import Any, Optional, cast
 
@@ -76,7 +77,6 @@ def handle_user_input(board: Board) -> Move | None:
     or None if the input is invalid.
     """
     user_input = input("Enter your move (UCI or SAN): ")
-
     return process_user_input(board, user_input)
 
 
@@ -139,24 +139,26 @@ def create_argument_parser() -> ArgumentParser:
     parser = ArgumentParser(
         description="Interactive chess analysis with Stockfish engine",
         formatter_class=RawDescriptionHelpFormatter,
-        epilog="""
-Examples:
-  python3 src/main.py
-  python3 src/main.py --engine-path /usr/local/bin/stockfish
-  python3 src/main.py --threads 8 --hash-size 8192 --depth 20
-  python3 src/main.py --config my_config.json
-  python3 src/main.py --skill-level 15 --syzygy-path ~/tablebase/syzygy
-
-Config file format (JSON):
-{
-    "engine_path": "/usr/local/bin/stockfish",
-    "threads": 8,
-    "hash_size": 8192,
-    "skill_level": 20,
-    "eval_depth": 20,
-    "syzygy_path": "~/chess/syzygy"
-}
-        """,
+        epilog=dedent(
+            """
+            Examples:
+              python3 src/main.py
+              python3 src/main.py --engine-path /usr/local/bin/stockfish
+              python3 src/main.py --threads 8 --hash-size 8192 --depth 20
+              python3 src/main.py --config my_config.json
+              python3 src/main.py --skill-level 15 --syzygy-path ~/tablebase/syzygy
+            
+            Config file format (JSON):
+            {
+                "engine_path": "/usr/local/bin/stockfish",
+                "threads": 8,
+                "hash_size": 8192,
+                "skill_level": 20,
+                "eval_depth": 20,
+                "syzygy_path": "~/chess/syzygy"
+            }
+            """
+        ),
     )
 
     parser.add_argument(
