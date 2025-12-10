@@ -12,8 +12,6 @@ from sys import exit
 from time import time
 from typing import Any, Optional, cast
 
-import chess.engine
-import chess.syzygy
 from chess import Board, Move, syzygy
 from chess.engine import Limit, SimpleEngine
 from chess.syzygy import Tablebase, open_tablebase
@@ -572,7 +570,7 @@ def get_move_evals(
     engine: SimpleEngine,
     depth: int = EVAL_DEPTH,
     tablebase: Tablebase | None = None,
-) -> dict[chess.Move, tuple[int | None, int | None]]:
+) -> dict[Move, tuple[int | None, int | None]]:
     """Evaluates all legal moves on the board. Returns a dictionary
     mapping moves to their (score, mate_value) tuples.
     """
@@ -605,10 +603,10 @@ def get_move_evals(
 def evaluate_move(
     board: Board,
     engine: SimpleEngine,
-    move: chess.Move,
+    move: Move,
     depth: int = EVAL_DEPTH,
     tablebase: Tablebase | None = None,
-) -> tuple[chess.Move, tuple[int | None, int | None]]:
+) -> tuple[Move, tuple[int | None, int | None]]:
     """Evaluates a single move on the board using tablebase or chess
     engine. Returns the move and its (score, mate_value) tuple.
     """
@@ -680,10 +678,10 @@ def get_engine_evaluation(
 
 
 def play_game(
-    board: chess.Board,
-    engine: chess.engine.SimpleEngine,
-    move_history: list[chess.Move],
-    tablebase: chess.syzygy.Tablebase | None = None,
+    board: Board,
+    engine: SimpleEngine,
+    move_history: list[Move],
+    tablebase: Tablebase | None = None,
 ) -> None:
     """Run the interactive chess game loop. Continues until the game is
     over. Displays the board, evaluates moves, and handles user input
@@ -700,11 +698,11 @@ def play_game(
 
 
 def evaluate_and_show_moves(
-    board: chess.Board,
-    engine: chess.engine.SimpleEngine,
-    tablebase: chess.syzygy.Tablebase | None = None,
+    board: Board,
+    engine: SimpleEngine,
+    tablebase: Tablebase | None = None,
     app_config: EngineConfig | None = None,
-) -> tuple[dict[chess.Move, tuple[int | None, int | None]], float]:
+) -> tuple[dict[Move, tuple[int | None, int | None]], float]:
     """Evaluate moves and display them with timing information. Returns
     a tuple containing the moves evaluation dictionary and the time
     taken for the evaluation.
@@ -737,9 +735,9 @@ def evaluate_and_show_moves(
 
 
 def sort_moves_by_evaluation(
-    moves_eval: dict[chess.Move, tuple[int | None, int | None]],
+    moves_eval: dict[Move, tuple[int | None, int | None]],
     is_white_turn: bool,
-) -> list[tuple[chess.Move, tuple[int | None, int | None]]]:
+) -> list[tuple[Move, tuple[int | None, int | None]]]:
     """Sorts the evaluated moves based on the score. Higher scores are
     better for White, lower scores are better for Black. Returns a list
     of tuples (Move, (score, mate_value)).
@@ -750,7 +748,7 @@ def sort_moves_by_evaluation(
 
 
 def get_move_score(
-    item: tuple[chess.Move, tuple[int | None, int | None]],
+    item: tuple[Move, tuple[int | None, int | None]],
 ) -> int:
     """Key function for sorting moves. Takes (Move, (score,
     mate_value)) and returns score for sorting.
