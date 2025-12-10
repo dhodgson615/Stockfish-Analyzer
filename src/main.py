@@ -626,49 +626,44 @@ def evaluate_move(
 
 def try_tablebase_evaluation(
     board: Board, tablebase: Tablebase | None
-) -> (
-    tuple[int | None, int | None] | None
-):  # TODO: Refactor this to use lru_cache
-    """Attempts to evaluate the position using the Syzygy tablebase.
-    Returns (score, mate_value) tuple if successful, otherwise None.
+) -> tuple[int | None, int | None] | None:
+    """Attempt tablebase evaluation; return (score, mate_value) or
+    None.
     """
-    if tablebase:
-        try:
-            wdl = tablebase.get_wdl(board)
-
-        except (IOError, ValueError, IndexError):
-            return None
-
-        if wdl is not None:
-            if wdl == 0:  # Draw
-                return 0, None
-
-            try:
-                dtz_val = tablebase.get_dtz(board)
-
-            except (IOError, ValueError, IndexError):
-                return None
-
-            mate_val = (
-                dtz_val
-                if wdl > 0
-                else -dtz_val if dtz_val is not None else None
-            )
-
-            score = (
-                (1000000 - (mate_val or 0))
-                if wdl > 0
-                else (-1000000 - (mate_val or 0))
-            )
-
-            if abs(mate_val or 0) >= 1000:
-                mate_val = None
-
-            return score, mate_val
-
+    if tablebase is None:
         return None
 
-    return None
+    try:
+        wdl = tablebase.get_wdl(board)
+
+        if wdl is None:
+            return None
+
+        if wdl == 0:
+            return 0, None
+
+        dtz = tablebase.get_dtz(board)
+
+    except (IOError, ValueError, IndexError):
+        return None
+
+    mate_val = (
+        None
+        if dtz is None
+        else (
+            None
+            if abs(dtz if wdl > 0 else -dtz) >= 1000
+            else (dtz if wdl > 0 else -dtz)
+        )
+    )
+
+    score = (
+        (1000000 - (mate_val or 0))
+        if wdl > 0
+        else (-1000000 - (mate_val or 0))
+    )
+
+    return score, mate_val
 
 
 def get_engine_evaluation(
