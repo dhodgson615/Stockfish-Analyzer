@@ -7,7 +7,7 @@ from json import JSONDecodeError, dump, load
 from os import X_OK, access, name, path, uname
 from pathlib import Path
 from platform import system
-from shutil import get_terminal_size
+from shutil import get_terminal_size, which
 from subprocess import run
 from sys import exit
 from time import time
@@ -483,39 +483,30 @@ SYZYGY_PATH = path.expanduser("~/chess/syzygy")
 
 
 def find_stockfish_path() -> tuple[bool, str]:
-    """Find the Stockfish binary path and return existence status and
-    path.
-    """
-    paths_to_check = [
-        "/opt/homebrew/bin/stockfish",  # Apple Silicon Mac default
-        "/usr/local/bin/stockfish",  # Intel Mac default
-        "/opt/local/bin/stockfish",  # MacPorts location
-        "/usr/bin/stockfish",  # Uncommon but possible
-        "/usr/games/stockfish",  # Linux default
-    ]
+    """Find Stockfish executable: check PATH via shutil.which then common locations.
+    Returns (found: bool, path: str)."""
+    candidate = which("stockfish")
 
-    with suppress(Exception):  # FIXME: too broad exception handling
-        result = run(
-            ["which", "stockfish"], capture_output=True, text=True, check=False
-        )
+    if candidate and path.exists(candidate) and access(candidate, X_OK):
+        return True, candidate
 
-        if result.returncode == 0 and result.stdout.strip():
-            filepath = result.stdout.strip()
+    for p in (
+        "/opt/homebrew/bin/stockfish",  # macOS Homebrew (Apple Silicon)
+        "/usr/local/bin/stockfish",  # macOS Brew (Intel) / custom
+        "/opt/local/bin/stockfish",  # MacPorts
+        "/usr/bin/stockfish",
+        "/usr/games/stockfish",  # Debian/Ubuntu
+    ):
+        if path.exists(p) and access(p, X_OK):
+            return True, p
 
-            if path.exists(filepath) and access(filepath, X_OK):
-                return True, filepath
-
-        for filepath in paths_to_check:
-            if path.exists(filepath) and access(filepath, X_OK):
-                return True, filepath
-
-    default_path = (
+    default = (
         "/opt/homebrew/bin/stockfish"
-        if name == "darwin"
+        if system() == "Darwin"
         else "/usr/games/stockfish"
     )
 
-    return False, default_path
+    return False, default
 
 
 def get_engine(
