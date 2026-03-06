@@ -13,7 +13,7 @@ from textwrap import dedent
 from time import time
 from typing import Any, Optional, cast
 
-from chess import Board, Move, syzygy
+from chess import Board, Move
 from chess.engine import Limit, SimpleEngine
 from chess.syzygy import Tablebase, open_tablebase
 
@@ -139,8 +139,7 @@ def create_argument_parser() -> ArgumentParser:
     parser = ArgumentParser(
         description="Interactive chess analysis with Stockfish engine",
         formatter_class=RawDescriptionHelpFormatter,
-        epilog=dedent(
-            """
+        epilog=dedent("""
             Examples:
               python3 src/main.py
               python3 src/main.py --engine-path /usr/local/bin/stockfish
@@ -157,8 +156,7 @@ def create_argument_parser() -> ArgumentParser:
                 "eval_depth": 20,
                 "syzygy_path": "~/chess/syzygy"
             }
-            """
-        ),
+            """),
     )
 
     parser.add_argument(
@@ -303,7 +301,6 @@ def parse_config(args: Optional[list[str]] = None) -> EngineConfig:
         exit(0)
 
     config.__post_init__()
-
     return config
 
 
@@ -384,27 +381,28 @@ def show_mate_info(
     )
 
 
-def print_tablebase_info(
-    board: Board, tablebase: syzygy.Tablebase | None
-) -> None:
+def print_tablebase_info(board: Board, tablebase: Tablebase | None) -> None:
     """Print information from Syzygy tablebase if available. Shows WDL
-    and DTZ if applicable.
+    and DTZ if applicable, using a single `with` statement for suppression.
     """
     if tablebase:
         with suppress(IOError, ValueError, IndexError):
             wdl = tablebase.get_wdl(board)
 
-            if wdl is not None:
+            if wdl is None:
+                return
+
+            try:
+                dtz = tablebase.get_dtz(board)
+
+            except (IOError, ValueError, IndexError):
                 dtz = None
 
-                with suppress(IOError, ValueError, IndexError):
-                    dtz = tablebase.get_dtz(board)
-
-                print(
-                    f"Tablebase: "
-                    f"{'Draw' if wdl == 0 else 'Win' if wdl > 0 else 'Loss'} "
-                    f"(DTZ: {str(abs(dtz)) if dtz is not None else 'N/A'})"
-                )
+            print(
+                f"Tablebase: "
+                f"{'Draw' if wdl == 0 else 'Win' if wdl > 0 else 'Loss'} "
+                f"(DTZ: {str(abs(dtz)) if dtz is not None else 'N/A'})"
+            )
 
 
 def print_game_over_info(board: Board, move_history: list[Move]) -> None:
