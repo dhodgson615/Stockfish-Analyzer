@@ -54,7 +54,8 @@ def parse_move_input(board: Board, user_input: str) -> Optional[Move]:
     """Parse user input as a chess move. Tries SAN first, then UCI.
     Returns a Move object if successful, otherwise None.
     """
-    try:
+    # Try SAN first
+    with suppress(ValueError):
         return board.parse_san(user_input)
 
     except ValueError:
