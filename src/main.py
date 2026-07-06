@@ -21,6 +21,9 @@ from chess.syzygy import Tablebase, open_tablebase
 # TODO: consider adding a way to make it so that the evaluation depth is
 #       changed dynamically based on how much time was taken by the last move
 
+# TODO: refactor the code so that a lot of the single-use, single-line
+#       functions are just integrated into the larger functions that call them
+
 
 def main() -> None:
     """Main function to run the interactive chess game."""
