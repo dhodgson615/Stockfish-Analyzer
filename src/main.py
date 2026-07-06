@@ -73,8 +73,7 @@ def handle_user_input(board: Board) -> Optional[Move]:
     """Handles user input for making moves. Returns a valid Move object
     or None if the input is invalid.
     """
-    user_input = input("Enter your move (UCI or SAN): ")
-    return process_user_input(board, user_input)
+    return process_user_input(board, input("Enter your move (UCI or SAN): "))
 
 
 def process_user_input(board: Board, user_input: str) -> Optional[Move]:
