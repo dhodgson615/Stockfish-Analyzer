@@ -524,9 +524,9 @@ def play_game(
 def evaluate_and_show_moves(
     board: Board,
     engine: SimpleEngine,
-    tablebase: Tablebase | None = None,
-    app_config: EngineConfig | None = None,
-) -> tuple[dict[Move, tuple[int | None, int | None]], float]:
+    tablebase: Optional[Tablebase] = None,
+    app_config: Optional[EngineConfig] = None,
+) -> tuple[dict[Move, tuple[Optional[int], Optional[int]]], float]:
     """Evaluate moves and display them with timing information. Returns
     a tuple containing the moves evaluation dictionary and the time
     taken for the evaluation.
