@@ -393,8 +393,8 @@ def get_move_evals(
     board: Board,
     engine: SimpleEngine,
     depth: int = EVAL_DEPTH,
-    tablebase: Tablebase | None = None,
-) -> dict[Move, tuple[int | None, int | None]]:
+    tablebase: Optional[Tablebase] = None,
+) -> dict[Move, tuple[Optional[int], Optional[int]]]:
     """Evaluates all legal moves on the board. Returns a dictionary
     mapping moves to their (score, mate_value) tuples.
     """
