@@ -66,7 +66,7 @@ def parse_move_input(board: Board, user_input: str) -> Move | None:
             return None
 
 
-def handle_user_input(board: Board) -> Move | None:
+def handle_user_input(board: Board) -> Optional[Move]:
     """Handles user input for making moves. Returns a valid Move object
     or None if the input is invalid.
     """
