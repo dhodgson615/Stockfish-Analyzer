@@ -559,7 +559,7 @@ def evaluate_and_show_moves(
 
 
 def sort_moves_by_evaluation(
-    moves_eval: dict[Move, tuple[int | None, int | None]],
+    moves_eval: dict[Move, tuple[Optional[int], Optional[int]]],
     is_white_turn: bool,
 ) -> list[tuple[Move, tuple[Optional[int], Optional[int]]]]:
     """Sorts the evaluated moves based on the score. Higher scores are
