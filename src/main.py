@@ -281,11 +281,7 @@ def print_game_result(board: Board) -> None:
             print(f"{message} The game is a draw.")
             return
 
-    elif board.is_repetition():
-        print("Threefold repetition! The game is a draw.")
-
-    else:
-        print(f"Game result: {board.result()}")
+    print(f"Game result: {board.result()}")
 
 
 EVAL_DEPTH = 18
