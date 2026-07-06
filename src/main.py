@@ -505,7 +505,7 @@ def play_game(
     board: Board,
     engine: SimpleEngine,
     move_history: list[Move],
-    tablebase: Tablebase | None = None,
+    tablebase: Optional[Tablebase] = None,
 ) -> None:
     """Run the interactive chess game loop. Continues until the game is
     over. Displays the board, evaluates moves, and handles user input
