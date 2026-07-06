@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from contextlib import suppress
 from dataclasses import dataclass, field
 from os import X_OK, access, name, path, uname
