@@ -276,8 +276,10 @@ def print_game_result(board: Board) -> None:
         board.is_repetition: "Threefold repetition!",
     }
 
-    elif board.is_fifty_moves():
-        print("Fifty-move rule! The game is a draw.")
+    for condition, message in draw_reasons.items():
+        if condition():
+            print(f"{message} The game is a draw.")
+            return
 
     elif board.is_repetition():
         print("Threefold repetition! The game is a draw.")
