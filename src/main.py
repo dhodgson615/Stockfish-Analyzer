@@ -24,7 +24,6 @@ def main() -> None:
     print(f"Hash: {app_config.hash_size}MB")
     print(f"Skill: {app_config.skill_level}")
     print(f"Depth: {app_config.eval_depth}")
-
     board = Board()
     move_history: list[Move] = []
 
