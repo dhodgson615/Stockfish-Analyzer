@@ -25,10 +25,10 @@ def main() -> None:
     app_config = parse_config()
     print(f"Engine: {app_config.engine_path}")
 
-    print(
-        f"Threads: {app_config.threads}, Hash: {app_config.hash_size}MB, "
-        f"Skill: {app_config.skill_level}, Depth: {app_config.eval_depth}"
-    )
+    print(f"Threads: {app_config.threads}")
+    print(f"Hash: {app_config.hash_size}MB")
+    print(f"Skill: {app_config.skill_level}")
+    print(f"Depth: {app_config.eval_depth}")
 
     board = Board()
     move_history: list[Move] = []
