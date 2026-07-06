@@ -7,6 +7,7 @@ from platform import system
 from shutil import get_terminal_size, which
 from sys import exit
 from time import time
+from typing import Optional
 
 from chess import Board, Move
 from chess.engine import Limit, SimpleEngine
