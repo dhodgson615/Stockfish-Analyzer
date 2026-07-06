@@ -566,7 +566,9 @@ def sort_moves_by_evaluation(
     of tuples (Move, (score, mate_value)).
     """
     return sorted(
-        list(moves_eval.items()), key=get_move_score, reverse=is_white_turn
+        moves_eval.items(),
+        key=lambda item: item[1][0] if item[1][0] is not None else 0,
+        reverse=is_white_turn,
     )
 
 
