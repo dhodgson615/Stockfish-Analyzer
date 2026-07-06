@@ -24,7 +24,6 @@ def main() -> None:
     """Main function to run the interactive chess game."""
     app_config = parse_config()
     print(f"Engine: {app_config.engine_path}")
-
     print(f"Threads: {app_config.threads}")
     print(f"Hash: {app_config.hash_size}MB")
     print(f"Skill: {app_config.skill_level}")
