@@ -1,3 +1,4 @@
+from contextlib import suppress
 from dataclasses import dataclass, field
 from math import copysign
 from os import X_OK, access, name, path, uname
