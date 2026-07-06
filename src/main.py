@@ -205,7 +205,7 @@ def show_mate_info(
     )
 
 
-def print_tablebase_info(board: Board, tablebase: Tablebase | None) -> None:
+def print_tablebase_info(board: Board, tablebase: Optional[Tablebase]) -> None:
     """Print information from Syzygy tablebase if available. Shows WDL
     and DTZ if applicable, using a single `with` statement for suppression.
     """
