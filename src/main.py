@@ -490,7 +490,7 @@ def try_tablebase_evaluation(
 
 def get_engine_evaluation(
     board: Board, engine: SimpleEngine, depth: int
-) -> tuple[int | None, int | None]:
+) -> tuple[Optional[int], Optional[int]]:
     """Evaluates a position using the chess engine. Returns (score,
     mate_value) tuple.
     """
