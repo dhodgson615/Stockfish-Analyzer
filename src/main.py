@@ -357,28 +357,23 @@ def get_syzygy_tablebase(filepath: str = SYZYGY_PATH) -> Optional[Tablebase]:
 
 
 def get_dynamic_eval_depth(board: Board) -> int:
-    """Determine the appropriate evaluation depth based on game
-    stage.
-    """
-    return (
-        25
-        if len(board.piece_map()) - 2 <= 6
-        else (
-            22
-            if len(board.piece_map()) - 2 <= 10
-            else (
-                14
-                if board.fullmove_number <= 10
-                and len(board.piece_map()) - 2 >= 20
-                else (
-                    16
-                    if board.fullmove_number <= 15
-                    and len(board.piece_map()) - 2 >= 16
-                    else 20
-                )
-            )
-        )
-    )
+    """Determine the appropriate evaluation depth based on game stage."""
+    non_king_pieces = len(board.piece_map()) - 2
+    moves = board.fullmove_number
+
+    if non_king_pieces <= 6:
+        return 25
+
+    if non_king_pieces <= 10:
+        return 22
+
+    if moves <= 10 and non_king_pieces >= 20:
+        return 14
+
+    if moves <= 15 and non_king_pieces >= 16:
+        return 16
+
+    return 20
 
 
 def get_move_evals(
