@@ -266,11 +266,8 @@ def print_move_history(
 def print_game_result(board: Board) -> None:
     """Print the game result based on the board state."""
     if board.is_checkmate():
-        winner = "Black" if board.turn else "White"
-        print(f"Checkmate! Winner: {winner}")
-
-    elif board.is_stalemate():
-        print("Stalemate! The game is a draw.")
+        print(f"Checkmate! Winner: {'Black' if board.turn else 'White'}")
+        return
 
     elif board.is_insufficient_material():
         print("Insufficient material! The game is a draw.")
