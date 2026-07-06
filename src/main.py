@@ -133,7 +133,7 @@ def get_default_config() -> EngineConfig:
     return EngineConfig()
 
 
-CLEAR_BEFORE_PRINT = False  # This should be in config
+CLEAR_BEFORE_PRINT = False
 
 
 def clear_terminal() -> None:
