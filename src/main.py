@@ -348,7 +348,7 @@ def get_engine(
     return engine
 
 
-def get_syzygy_tablebase(filepath: str = SYZYGY_PATH) -> Tablebase | None:
+def get_syzygy_tablebase(filepath: str = SYZYGY_PATH) -> Optional[Tablebase]:
     """Initialize a Syzygy tablebase. Returns None if not found or on
     error.
     """
