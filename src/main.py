@@ -13,6 +13,7 @@ from chess.engine import Limit, SimpleEngine
 from chess.syzygy import Tablebase, open_tablebase
 
 # TODO: refactor the script to use as little try/except as possible
+
 # TODO: refactor this script so that it uses more idiomatic Python
 # TODO: add automatic .pgn exporting using the hash of the game as the filename
 # TODO: consider adding a way to make it so that the evaluation depth is
