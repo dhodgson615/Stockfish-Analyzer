@@ -98,15 +98,14 @@ def process_user_input(board: Board, user_input: str) -> Optional[Move]:
 
 def get_default_engine_path() -> str:
     """Determine the default Stockfish engine path based on OS."""
-    return (
-        "/opt/homebrew/bin/stockfish"
-        if system() == "Darwin" and uname().machine == "arm64"
-        else (
-            "/usr/local/bin/stockfish"
-            if system() == "Darwin"
-            else "/usr/games/stockfish"
-        )
-    )
+    if system() == "Darwin" and machine() == "arm64":
+        return "/opt/homebrew/bin/stockfish"
+
+    elif system() == "Darwin":
+        return "/usr/local/bin/stockfish"
+
+    else:
+        return "/usr/games/stockfish"
 
 
 @dataclass
