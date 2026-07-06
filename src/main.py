@@ -572,7 +572,7 @@ def sort_moves_by_evaluation(
 
 
 def get_move_score(
-    item: tuple[Move, tuple[int | None, int | None]],
+    item: tuple[Move, tuple[Optional[int], Optional[int]]],
 ) -> int:
     """Key function for sorting moves. Takes (Move, (score,
     mate_value)) and returns score for sorting.
