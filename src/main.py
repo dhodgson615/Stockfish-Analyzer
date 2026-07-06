@@ -12,6 +12,7 @@ from chess.engine import Limit, SimpleEngine
 from chess.syzygy import Tablebase, open_tablebase
 
 # TODO: refactor the script to use as little try/except as possible
+# TODO: refactor this script so that it uses more idiomatic Python
 
 
 def main() -> None:
