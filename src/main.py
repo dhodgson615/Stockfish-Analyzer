@@ -24,6 +24,9 @@ from chess.syzygy import Tablebase, open_tablebase
 # TODO: refactor the code so that a lot of the single-use, single-line
 #       functions are just integrated into the larger functions that call them
 
+# TODO: improve the progress bar to update based on the faster of progress
+#       completed and time taken, so that it doesn't just sit there for a long
+#       time if the first few moves are slow to evaluate
 
 def main() -> None:
     """Main function to run the interactive chess game."""
