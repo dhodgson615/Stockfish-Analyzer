@@ -62,8 +62,7 @@ def parse_move_input(board: Board, user_input: str) -> Optional[Move]:
     with suppress(ValueError):
         return Move.from_uci(user_input)
 
-        except ValueError:
-            return None
+    return None
 
 
 def handle_user_input(board: Board) -> Optional[Move]:
