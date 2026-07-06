@@ -1,5 +1,6 @@
 from contextlib import suppress
 from dataclasses import dataclass, field
+from math import copysign
 from os import X_OK, access, name, path, uname
 from platform import system
 from shutil import get_terminal_size, which
@@ -436,43 +437,29 @@ def evaluate_move(
 def try_tablebase_evaluation(
     board: Board, tablebase: Optional[Tablebase]
 ) -> Optional[tuple[Optional[int], Optional[int]]]:
-    """Attempt tablebase evaluation; return (score, mate_value) or
-    None.
-    """
-    if tablebase is None:
+    """Attempt tablebase evaluation; return (score, mate_value) or None."""
+    if not tablebase:
         return None
 
-    try:
+    with suppress(IOError, ValueError, IndexError, TypeError):
         wdl = tablebase.get_wdl(board)
-
-        if wdl is None:
-            return None
 
         if wdl == 0:
             return 0, None
 
         dtz = tablebase.get_dtz(board)
 
-    except (IOError, ValueError, IndexError):
-        return None
+        if dtz is None:
+            return None
 
-    mate_val = (
-        None
-        if dtz is None
-        else (
-            None
-            if abs(dtz if wdl > 0 else -dtz) >= 1000
-            else (dtz if wdl > 0 else -dtz)
-        )
-    )
+        direction = 1 if wdl > 0 else -1
+        signed_dtz = dtz * direction
+        mate_val = signed_dtz if abs(signed_dtz) < 1000 else None
+        score = int(copysign(1000000, direction)) - (mate_val or 0)
 
-    score = (
-        (1000000 - (mate_val or 0))
-        if wdl > 0
-        else (-1000000 - (mate_val or 0))
-    )
+        return score, mate_val
 
-    return score, mate_val
+    return None
 
 
 def get_engine_evaluation(
