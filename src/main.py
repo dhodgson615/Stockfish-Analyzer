@@ -447,8 +447,8 @@ def evaluate_move(
 
 
 def try_tablebase_evaluation(
-    board: Board, tablebase: Tablebase | None
-) -> tuple[int | None, int | None] | None:
+    board: Board, tablebase: Optional[Tablebase]
+) -> Optional[tuple[Optional[int], Optional[int]]]:
     """Attempt tablebase evaluation; return (score, mate_value) or
     None.
     """
