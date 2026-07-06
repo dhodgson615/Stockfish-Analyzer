@@ -51,7 +51,7 @@ def main() -> None:
             tablebase.close()
 
 
-def parse_move_input(board: Board, user_input: str) -> Move | None:
+def parse_move_input(board: Board, user_input: str) -> Optional[Move]:
     """Parse user input as a chess move. Tries SAN first, then UCI.
     Returns a Move object if successful, otherwise None.
     """
