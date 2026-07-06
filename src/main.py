@@ -147,8 +147,11 @@ def print_board(board: Board) -> None:
     """Prints the chess board in a user-friendly format. Clears the
     terminal before printing if configured.
     """
-    clear_terminal() if CLEAR_BEFORE_PRINT else None
-    print(str(board.unicode(borders=True)).replace("⭘", " ") + "\n")
+    if CLEAR_BEFORE_PRINT:
+        clear_terminal()
+
+    formatted_board = board.unicode(borders=True).replace("⭘", " ")
+    print(f"{formatted_board}\n")
 
 
 def display_progress(
