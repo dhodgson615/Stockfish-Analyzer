@@ -1,81 +1,60 @@
-# macOS system files
+!/config/download_config.json
+!/config/example_config.json
+*$py.class
+*.cover
+*.egg
+*.egg-info/
+*.manifest
+*.py[cod]
+*.so
+*.spec
+*.swo
+*.swp
+*~
 .DS_Store
 .DS_Store?
-._*
+.Python
 .Spotlight-V100
 .Trashes
-ehthumbs.db
-Thumbs.db
-
-# IDE files
+._*
+.cache
+.coverage
+.coverage.*
+.dmypy.json
+.eggs/
+.env
+.hypothesis/
 .idea/
+.installed.cfg
+.ipynb_checkpoints
+.mypy_cache/
+.pytest_cache/
+.python-version
+.tox/
+.venv
 .vscode/
-*.swp
-*.swo
-*~
-
-# Python bytecode and cache
+/config/*.json
+ENV/
+MANIFEST
+Thumbs.db
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
-
-# Distribution / packaging
-.Python
 build/
+coverage.xml
 develop-eggs/
 dist/
+dmypy.json
 downloads/
 eggs/
-.eggs/
+ehthumbs.db
+env.bak/
+env/
+htmlcov/
 lib/
 lib64/
+nosetests.xml
 parts/
 sdist/
 var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# PyInstaller
-*.manifest
-*.spec
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
-.pytest_cache/
-
-# Virtual environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
 venv.bak/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# pyenv
-.python-version
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Configuration files (keep examples, ignore user configs)
-/config/*.json
-!/config/example_config.json
-!/config/download_config.json
+venv/
+wheels/
