@@ -51,7 +51,8 @@ docker run -it stockfish-analyzer
 docker-compose up stockfish-analyzer
 ```
 
-See [DOCKER.md](DOCKER.md) for detailed Docker instructions and configuration options.
+See [DOCKER.md](DOCKER.md) for detailed Docker instructions and configuration
+options.
 
 ## Syzygy Tablebase Support (Optional)
 
@@ -69,7 +70,8 @@ the script).
 
 ### Method 1: First-Time Setup (Recommended)
 
-For first-time users, run the interactive setup script that will help you install Stockfish and optionally download tablebases:
+For first-time users, run the interactive setup script that will help you
+install Stockfish and optionally download tablebases:
 
 ```bash
 scripts/setup.sh
@@ -155,8 +157,8 @@ then prints the final board, move list, and winner/draw result.
 
 ## Known Limitations
 
-- Slow for complex positions: analysing each move separately restarts the
-  search each time. Multipv or a single engine.play() search would be faster.
+- Slow for complex positions: analysing each move separately restarts the search
+  each time. Multipv or a single engine.play() search would be faster.
 - No PGN export: move history prints to console only.
 
 ## Future Enhancements
@@ -180,7 +182,6 @@ to follow its terms when redistributing the binary.
 
 [python-chess](https://python-chess.readthedocs.io/en/latest/) by Niklas Fiekas
 
-[Stockfish](https://stockfishchess.org) - the strongest open-source chess
-engine
+[Stockfish](https://stockfishchess.org) - the strongest open-source chess engine
 
 [Syzygy tablebases](https://syzygy-tables.info) - for perfect endgame analysis
